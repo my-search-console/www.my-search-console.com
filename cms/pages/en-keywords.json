@@ -1,0 +1,95 @@
+{
+  "type": "page",
+  "meta": {
+    "indexable": true,
+    "title": "Keywords - Follow all your keywords position on all search engines",
+    "description": "With Foudroyer Keywords, you can track all your keywords from Google, Bing and Yandex in all place."
+  },
+  "id": "29281653-e421-4201-8fe7-5b67710ca4dd",
+  "published_at": "2023-11-16T14:51:10.003Z",
+  "updated_at": "2023-11-16T14:51:10.010Z",
+  "lang": "en",
+  "url": "keywords",
+  "content": [
+    {
+      "type": "marketing/hero",
+      "label": {
+        "value": "Your keywords, easy, precise and fast",
+        "component": "p"
+      },
+      "title": {
+        "value": "Track your ranking instantly",
+        "component": "h1"
+      },
+      "description": "The first application that lets you track all your keywords, without limits, on Google, Yandex and bing."
+    },
+    {
+      "type": "marketing/video",
+      "autoplay": true,
+      "alt": "Introduction to Foudroyer Keywords tool",
+      "src": "../assets/keywords-demo-landing.mp4",
+      "illustration": "../assets/keywords-demo-landing.jpg"
+    },
+    {
+      "type": "marketing/features",
+      "label": {
+        "value": "Foudroyer Keywords",
+        "component": "p"
+      },
+      "title": {
+        "value": "Follow your favorite keywords.",
+        "component": "h2"
+      },
+      "description": "It has never been easier to follow your keywords thanks to Foudroyer!",
+      "features": [
+        {
+          "title": {
+            "value": "The exact position of your keywords.",
+            "component": "p"
+          },
+          "description": "Directly connected to search engines, Foudroyer gives you exact and precise positions.",
+          "video": {
+            "autoplay": true,
+            "alt": "Video illustrating the \"Follow exact position\" feature",
+            "src": "../assets/follow-exact-position.mp4",
+            "illustration": "../assets/follow-exact-position.png"
+          }
+        },
+        {
+          "title": {
+            "value": "Simplified addition.",
+            "component": "p"
+          },
+          "description": "One or more words to add? Do it in just 4 seconds flat.",
+          "video": {
+            "autoplay": true,
+            "alt": "Video describing how to add keywords with the Keywords tool",
+            "src": "../assets/add-keywords-easily.mp4",
+            "illustration": "../assets/add-keywords-easily.png"
+          }
+        },
+        {
+          "title": {
+            "value": "Detailed view of the positions.",
+            "component": "p"
+          },
+          "description": "Click on a word and discover its detailed results that you won't be able to do without.",
+          "video": {
+            "autoplay": true,
+            "alt": "Video describing how to trigger the keywords detailed view",
+            "src": "../assets/keyword-detailed-view.mp4",
+            "illustration": "../assets/keyword-detailed-view.png"
+          }
+        }
+      ]
+    },
+    {
+      "type": "marketing/pricing",
+      "show": true
+    },
+    {
+      "type": "marketing/faq",
+      "show": true
+    }
+  ]
+}

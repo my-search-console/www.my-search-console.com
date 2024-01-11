@@ -1,0 +1,13 @@
+{
+  "type": "email",
+  "plans": [
+    "free",
+    "newbie",
+    "pro",
+    "enterprise"
+  ],
+  "title": "Abonnez-vous pour 9€ par mois",
+  "preview": "default text",
+  "id": "5317ed3b-db84-45d7-bb2d-4bcd270c0e98",
+  "content": []
+}

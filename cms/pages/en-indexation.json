@@ -1,0 +1,95 @@
+{
+  "type": "page",
+  "meta": {
+    "indexable": true,
+    "title": "Foudroyer, lightning indexing in less than 24 hours",
+    "description": "Foudroyer indexes your pages on Google, Yandex, Bing and Naver in just a few hours."
+  },
+  "id": "630e6102-a075-4c11-84b9-9fca59015e29",
+  "published_at": "2023-11-16T15:17:53.628Z",
+  "updated_at": "2023-11-16T15:17:53.681Z",
+  "url": "indexation",
+  "lang": "en",
+  "content": [
+    {
+      "type": "marketing/hero",
+      "label": {
+        "value": "What if you could index everything in 24 hours ?",
+        "component": "p"
+      },
+      "title": {
+        "value": "Indexation at the speed of light, plug and play.",
+        "component": "h1"
+      },
+      "description": "Indexation on the best search engines like **Google**, **Bing**, **Yandex** and **Naver**."
+    },
+    {
+      "type": "marketing/video",
+      "autoplay": true,
+      "alt": "video of demo of foudroyer",
+      "src": "../assets/demo-landing.mp4",
+      "illustration": "../assets/demo-landing.jpeg"
+    },
+    {
+      "type": "marketing/features",
+      "label": {
+        "value": "Index at the speed of light",
+        "component": "p"
+      },
+      "title": {
+        "value": "Foudroyer Indexation",
+        "component": "h2"
+      },
+      "description": "Foudroyer Indexation is a tool that allows you to index your website on search engines in a few seconds. Simply add your website, click and boom, your website is indexed.",
+      "features": [
+        {
+          "title": {
+            "value": "One-click indexing",
+            "component": "h3"
+          },
+          "description": "Added or updated a page? Click on the button and your website is indexed.",
+          "video": {
+            "autoplay": true,
+            "alt": "one click indexing demo",
+            "src": "../assets/one-click-indexing.mp4",
+            "illustration": "../assets/one-click-indexing.jpg"
+          }
+        },
+        {
+          "title": {
+            "value": "Now on multiple search engines.",
+            "component": "h3"
+          },
+          "description": "Indexing at the same time on Google, Bing, Yandex and Naver as never been so easy.",
+          "video": {
+            "autoplay": true,
+            "alt": "multi search engine for indexation",
+            "src": "../assets/multi-search-engines.mp4",
+            "illustration": "../assets/multi-search-engines.jpg"
+          }
+        },
+        {
+          "title": {
+            "value": "Sitemap automatically parsed",
+            "component": "h3"
+          },
+          "description": "We automatically parse your sitemap and index all your pages in a blink of an eye.",
+          "video": {
+            "autoplay": true,
+            "alt": "sync sitemap easely",
+            "src": "../assets/sync-sitemap.mp4",
+            "illustration": "../assets/sync-sitemap.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "type": "marketing/pricing",
+      "show": true
+    },
+    {
+      "type": "marketing/faq",
+      "show": true
+    }
+  ]
+}

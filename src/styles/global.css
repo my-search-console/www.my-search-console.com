@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+}
+
+body {
+  padding: 0 !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  padding: 0;
+}
+
+.breadcrumb__separator::after {
+  content: "/";
+  padding: 0 8px;
+  @apply text-slate-300;
+}
+
+.pink-lg .gatsby-resp-image-figure {
+  @apply mx-0;
+}
+
+.pink-lg figure figcaption.gatsby-resp-image-figcaption {
+  @apply mt-2 text-center !important;
+  @apply italic;
+}
+
+.gatsby-image-wrapper.absolute {
+  position: absolute !important;
+}
+
+.tooltip {
+  @apply pointer-events-none absolute z-10 rounded bg-slate-900 bg-opacity-90 font-display text-white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-pink-50;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-pink-200;
+  border-radius: 9999px;
+}
+
+.no-scroll-bar::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.no-scroll-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.site-selector-scroll-mobile {
+  max-height: calc(100vh - 15em);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.site-selector-scroll-desktop {
+  max-height: calc(100vh - 4.3em);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.shadow-btn {
+  box-shadow: 0 2px var(--tw-shadow-color);
+}
+
+.shadow-btn-2 {
+  box-shadow: 0 4px var(--tw-shadow-color);
+}
+
+.shadow-btn:hover,
+.shadow-btn-2:hover {
+  box-shadow: 0 0px transparent;
+}

@@ -1,0 +1,14 @@
+import { createStoreForTests } from "../../../utils/createStoreForTests"
+
+describe("assistant tests suite", () => {
+  it("if a user do not have websites added, should show the assistant", async () => {})
+  it("when the assistant appear, he should say a welcome message", async () => {})
+  it("on the welcome message, if the user have websites, a button with add website should appear", async () => {})
+  it("if the user do not have websites on gsc, it should show the message with a tutorial to add and why it is important", async () => {})
+  it("the user select a website and click on next, then, the assistant ask him to add a google key", async () => {})
+  it("the user add the google key, then the assistant fetch the sitemap and ask if the user want to index all non indexed pages", async () => {})
+  it("the user say yes and then, the assistant say that the pages are in the queue and will be all indexed in (10 pages per day / number of pages) but can boost it by subscribing", async () => {})
+  it("if the user subscribe, then, show a thank you message", async () => {})
+  it("if the user do not subscribe, then, show message that explain he can boost on clicking in the boost button", async () => {})
+  it("then, the assistant shut down", async () => {})
+})

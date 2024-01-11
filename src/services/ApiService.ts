@@ -1,0 +1,61 @@
+import axios from "axios"
+import { IApiResponse } from "../interfaces/IApiResponse"
+import { ILocalStorageService } from "../interfaces/ILocalStorageService"
+import { localStorageKeys } from "../constants/localStorageKeys"
+
+const PRODUCTION_ENDPOINT = "https://api.foudroyer.com"
+// const DEVELOPMENT_ENDPOINT = "http://localhost:8080"
+const DEVELOPMENT_ENDPOINT =
+  "https://8080-foudroyerdo-apifoudroye-66qnyu6k0ie.ws-eu107.gitpod.io"
+
+export class ApiService {
+  constructor(private localStorageService: ILocalStorageService) {
+    axios.defaults.validateStatus = function (status) {
+      return status < 500
+    }
+  }
+
+  private endpoint: string =
+    process.env.NODE_ENV === "production"
+      ? PRODUCTION_ENDPOINT
+      : DEVELOPMENT_ENDPOINT
+
+  get<T>(url: string) {
+    const headers = {
+      Authorization:
+        "Bearer " + this.localStorageService.get(localStorageKeys.TOKEN_KEY),
+    }
+
+    return axios.get<IApiResponse<T>>(`${this.endpoint}${url}`, {
+      headers,
+    })
+  }
+
+  post<T>(url: string, data: any) {
+    return axios.post<IApiResponse<T>>(`${this.endpoint}${url}`, data, {
+      headers: {
+        Authorization:
+          "Bearer " + this.localStorageService.get(localStorageKeys.TOKEN_KEY),
+      },
+    })
+  }
+
+  put<T>(url: string, data: any) {
+    return axios.put<IApiResponse<T>>(`${this.endpoint}${url}`, data, {
+      headers: {
+        Authorization:
+          "Bearer " + this.localStorageService.get(localStorageKeys.TOKEN_KEY),
+      },
+    })
+  }
+
+  delete<T>(url: string, data: any) {
+    return axios.delete<IApiResponse<T>>(`${this.endpoint}${url}`, {
+      data,
+      headers: {
+        Authorization:
+          "Bearer " + this.localStorageService.get(localStorageKeys.TOKEN_KEY),
+      },
+    })
+  }
+}

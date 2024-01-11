@@ -1,0 +1,218 @@
+{
+  "type": "page",
+  "meta": {
+    "indexable": true,
+    "title": "Foudroyer, indexing seo tool for google, yandex, bing, naver",
+    "description": "Foudroyer lets you centralize in one place everything you need to reach the top 1 on search engines."
+  },
+  "id": "630e6102-a075-4c11-84b9-9fca59015e28",
+  "published_at": "2023-11-16T13:15:09.769Z",
+  "updated_at": "2023-11-16T13:15:09.788Z",
+  "url": "home",
+  "lang": "en",
+  "content": [
+    {
+      "type": "marketing/hero",
+      "label": {
+        "value": "No more struggling with indexing",
+        "component": "p"
+      },
+      "title": {
+        "value": "Indexing and ranking on the serp has never been so easy.",
+        "component": "h1"
+      },
+      "description": "Plug your website in seconds, index unlimited pages and rank high on Google, Bing, Yandex and Naver. Then, analyze your traffic, follow keywords positions and find opportunities"
+    },
+    {
+      "type": "marketing/video",
+      "autoplay": true,
+      "alt": "video of demo of foudroyer",
+      "src": "../assets/demo-landing.mp4",
+      "illustration": "../assets/demo-landing.jpeg"
+    },
+    {
+      "type": "marketing/testimonials",
+      "show": true
+    },
+    {
+      "type": "marketing/features",
+      "label": {
+        "value": "Index at the speed of light",
+        "component": "p"
+      },
+      "title": {
+        "value": "Foudroyer Indexation",
+        "component": "h2"
+      },
+      "description": "Foudroyer Indexation is a tool that allows you to index your website on search engines in a few seconds. Simply add your website, click and boom, your website is indexed.",
+      "features": [
+        {
+          "title": {
+            "value": "One-click indexing",
+            "component": "h3"
+          },
+          "description": "Added or updated a page? Click on the button and your website is indexed.",
+          "video": {
+            "autoplay": true,
+            "alt": "one click indexing demo",
+            "src": "../assets/one-click-indexing.mp4",
+            "illustration": "../assets/one-click-indexing.jpg"
+          }
+        },
+        {
+          "title": {
+            "value": "Now on multiple search engines.",
+            "component": "h3"
+          },
+          "description": "Indexing at the same time on Google, Bing, Yandex and Naver as never been so easy.",
+          "video": {
+            "autoplay": true,
+            "alt": "multi search engine for indexation",
+            "src": "../assets/multi-search-engines.mp4",
+            "illustration": "../assets/multi-search-engines.jpg"
+          }
+        },
+        {
+          "title": {
+            "value": "Sitemap automatically parsed",
+            "component": "h3"
+          },
+          "description": "We automatically parse your sitemap and index all your pages in a blink of an eye.",
+          "video": {
+            "autoplay": true,
+            "alt": "sync sitemap easely",
+            "src": "../assets/sync-sitemap.mp4",
+            "illustration": "../assets/sync-sitemap.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "type": "marketing/features",
+      "label": {
+        "value": "Foudroyer Keywords",
+        "component": "p"
+      },
+      "title": {
+        "value": "Follow your favorite keywords.",
+        "component": "h2"
+      },
+      "description": "It has never been easier to follow your keywords thanks to Foudroyer!",
+      "features": [
+        {
+          "title": {
+            "value": "The exact position of your keywords.",
+            "component": "p"
+          },
+          "description": "Directly connected to search engines, Foudroyer gives you exact and precise positions.",
+          "video": {
+            "autoplay": true,
+            "alt": "Video illustrating the \"Follow exact position\" feature",
+            "src": "../assets/follow-exact-position.mp4",
+            "illustration": "../assets/follow-exact-position.png"
+          }
+        },
+        {
+          "title": {
+            "value": "Simplified addition.",
+            "component": "p"
+          },
+          "description": "One or more words to add? Do it in just 4 seconds flat.",
+          "video": {
+            "autoplay": true,
+            "alt": "Video describing how to add keywords with the Keywords tool",
+            "src": "../assets/add-keywords-easily.mp4",
+            "illustration": "../assets/add-keywords-easily.png"
+          }
+        },
+        {
+          "title": {
+            "value": "Detailed view of the positions.",
+            "component": "p"
+          },
+          "description": "Click on a word and discover its detailed results that you won't be able to do without.",
+          "video": {
+            "autoplay": true,
+            "alt": "Video describing how to trigger the keywords detailed view",
+            "src": "../assets/keyword-detailed-view.mp4",
+            "illustration": "../assets/keyword-detailed-view.png"
+          }
+        }
+      ]
+    },
+    {
+      "type": "marketing/features",
+      "label": {
+        "value": "Foudroyer Analytics",
+        "component": "p"
+      },
+      "title": {
+        "value": "Compare, Analyse, Take off",
+        "component": "h2"
+      },
+      "description": "Foudroyer Analytics drastically improves the understanding of your site's traffic, allowing you to take action at the right time and surge in search engine results.",
+      "features": [
+        {
+          "title": {
+            "value": "Simplified navigation",
+            "component": "h3"
+          },
+          "description": "Wave goodbye to complicated dates filters. Navigate easily through time.",
+          "video": {
+            "autoplay": true,
+            "alt": "simple navigation",
+            "src": "../assets/simple-navigation.mp4",
+            "illustration": "../assets/simple-navigation.jpeg"
+          }
+        },
+        {
+          "title": {
+            "value": "Advanced filters",
+            "component": "h3"
+          },
+          "description": "Finally understand the traffic on your sites and easily identify sudden changes that are hard to spot.",
+          "video": {
+            "autoplay": true,
+            "alt": "advanced filters analytics",
+            "src": "../assets/advanced-filter-analytics.mp4",
+            "illustration": "../assets/advanced-filter-analytics.jpeg"
+          }
+        },
+        {
+          "title": {
+            "value": "Compare results",
+            "component": "h3"
+          },
+          "description": "Comparison is key to learn what your users look for. It's natively integrated in our interface.",
+          "video": {
+            "autoplay": true,
+            "alt": "performance comparison",
+            "src": "../assets/performance-comparison.mp4",
+            "illustration": "../assets/performance-comparison.jpeg"
+          }
+        },
+        {
+          "title": {
+            "value": "Google, Bing, Yandex, increase your traffic",
+            "component": "h3"
+          },
+          "description": "Being indexed on multiple search engines can radically increase your traffic. We make that easy for you.",
+          "video": {
+            "autoplay": true,
+            "alt": "multi search engine analytics",
+            "src": "../assets/analytics-multi-search-engines.mp4",
+            "illustration": "../assets/analytics-multi-search-engines.jpeg"
+          }
+        }
+      ]
+    },
+    {
+      "type": "marketing/pricing",
+      "show": true
+    },
+    {
+      "type": "marketing/faq",
+      "show": true
+    }
+  ]
+}

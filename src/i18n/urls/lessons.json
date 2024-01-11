@@ -1,0 +1,47 @@
+{
+  "ar": {
+    "index": "يتعلم"
+  },
+  "de": {
+    "index": "lernen"
+  },
+  "en": {
+    "index": "learn"
+  },
+  "es": {
+    "index": "aprender"
+  },
+  "fr": {
+    "index": "apprendre"
+  },
+  "it": {
+    "index": "imparare"
+  },
+  "ja": {
+    "index": "学び"
+  },
+  "ko": {
+    "index": "배우다"
+  },
+  "pl": {
+    "index": "uczyć-się"
+  },
+  "pt": {
+    "index": "aprender"
+  },
+  "ru": {
+    "index": "учиться"
+  },
+  "th": {
+    "index": "เรียนรู้"
+  },
+  "tr": {
+    "index": "öğrenmek"
+  },
+  "vi": {
+    "index": "học"
+  },
+  "zh": {
+    "index": "学习"
+  }
+}
