@@ -703,10 +703,11 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
         // "MarketingRelatedArticles",
         // "MarketingContactInline",
 
-        // `ArticleContentRichText`,
+        `ArticleContentRichText`,
         // `ArticleContentVideo`,
-        // `ArticleContentImage`,
-        // "ArticleContentTitle",
+        `ArticleToc`,
+        `ArticleContentImage`,
+        "ArticleContentTitle",
         // "ArticleQuote",
       ],
       resolveType: (value) => {
@@ -730,10 +731,11 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
         // if (value.type === MarketingTypes.CONTACT_INLINE)
         //   return "MarketingContactInline"
 
-        // if (value.type === "article/rich_text") return "ArticleContentRichText"
+        if (value.type === "article/rich_text") return "ArticleContentRichText"
         // if (value.type === "article/video") return "ArticleContentVideo"
-        // if (value.type === "article/title") return "ArticleContentTitle"
-        // if (value.type === "article/image") return "ArticleContentImage"
+        if (value.type === "article/title") return "ArticleContentTitle"
+        if (value.type === "article/image") return "ArticleContentImage"
+        if (value.type === "article/toc") return "ArticleToc"
         // if (value.type === "article/quote") return "ArticleQuote"
         // if (value.type === "article/recipe") return "ArticleRecipe"
 

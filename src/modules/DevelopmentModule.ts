@@ -5,6 +5,6 @@ import { FullProductionRecipe } from "./recipes/FullProductionRecipe"
 
 export class DevelopmentModule implements IModule {
   build() {
-    return new FullDevelopmentRecipe().build()
+    return new FullLocalRecipe().build()
   }
 }
