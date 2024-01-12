@@ -76,16 +76,16 @@ export const Wrapper: React.FC<{
         >
           <Menu.Items className="site-selector-scroll-mobile md:site-selector-scroll-desktop absolute left-0 z-10 mt-2 w-full min-w-fit origin-top-right rounded-md bg-white font-display font-medium shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:max-w-sm">
             <Menu.Item>
-              <FoudroyerLink
+              <div
                 className={classNames(
-                  "mt-1 flex w-full items-center px-4 py-2 text-left text-sm transition-all duration-300 ease-in-out",
+                  "mt-1 flex w-full cursor-pointer items-center px-4 py-2 text-left text-sm transition-all duration-300 ease-in-out",
                   "hover:bg-pink-50 hover:text-pink-400"
                 )}
-                to={"/dashboard/"}
+                onClick={props.onCreateWebsite}
               >
-                <ArrowLeftIcon className="mr-2 h-4 w-4" />
-                <FormattedMessage id="general/site-selector/select-all" />
-              </FoudroyerLink>
+                <PlusIcon className="mr-2 h-4 w-4" />
+                Add a new website
+              </div>
             </Menu.Item>
 
             <hr className="my-1 border-slate-100" />

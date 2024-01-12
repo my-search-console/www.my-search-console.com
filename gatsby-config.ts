@@ -6,7 +6,7 @@ import {
   MIXPANEL_PRODUCTION_API_KEY,
 } from "./src/constants/mixpanel"
 
-const URL = "https://www.foudroyer.com"
+const URL = "https://www.my-search-console.com"
 
 const MIXPANEL_API_KEY =
   process.env.NODE_ENV === "production"
@@ -32,8 +32,8 @@ const config: GatsbyConfig = {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/assets/logo/icon.png",
-        name: `Foudroyer`,
-        short_name: `Foudroyer`,
+        name: `My Search Console`,
+        short_name: `My Search Console`,
         start_url: `/`,
         background_color: `#000`,
         theme_color: `#fbcfe8`,
@@ -124,18 +124,6 @@ const config: GatsbyConfig = {
       `,
       },
     },
-    {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        icon: "src/assets/logo/icon.png",
-        name: `Foudroyer`,
-        short_name: `Foudroyer`,
-        start_url: `/`,
-        background_color: `#000`,
-        theme_color: `#fbcfe8`,
-        display: `standalone`,
-      },
-    },
     "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
@@ -158,7 +146,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-umami`,
       options: {
-        websiteId: "74cd50e0-f967-42c1-abd5-ccb69a83a403",
+        websiteId: "92e76490-3adf-4921-8eb6-cb2b14d83b64",
         srcUrl: "https://analytics.eu.umami.is/script.js",
         includeInDevelopment: false,
         autoTrack: true,
@@ -166,7 +154,6 @@ const config: GatsbyConfig = {
         dataCache: false,
       },
     },
-
     {
       resolve: "gatsby-plugin-mixpanel",
       options: {
@@ -181,15 +168,6 @@ const config: GatsbyConfig = {
       },
     },
   ],
-}
-
-if (process.env.NODE_ENV === "production") {
-  config.plugins?.push({
-    resolve: "@sentry/gatsby",
-    options: {
-      dsn: "https://f6d6eb4963584afc93e51f7d3136b07e@o1172147.ingest.sentry.io/6267024",
-    },
-  })
 }
 
 export default config

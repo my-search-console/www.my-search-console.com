@@ -19,10 +19,6 @@ type Props = {
 }
 
 export const Wrapper: React.FC<Props> = (props) => {
-  const isMoreThanThreeDays = props.signedUpAt
-    ? new Date().getTime() - props.signedUpAt.getTime() > 259200000
-    : false
-  if (isMoreThanThreeDays && props.plans.size === 0) return <Pricing />
   return (
     <div className="my-4">
       <FilterBar />
