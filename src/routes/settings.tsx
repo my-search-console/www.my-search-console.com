@@ -66,10 +66,8 @@ export const SettingsRoute: React.FC<RouteComponentProps> = () => {
         </Container>
       </div>
 
-      <UpdateSitemapModal />
       <UpdateCredentialsModal />
       <MobileNavbar />
-      <IndexNowCheckModal />
       <CreateWebsiteModal />
       <HistogramModal />
       <PremiumModal />
