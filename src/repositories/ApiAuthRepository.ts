@@ -148,7 +148,7 @@ export class ApiAuthRepository implements IAuthRepository {
     // }
 
     const code = await this.openBrowserAndGetCode(
-      `https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fwebmasters.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Findexing%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&response_type=code&client_id=749607665220-nm0esgq5d60qi92s8svuevekktvdf150.apps.googleusercontent.com&redirect_uri=${callbackUrl}`
+      `https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fwebmasters.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&response_type=code&client_id=969703850541-ul7kv0o24cbo0gcvhgdf3cjcn8vbv6j4.apps.googleusercontent.com&redirect_uri=${callbackUrl}`
     )
 
     if (code.error === true) {
