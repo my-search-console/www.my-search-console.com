@@ -7,6 +7,323 @@ const PricingUpsell = path.resolve(`./src/templates/upsell.tsx`)
 
 const axios = require("axios")
 
+const MarketingDiscoverQuery = `
+... on MarketingDiscover {
+  description
+  type
+  title {
+    component
+    value
+  }
+  label {
+    component
+    value
+  }
+  to {
+    label
+    rel
+    target
+    url
+  }
+  image {
+    src {
+      childImageSharp {
+        gatsbyImageData(
+          width: 600
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
+      }
+    }
+    alt
+  }
+}
+`
+
+const MarketingContactInlineQuery = `
+... on MarketingContactInline {
+  __typename
+  type
+  informations {
+    description
+    information
+    label
+    type
+  }
+}
+`
+const MarketingRelatedArticlesQuery = `
+... on MarketingRelatedArticles {
+description
+type
+title {
+  component
+  value
+}
+label {
+  component
+  value
+}
+articles {
+  id
+}
+}
+`
+
+const MarketingFaqQuery = `
+... on MarketingFaq {
+type
+description
+cta {
+  description
+  button {
+    label
+    rel
+    target
+    url
+  }
+  visible
+  title {
+    component
+    value
+  }
+}
+items {
+  answer
+  component
+  question
+}
+title {
+  component
+  value
+}
+label {
+  component
+  value
+}
+}`
+
+const MarketingCategoryQuery = `
+... on MarketingCategory {
+type
+description
+nbArticles
+category {
+  name
+  id
+  url
+}
+more {
+  rel
+  target
+  label
+}
+title {
+  component
+  value
+}
+}`
+
+const ArticleContentVideoQuery = `... on ArticleContentVideo {
+alt
+autoplay
+type
+ring
+src {
+  publicURL
+}
+illustration {
+  childImageSharp {
+    gatsbyImageData(
+      width: 800
+      placeholder: BLURRED
+      formats: [AUTO, WEBP]
+    )
+  }
+}
+}`
+
+const ArticleContentRichTextQuery = `... on ArticleContentRichText {
+content
+type
+}`
+
+const ArticleContentQuoteQuery = `... on ArticleQuote {
+text
+author
+type
+}`
+
+const ArticleContentRecipe = `... on ArticleRecipe {
+  difficulty
+  description
+  name
+  keywords
+  cookDuration
+  image169: illustration {
+    src {
+      childImageSharp {
+        resize(width: 1200, height: 675, cropFocus: CENTER, fit: COVER, quality: 100) {
+          src
+        }
+      }
+    }
+  },
+  image11: illustration {
+    src {
+      childImageSharp {
+        resize(width: 800, height: 800, cropFocus: CENTER, fit: COVER, quality: 100) {
+          src
+        }
+      }
+    }
+  }
+  image43: illustration {
+    src {
+      childImageSharp {
+        resize(width: 1200, height: 900, cropFocus: CENTER, fit: COVER, quality: 100) {
+          src
+        }
+      }
+    }
+  }
+  preparationDuration
+  calories
+  recipeCuisine
+  recipeCategory
+  type
+  tools {
+    quantity
+    url
+    value
+  }
+  steps {
+    name
+    content
+    illustration {
+      alt
+      src {
+        childImageSharp {
+          id
+          gatsbyImageData(width: 800, placeholder: BLURRED, formats: [AUTO, WEBP])
+        }
+        publicURL
+      }
+    }
+  }
+  ingredients {
+    items {
+      quantity
+      url
+      value
+      weight
+    }
+    portions
+  }
+}`
+
+const ArticleContentImageQuery = `... on ArticleContentImage {
+  alt
+  legend
+  type
+  src {
+    childImageSharp {
+      gatsbyImageData(
+        width: 800
+        placeholder: BLURRED
+        formats: [AUTO, WEBP]
+      )
+    }
+  }
+}`
+
+const ArticleProductQuery = `... on ArticleProduct {
+  type
+  product {
+    name
+    description
+    buttons {
+      url
+      theme
+      label
+    }
+    lang
+    image {
+      alt
+      src {
+        childImageSharp {
+          gatsbyImageData(
+            width: 400
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
+        }
+      }
+    }
+  }
+}`
+
+const ArticleToArticleQuery = `... on ArticleToArticle {
+  type
+  article {
+    type
+    id
+    jsonId
+    url
+    lang
+    description
+    title
+    updated_at
+    published_at
+    author {
+      id: jsonId
+      name
+      lang
+      username
+      image {
+        alt
+        src {
+          childImageSharp {
+            id
+            gatsbyImageData(
+              width: 80
+              placeholder: BLURRED
+              formats: [AUTO, WEBP]
+            )
+          }
+          publicURL
+        }
+      }
+    }
+    category {
+      id: jsonId
+      url
+      lang
+      name
+    }
+    preview: illustration {
+      alt
+      src {
+        childImageSharp {
+          id
+          gatsbyImageData(
+            width: 200
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
+        }
+      }
+    }
+  }
+}`
+
+const ArticleContentTitleQuery = `... on ArticleContentTitle {
+component
+type
+value
+faq
+}`
+
 // const ShowOffGetNumberOfDownloadsFromUmami = async () => {
 //   return axios.default
 //     .get(
@@ -230,6 +547,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 type
                 show
               }
+
+              ... on ArticleToc {
+                type
+                title {
+                  value
+                  component
+                }
+              }
+              
+              ${ArticleContentTitleQuery}
+              ${ArticleContentRichTextQuery}
             }
             lang
             published_at

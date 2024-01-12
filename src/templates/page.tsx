@@ -15,8 +15,31 @@ import { ScopeNotFoundModal } from "../components/general/ScopeNotFoundModal/Sco
 import { Notifications } from "../components/general/Notifications/Notifications"
 import { PremiumModal } from "../components/payment/PremiumModal/PremiumModal"
 import { NewsModal } from "../components/general/News/components/NewsModal/NewsModal"
+import {
+  ArticleEntity,
+  ArticleTOC,
+  ArticleTypes,
+} from "../entities/ArticleEntity"
+import { Toc } from "../components/marketing/Toc/Toc"
+import { slugifyForAnchors } from "../utils/normalizeUrl"
+import { Mdx } from "../components/marketing/Mdx/Mdx"
+import { ArticleTitle } from "../components/marketing/ArticleTitle/ArticleTitle"
+
+const getTableOfContentItems = (
+  content: ArticleEntity["content"]
+): ArticleTOC["items"] => {
+  return content
+    .filter(({ type }) => type === ArticleTypes.TITLE)
+    .map((item: any) => ({
+      label: item.value,
+      to: `#${slugifyForAnchors(item.value)}`,
+      depth: Number(item.component.replace("h", "")) - 2,
+    }))
+}
 
 function Page(props) {
+  console.log(props)
+
   return (
     <div className="antialiased">
       <Seo
@@ -86,6 +109,21 @@ function Page(props) {
           return <Testimonials key={index} />
 
         if (content.type === "marketing/faq") return <Faq key={index} />
+
+        if (content.type === ArticleTypes.RICH_TEXT)
+          return <Mdx key={index}>{content.content}</Mdx>
+
+        if (content.type === ArticleTypes.TITLE)
+          return <ArticleTitle key={index} {...content} />
+
+        if (content.type === ArticleTypes.TOC)
+          return (
+            <Toc
+              key={index}
+              {...content}
+              items={getTableOfContentItems(props.pageContext.content)}
+            />
+          )
 
         return content.type
       })}

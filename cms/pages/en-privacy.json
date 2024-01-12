@@ -2,8 +2,8 @@
   "type": "page",
   "meta": {
     "indexable": true,
-    "title": "Foudroyer, indexing seo tool for google, yandex, bing, naver",
-    "description": "Foudroyer lets you centralize in one place everything you need to reach the top 1 on search engines."
+    "title": "Privacy Policy",
+    "description": "This Privacy Policy explains how we collect, use, and disclose information about you. This Privacy Policy applies when you use our websites, mobile applications, and other online products and services that link to this Privacy Policy, contact our customer service team, engage with us on social media, or otherwise interact with us."
   },
   "id": "630e6102-a075-4c11-84b9-9fca59015e28",
   "published_at": "2023-11-16T13:15:09.769Z",
@@ -12,16 +12,15 @@
   "lang": "en",
   "content": [
     {
-      "type": "marketing/hero",
-      "label": {
-        "value": "No more struggling with indexing",
-        "component": "p"
-      },
-      "title": {
-        "value": "Indexing and ranking on the serp has never been so easy.",
-        "component": "h1"
-      },
-      "description": "Plug your website in seconds, index unlimited pages and rank high on Google, Bing, Yandex and Naver. Then, analyze your traffic, follow keywords positions and find opportunities"
+      "type": "article/title",
+      "value": "Privacy Policy",
+      "component": "h1",
+      "faq": false,
+      "id": "zad"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "This Privacy Policy explains how we collect, use, and disclose information about you. This Privacy Policy applies when you use our websites, mobile applications, and other online products and services that link to this Privacy Policy, contact our customer service team, engage with us on social media, or otherwise interact with us."
     },
     {
       "type": "article/rich_text",
