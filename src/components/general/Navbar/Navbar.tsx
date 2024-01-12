@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react"
 import { Fragment } from "react"
 import { Container } from "../../UI/Container"
-import { Logo } from "../../UI/Logo"
+import { LogoFace } from "../../UI/Logo"
 import { NavLink } from "../NavLink"
 import { Link, navigate } from "gatsby"
 import { ContainerProps, connector } from "./containers/Navbar.container"
@@ -108,194 +108,53 @@ export const Wrapper: React.FC<{
         <Container>
           <nav className="flex justify-between py-4">
             <div className="flex items-center md:gap-x-4">
-              {props.authenticated && (
-                <FoudroyerLink
-                  to={buildLinkDependingOnAuthStatus({
-                    isAuth: props.authenticated,
-                    website: websiteId,
-                    tool: "dashboard",
-                    feature,
-                  })}
-                  ariaLabel="Home link"
-                >
-                  <Logo className="w-8" />
-                </FoudroyerLink>
-              )}
+              <FoudroyerLink to={"/"} ariaLabel="Home link">
+                <LogoFace className="w-10" />
+              </FoudroyerLink>
 
-              {!props.authenticated && (
-                <FoudroyerLink
-                  to={buildLinkDependingOnAuthStatus({
-                    isAuth: props.authenticated,
-                    website: websiteId,
-                    tool: "home",
-                    feature,
-                  })}
-                  ariaLabel="Home link"
-                >
-                  <Logo className="w-8" />
-                </FoudroyerLink>
-              )}
+              <NavLink
+                isActive={feature === "analytics"}
+                href={buildLinkDependingOnAuthStatus({
+                  isAuth: props.authenticated,
+                  website: websiteId,
+                  tool: "analytics",
+                  feature,
+                })}
+              >
+                <FormattedMessage id="navbar/analytics" />
+              </NavLink>
+
+              <NavLink
+                isActive={feature === "keywords"}
+                href={buildLinkDependingOnAuthStatus({
+                  isAuth: props.authenticated,
+                  website: websiteId,
+                  tool: "keywords",
+                  feature,
+                })}
+              >
+                <FormattedMessage id="navbar/keywords" />
+              </NavLink>
 
               {props.authenticated && (
                 <NavLink
-                  isActive={feature === "dashboard"}
-                  href={"/dashboard/"}
+                  isActive={feature === "settings"}
+                  href={buildLinkDependingOnAuthStatus({
+                    isAuth: props.authenticated,
+                    website: websiteId,
+                    tool: "settings",
+                    feature,
+                  })}
                 >
-                  Dashboard
+                  <FormattedMessage id="navbar/settings" />
                 </NavLink>
               )}
 
-              <div className="hidden items-center space-x-2 md:flex">
-                <Menu as="div" className="relative inline-block text-left">
-                  <div>
-                    <Menu.Button className="inline-flex h-10 items-center rounded-md px-4 font-display text-sm font-semibold transition duration-300 ease-in-out hover:bg-pink-50 hover:text-pink-400 focus:outline-none focus:ring-2 focus:ring-offset-2">
-                      <FormattedMessage id="navbar/products" />
-                      <ChevronDownIcon
-                        className="-mr-1 ml-1 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    </Menu.Button>
-                  </div>
-
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute left-0 z-10 mt-2 w-[600px] origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <div className="grid grid-cols-2 p-1">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Item
-                              theme="pink"
-                              title={
-                                <FormattedMessage id="navbar/indexation" />
-                              }
-                              to={buildLinkDependingOnAuthStatus({
-                                isAuth: props.authenticated,
-                                website: websiteId,
-                                tool: "indexation",
-                                feature,
-                              })}
-                              description={
-                                <FormattedMessage id="navbar/indexation/description" />
-                              }
-                              icon={<BoltIcon className="h-4 w-4 " />}
-                            />
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Item
-                              title={<FormattedMessage id="navbar/analytics" />}
-                              theme="emerald"
-                              to={buildLinkDependingOnAuthStatus({
-                                isAuth: props.authenticated,
-                                website: websiteId,
-                                tool: "analytics",
-                                feature,
-                              })}
-                              description={
-                                <FormattedMessage id="navbar/analytics/description" />
-                              }
-                              icon={<ChartBarIcon className="h-4 w-4 " />}
-                            />
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Item
-                              theme="blue"
-                              title={<FormattedMessage id="navbar/keywords" />}
-                              to={buildLinkDependingOnAuthStatus({
-                                isAuth: props.authenticated,
-                                website: websiteId,
-                                tool: "keywords",
-                                feature,
-                              })}
-                              description={
-                                <FormattedMessage id="navbar/keywords/description" />
-                              }
-                              icon={<HashtagIcon className="h-4 w-4 " />}
-                            />
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Item
-                              theme="orange"
-                              title={
-                                <FormattedMessage id="navbar/opportunities" />
-                              }
-                              to={buildLinkDependingOnAuthStatus({
-                                isAuth: props.authenticated,
-                                website: websiteId,
-                                tool: "opportunities",
-                                feature,
-                              })}
-                              description={
-                                <FormattedMessage id="navbar/opportunities/description" />
-                              }
-                              icon={<TrophyIcon className="h-4 w-4 " />}
-                            />
-                          )}
-                        </Menu.Item>
-                      </div>
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
-
-                <div className="relative">
-                  <span
-                    style={{
-                      fontSize: "0.55rem",
-                      lineHeight: "1rem",
-                    }}
-                    className="absolute -right-1 -top-1 rounded bg-pink-50 p-0.5 px-1 font-display font-semibold uppercase text-pink-400"
-                  >
-                    beta
-                  </span>
-                  <NavLink
-                    href={"/roast/dashboard/"}
-                    isActive={feature === "roast"}
-                  >
-                    <span className="relative">Roast</span>
-                  </NavLink>
-                </div>
-
-                <div className="relative">
-                  <NavLink
-                    href={"/show-off/"}
-                    isActive={feature === "show-off"}
-                  >
-                    <span className="relative">Show Off</span>
-                  </NavLink>
-                </div>
-
-                {props.authenticated && (
-                  <NavLink
-                    isActive={feature === "settings"}
-                    href={buildLinkDependingOnAuthStatus({
-                      isAuth: props.authenticated,
-                      website: websiteId,
-                      tool: "settings",
-                      feature,
-                    })}
-                  >
-                    <FormattedMessage id="navbar/settings" />
-                  </NavLink>
-                )}
-
-                {(!props.authenticated || !isPremium) && (
-                  <NavLink href={"/pricing/"}>
-                    <FormattedMessage id="navbar/pricing" />
-                  </NavLink>
-                )}
-              </div>
+              {(!props.authenticated || !isPremium) && (
+                <NavLink href={"/pricing/"}>
+                  <FormattedMessage id="navbar/pricing" />
+                </NavLink>
+              )}
             </div>
 
             <div className="flex items-center gap-x-4 md:gap-x-2">
