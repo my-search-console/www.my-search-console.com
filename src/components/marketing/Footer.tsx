@@ -21,22 +21,19 @@ export function Footer() {
               <NavLink href="/analytics/">
                 <FormattedMessage id="navbar/analytics" />
               </NavLink>
-              <NavLink href="/indexation/">
-                <FormattedMessage id="navbar/indexation" />
-              </NavLink>
               <NavLink href="/keywords/">
                 <FormattedMessage id="navbar/keywords" />
               </NavLink>
               <NavLink href="/opportunities/">
                 <FormattedMessage id="navbar/opportunities" />
               </NavLink>
-              <NavLink href="/legal/legal-notice/">
+              <NavLink href="/legal-notice/">
                 <FormattedMessage id="footer/legal-notice" />
               </NavLink>
-              <NavLink href="/legal/privacy/">
+              <NavLink href="/privacy/">
                 <FormattedMessage id="footer/privacy" />
               </NavLink>
-              <NavLink href="/legal/terms-of-service/">
+              <NavLink href="/terms-of-service/">
                 <FormattedMessage id="footer/terms-of-use" />
               </NavLink>
               <NavLink href="/pricing/">
