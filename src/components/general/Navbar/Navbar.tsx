@@ -108,8 +108,12 @@ export const Wrapper: React.FC<{
         <Container>
           <nav className="flex justify-between py-4">
             <div className="flex items-center md:gap-x-4">
-              <FoudroyerLink to={"/"} ariaLabel="Home link">
-                <LogoFace className="w-10" />
+              <FoudroyerLink
+                to={"/"}
+                className="flex items-center font-display text-xs"
+                ariaLabel="Home link"
+              >
+                <LogoFace className="w-7" />
               </FoudroyerLink>
 
               <NavLink
@@ -136,19 +140,17 @@ export const Wrapper: React.FC<{
                 <FormattedMessage id="navbar/keywords" />
               </NavLink>
 
-              {props.authenticated && (
-                <NavLink
-                  isActive={feature === "settings"}
-                  href={buildLinkDependingOnAuthStatus({
-                    isAuth: props.authenticated,
-                    website: websiteId,
-                    tool: "settings",
-                    feature,
-                  })}
-                >
-                  <FormattedMessage id="navbar/settings" />
-                </NavLink>
-              )}
+              <NavLink
+                isActive={feature === "opportunities"}
+                href={buildLinkDependingOnAuthStatus({
+                  isAuth: props.authenticated,
+                  website: websiteId,
+                  tool: "opportunities",
+                  feature,
+                })}
+              >
+                <FormattedMessage id="navbar/opportunities" />
+              </NavLink>
 
               {(!props.authenticated || !isPremium) && (
                 <NavLink href={"/pricing/"}>
@@ -158,8 +160,6 @@ export const Wrapper: React.FC<{
             </div>
 
             <div className="flex items-center gap-x-4 md:gap-x-2">
-              <NewsButton />
-
               {!isPremium && props.authenticated && (
                 <ButtonSecondary
                   size="sm"
@@ -196,9 +196,9 @@ export const Wrapper: React.FC<{
                       className="flex items-center"
                       aria-label="Main menu"
                     >
-                      <div className="shadow-btn relative flex h-10 w-10 items-center justify-center rounded border border-slate-200 bg-white text-slate-500 shadow-slate-200 hover:bg-slate-100">
-                        <UserIcon className="h-6 w-6" />
-                      </div>
+                      <ButtonSecondary size="sm">
+                        <UserIcon className="h-5 w-5" />
+                      </ButtonSecondary>
                     </Menu.Button>
 
                     <Transition
@@ -232,6 +232,20 @@ export const Wrapper: React.FC<{
 
                           <Menu.Item>
                             {({ active }) => (
+                              <a
+                                className={classNames(
+                                  active ? "bg-pink-100 text-pink-500" : "",
+                                  "block w-full px-4  py-2 text-left text-sm transition-all duration-300 ease-in-out"
+                                )}
+                                href="/administration?tool=settings"
+                              >
+                                <FormattedMessage id="navbar/settings"></FormattedMessage>
+                              </a>
+                            )}
+                          </Menu.Item>
+
+                          <Menu.Item>
+                            {({ active }) => (
                               <button
                                 className={classNames(
                                   active ? "bg-pink-100 text-pink-500" : "",
@@ -257,22 +271,22 @@ export const Wrapper: React.FC<{
               )}
 
               <div className="flex-shrink-0">
-                <div
+                <button
                   onClick={() =>
                     navigate(
                       window?.location.pathname + "#change-lang-modal=open"
                     )
                   }
-                  className="shadow-btn shadow-btn cursor-pointer rounded border border-slate-200 p-1 shadow-slate-200 transition duration-300 ease-in-out hover:bg-pink-50"
+                  className="cursor-pointer rounded-full border border-slate-200 p-1 shadow-slate-200 transition duration-300 ease-in-out hover:bg-slate-100"
                 >
                   <img
-                    className="rounded-sm"
+                    className="rounded-full"
                     alt="choose language"
                     width={28}
                     height={28}
                     src={`/flags/${locale}.svg`}
                   />
-                </div>
+                </button>
               </div>
             </div>
           </nav>

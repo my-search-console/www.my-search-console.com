@@ -18,15 +18,16 @@ export const DateSelectorItem: React.FC<{
         <button
           className={classNames(
             active ? "bg-pink-100 text-pink-500" : "",
-            "flex w-full items-center  px-4 py-2 text-left text-sm transition-all duration-300 ease-in-out"
+            "flex w-full items-center px-4 py-2 text-left text-sm transition-all duration-300 ease-in-out"
           )}
           onClick={() => {
             props.onSetDate({ period: props.period, date: props.date })
           }}
         >
-          {props.locked && <LockClosedIcon className="h-4 w-4 text-pink-500 mr-2" />}
+          {props.locked && (
+            <LockClosedIcon className="mr-2 h-4 w-4 text-pink-500" />
+          )}
           <FormattedMessage id={props.formattedMessage} />
-          
         </button>
       )}
     </Menu.Item>

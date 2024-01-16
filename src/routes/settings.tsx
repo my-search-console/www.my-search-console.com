@@ -55,9 +55,6 @@ export const SettingsRoute: React.FC<RouteComponentProps> = () => {
           <FilterBar />
           <div className="relative">
             <ConnectService />
-            <GoogleKeyUpdate />
-            <UpdateSitemap />
-            <AddManuallyPagesToIndexation />
             <MakeWebsitePublic />
             <ManageSubscription />
             <Invoices />

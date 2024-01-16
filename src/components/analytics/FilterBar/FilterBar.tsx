@@ -7,7 +7,6 @@ import { SiteSelector } from "./components/SiteSelector/SiteSelector"
 import { getWebsiteIdFromUrl } from "../../../utils/getWebsiteIdFromUrl"
 import { DateSelector } from "./components/DateSelector/DateSelector"
 import { KeywordsFilters } from "./components/KeywordsFilters/KeywordsFilters"
-import { IndexationAutoSelector } from "./components/IndexationAutoSelector/IndexationAutoSelector"
 import { SourceSelector } from "./components/SourceSelector/SourceSelector"
 
 function getFiltersFromUrl(href: string) {

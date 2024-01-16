@@ -1,0 +1,82 @@
+{
+    "published_at": "2023-08-11T13:46:10.734Z",
+    "meta": {
+      "indexable": true,
+      "description": "My Search Console's Legal Notice: Managed by K. Marques in Mitry-Mory. Hosted by Firebase. IP & liability terms apply.",
+      "title": "Legal Notice • My Search Console"
+    },
+    "hidden": true,
+    "author": "6c628c4b-6db4-47de-8a25-8abfedd6bc77",
+    "lang": "en",
+    "url": "legal-notice",
+    "illustration": {
+      "alt": "legal notice",
+      "src": "../assets/legal-notice.jpeg"
+    },
+    "updated_at": "2023-08-11T13:46:10.746Z",
+    "version": "v1",
+    "title": "Legal Notice",
+    "content": [
+      {
+        "type": "article/toc",
+        "title": {
+          "value": "Table of content.",
+          "component": "p"
+        }
+      },
+      {
+        "type": "article/title",
+        "value": "Legal Information",
+        "component": "h2",
+        "faq": false
+      },
+      {
+        "type": "article/rich_text",
+        "content": "**Business Name**: Savate \n\n**Responsible Name**: Kevin Marques \n\n**Address**: 29 Rue Pierre Curie, Mitry-Mory, 77290 \n\n**Email**: contact@my-search-console.com\n\n**SIRET** : 90511299100013\n\n**TVA INTRACOMMUNAUTAIRE** : FR 40 905 112 991"
+      },
+      {
+        "type": "article/title",
+        "value": "Hosting",
+        "component": "h2",
+        "faq": false
+      },
+      {
+        "type": "article/rich_text",
+        "content": "The website is hosted by Google Firebase, whose headquarters are located at 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA."
+      },
+      {
+        "type": "article/title",
+        "value": "Intellectual Property",
+        "component": "h2",
+        "faq": false
+      },
+      {
+        "type": "article/rich_text",
+        "content": "All content on the [www.my-search-console.com](http://www.my-search-console.com/) website, including but not limited to graphics, images, texts, videos, animations, sounds, logos, gifs, and icons as well as their formatting are the exclusive property of Savate, with the exception of brands, logos, or content belonging to other partner companies or authors."
+      },
+      {
+        "type": "article/title",
+        "value": "Hyperlinks",
+        "component": "h2",
+        "faq": false
+      },
+      {
+        "type": "article/rich_text",
+        "content": "The [www.my-search-console.com](http://www.my-search-console.com/) website may contain links to other websites. Savate cannot be held responsible for the content of these sites or how users might use them."
+      },
+      {
+        "type": "article/title",
+        "value": "Limitations of Liability",
+        "component": "h2",
+        "faq": false
+      },
+      {
+        "type": "article/rich_text",
+        "content": "Savate cannot be held responsible for any errors encountered on the site, technical issues, interpretation of the information published, and the consequences of its use. The user remains responsible for their equipment and its use, and they alone bear all direct or indirect costs arising from their internet connection."
+      }
+    ],
+    "type": "article",
+    "id": "9b54dc0d-41dd-4e86-9cf0-085c5de6c11f",
+    "description": "Legal Notice of My Search Console, outlining hosting, intellectual property rights, and liability details. Managed by K. Marques, hosted on Firebase.",
+    "category": "15f0ef4e-5cae-4798-ab3f-08da185b8980"
+  }

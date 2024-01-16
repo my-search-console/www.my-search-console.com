@@ -2,19 +2,15 @@ import { Fragment, useEffect } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import React from "react"
 import classNames from "classnames"
-import { getSecondaryStyle } from "../../../../UI/Button/Button"
 import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ChevronDownIcon,
-  HomeIcon,
-} from "@heroicons/react/20/solid"
+  ButtonSecondary,
+  getSecondaryStyle,
+} from "../../../../UI/Button/Button"
+import { ChevronDownIcon, Cog6ToothIcon } from "@heroicons/react/20/solid"
 import { SiteSelectorItem } from "./SiteSelectorItem"
 import { ContainerProps, connector } from "./containers/SiteSelector.container"
 import { PlusIcon } from "@heroicons/react/20/solid"
 import { PaymentPlansEntity, WebsiteEntity } from "@foudroyer/interfaces"
-import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { FoudroyerLink } from "../../../../general/FoudroyerLink/FoudroyerLink"
 
 export const Wrapper: React.FC<{
   onMount: () => void
@@ -32,8 +28,6 @@ export const Wrapper: React.FC<{
   }, [])
 
   const favicon = props.active?.image || "/websites/no-favicon.svg"
-  const isFreeOrNewbie =
-    props.plans.size === 0 || props.plans.has(PaymentPlansEntity.newbie)
 
   return (
     <Menu as="div" className="ml-2 w-full sm:relative sm:w-auto">
@@ -47,22 +41,33 @@ export const Wrapper: React.FC<{
         </Menu.Button>
       )}
       {!props.fetching && props.active && (
-        <Menu.Button
-          type="button"
-          className={classNames(getSecondaryStyle({ size: "sm" }), "bg-white")}
-        >
-          {<img src={favicon} className="h-4 w-4" />}
+        <>
+          <Menu.Button
+            type="button"
+            className={classNames(
+              getSecondaryStyle({ size: "sm" }),
+              "bg-white"
+            )}
+          >
+            {<img src={favicon} className="h-4 w-4" />}
 
-          <div className="ml-2 hidden max-w-xs whitespace-nowrap font-display text-sm font-medium md:flex">
-            {props.active.id}
-          </div>
-
-          {!props.readonly && (
-            <div className="ml-1">
-              <ChevronDownIcon className="h-5 w-5" />
+            <div className="ml-2 hidden max-w-xs whitespace-nowrap font-display text-sm font-medium md:flex">
+              {props.active.id}
             </div>
-          )}
-        </Menu.Button>
+
+            {!props.readonly && (
+              <div className="ml-1">
+                <ChevronDownIcon className="h-5 w-5" />
+              </div>
+            )}
+          </Menu.Button>
+
+          {/* <div className="ml-1 inline-block">
+            <ButtonSecondary size="sm">
+              <Cog6ToothIcon className="h-4 w-4" />
+            </ButtonSecondary>
+          </div> */}
+        </>
       )}
       {!props.readonly && (
         <Transition
