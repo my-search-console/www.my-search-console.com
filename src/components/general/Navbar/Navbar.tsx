@@ -157,6 +157,20 @@ export const Wrapper: React.FC<{
                   <FormattedMessage id="navbar/pricing" />
                 </NavLink>
               )}
+
+              {props.authenticated && (
+                <NavLink
+                  isActive={feature === "settings"}
+                  href={buildLinkDependingOnAuthStatus({
+                    isAuth: props.authenticated,
+                    website: websiteId,
+                    tool: "settings",
+                    feature,
+                  })}
+                >
+                  <FormattedMessage id="navbar/settings" />
+                </NavLink>
+              )}
             </div>
 
             <div className="flex items-center gap-x-4 md:gap-x-2">
