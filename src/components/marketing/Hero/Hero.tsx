@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown"
 import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
 import { connector, ContainerProps } from "./containers/Hero.containers"
 import { StarIcon } from "@heroicons/react/20/solid"
+import { buildLinkDependingOnAuthStatus } from "../../../utils/buildLinkDependingOnAuthStatus"
 
 const commenters = [
   {
@@ -106,7 +107,7 @@ export const Wrapper: React.FC<{
         <div className="mt-10 flex justify-center gap-x-6">
           {props.authenticated && (
             <div>
-              <FoudroyerLink to={"/dashboard/"}>
+              <FoudroyerLink to={"/administration?tool=analytics"}>
                 <ButtonPrimary>
                   <FormattedMessage id="landing/access" />
                 </ButtonPrimary>

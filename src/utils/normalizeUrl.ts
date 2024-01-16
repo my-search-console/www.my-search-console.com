@@ -1,3 +1,5 @@
+import slugify from "slugify"
+
 export const normalizeUrl = (params: {
   url: string
   locale: string
@@ -26,4 +28,20 @@ export const normalizeUrl = (params: {
   if (params.locale === "en") return origin + pathname
 
   return origin + "/" + params.locale + pathname
+}
+
+export const slugifyForAnchors = (title: string) => {
+  const slugged = slugify(title, {
+    replacement: "-", // replace spaces with replacement character, defaults to `-`
+    remove: undefined, // remove characters that match regex, defaults to `undefined`
+    lower: true, // convert to lower case, defaults to `false`
+    strict: false, // strip special characters except replacement, defaults to `false`
+    trim: true, // trim leading and trailing replacement chars, defaults to `true`
+  })
+
+  if (slugged === "") {
+    return title.trim().replace(" ", "-")
+  }
+
+  return slugged
 }

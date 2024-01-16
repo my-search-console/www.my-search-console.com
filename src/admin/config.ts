@@ -648,6 +648,47 @@ const EmailContentImage = ImageElement({
 //   ],
 // }
 
+
+
+const ArticleContentRichText = {
+  label: "📝 Text",
+  name: "article/rich_text",
+  widget: "object",
+  summary: "{{fields.content}}",
+  fields: [
+    MarkdownElement({
+      label: "content",
+      name: "content",
+    }),
+  ],
+}
+
+const ArticleContentTitle = TagElement({
+  label: "📝 Title",
+  name: "article/title",
+  defaultValue: "h2",
+  options: ["h2", "h3", "h4", "h5", "h6"],
+  fields: [
+    BooleanElement({
+      label: "faq",
+      name: "faq",
+    }),
+  ],
+})
+
+const ArticleContentImage = ImageElement({
+  label: "📝 Image",
+  name: "article/image",
+  fields: [
+    StringElement({
+      label: "legend",
+      name: "legend",
+      required: false,
+      defaultValue: "",
+    }),
+  ],
+})
+
 const Pages: Collection = {
   name: "pages",
   label: "🖊 Pages",
@@ -681,6 +722,17 @@ const Pages: Collection = {
         MarketingFeatures,
         MarketingFaq,
         MarketingTestimonials,
+
+        ArticleContentTitle,
+        ArticleContentRichText,
+        ArticleContentImage,
+        {
+          label: "📝 TOC",
+          name: "article/toc",
+          widget: "object",
+          summary: "{{fields.title.value}}",
+          fields: [TagElement({ label: "Title", name: "title" })],
+        },
       ],
     },
   ],

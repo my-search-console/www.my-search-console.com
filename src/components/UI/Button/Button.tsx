@@ -12,6 +12,7 @@ export const BigStyle =
 
 type ButtonProps = {
   onClick?: () => void
+  className?: string
   size?: "md" | "lg" | "sm"
   fullWidth?: boolean
   children: ReactElement | ReactNode
@@ -41,7 +42,8 @@ export const ButtonPrimary: React.FC<ButtonProps> = ({
         className={classNames(
           style,
           props.fullWidth ? "w-full justify-center" : "",
-          "shadow-btn border border-slate-950 bg-slate-900 text-white shadow-slate-950  hover:bg-slate-800 focus:ring-pink-400 disabled:cursor-not-allowed disabled:border-0 disabled:bg-slate-50 disabled:text-slate-300 disabled:shadow-none"
+          "border border-slate-950 bg-slate-900 text-white shadow-slate-950  hover:bg-slate-800 focus:ring-pink-400 disabled:cursor-not-allowed disabled:border-0 disabled:bg-slate-50 disabled:text-slate-300 disabled:shadow-none",
+          props.className
         )}
       >
         {children}
@@ -66,7 +68,7 @@ export const getSecondaryStyle = (
     props.active
       ? "bg-pink-50 text-pink-400 border-pink-200 shadow-pink-200"
       : "text-slate-900 bg-white",
-    "hover:bg-pink-50 hover:border-pink-200 hover:shadow-pink-200 hover:text-pink-400 focus:ring-pink-400 shadow-btn shadow-slate-200 border border-slate-200"
+    "hover:bg-pink-50 hover:border-pink-200 hover:shadow-pink-200 hover:text-pink-400 focus:ring-pink-400 shadow-slate-200 border border-slate-200"
   )
 }
 
@@ -86,7 +88,7 @@ export const ButtonSecondary: React.FC<ButtonProps> = ({
       type="button"
       disabled={props.disabled}
       onClick={props.onClick}
-      className={style}
+      className={classNames(style, props.className)}
     >
       {children}
     </button>
