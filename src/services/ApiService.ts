@@ -4,9 +4,7 @@ import { ILocalStorageService } from "../interfaces/ILocalStorageService"
 import { localStorageKeys } from "../constants/localStorageKeys"
 
 const PRODUCTION_ENDPOINT = "https://api.my-search-console.com"
-// const DEVELOPMENT_ENDPOINT = "http://localhost:8080"
-const DEVELOPMENT_ENDPOINT =
-  "https://8080-mysearchcon-apimysearch-cuu3szqi6nr.ws-eu107.gitpod.io"
+const DEVELOPMENT_ENDPOINT = "http://localhost:8080"
 
 export class ApiService {
   constructor(private localStorageService: ILocalStorageService) {

@@ -415,7 +415,7 @@ export const $deleteWebsite =
 
     di.LocationService.navigate(
       normalizeUrl({
-        url: "/dashboard/",
+        url: "/administration?tool=analytics",
         locale: lang.lang,
       })
     )
@@ -488,6 +488,7 @@ export const $activate =
 
     if (websites.createWebsiteModal.type === "google") {
       dispatcher(setFetching(true))
+
       const response = await di.WebsitesRepository.activate(
         websites.createWebsiteModal.selected
       )
@@ -503,9 +504,12 @@ export const $activate =
         return dispatcher(setFetching(false))
       }
 
-      dispatcher(WebsiteAddSourceModalSetIsOpen({ isOpen: false }))
+      await dispatcher($fetchAll({ force: true }))
 
-      dispatcher($fetchAll({ force: true }))
+      dispatcher(WebsiteAddSourceModalSetIsOpen({ isOpen: false }))
+      dispatcher(
+        actions.websites.$changeWebsite({ websiteId: response.body.id })
+      )
 
       dispatcher(
         actions.notifications.create({
@@ -688,23 +692,13 @@ export const $changeWebsite =
 
     di.LocationService.navigate(
       normalizeUrl({
-        url: `/${feature}/${params.websiteId}`,
+        url: `/${feature || "analytics"}/${params.websiteId}`,
         locale: lang.lang,
       })
     )
 
     dispatcher(setActiveWebsite({ id: params.websiteId }))
     dispatcher(actions.websites.$check())
-
-    if (feature === "indexation") {
-      dispatcher(actions.indexation.IndexationReset())
-      // dispatcher(actions.indexation.$IndexationAutoQueueFetch())
-      // dispatcher(actions.indexation.$IndexationStoreGoogleApiKeys())
-      dispatcher(actions.indexation.$fetch())
-      dispatcher(
-        actions.indexation.$IndexationToastIndexationStatsFetchAccepted()
-      )
-    }
 
     if (feature === "analytics") {
       dispatcher(actions.websites.$syncAnalytics())

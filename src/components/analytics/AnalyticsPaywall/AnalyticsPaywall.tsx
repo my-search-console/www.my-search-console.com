@@ -23,9 +23,6 @@ export const Wrapper: React.FC<Props> = (props) => {
     <div className="my-4">
       <FilterBar />
       <div className="relative">
-        <AnalyticsToastDataLate />
-        <AnalyticsToastDataSyncing />
-        <AnalyticsComingSoonModal />
         <div className="mt-4" />
         <GlobalStats />
         <GeneralChart />
