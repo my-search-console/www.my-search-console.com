@@ -1,0 +1,52 @@
+{
+  "published_at": "2023-08-14T13:46:10.734Z",
+  "meta": {
+    "indexable": true,
+    "description": "My Search Console's Refund Policy",
+    "title": "Refund Policy • My Search Console"
+  },
+  "hidden": true,
+  "author": "6c98767-6db4-47de-8a25-8abfedd6bc77",
+  "lang": "en",
+  "url": "refund-policy",
+  "illustration": {
+    "alt": "legal notice",
+    "src": "../assets/legal-notice.jpeg"
+  },
+  "updated_at": "2023-08-14T13:46:10.746Z",
+  "version": "v1",
+  "title": "Refund Policy",
+  "content": [
+    {
+      "type": "article/title",
+      "value": "Refund Policy",
+      "component": "h1",
+      "faq": false
+    },
+    {
+      "type": "article/rich_text",
+      "content": "The purpose of this document is to describe and explain how our refund policy works. We want to be as transparent as possible and offer you the simplest offer possible."
+    },
+    {
+      "type": "article/toc",
+      "title": {
+        "value": "Table of content.",
+        "component": "p"
+      }
+    },
+    {
+      "type": "article/title",
+      "value": "Our refund policy on the premium subscription offer.",
+      "component": "h2",
+      "faq": false
+    },
+    {
+      "type": "article/rich_text",
+      "content": "The premium subscription offer is without obligation. This means that you can cancel your monthly subscription at any time without any additional costs. To do so, simply go to your profile page and click on the unsubscribe button. With a few clicks, you will no longer be charged monthly.\n\nHowever, you will not be reimbursed for the last remaining days. For example, if you unsubscribe on the 15th of the month, you will have 15 days left to take advantage of your subscription, then it will be suspended and you will no longer benefit from all its advantages."
+    }
+  ],
+  "type": "article",
+  "id": "9b54dc0d-41dd-4e86-9cf0-085c5de6c11f",
+  "description": "Refund Policy of My Search Console.",
+  "category": "15f0ef4e-5cae-4798-ab3f-08da185b8980"
+}

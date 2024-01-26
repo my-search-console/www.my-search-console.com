@@ -39,6 +39,9 @@ export function Footer() {
               <NavLink href="/pricing/">
                 <FormattedMessage id="navbar/pricing" />
               </NavLink>
+              <NavLink href="/refund/">
+                <FormattedMessage id="footer/refund" />
+              </NavLink>
             </div>
           </nav>
         </div>

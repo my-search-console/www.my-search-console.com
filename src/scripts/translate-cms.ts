@@ -201,7 +201,7 @@ async function run() {
 
     await blog({
       target: language,
-      file: "en-yandex.json",
+      file: "en-refund-policy.json",
     })
   }
 }
