@@ -40,7 +40,7 @@ export function Footer() {
                 <FormattedMessage id="navbar/pricing" />
               </NavLink>
               <a
-                href="/refund/"
+                href="/refund-policy/"
                 className={
                   "inline-flex h-10 items-center rounded-md px-4 font-display text-sm font-semibold text-slate-900 transition duration-300 ease-in-out hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-offset-2"
                 }
