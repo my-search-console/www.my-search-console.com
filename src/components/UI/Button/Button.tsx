@@ -42,7 +42,7 @@ export const ButtonPrimary: React.FC<ButtonProps> = ({
         className={classNames(
           style,
           props.fullWidth ? "w-full justify-center" : "",
-          "border border-slate-950 bg-slate-900 text-white shadow-slate-950  hover:bg-slate-800 focus:ring-pink-400 disabled:cursor-not-allowed disabled:border-0 disabled:bg-slate-50 disabled:text-slate-300 disabled:shadow-none",
+          "border border-slate-950 bg-slate-900 text-white shadow-slate-950  hover:bg-slate-800 focus:ring-blue-400 disabled:cursor-not-allowed disabled:border-0 disabled:bg-slate-50 disabled:text-slate-300 disabled:shadow-none",
           props.className
         )}
       >
@@ -66,9 +66,9 @@ export const getSecondaryStyle = (
     style,
     props.fullWidth ? "w-full justify-center" : "",
     props.active
-      ? "bg-pink-50 text-pink-400 border-pink-200 shadow-pink-200"
+      ? "bg-blue-50 text-blue-400 border-blue-200 shadow-blue-200"
       : "text-slate-900 bg-white",
-    "hover:bg-pink-50 hover:border-pink-200 hover:shadow-pink-200 hover:text-pink-400 focus:ring-pink-400 shadow-slate-200 border border-slate-200"
+    "hover:bg-blue-50 hover:border-blue-200 hover:shadow-blue-200 hover:text-blue-400 focus:ring-blue-400 shadow-slate-200 border border-slate-200"
   )
 }
 

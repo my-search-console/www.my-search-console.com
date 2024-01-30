@@ -13,7 +13,7 @@ export const Wrapper: React.FC<{ type: IssueTypes; success: boolean }> = (
   <div className="relative mt-4 rounded-md p-8 text-center">
     <Confetti isOpen={props.success} respawn={false} />
 
-    <p className="text-center font-display text-lg font-medium text-pink-400">
+    <p className="text-center font-display text-lg font-medium text-blue-400">
       <FormattedMessage id={`roast/${props.type}/hero/label`} />
     </p>
 

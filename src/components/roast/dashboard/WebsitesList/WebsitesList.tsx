@@ -46,7 +46,7 @@ export const Wrapper: React.FC<Props> = (props) => {
     <div className="">
       <div className="mt-2" />
       <div className="flex flex-col items-center justify-center py-8 text-center">
-        <p className="text-center font-display text-lg font-medium text-pink-400">
+        <p className="text-center font-display text-lg font-medium text-blue-400">
           <FormattedMessage id="roast/dashboard/hero/label" />
         </p>
         <h1 className="mx-auto flex flex-col font-display text-4xl font-semibold leading-tight tracking-tight text-slate-900 ">
@@ -63,7 +63,7 @@ export const Wrapper: React.FC<Props> = (props) => {
                 width="93"
                 height="87"
                 viewBox="0 0 93 87"
-                className="-rotate-[30deg] scale-90 animate-pulse text-pink-500"
+                className="-rotate-[30deg] scale-90 animate-pulse text-blue-500"
                 fill="none"
               >
                 <path

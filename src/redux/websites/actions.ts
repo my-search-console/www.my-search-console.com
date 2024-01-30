@@ -666,7 +666,7 @@ export const $fetchAndRedirectToWebsiteActive =
     di.LocationService.navigate(
       normalizeUrl({
         url: `/${
-          activeTool && isAllowedTool ? activeTool : "indexation"
+          activeTool && isAllowedTool ? activeTool : "analytics"
         }/${activeWebsiteId}`,
         locale: lang.lang,
       })
@@ -891,7 +891,7 @@ export const $openPaymentModal =
       dispatcher(actions.payments.PaymentsOpenModal({ value: false }))
       return di.LocationService.navigate(
         normalizeUrl({
-          url: "/dashboard/",
+          url: "/administration?tool=analytics/",
           locale: lang.lang,
         })
       )

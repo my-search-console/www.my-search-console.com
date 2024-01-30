@@ -15,7 +15,7 @@ export const SiteSelectorItem: React.FC<{
       {({ active }) => (
         <button
           className={classNames(
-            active ? "bg-pink-50 text-pink-400" : "",
+            active ? "bg-blue-50 text-blue-400" : "",
             "flex w-full min-w-fit items-center px-4 py-2 pr-8 text-left text-sm transition-all duration-300 ease-in-out",
             props.disabled && "pointer-events-none bg-slate-100 opacity-30"
           )}

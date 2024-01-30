@@ -57,12 +57,12 @@ input[type="number"] {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply bg-pink-50;
+  @apply bg-blue-50;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply bg-pink-200;
+  @apply bg-blue-200;
   border-radius: 9999px;
 }
 

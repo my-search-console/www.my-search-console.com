@@ -42,7 +42,7 @@ export const Wrapper: React.FC<Props> = (props) => {
               getSecondaryStyle({
                 size: "sm",
               }),
-              "h-full rounded px-4 font-display text-sm font-medium transition-all duration-300 ease-in-out hover:bg-pink-50 hover:text-pink-400"
+              "h-full rounded px-4 font-display text-sm font-medium transition-all duration-300 ease-in-out hover:bg-blue-50 hover:text-blue-400"
             )}
           >
             <span className="hidden md:inline">
@@ -54,7 +54,7 @@ export const Wrapper: React.FC<Props> = (props) => {
         <input
           type={"text"}
           autoComplete="off"
-          className="block h-14 w-full rounded-md border-slate-100 pl-10 text-slate-900 placeholder-slate-500 focus:border-pink-300 focus:ring-pink-300"
+          className="block h-14 w-full rounded-md border-slate-100 pl-10 text-slate-900 placeholder-slate-500 focus:border-blue-300 focus:ring-blue-300"
           placeholder={intl.formatMessage({
             id: "pages/filter/input/placeholder",
           })}

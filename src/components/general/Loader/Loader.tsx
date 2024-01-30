@@ -9,7 +9,7 @@ export function Loader(props: { additionnalText?: ReactNode }) {
       <div className="text-center">
         <svg
           aria-hidden="true"
-          className="mr-2 inline-block h-10 w-10 animate-spin fill-pink-500 text-slate-200 dark:text-slate-200"
+          className="mr-2 inline-block h-10 w-10 animate-spin fill-blue-500 text-slate-200 dark:text-slate-200"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

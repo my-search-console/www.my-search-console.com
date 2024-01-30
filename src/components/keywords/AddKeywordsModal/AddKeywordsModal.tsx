@@ -41,9 +41,9 @@ export const Wrapper: React.FC<Props> = (props) => {
       onClose={props.onClose}
     >
       <div>
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
           <PlusCircleIcon
-            className="h-6 w-6 text-pink-500"
+            className="h-6 w-6 text-blue-500"
             aria-hidden="true"
           />
         </div>
@@ -65,7 +65,7 @@ export const Wrapper: React.FC<Props> = (props) => {
             }}
           >
             <div className="absolute inset-y-0 right-0 flex items-center p-2">
-              <button className="h-full rounded bg-slate-50 px-4 font-display transition-all duration-300 ease-in-out hover:bg-pink-50 hover:text-pink-400">
+              <button className="h-full rounded bg-slate-50 px-4 font-display transition-all duration-300 ease-in-out hover:bg-blue-50 hover:text-blue-400">
                 <span className="hidden md:inline">
                   <FormattedMessage id="keywords/add-keyword-modal/input/add" />
                 </span>
@@ -75,7 +75,7 @@ export const Wrapper: React.FC<Props> = (props) => {
             <input
               type={"text"}
               autoComplete="off"
-              className="block h-14 w-full rounded-md border-slate-100 pl-4 text-sm text-slate-900 placeholder-slate-400 focus:border-pink-300 focus:ring-pink-300"
+              className="block h-14 w-full rounded-md border-slate-100 pl-4 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-300 focus:ring-blue-300"
               placeholder={intl.formatMessage({
                 id: "keywords/add-keyword-modal/input/placeholder",
               })}

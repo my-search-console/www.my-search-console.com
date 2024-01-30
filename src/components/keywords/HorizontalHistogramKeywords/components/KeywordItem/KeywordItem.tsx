@@ -30,14 +30,14 @@ export const Wrapper: React.FC<Props> = (props) => {
       <div className="relative my-0.5 flex flex-grow items-center p-2 pl-0">
         <div
           className={classNames(
-            "absolute left-0 top-0 block h-full rounded-lg bg-pink-100 transition-all duration-300 ease-in-out hover:w-full"
+            "absolute left-0 top-0 block h-full rounded-lg bg-blue-100 transition-all duration-300 ease-in-out hover:w-full"
           )}
           style={{ width: props.barWidth + "%" }}
         ></div>
 
         <div
           className={classNames(
-            "absolute left-0 top-0 block h-full w-full rounded-lg bg-pink-200 opacity-0 transition-all duration-300 ease-in-out hover:w-full group-hover:opacity-100"
+            "absolute left-0 top-0 block h-full w-full rounded-lg bg-blue-200 opacity-0 transition-all duration-300 ease-in-out hover:w-full group-hover:opacity-100"
           )}
         ></div>
 
@@ -46,7 +46,7 @@ export const Wrapper: React.FC<Props> = (props) => {
           aria-describedby="comments-description"
           checked={props.isSelected}
           type="checkbox"
-          className="z-10 ml-2 h-4 w-4 rounded border-slate-200 text-pink-400 focus:ring-pink-400"
+          className="z-10 ml-2 h-4 w-4 rounded border-slate-200 text-blue-400 focus:ring-blue-400"
         />
         <span
           className="font-base relative ml-2 cursor-pointer font-display text-sm font-medium text-slate-900 hover:underline"

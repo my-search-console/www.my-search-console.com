@@ -7,9 +7,7 @@ import { ButtonPrimary } from "../../UI/Button/Button"
 import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
 import { Modal } from "../../UI/Modal/Modal"
 import { Dialog } from "@headlessui/react"
-import {
-  ExclamationTriangleIcon,
-} from "@heroicons/react/20/solid"
+import { ExclamationTriangleIcon } from "@heroicons/react/20/solid"
 import { useLocation } from "@reach/router"
 import Illustration from "./assets/scope-not-found.mp4"
 
@@ -25,9 +23,9 @@ export const Wrapper: React.FC<Props> = (props) => {
   return (
     <Modal isOpen={isOpen} onClose={props.onClose}>
       <div className="relative max-w-md">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-50">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
           <ExclamationTriangleIcon
-            className="h-6 w-6 text-pink-400"
+            className="h-6 w-6 text-blue-400"
             aria-hidden="true"
           />
         </div>

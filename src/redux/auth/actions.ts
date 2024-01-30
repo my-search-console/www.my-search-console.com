@@ -146,7 +146,7 @@ export const $authenticateWithGoogle =
 
         if (!params?.disableRedirection)
           di.LocationService.navigate(
-            normalizeUrl({ url: "/dashboard/", locale: lang.lang })
+            normalizeUrl({ url: "/administration/", locale: lang.lang })
           )
       }
     }

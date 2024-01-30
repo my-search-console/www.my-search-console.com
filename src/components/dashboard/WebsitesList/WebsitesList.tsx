@@ -52,7 +52,7 @@ export const Wrapper: React.FC<Props> = (props) => {
   return (
     <div>
       <div className="flex flex-col items-center justify-center pb-12 pt-6 text-center">
-        <p className="text-center font-display text-lg font-medium text-pink-400">
+        <p className="text-center font-display text-lg font-medium text-blue-400">
           <FormattedMessage id="dashboard/hero/label" />
         </p>
         <h1 className="mx-auto flex flex-col font-display text-4xl font-semibold leading-tight tracking-tight text-slate-900 ">

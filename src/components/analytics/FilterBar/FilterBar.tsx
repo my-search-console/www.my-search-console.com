@@ -60,7 +60,7 @@ export const Wrapper: React.FC<{
                     <li key={type}>
                       <button
                         type="button"
-                        className="inline-flex h-10 items-center rounded-md bg-slate-50  px-4 pl-3 pr-1.5 font-display text-sm font-medium text-slate-900 transition duration-300 ease-in-out hover:bg-pink-100 hover:text-pink-500  focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+                        className="inline-flex h-10 items-center rounded-md bg-slate-50  px-4 pl-3 pr-1.5 font-display text-sm font-medium text-slate-900 transition duration-300 ease-in-out hover:bg-blue-100 hover:text-blue-500  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         onClick={() => props.onFilter({ value, type })}
                       >
                         <span>
@@ -98,7 +98,7 @@ export const Wrapper: React.FC<{
                 <li key={type}>
                   <button
                     type="button"
-                    className="inline-flex h-10 items-center rounded-md bg-slate-50  px-4 pl-3 pr-1.5 font-display text-sm font-medium text-slate-900 transition duration-300 ease-in-out hover:bg-pink-100 hover:text-pink-500  focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+                    className="inline-flex h-10 items-center rounded-md bg-slate-50  px-4 pl-3 pr-1.5 font-display text-sm font-medium text-slate-900 transition duration-300 ease-in-out hover:bg-blue-100 hover:text-blue-500  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     onClick={() => props.onFilter({ value, type })}
                   >
                     <span>

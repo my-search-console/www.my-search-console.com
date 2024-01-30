@@ -23,9 +23,9 @@ export const Wrapper: React.FC<Props> = (props) => {
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose}>
       <div className="relative max-w-md overflow-hidden">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
           <ExclamationIcon
-            className="h-6 w-6 text-pink-500"
+            className="h-6 w-6 text-blue-500"
             aria-hidden="true"
           />
         </div>
@@ -50,7 +50,7 @@ export const Wrapper: React.FC<Props> = (props) => {
             <FormattedMessage id="update-sitemap/input/placeholder" />
           </label>
           <div className="mt-2">
-            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500 sm:max-w-md">
+            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 sm:max-w-md">
               <input
                 type="text"
                 autoComplete="off"

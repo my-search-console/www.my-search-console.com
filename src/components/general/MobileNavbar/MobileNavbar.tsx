@@ -25,8 +25,8 @@ const Item: React.FC<{
       <FoudroyerLink
         to={props.to}
         className={clsx(
-          "flex h-full w-full items-center justify-center rounded duration-300 ease-in-out hover:bg-pink-50 hover:text-pink-500",
-          isActive && " bg-pink-50 text-pink-500"
+          "flex h-full w-full items-center justify-center rounded duration-300 ease-in-out hover:bg-blue-50 hover:text-blue-500",
+          isActive && " bg-blue-50 text-blue-500"
         )}
       >
         {props.children}

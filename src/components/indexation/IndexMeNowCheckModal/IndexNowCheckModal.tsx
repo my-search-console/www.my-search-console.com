@@ -24,8 +24,8 @@ export const Wrapper: React.FC<Props> = (props) => {
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose}>
       <div className="max-w-md">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
-          <KeyIcon className="h-6 w-6 text-pink-500" aria-hidden="true" />
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+          <KeyIcon className="h-6 w-6 text-blue-500" aria-hidden="true" />
         </div>
         <div className="mt-3 text-center sm:mt-5">
           <Dialog.Title

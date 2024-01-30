@@ -45,7 +45,7 @@ export const Wrapper: React.FC<Props> = (props) => {
         <div className="mx-auto flex h-full max-w-2xl items-start px-2">
           <video
             src={tutoVideo}
-            className="w-full rounded-lg ring-8 ring-pink-50"
+            className="w-full rounded-lg ring-8 ring-blue-50"
             autoPlay
             muted
             loop

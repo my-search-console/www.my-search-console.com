@@ -84,7 +84,7 @@ export const Wrapper: React.FC<{
               <div
                 className={classNames(
                   "mt-1 flex w-full cursor-pointer items-center px-4 py-2 text-left text-sm transition-all duration-300 ease-in-out",
-                  "hover:bg-pink-50 hover:text-pink-400"
+                  "hover:bg-blue-50 hover:text-blue-400"
                 )}
                 onClick={props.onCreateWebsite}
               >

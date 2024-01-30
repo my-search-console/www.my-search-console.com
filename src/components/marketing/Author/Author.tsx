@@ -17,7 +17,7 @@ export const Author: React.FC<{
 
         <div className="ml-4 inline-block leading-none">
           <div className="flex items-center justify-between text-slate-500">
-            <div className="h-1 w-full bg-gradient-to-r from-white to-pink-100"></div>
+            <div className="h-1 w-full bg-gradient-to-r from-white to-blue-100"></div>
             <span className="ml-2 flex-shrink-0">Author</span>
           </div>
           <div className="font-display text-lg">{props.name}</div>

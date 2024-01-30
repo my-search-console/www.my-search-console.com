@@ -25,9 +25,9 @@ export const Wrapper: React.FC<Props> = (props) => {
   return (
     <Modal isOpen={href.includes("#support-us-modal")} onClose={props.onClose}>
       <div className="relative max-w-md">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-50">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
           <HandRaisedIcon
-            className="h-6 w-6 text-pink-400"
+            className="h-6 w-6 text-blue-400"
             aria-hidden="true"
           />
         </div>

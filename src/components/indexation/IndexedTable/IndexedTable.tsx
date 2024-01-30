@@ -122,7 +122,7 @@ const SourceIndexingLoader: React.FC<{ finished: boolean; logo: string }> = (
           "h-9 w-9 transition-all duration-300  ease-in-out md:h-10 md:w-10",
           props.finished
             ? " fill-transparent text-emerald-500"
-            : " animate-spin fill-pink-500 text-slate-200"
+            : " animate-spin fill-blue-500 text-slate-200"
         )}
         viewBox="0 0 100 101"
         fill="none"

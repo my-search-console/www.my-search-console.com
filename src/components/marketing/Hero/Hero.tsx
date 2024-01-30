@@ -80,13 +80,13 @@ export const Wrapper: React.FC<{
         style={{
           animationDelay: "300ms",
         }}
-        className="absolute right-20 top-20 hidden h-20 w-20 animate-bounce  rounded-full bg-pink-50 lg:block"
+        className="absolute right-20 top-20 hidden h-20 w-20 animate-bounce  rounded-full bg-blue-50 lg:block"
       ></div>
       <div className="absolute left-20 top-28 hidden h-20 w-20 animate-bounce  rounded-xl bg-blue-50 delay-300 lg:block"></div>
 
       <Container className="flex flex-col items-center justify-center  pb-10 pt-20 text-center">
         {props.label && (
-          <p className="text-center font-display text-lg font-medium text-pink-400">
+          <p className="text-center font-display text-lg font-medium text-blue-400">
             {props.label}
           </p>
         )}

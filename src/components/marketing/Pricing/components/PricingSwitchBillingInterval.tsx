@@ -16,8 +16,8 @@ export const PricingSwitchBillingInterval: React.FC<{
             checked={props.enabled}
             onChange={props.setEnabled}
             className={classNames(
-              props.enabled ? "bg-pink-400" : "bg-slate-200",
-              "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2"
+              props.enabled ? "bg-blue-400" : "bg-slate-200",
+              "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
             )}
           >
             <span

@@ -7,7 +7,7 @@ export const Title: React.FC<{
 }> = (props) => {
   return (
     <Container className="mx-auto py-10">
-      <div className="mx-auto flex max-w-3xl justify-start text-pink-400/20">
+      <div className="mx-auto flex max-w-3xl justify-start text-blue-400/20">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="28"
@@ -29,7 +29,7 @@ export const Title: React.FC<{
         </h2>
       </div>
 
-      <div className="mx-auto flex max-w-3xl justify-end text-pink-400/20">
+      <div className="mx-auto flex max-w-3xl justify-end text-blue-400/20">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="28"

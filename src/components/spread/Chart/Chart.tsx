@@ -45,7 +45,7 @@ const Wrapper: React.FC<Props> = (props) => {
       <div
         ref={ref}
         id="render-chart"
-        className="bg-gradient-to-br from-pink-200 to-sky-200 p-8 pb-4"
+        className="bg-gradient-to-br from-blue-200 to-sky-200 p-8 pb-4"
       >
         <div className="shadow-btn-2 relative w-full rounded-lg border-2 border-slate-100 bg-white p-4 shadow-slate-100">
           <RenderChart

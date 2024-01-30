@@ -66,9 +66,9 @@ export const Wrapper: React.FC<Props> = (props) => {
     <Modal isOpen={props.isOpen} onClose={props.onClose}>
       <div className="relative max-w-md">
         <div>
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
             <ExclamationIcon
-              className="h-6 w-6 text-pink-500"
+              className="h-6 w-6 text-blue-500"
               aria-hidden="true"
             />
           </div>
@@ -103,7 +103,7 @@ export const Wrapper: React.FC<Props> = (props) => {
         </div>
 
         {props.keys.length >= 10 && (
-          <p className="mt-2 rounded-md bg-pink-50 p-2 px-3 text-sm text-pink-500">
+          <p className="mt-2 rounded-md bg-blue-50 p-2 px-3 text-sm text-blue-500">
             <FormattedMessage id="update-credentials/max-reached" />
           </p>
         )}

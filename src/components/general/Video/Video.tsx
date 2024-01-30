@@ -29,9 +29,9 @@ export const VideoPlayer: React.FC<{
   }
 
   return (
-    <div className="relative w-full rounded-lg ring-8 ring-pink-100">
+    <div className="relative w-full rounded-lg ring-8 ring-blue-100">
       <Image
-        className={clsx(props.classNames?.image, "ring-8 ring-pink-100")}
+        className={clsx(props.classNames?.image, "ring-8 ring-blue-100")}
         src={props.illustration}
         alt={props.alt}
       />
@@ -41,7 +41,7 @@ export const VideoPlayer: React.FC<{
         onLoadedData={() => {
           console.log(props)
           console.log(videoRef)
-          
+
           if (props.autoplay) {
             setPlay(true)
 

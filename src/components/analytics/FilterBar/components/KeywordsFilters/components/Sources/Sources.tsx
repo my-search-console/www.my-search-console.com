@@ -70,7 +70,7 @@ export const Wrapper: React.FC<{
               {({ active }) => (
                 <button
                   className={classNames(
-                    active ? "bg-pink-50 text-pink-400" : "",
+                    active ? "bg-blue-50 text-blue-400" : "",
                     "flex w-full min-w-fit items-center py-2 pl-4 text-left text-sm transition-all duration-300 ease-in-out"
                   )}
                   onClick={() => props.onChange({ source: "google" })}
@@ -86,7 +86,7 @@ export const Wrapper: React.FC<{
               {({ active }) => (
                 <button
                   className={classNames(
-                    active ? "bg-pink-50 text-pink-400" : "",
+                    active ? "bg-blue-50 text-blue-400" : "",
                     "flex w-full min-w-fit items-center py-2 pl-4 text-left text-sm transition-all duration-300 ease-in-out",
                     !props.yandexActivated && "cursor-not-allowed opacity-20"
                   )}
@@ -104,7 +104,7 @@ export const Wrapper: React.FC<{
               {({ active }) => (
                 <button
                   className={classNames(
-                    active ? "bg-pink-50 text-pink-400" : "",
+                    active ? "bg-blue-50 text-blue-400" : "",
                     "flex w-full min-w-fit items-center py-2 pl-4 text-left text-sm transition-all duration-300 ease-in-out",
                     !props.bingActivated && "cursor-not-allowed opacity-20"
                   )}
@@ -122,7 +122,7 @@ export const Wrapper: React.FC<{
               {({ active }) => (
                 <button
                   className={classNames(
-                    active ? "bg-pink-50 text-pink-400" : "",
+                    active ? "bg-blue-50 text-blue-400" : "",
                     "flex w-full min-w-fit items-center px-4 py-2 text-left text-sm transition-all duration-300 ease-in-out"
                   )}
                   onClick={() => props.onChange({ source: null })}

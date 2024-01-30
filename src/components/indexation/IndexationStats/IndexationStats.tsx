@@ -46,7 +46,7 @@ const Item: React.FC<{
           type="radio"
           checked={props.selected}
           onChange={() => {}}
-          className="ml-auto h-4 w-4 border-slate-200 text-pink-400 focus:ring-pink-400"
+          className="ml-auto h-4 w-4 border-slate-200 text-blue-400 focus:ring-blue-400"
         />
       </dt>
       <dd className="mt-1 flex items-center justify-between">

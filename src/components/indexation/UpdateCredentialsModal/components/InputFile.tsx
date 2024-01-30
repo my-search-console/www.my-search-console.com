@@ -15,7 +15,7 @@ export const InputFile: React.FC<{
       />
       <label
         htmlFor="file-upload"
-        className="absolute inset-0 flex h-full w-full cursor-pointer items-center justify-center rounded-md pt-4 font-semibold text-pink-400 focus-within:outline-none focus-within:ring-1 focus-within:ring-pink-600 hover:text-pink-500"
+        className="absolute inset-0 flex h-full w-full cursor-pointer items-center justify-center rounded-md pt-4 font-semibold text-blue-400 focus-within:outline-none focus-within:ring-1 focus-within:ring-blue-600 hover:text-blue-500"
       >
         {!file && (
           <FormattedMessage id="update-credentials/input/placeholder" />

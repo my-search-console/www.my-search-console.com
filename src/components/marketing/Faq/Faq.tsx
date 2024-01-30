@@ -50,7 +50,7 @@ export const Faq = () => {
             <dl className="mt-20 space-y-10 divide-y divide-slate-900/5">
               {faqs.map((faq, index) => (
                 <div key={index} className="flex pt-10">
-                  <div className="mr-10 font-display text-2xl font-semibold text-pink-300">
+                  <div className="mr-10 font-display text-2xl font-semibold text-blue-300">
                     0{index + 1}
                   </div>
                   <div>

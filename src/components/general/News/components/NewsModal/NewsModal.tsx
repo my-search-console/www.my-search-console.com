@@ -19,11 +19,11 @@ export const Wrapper: React.FC<Props> = (props) => {
   return (
     <Modal isOpen={hash.includes("news-modal")} onClose={props.onClose}>
       <div className="relative max-w-md overflow-hidden">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
-          <BellIcon className="h-6 w-6 text-pink-500" aria-hidden="true" />
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+          <BellIcon className="h-6 w-6 text-blue-500" aria-hidden="true" />
         </div>
         <div className="mt-3">
-          <div className="text-center font-display text-xs text-pink-400">
+          <div className="text-center font-display text-xs text-blue-400">
             {new Intl.DateTimeFormat(intl.locale, {
               day: "numeric",
               month: "long",

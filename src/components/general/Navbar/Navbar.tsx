@@ -40,7 +40,7 @@ const Item: React.FC<{
       to={props.to}
       className={clsx(
         "group flex w-full items-start rounded p-4 transition-all duration-300 ease-in-out ",
-        props.theme === "pink" && "hover:bg-pink-50",
+        props.theme === "pink" && "hover:bg-blue-50",
         props.theme === "emerald" && "hover:bg-emerald-50",
         props.theme === "orange" && "hover:bg-orange-50",
         props.theme === "blue" && "hover:bg-blue-50"
@@ -49,7 +49,7 @@ const Item: React.FC<{
       <span
         className={clsx(
           "mt-1 flex-shrink-0  transition-all duration-300 ease-in-out ",
-          props.theme === "pink" && " text-pink-400",
+          props.theme === "pink" && " text-blue-400",
           props.theme === "emerald" && "text-emerald-400",
           props.theme === "orange" && "text-orange-400",
           props.theme === "blue" && "text-blue-400"
@@ -61,7 +61,7 @@ const Item: React.FC<{
         <p
           className={clsx(
             "font-display text-sm font-semibold text-slate-900 transition-all duration-300 ease-in-out ",
-            props.theme === "pink" && "group-hover:text-pink-400",
+            props.theme === "pink" && "group-hover:text-blue-400",
             props.theme === "emerald" && "group-hover:text-emerald-400",
             props.theme === "orange" && "group-hover:text-orange-400",
             props.theme === "blue" && "group-hover:text-blue-400"
@@ -72,7 +72,7 @@ const Item: React.FC<{
         <p
           className={clsx(
             "text-xs text-slate-600 transition-all duration-300 ease-in-out ",
-            props.theme === "pink" && " group-hover:text-pink-400",
+            props.theme === "pink" && " group-hover:text-blue-400",
             props.theme === "emerald" && "group-hover:text-emerald-400",
             props.theme === "orange" && "group-hover:text-orange-400",
             props.theme === "blue" && "group-hover:text-blue-400"
@@ -232,7 +232,7 @@ export const Wrapper: React.FC<{
                                 <a
                                   href={`https://go.crisp.chat/chat/embed/?website_id=b5235ee2-e9d5-4d06-9c92-488f64e57c8d&user_email=${props.user?.email}&token_id=${props.user?.id}&session_merge=true&crisp_sid=${props.user?.id}`}
                                   className={classNames(
-                                    active ? "bg-pink-100 text-pink-500" : "",
+                                    active ? "bg-blue-100 text-blue-500" : "",
                                     "block w-full px-4  py-2 text-left text-sm transition-all duration-300 ease-in-out"
                                   )}
                                   target="_blank"
@@ -248,7 +248,7 @@ export const Wrapper: React.FC<{
                             {({ active }) => (
                               <a
                                 className={classNames(
-                                  active ? "bg-pink-100 text-pink-500" : "",
+                                  active ? "bg-blue-100 text-blue-500" : "",
                                   "block w-full px-4  py-2 text-left text-sm transition-all duration-300 ease-in-out"
                                 )}
                                 href="/administration?tool=settings"
@@ -262,7 +262,7 @@ export const Wrapper: React.FC<{
                             {({ active }) => (
                               <button
                                 className={classNames(
-                                  active ? "bg-pink-100 text-pink-500" : "",
+                                  active ? "bg-blue-100 text-blue-500" : "",
                                   "block w-full px-4  py-2 text-left text-sm transition-all duration-300 ease-in-out"
                                 )}
                                 onClick={() => props.onLogout()}

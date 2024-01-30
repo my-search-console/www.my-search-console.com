@@ -59,7 +59,7 @@ const Notification: React.FC<{
               )}
               {props.type === "warning" && (
                 <ExclamationIcon
-                  className="h-6 w-6 text-pink-400"
+                  className="h-6 w-6 text-blue-400"
                   aria-hidden="true"
                 />
               )}

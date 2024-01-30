@@ -59,7 +59,7 @@ export function Footer() {
                     window?.location.pathname + "#change-lang-modal=open"
                   )
                 }
-                className="cursor-pointer rounded-full border border-slate-200 p-1 shadow-slate-200 transition duration-300 ease-in-out hover:bg-pink-50"
+                className="cursor-pointer rounded-full border border-slate-200 p-1 shadow-slate-200 transition duration-300 ease-in-out hover:bg-blue-50"
               >
                 <img
                   className="rounded-full"

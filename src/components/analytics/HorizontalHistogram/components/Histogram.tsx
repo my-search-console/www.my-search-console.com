@@ -81,13 +81,13 @@ export const Histogram: React.FC<{
           {!props.hideActions && (
             <button
               onClick={props.onShowMore}
-              className="-mt-1 mr-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition duration-300 ease-in-out hover:bg-pink-100 hover:text-pink-500"
+              className="-mt-1 mr-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition duration-300 ease-in-out hover:bg-blue-100 hover:text-blue-500"
             >
               <ArrowsPointingOutIcon className="h-4 w-4" />
             </button>
           )}
           <Menu as="div" className="relative">
-            <Menu.Button className="-mr-1 -mt-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition duration-300 ease-in-out hover:bg-pink-100 hover:text-pink-500">
+            <Menu.Button className="-mr-1 -mt-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition duration-300 ease-in-out hover:bg-blue-100 hover:text-blue-500">
               <EllipsisHorizontalIcon className="h-5 w-5" />
             </Menu.Button>
 
@@ -140,7 +140,7 @@ export const Histogram: React.FC<{
                 className={classNames(
                   "absolute left-0 top-0 block h-full rounded-lg",
                   props.color === "orange" && "bg-orange-50",
-                  props.color === "pink" && "bg-pink-100",
+                  props.color === "pink" && "bg-blue-100",
                   props.color === "blue" && "bg-blue-50",
                   props.color === "green" && "bg-emerald-50"
                 )}

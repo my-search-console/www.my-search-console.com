@@ -39,9 +39,9 @@ export const Wrapper: React.FC<Props> = (props) => {
             }
           />
         )}
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
           <PlusCircleIcon
-            className="h-6 w-6 text-pink-500"
+            className="h-6 w-6 text-blue-500"
             aria-hidden="true"
           />
         </div>
@@ -98,7 +98,7 @@ export const Wrapper: React.FC<Props> = (props) => {
                     planIdx === 0 ? "rounded-tl-md rounded-tr-md" : "",
                     planIdx === props.websites.length - 1 ? "" : "border",
                     checked
-                      ? "z-10 border-b-pink-100 border-t-pink-100 bg-pink-50"
+                      ? "z-10 border-b-blue-100 border-t-blue-100 bg-blue-50"
                       : "border-b-gray-200 border-t-transparent",
                     "relative flex cursor-pointer flex-col border-l-0 border-r-0 p-3 focus:outline-none md:pl-4 md:pr-6"
                   )
@@ -110,9 +110,9 @@ export const Wrapper: React.FC<Props> = (props) => {
                       <span
                         className={classNames(
                           checked
-                            ? "border-transparent bg-pink-500"
+                            ? "border-transparent bg-blue-500"
                             : "border-gray-300 bg-white",
-                          active ? "ring-2 ring-pink-500 ring-offset-2" : "",
+                          active ? "ring-2 ring-blue-500 ring-offset-2" : "",
                           "flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border"
                         )}
                         aria-hidden="true"
@@ -122,7 +122,7 @@ export const Wrapper: React.FC<Props> = (props) => {
                       <RadioGroup.Label
                         as="span"
                         className={classNames(
-                          checked ? "text-pink-500" : "text-gray-900",
+                          checked ? "text-blue-500" : "text-gray-900",
                           "ml-3 font-medium",
                           isUrlValidForFoudroyer({ url: plan.id })
                             ? ""
