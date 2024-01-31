@@ -1,7 +1,7 @@
 import {
   ErrorEntity,
   IndexationGoogleCloudApiKeyEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import {
   AddGoogleApiKeyResponse,
   CheckIndexNowKeyResponse,

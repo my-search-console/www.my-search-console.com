@@ -7,7 +7,7 @@ import {
 } from "../interfaces/IRoastRepository"
 
 import { RoastWithReportEntity } from "../entities/RoastEntity"
-import { ErrorEntity } from "@foudroyer/interfaces"
+import { ErrorEntity } from "@my-search-console/interfaces"
 
 export class InMemoryRoastRepository implements IRoastRepository {
   private websites: RoastWithReportEntity[] = []

@@ -4,7 +4,7 @@ import {
   PageEntity,
   PaymentEntity,
   WebsiteEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { WebsiteActivated } from "../../../modules/seeds/WebsitesSeeds"
 import { createStoreForTests } from "../../../utils/createStoreForTests"
 

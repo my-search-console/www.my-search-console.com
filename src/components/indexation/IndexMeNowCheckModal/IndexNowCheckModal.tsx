@@ -9,7 +9,7 @@ import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessag
 import { ArrowDownTrayIcon, KeyIcon } from "@heroicons/react/20/solid"
 import { Cancel } from "../../general/Cancel/Cancel"
 import { Modal } from "../../UI/Modal/Modal"
-import { WebsiteEntity } from "@foudroyer/interfaces"
+import { WebsiteEntity } from "@my-search-console/interfaces"
 
 type Props = {
   isOpen: boolean

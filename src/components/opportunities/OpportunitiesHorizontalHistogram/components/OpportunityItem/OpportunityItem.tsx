@@ -5,7 +5,7 @@ import {
   connector,
 } from "./containers/OpportunityItem.container"
 import { StarIcon } from "@heroicons/react/20/solid"
-import { OpportunityEntity } from "@foudroyer/interfaces"
+import { OpportunityEntity } from "@my-search-console/interfaces"
 
 function getGrade(opportunity: OpportunityEntity): number {
   const rules = {

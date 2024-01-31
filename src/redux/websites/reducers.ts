@@ -1,4 +1,4 @@
-import { WebsiteEntity } from "@foudroyer/interfaces"
+import { WebsiteEntity } from "@my-search-console/interfaces"
 import { uniq } from "ramda"
 import * as types from "./types"
 import { isUrlValidForFoudroyer } from "../../utils/isUrlValidForFoudroyer"

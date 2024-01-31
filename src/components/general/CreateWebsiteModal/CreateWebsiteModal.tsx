@@ -13,7 +13,7 @@ import { FoudroyerLink } from "../FoudroyerLink/FoudroyerLink"
 import { Modal } from "../../UI/Modal/Modal"
 import { PlusCircleIcon } from "@heroicons/react/20/solid"
 import { InboxIcon } from "@heroicons/react/24/outline"
-import { UserEntity } from "@foudroyer/interfaces"
+import { UserEntity } from "@my-search-console/interfaces"
 
 type Props = {
   websites: { id: string }[]

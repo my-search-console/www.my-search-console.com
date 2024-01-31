@@ -1,4 +1,4 @@
-import { ErrorEntity } from "@foudroyer/interfaces"
+import { ErrorEntity } from "@my-search-console/interfaces"
 import { NotificationMessageEntity } from "../../../entities/NotificationEntity"
 import {
   WebsiteActivated,

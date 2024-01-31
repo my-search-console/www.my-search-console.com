@@ -3,7 +3,7 @@ import {
   IndexationGoogleCloudApiKeyEntity,
   WebsiteEntity,
   WebsiteGoogleCloudApiKeyEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { CheckResponseEntity } from "../../interfaces/IWebsitesRepository"
 
 export const Reset = "Reset"

@@ -10,7 +10,7 @@ export class PaddlePaymentService implements IPaymentService {
     }
   }): Promise<{ status: "success" | "closed" }> {
     return new Promise((resolve, reject) => {
-      window.Paddle.Setup({ vendor: 146936 })
+      window.Paddle.Setup({ vendor: 184978 })
 
       const isReferral = window.tolt_referral
       const coupon = params.coupon_code || (isReferral ? "AFFILIATED" : "")

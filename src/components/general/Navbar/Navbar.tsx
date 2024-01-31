@@ -14,7 +14,7 @@ import { FoudroyerLink } from "../FoudroyerLink/FoudroyerLink"
 import { useIntl } from "react-intl"
 import { SelectLanguageModal } from "../SelectLanguageModal/SelectLanguageModal"
 import { buildLinkDependingOnAuthStatus } from "../../../utils/buildLinkDependingOnAuthStatus"
-import { PaymentPlansEntity, UserEntity } from "@foudroyer/interfaces"
+import { PaymentPlansEntity, UserEntity } from "@my-search-console/interfaces"
 import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
 import {
   BoltIcon,

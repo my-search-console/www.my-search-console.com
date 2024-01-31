@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { connector, ContainerProps } from "./containers/WebsitesList.containers"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
-import { WebsiteEntity } from "@foudroyer/interfaces/dist/entities/WebsiteEntity"
+import { WebsiteEntity } from "@my-search-console/interfaces/dist/entities/WebsiteEntity"
 import { Tooltip } from "../../../UI/Tooltip"
 import {
   SourceBingButton,
@@ -14,7 +14,7 @@ import logoSkate from "../../../../assets/logo/logo-skate.svg"
 import classNames from "classnames"
 import { ButtonPrimary, ButtonSecondary } from "../../../UI/Button/Button"
 import { IndexationSearchEngines } from "../../../../entities/SearchEngineEntity"
-import { IndexationSourceType } from "@foudroyer/interfaces"
+import { IndexationSourceType } from "@my-search-console/interfaces"
 import {
   ArrowPathIcon,
   BugAntIcon,

@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from "react-redux"
 import { RootState } from "../../../../redux/store"
-import { PaymentPlansEntity } from "@foudroyer/interfaces"
+import { PaymentPlansEntity } from "@my-search-console/interfaces"
 
 const mapState = (state: RootState) => ({
   isPremium: state.payments.plans.size > 0,

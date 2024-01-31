@@ -2,7 +2,7 @@ import {
   IndexationQueueEntity,
   IndexationSourceType,
   PageEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { uniqWith } from "ramda"
 import {
   FetchResponse,

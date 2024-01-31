@@ -1,4 +1,4 @@
-import { ErrorEntity } from "@foudroyer/interfaces"
+import { ErrorEntity } from "@my-search-console/interfaces"
 import { createStoreForTests } from "../../../utils/createStoreForTests"
 import { NotificationMessageEntity } from "../../../entities/NotificationEntity"
 import { IssueNames, IssueTypes } from "../../../entities/IssueEntity"

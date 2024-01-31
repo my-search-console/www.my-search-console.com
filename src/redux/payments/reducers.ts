@@ -4,7 +4,7 @@ import {
   PaymentPlansEntity,
   PaymentPricesEntity,
   ProductEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import * as types from "./types"
 import { AnalyticsPaymentEntityPaymentSources } from "../../entities/AnalyticsEntity"
 
@@ -49,17 +49,21 @@ const initialState: PaymentsState = {
   paymentPlan: "",
   products: {
     currency: "EUR",
-    indexation: {
-      monthly: 29.99,
-      yearly: 1299,
+    free: {
+      monthly: 0,
+      yearly: 0,
     },
-    enterprise: {
-      monthly: 129.99,
-      yearly: 299,
-    },
-    newbie: {
+    starter: {
       monthly: 9.99,
       yearly: 99,
+    },
+    professional: {
+      monthly: 19.99,
+      yearly: 199,
+    },
+    enterprise: {
+      monthly: 29.99,
+      yearly: 299,
     },
   },
 }

@@ -5,7 +5,7 @@ import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessag
 import { Modal } from "../../UI/Modal/Modal"
 import dayjs from "dayjs"
 import { Pricing } from "../../marketing/Pricing/Pricing"
-import { PaymentPlansEntity } from "@foudroyer/interfaces"
+import { PaymentPlansEntity } from "@my-search-console/interfaces"
 import { PricingUpsell } from "../../marketing/PricingUpsell/PricingUpsell"
 
 export const getTimeout = (end: Date) => {

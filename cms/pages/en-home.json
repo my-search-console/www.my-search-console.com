@@ -2,8 +2,8 @@
   "type": "page",
   "meta": {
     "indexable": true,
-    "title": "Foudroyer, indexing seo tool for google, yandex, bing, naver",
-    "description": "Foudroyer lets you centralize in one place everything you need to reach the top 1 on search engines."
+    "title": "My Search Console, indexing seo tool for google, yandex, bing, naver",
+    "description": "lets you centralize in one place everything you need to reach the top 1 on search engines."
   },
   "id": "630e6102-a075-4c11-84b9-9fca59015e28",
   "published_at": "2023-11-16T13:15:09.769Z",
@@ -14,33 +14,33 @@
     {
       "type": "marketing/hero",
       "label": {
-        "value": "No more struggling with indexing",
+        "value": "Only one platform to manage all search engines",
         "component": "p"
       },
       "title": {
-        "value": "Indexing and ranking on the serp has never been so easy.",
+        "value": "Google, Yandex and Bing centralized in one platform.",
         "component": "h1"
       },
-      "description": "Plug your website in seconds, index unlimited pages and rank high on Google, Bing, Yandex and Naver. Then, analyze your traffic, follow keywords positions and find opportunities"
+      "description": "Discover a more efficient way to monitor your website's performance on search engine results pages. Move beyond the limitations of Google, Bing, and Yandex Webmaster tools, which often present data in a less user-friendly manner. With our solution, you can quickly understand changes in your search performance, track the evolution of clicks and impressions, and effortlessly navigate through your data for a more convenient and insightful experience."
     },
     {
       "type": "marketing/video",
       "autoplay": true,
-      "alt": "foudroyer analytics demo",
+      "alt": "analytics demo",
       "src": "../assets/analytics-demo-landing.mp4",
       "illustration": "../assets/analytics-demo-landing.jpeg"
     },
     {
       "type": "marketing/features",
       "label": {
-        "value": "Foudroyer Analytics",
+        "value": "Analytics",
         "component": "p"
       },
       "title": {
         "value": "Compare, Analyse, Take off",
         "component": "h2"
       },
-      "description": "Foudroyer Analytics drastically improves the understanding of your site's traffic, allowing you to take action at the right time and surge in search engine results.",
+      "description": "Analytics drastically improves the understanding of your site's traffic, allowing you to take action at the right time and surge in search engine results.",
       "features": [
         {
           "title": {
@@ -100,21 +100,75 @@
     {
       "type": "marketing/features",
       "label": {
-        "value": "Foudroyer Keywords",
+        "value": "Keywords",
         "component": "p"
       },
       "title": {
         "value": "Follow your favorite keywords.",
         "component": "h2"
       },
-      "description": "It has never been easier to follow your keywords thanks to Foudroyer!",
+      "description": "It has never been easier to follow your keywords thanks to My Search Console!",
       "features": [
         {
           "title": {
             "value": "The exact position of your keywords.",
             "component": "p"
           },
-          "description": "Directly connected to search engines, Foudroyer gives you exact and precise positions.",
+          "description": "Directly connected to search engines, gives you exact and precise positions.",
+          "video": {
+            "autoplay": true,
+            "alt": "Video illustrating the \"Follow exact position\" feature",
+            "src": "../assets/follow-exact-position.mp4",
+            "illustration": "../assets/follow-exact-position.png"
+          }
+        },
+        {
+          "title": {
+            "value": "Simplified addition.",
+            "component": "p"
+          },
+          "description": "One or more words to add? Do it in just 4 seconds flat.",
+          "video": {
+            "autoplay": true,
+            "alt": "Video describing how to add keywords with the Keywords tool",
+            "src": "../assets/add-keywords-easily.mp4",
+            "illustration": "../assets/add-keywords-easily.png"
+          }
+        },
+        {
+          "title": {
+            "value": "Detailed view of the positions.",
+            "component": "p"
+          },
+          "description": "Click on a word and discover its detailed results that you won't be able to do without.",
+          "video": {
+            "autoplay": true,
+            "alt": "Video describing how to trigger the keywords detailed view",
+            "src": "../assets/keyword-detailed-view.mp4",
+            "illustration": "../assets/keyword-detailed-view.png"
+          }
+        }
+      ]
+    },
+
+    {
+      "type": "marketing/features",
+      "label": {
+        "value": "Opportunities",
+        "component": "p"
+      },
+      "title": {
+        "value": "Find topics opportunities",
+        "component": "h2"
+      },
+      "description": "It has never been easier to follow your keywords thanks to My Search Console!",
+      "features": [
+        {
+          "title": {
+            "value": "The exact position of your keywords.",
+            "component": "p"
+          },
+          "description": "Directly connected to search engines, gives you exact and precise positions.",
           "video": {
             "autoplay": true,
             "alt": "Video illustrating the \"Follow exact position\" feature",

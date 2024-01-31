@@ -8,7 +8,7 @@ import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessag
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline"
 import { Dialog } from "@headlessui/react"
 import { ButtonPrimary } from "../../UI/Button/Button"
-import { UserEntity } from "@foudroyer/interfaces"
+import { UserEntity } from "@my-search-console/interfaces"
 import tutoVideo from "../../../assets/videos/activate-search-engine.mp4"
 import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
 

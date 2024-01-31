@@ -1,4 +1,4 @@
-import { WebsiteEntity } from "@foudroyer/interfaces"
+import { WebsiteEntity } from "@my-search-console/interfaces"
 
 export const WebsitePremium: WebsiteEntity = {
   id: "www.sudoku.academy",

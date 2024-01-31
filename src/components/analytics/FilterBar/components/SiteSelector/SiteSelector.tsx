@@ -10,7 +10,10 @@ import { ChevronDownIcon, Cog6ToothIcon } from "@heroicons/react/20/solid"
 import { SiteSelectorItem } from "./SiteSelectorItem"
 import { ContainerProps, connector } from "./containers/SiteSelector.container"
 import { PlusIcon } from "@heroicons/react/20/solid"
-import { PaymentPlansEntity, WebsiteEntity } from "@foudroyer/interfaces"
+import {
+  PaymentPlansEntity,
+  WebsiteEntity,
+} from "@my-search-console/interfaces"
 
 export const Wrapper: React.FC<{
   onMount: () => void

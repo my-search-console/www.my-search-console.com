@@ -1,4 +1,4 @@
-import { UserEntity } from "@foudroyer/interfaces"
+import { UserEntity } from "@my-search-console/interfaces"
 
 export const storeUser = "AUTH_STORE_USER"
 export interface storeUserAction {

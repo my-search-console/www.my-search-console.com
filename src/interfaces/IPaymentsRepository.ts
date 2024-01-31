@@ -2,7 +2,7 @@ import {
   PaymentEntity,
   PaymentPlansEntity,
   PaymentPricesEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { IRepositoryResponse } from "./IApiResponse"
 
 export type FetchUserResponse = IRepositoryResponse<PaymentEntity[]>

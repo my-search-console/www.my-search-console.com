@@ -1,4 +1,4 @@
-import { ErrorEntity, WebsiteEntity } from "@foudroyer/interfaces"
+import { ErrorEntity, WebsiteEntity } from "@my-search-console/interfaces"
 import { uniqWith } from "ramda"
 import {
   CreateWebsiteParams,

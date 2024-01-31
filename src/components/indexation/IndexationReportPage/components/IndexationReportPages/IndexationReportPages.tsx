@@ -5,7 +5,7 @@ import {
   ClockIcon,
 } from "@heroicons/react/20/solid"
 
-import { IndexationQueueEntity } from "@foudroyer/interfaces"
+import { IndexationQueueEntity } from "@my-search-console/interfaces"
 import { ItemLoading } from "./components/ItemLoading"
 import {
   connector,

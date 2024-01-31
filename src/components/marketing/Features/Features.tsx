@@ -52,10 +52,7 @@ export const Features: React.FC<{
               {props.title.value}
             </As>
 
-            <As
-              component={"p"}
-              className="mt-4 text-lg leading-8 text-slate-500"
-            >
+            <As component={"p"} className="text-lg leading-8 text-slate-500">
               {props.description}
             </As>
           </div>

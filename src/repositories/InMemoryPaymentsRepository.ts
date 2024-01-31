@@ -2,7 +2,7 @@ import {
   PaymentEntity,
   PaymentPlansEntity,
   PaymentPricesEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { IApiResponse, IRepositoryResponse } from "../interfaces/IApiResponse"
 import {
   FetchInvoicesResponse,

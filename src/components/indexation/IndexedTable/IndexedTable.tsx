@@ -9,7 +9,7 @@ import {
   XCircleIcon,
 } from "@heroicons/react/20/solid"
 
-import { IndexationType, PageEntity } from "@foudroyer/interfaces"
+import { IndexationType, PageEntity } from "@my-search-console/interfaces"
 import { useEffect } from "react"
 import { ItemLoading } from "./components/ItemLoading"
 import { ButtonSecondary } from "../../UI/Button/Button"

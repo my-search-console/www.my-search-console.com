@@ -13,7 +13,7 @@ import {
   IndexationSourceType,
   PaymentPlansEntity,
   WebsiteEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { normalizeUrl } from "../../utils/normalizeUrl"
 import { TOOLS_AVAILABLE } from "../../constants/tools"
 import { getProductIdByPlan } from "../../utils/getProductIdByPlan"

@@ -10,7 +10,7 @@ import {
   IndexationType,
   PageEntity,
   WebsiteEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { NotificationMessageEntity } from "../../entities/NotificationEntity"
 import delay from "delay"
 import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"

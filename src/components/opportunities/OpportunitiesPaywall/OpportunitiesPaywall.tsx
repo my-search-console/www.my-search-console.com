@@ -1,4 +1,4 @@
-import { PaymentPlansEntity } from "@foudroyer/interfaces"
+import { PaymentPlansEntity } from "@my-search-console/interfaces"
 import React, { useEffect } from "react"
 import { FilterBar } from "../../analytics/FilterBar/FilterBar"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"

@@ -5,7 +5,7 @@ import {
   IndexationType,
   PageEntity,
   WebsiteEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import {
   WebsiteActivated,
   WebsitePremium,

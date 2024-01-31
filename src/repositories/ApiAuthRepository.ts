@@ -1,4 +1,4 @@
-import { ErrorEntity, UserEntity } from "@foudroyer/interfaces"
+import { ErrorEntity, UserEntity } from "@my-search-console/interfaces"
 import { InternalErrorEntity } from "../entities/InternalErrorEntity"
 import {
   IAuthRepository,

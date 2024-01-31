@@ -1,4 +1,4 @@
-import { ErrorEntity } from "@foudroyer/interfaces"
+import { ErrorEntity } from "@my-search-console/interfaces"
 import { StatsResponse } from "../interfaces/IWebsitesRepository"
 import { ApiService } from "../services/ApiService"
 import { ISpreadRepository } from "../interfaces/ISpreadRepository"

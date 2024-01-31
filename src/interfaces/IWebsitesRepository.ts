@@ -1,4 +1,4 @@
-import { WebsiteEntity } from "@foudroyer/interfaces"
+import { WebsiteEntity } from "@my-search-console/interfaces"
 import { IRepositoryResponse } from "./IApiResponse"
 import {
   RankingStatsForFrontend,

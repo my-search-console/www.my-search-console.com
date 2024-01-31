@@ -9,7 +9,10 @@ import {
 } from "./containers/PricingLanding.containers"
 import { ITranslations } from "../../../interfaces/ITranslations"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { PaymentPlansEntity, PaymentPricesEntity } from "@foudroyer/interfaces"
+import {
+  PaymentPlansEntity,
+  PaymentPricesEntity,
+} from "@my-search-console/interfaces"
 import getSymbolFromCurrency from "currency-symbol-map"
 import { PricingSwitchBillingInterval } from "./components/PricingSwitchBillingInterval"
 import clsx from "clsx"
@@ -18,7 +21,7 @@ const tiers: Array<{
   name: ITranslations["keys"]
   id: string
   mostPopular?: boolean
-  plan: PaymentPlansEntity | "free"
+  plan: PaymentPlansEntity
   reduction?: string
   priceMonthly: number
   title: ITranslations["keys"]
@@ -31,36 +34,34 @@ const tiers: Array<{
     name: "marketing/pricing/free/label",
     id: "tier-hobby",
     priceMonthly: 0,
-    // @ts-ignore
-    plan: "free",
+    plan: PaymentPlansEntity.free,
     title: "marketing/pricing/title",
     description: "marketing/pricing/free/description",
     label: "marketing/pricing/label",
     features: [
-      "marketing/pricing/features/unlimited-websites",
-      "marketing/pricing/features/5-per-site",
+      "marketing/pricing/features/1-website",
+      "marketing/pricing/features/only-google",
     ],
   },
   {
     name: "marketing/pricing/premium/label",
-    id: "tier-team",
+    id: "starter",
     priceMonthly: 9,
-    // @ts-ignore
-    plan: PaymentPlansEntity.indexation,
+    plan: PaymentPlansEntity.starter,
     reduction: "",
     title: "marketing/pricing/title",
     description: "marketing/pricing/premium/description",
     label: "marketing/pricing/label",
     features: [
-      "marketing/pricing/features/unlimited-websites",
-      "marketing/pricing/features/400-per-site",
+      "marketing/pricing/features/3-website",
+      "marketing/pricing/features/all-search-engines",
     ],
     highlight: true,
   },
   {
     name: "marketing/pricing/enterprise/label",
-    id: "enterprise",
-    plan: PaymentPlansEntity.enterprise,
+    id: "professional",
+    plan: PaymentPlansEntity.professional,
     priceMonthly: 19,
     mostPopular: true,
     reduction: "",
@@ -68,8 +69,8 @@ const tiers: Array<{
     description: "marketing/pricing/enterprise/description",
     label: "marketing/pricing/label",
     features: [
-      "marketing/pricing/features/unlimited-websites",
-      "marketing/pricing/features/2000-per-site",
+      "marketing/pricing/features/10-website",
+      "marketing/pricing/features/all-search-engines",
     ],
   },
   {
@@ -82,8 +83,8 @@ const tiers: Array<{
     description: "marketing/pricing/enterprise/description",
     label: "marketing/pricing/label",
     features: [
-      "marketing/pricing/features/unlimited-websites",
-      "marketing/pricing/features/2000-per-site",
+      "marketing/pricing/features/20-website",
+      "marketing/pricing/features/all-search-engines",
     ],
   },
 ]
@@ -194,12 +195,12 @@ export const Wrapper: React.FC<Props> = (props) => {
                   key={tierIndex}
                   className={classNames(
                     "relative flex flex-col justify-between rounded-3xl bg-white p-6 ring-1 ring-slate-200 sm:p-6",
-                    tier.highlight && "ring-2 !ring-blue-400"
+                    tier.mostPopular && "ring-2 !ring-blue-400"
                   )}
                 >
                   {
                     // @ts-ignore
-                    tier.highlight && (
+                    tier.mostPopular && (
                       <div className="absolute right-4 top-4">
                         <div className="flex items-center justify-center rounded-lg bg-blue-400 px-3 py-1 font-display text-sm text-white">
                           <FormattedMessage id="marketing/pricing/popular" />
@@ -241,9 +242,9 @@ export const Wrapper: React.FC<Props> = (props) => {
                         )}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm text-slate-700">
+                    {/* <p className="mt-2 text-sm text-slate-700">
                       <FormattedMessage id={tier.description} />
-                    </p>
+                    </p> */}
                     <ul
                       role="list"
                       className="mt-6 space-y-4 text-sm leading-6 "

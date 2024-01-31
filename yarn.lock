@@ -2462,11 +2462,6 @@
     intl-messageformat "10.1.1"
     tslib "2.4.0"
 
-"@foudroyer/interfaces@*":
-  version "0.51.0"
-  resolved "https://registry.yarnpkg.com/@foudroyer/interfaces/-/interfaces-0.51.0.tgz#a8445bf74af681b91e266fbbb58bceae1aa744ee"
-  integrity sha512-zipIJTaSxS9S9rj+zupTLtV61uDDCT7nLM1iwT8MGF7yEntD9/np2MTjY0q3hCUwXrvqhmPSf+O/Z592HkpPbg==
-
 "@gatsbyjs/parcel-namer-relative-to-cwd@^1.10.0":
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@gatsbyjs/parcel-namer-relative-to-cwd/-/parcel-namer-relative-to-cwd-1.10.0.tgz#4768957e2bd343ade1c8dfeb27bff2849ab46564"
@@ -3596,6 +3591,11 @@
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-2.1.2.tgz#f2d8b9ddd8d191205ed26ce54aba3dfc5ae3e7c9"
   integrity sha512-rIZVR48zA8hGkHIK7ED6+ZiXsjRCcAVBJbm8o89OKAMTmEAQ2QvoOxoiu3w2isAaWwzgtQIOFIqHwvZDyLKCvw==
+
+"@my-search-console/interfaces@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@my-search-console/interfaces/-/interfaces-1.1.0.tgz#176dfd6ad99527e9cbfea4f86f642090e9deb668"
+  integrity sha512-ionyNuMxFZ/pquAg9dcDx26+9SvF0GJzem3EIGSQ3AyFiTNtiy4K1XX2hGsf43Xc95D1Z9Btn5tHqvHeHBZ/Qg==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"

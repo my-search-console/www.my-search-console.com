@@ -22,7 +22,7 @@ import {
   IndexationType,
   OpportunityEntity,
   PaymentPlansEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import {
   AllWebsiteSeeds,
   WebsiteForDemo,

@@ -1,4 +1,4 @@
-import { PaymentPlansEntity } from "@foudroyer/interfaces/dist/entities/PaymentEntity"
+import { PaymentPlansEntity } from "@my-search-console/interfaces/dist/entities/PaymentEntity"
 import { ThunkAction } from "redux-thunk"
 import { actions } from "../actions"
 import { RootState } from "../store"

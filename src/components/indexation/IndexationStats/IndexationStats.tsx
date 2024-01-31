@@ -1,6 +1,6 @@
 import classNames from "classnames"
 import React, { ReactNode } from "react"
-import { IndexationType, PageEntity } from "@foudroyer/interfaces"
+import { IndexationType, PageEntity } from "@my-search-console/interfaces"
 import {
   ContainerProps,
   connector,

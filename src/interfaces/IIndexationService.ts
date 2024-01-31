@@ -1,4 +1,4 @@
-import { IndexationGoogleCloudApiKeyEntity } from "@foudroyer/interfaces"
+import { IndexationGoogleCloudApiKeyEntity } from "@my-search-console/interfaces"
 import { IndexationSearchEngines } from "../entities/SearchEngineEntity"
 import { IApiResponse, IRepositoryResponse } from "./IApiResponse"
 

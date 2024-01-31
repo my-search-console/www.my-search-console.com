@@ -1,7 +1,7 @@
 import { Select } from "./../../../../redux/websites/types"
 import { CreateWebsiteModal } from "./../../../general/CreateWebsiteModal/CreateWebsiteModal"
 import { IndexationSearchEngines } from "./../../../../entities/SearchEngineEntity"
-import { WebsiteEntity } from "@foudroyer/interfaces/dist/entities/WebsiteEntity"
+import { WebsiteEntity } from "@my-search-console/interfaces/dist/entities/WebsiteEntity"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"

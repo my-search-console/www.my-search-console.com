@@ -4,7 +4,7 @@ import {
   IndexationSourceType,
   IndexationType,
   PageEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { IRepositoryResponse } from "./IApiResponse"
 
 export type FilterParams = {

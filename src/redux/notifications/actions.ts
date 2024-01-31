@@ -1,6 +1,6 @@
 import { ThunkAction } from "redux-thunk"
 import * as types from "./types"
-import { ErrorEntity } from "@foudroyer/interfaces"
+import { ErrorEntity } from "@my-search-console/interfaces"
 import { actions } from "../actions"
 
 export const store = (

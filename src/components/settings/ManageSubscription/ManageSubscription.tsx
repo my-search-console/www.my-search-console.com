@@ -6,7 +6,7 @@ import {
 import { SettingSection } from "../SettingSection/SettingSection"
 import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
 import { CreditCardIcon, XMarkIcon } from "@heroicons/react/20/solid"
-import { PaymentEntity } from "@foudroyer/interfaces"
+import { PaymentEntity } from "@my-search-console/interfaces"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { ArrowDownCircleIcon, SparklesIcon } from "@heroicons/react/24/solid"
 import { SettingsInvoicesModal } from "../SettingsInvoicesModal/SettingsInvoicesModal"

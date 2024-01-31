@@ -7,7 +7,7 @@ import { ThunkAction } from "redux-thunk"
 import { RootState } from "../store"
 import { actions } from "../actions"
 import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
-import { PaymentPlansEntity } from "@foudroyer/interfaces/dist/entities/PaymentEntity"
+import { PaymentPlansEntity } from "@my-search-console/interfaces/dist/entities/PaymentEntity"
 
 export const KeywordsStoreKeywords = (
   payload: types.KeywordsStoreKeywordsAction["payload"]

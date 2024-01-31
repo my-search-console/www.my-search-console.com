@@ -9,7 +9,10 @@ import {
 import getSymbolFromCurrency from "currency-symbol-map"
 import { ITranslations } from "../../../interfaces/ITranslations"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { PaymentPlansEntity, PaymentPricesEntity } from "@foudroyer/interfaces"
+import {
+  PaymentPlansEntity,
+  PaymentPricesEntity,
+} from "@my-search-console/interfaces"
 import { Confirm } from "../../general/ConfirmButton/ConfirmButton"
 
 const tiers: Array<{

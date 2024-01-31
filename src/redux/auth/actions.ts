@@ -6,7 +6,7 @@ import { localStorageKeys } from "../../constants/localStorageKeys"
 import { normalizeUrl } from "../../utils/normalizeUrl"
 import { startHotjar } from "../../utils/hotjar"
 import { GetUserInfoResponse } from "../../interfaces/IAuthRepository"
-import { ErrorEntity } from "@foudroyer/interfaces"
+import { ErrorEntity } from "@my-search-console/interfaces"
 
 export const storeUser = (
   payload: types.storeUserAction["payload"]

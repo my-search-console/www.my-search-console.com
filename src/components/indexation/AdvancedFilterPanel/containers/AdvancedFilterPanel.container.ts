@@ -1,7 +1,7 @@
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
-import { IndexationType } from "@foudroyer/interfaces"
+import { IndexationType } from "@my-search-console/interfaces"
 
 const mapState = (state: RootState) => ({
   show: state.indexation.filter.panel.isOpen,
@@ -12,7 +12,7 @@ const mapState = (state: RootState) => ({
   indexationState: state.indexation.filter.panel.fields.indexation_state,
   showIndexedPages: state.indexation.filter.panel.fields.show_indexed_pages,
   length: state.indexation.pagination.total,
-  fetching: state.indexation.fetching
+  fetching: state.indexation.fetching,
 })
 
 const mapDispatch = (dispatch: any) => ({

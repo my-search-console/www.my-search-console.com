@@ -1,4 +1,4 @@
-import { WebsiteEntity } from "@foudroyer/interfaces"
+import { WebsiteEntity } from "@my-search-console/interfaces"
 import { ReactNode } from "react"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"

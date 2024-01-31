@@ -1,4 +1,4 @@
-import { PaymentPlansEntity } from "@foudroyer/interfaces"
+import { PaymentPlansEntity } from "@my-search-console/interfaces"
 
 export const getProductIdByPlan = (
   plan: PaymentPlansEntity,

@@ -7,7 +7,7 @@ import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
 import { Switch } from "@headlessui/react"
 import classNames from "classnames"
 import { BoltIcon } from "@heroicons/react/20/solid"
-import { IndexationType } from "@foudroyer/interfaces"
+import { IndexationType } from "@my-search-console/interfaces"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { useIntl } from "react-intl"
 

@@ -1,4 +1,4 @@
-import { OpportunityEntity } from "@foudroyer/interfaces"
+import { OpportunityEntity } from "@my-search-console/interfaces"
 
 export const OpportunitiesSetIsFetching = "OpportunitiesSetIsFetching"
 export interface OpportunitiesSetIsFetchingAction {

@@ -12,7 +12,7 @@ import {
   PaymentPlansEntity,
   PaymentPricesEntity,
   ProductEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 
 export class ApiPaymentsRepository implements IPaymentsRepository {
   constructor(private apiService: ApiService) {}

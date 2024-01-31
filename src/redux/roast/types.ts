@@ -1,5 +1,5 @@
 import { IndexationSearchEngines } from "../../entities/SearchEngineEntity"
-import { IndexationGoogleCloudApiKeyEntity } from "@foudroyer/interfaces"
+import { IndexationGoogleCloudApiKeyEntity } from "@my-search-console/interfaces"
 import { RoastWithReportEntity } from "../../entities/RoastEntity"
 
 export const Reset = "roast/Reset"

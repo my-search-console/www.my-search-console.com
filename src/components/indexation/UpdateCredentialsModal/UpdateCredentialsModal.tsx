@@ -19,7 +19,7 @@ import {
   IndexationGoogleCloudApiKeyEntity,
   PaymentPlansEntity,
   WebsiteEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { ArrowPathIcon } from "@heroicons/react/20/solid"
 
 import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"

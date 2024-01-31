@@ -4,7 +4,7 @@ import {
   ContainerProps,
 } from "./containers/IndexationStatsBar.containers"
 
-import { IndexationType, PageEntity } from "@foudroyer/interfaces"
+import { IndexationType, PageEntity } from "@my-search-console/interfaces"
 import { Tooltip } from "../../UI/Tooltip"
 import classNames from "classnames"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"

@@ -1,4 +1,4 @@
-import { OpportunityEntity } from "@foudroyer/interfaces"
+import { OpportunityEntity } from "@my-search-console/interfaces"
 import { IRepositoryResponse } from "../interfaces/IApiResponse"
 import { IOpportunitiesRepository } from "../interfaces/IOpportunitiesRepository"
 

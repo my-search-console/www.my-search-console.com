@@ -5,7 +5,7 @@ import { SmallStyle } from "../../UI/Button/Button"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import classNames from "classnames"
 import { TrashIcon } from "@heroicons/react/20/solid"
-import { PaymentPlansEntity } from "@foudroyer/interfaces"
+import { PaymentPlansEntity } from "@my-search-console/interfaces"
 
 export const Wrapper: React.FC<{
   isFetching: boolean

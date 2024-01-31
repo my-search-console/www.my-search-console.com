@@ -4,7 +4,7 @@ import { CheckCircleIcon, ClockIcon } from "@heroicons/react/20/solid"
 import {
   IndexationQueueEntity,
   IndexationQueueStatus,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import { ItemLoading } from "./components/ItemLoading"
 import {
   connector,

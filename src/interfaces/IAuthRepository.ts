@@ -1,4 +1,4 @@
-import { UserEntity } from "@foudroyer/interfaces"
+import { UserEntity } from "@my-search-console/interfaces"
 import { IRepositoryResponse } from "./IApiResponse"
 
 export type GetUserInfoResponse = IRepositoryResponse<UserEntity>

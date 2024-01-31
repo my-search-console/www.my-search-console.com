@@ -7,7 +7,10 @@ import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
 import { normalizeUrl } from "../../utils/normalizeUrl"
 import { getFiltersFromUrl } from "../../utils/getFiltersFromUrl"
 import { moveDate } from "../../utils/moveDateFromUrl"
-import { PaymentPlansEntity, WebsiteEntity } from "@foudroyer/interfaces"
+import {
+  PaymentPlansEntity,
+  WebsiteEntity,
+} from "@my-search-console/interfaces"
 
 export const RankingSetToastAccepted = (
   payload: types.RankingSetAnalyticsToastDataLateAcceptedAction["payload"]

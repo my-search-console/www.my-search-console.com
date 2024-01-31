@@ -1,11 +1,11 @@
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
-import { PaymentPlansEntity } from "@foudroyer/interfaces"
+import { PaymentPlansEntity } from "@my-search-console/interfaces"
 
 const mapState = (state: RootState) => ({
   source: state.payments.modal.source,
-  type: PaymentPlansEntity.indexation,
+  type: PaymentPlansEntity.starter,
   products: state.payments.products,
 })
 

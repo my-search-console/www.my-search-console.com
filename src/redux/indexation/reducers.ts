@@ -6,7 +6,7 @@ import {
   IndexationQueueStatus,
   IndexationType,
   PageEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 
 interface IndexationState {
   pages: PageEntity[]

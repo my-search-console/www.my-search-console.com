@@ -1,4 +1,4 @@
-import { OpportunityEntity } from "@foudroyer/interfaces"
+import { OpportunityEntity } from "@my-search-console/interfaces"
 import * as types from "./types"
 
 export interface OpportunitiesState {

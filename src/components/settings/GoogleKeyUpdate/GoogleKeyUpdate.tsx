@@ -6,7 +6,7 @@ import {
 import { SettingSection } from "../SettingSection/SettingSection"
 import { ButtonSecondary } from "../../UI/Button/Button"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { WebsiteEntity } from "@foudroyer/interfaces"
+import { WebsiteEntity } from "@my-search-console/interfaces"
 
 export const Wrapper: React.FC<{
   website: WebsiteEntity | null

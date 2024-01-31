@@ -1,4 +1,4 @@
-import { PaymentPlansEntity } from "@foudroyer/interfaces"
+import { PaymentPlansEntity } from "@my-search-console/interfaces"
 import React from "react"
 import { Pricing } from "../../marketing/Pricing/Pricing"
 import { AnalyticsComingSoonModal } from "../AnalyticsComingSoonModal/AnalyticsComingSoonModal"

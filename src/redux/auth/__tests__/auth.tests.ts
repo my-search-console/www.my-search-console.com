@@ -1,4 +1,4 @@
-import { ErrorEntity, UserEntity } from "@foudroyer/interfaces"
+import { ErrorEntity, UserEntity } from "@my-search-console/interfaces"
 import { localStorageKeys } from "../../../constants/localStorageKeys"
 import { NotificationMessageEntity } from "../../../entities/NotificationEntity"
 import { createStoreForTests } from "../../../utils/createStoreForTests"

@@ -5,7 +5,7 @@ import {
   IndexationSourceType,
   IndexationType,
   PageEntity,
-} from "@foudroyer/interfaces"
+} from "@my-search-console/interfaces"
 import {
   FetchResponse,
   FilterParams,
