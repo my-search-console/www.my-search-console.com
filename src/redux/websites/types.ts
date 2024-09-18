@@ -1,10 +1,11 @@
-import { IndexationSearchEngines } from "./../../entities/SearchEngineEntity"
 import {
   IndexationGoogleCloudApiKeyEntity,
+  UserWithRoleEntity,
   WebsiteEntity,
-  WebsiteGoogleCloudApiKeyEntity,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
+import { SitemapEntity } from "../../entities/SitemapEntity"
 import { CheckResponseEntity } from "../../interfaces/IWebsitesRepository"
+import { IndexationSearchEngines } from "./../../entities/SearchEngineEntity"
 
 export const Reset = "Reset"
 export interface ResetAction {
@@ -214,6 +215,12 @@ export interface CreateWebsiteSetFetchingAction {
   payload: { value: boolean }
 }
 
+export const WebsitesFilter = "WebsitesFilter"
+export interface WebsitesFilterAction {
+  type: typeof WebsitesFilter
+  payload: { value: string }
+}
+
 export const CreateWebsiteStoreFetchBingDomains =
   "websites/CreateWebsiteStoreFetchBingDomains"
 export interface CreateWebsiteStoreFetchBingDomainsAction {
@@ -240,6 +247,12 @@ export interface WebsitesSourceToggleAction {
   payload: { websiteId: string; source: IndexationSearchEngines }
 }
 
+export const SitemapsStore = "SitemapsStoreAction"
+export interface SitemapsStoreAction {
+  type: typeof SitemapsStore
+  payload: { sitemaps: SitemapEntity[] }
+}
+
 export const WebsiteRemoveGoogleApiKey = "WebsiteRemoveGoogleApiKey"
 export interface WebsiteRemoveGoogleApiKeyAction {
   type: typeof WebsiteRemoveGoogleApiKey
@@ -252,6 +265,14 @@ export interface WebsiteStoreGoogleApiKeysAction {
   payload: {
     website: WebsiteEntity
     keys: IndexationGoogleCloudApiKeyEntity[]
+  }
+}
+
+export const WebsiteStoreUsers = "WebsiteStoreUsers"
+export interface WebsiteStoreUsersAction {
+  type: typeof WebsiteStoreUsers
+  payload: {
+    users: UserWithRoleEntity[]
   }
 }
 
@@ -287,9 +308,31 @@ export type WebsitesActionTypes =
   | CreateWebsiteStoreFetchBingDomainsAction
   | WebsiteAddSourceModalSelectAction
   | WebsiteAddSourceModalSetIsOpenAction
-  // IndexNow
+  | WebsiteStoreUsersAction
+  /**
+   *
+   *
+   * INDEX NOW
+   *
+   *
+   */
   | WebsiteIndexNowModalSetOpenAction
   | WebsiteIndexNowCheckSetFetchingAction
   | WebsitesSourceToggleAction
   | WebsiteRemoveGoogleApiKeyAction
   | WebsiteStoreGoogleApiKeysAction
+  /**
+   *
+   *
+   * SITEMAP
+   *
+   *
+   */
+  | SitemapsStoreAction
+
+  /**
+   *
+   * FILTER
+   *
+   */
+  | WebsitesFilterAction

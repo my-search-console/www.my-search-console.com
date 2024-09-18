@@ -1,26 +1,14 @@
-import React, { Fragment } from "react"
+import { PlusIcon } from "@heroicons/react/20/solid"
+import React from "react"
 import {
   RankingOrderByType,
   RankingStatEntity,
 } from "../../../../entities/RankingWebsiteEntity"
-import { Menu, Transition } from "@headlessui/react"
-import { PlusIcon } from "@heroicons/react/20/solid"
-import classNames from "classnames"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../../general/Loader/Loader"
-import {
-  bigNumberFormatter,
-  universalFormatNumber,
-} from "../../../../utils/bigNumberFormatter"
-import { MenuFilterItem } from "./MenuFilterItem"
-import { useLocation } from "@reach/router"
-import { getFiltersFromUrl } from "../../../../utils/getFiltersFromUrl"
-import { Tooltip } from "../../../UI/Tooltip"
-import { useIntl } from "react-intl"
-import { setArrowIcon, setEvolutionColor } from "../../../../utils/setEvolution"
+import { ButtonSecondary } from "../../../UI/Button/Button"
 import { KeywordItem } from "./KeywordItem/KeywordItem"
 import { KeywordsStickyBar } from "./KeywordsStickyBar/KeywordsStickyBar"
-import { ButtonSecondary } from "../../../UI/Button/Button"
 
 function addRelativePercentage(
   data: RankingStatEntity[]

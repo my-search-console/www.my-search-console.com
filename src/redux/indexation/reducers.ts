@@ -1,12 +1,12 @@
-import { uniqWith } from "ramda"
-import * as types from "./types"
 import {
   IndexationGoogleCloudApiKeyEntity,
   IndexationQueueEntity,
   IndexationQueueStatus,
   IndexationType,
   PageEntity,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
+import { uniqWith } from "ramda"
+import * as types from "./types"
 
 interface IndexationState {
   pages: PageEntity[]
@@ -15,6 +15,7 @@ interface IndexationState {
   filterNameValue: string
   showSitemapToast: boolean
   toastStatsAccepted: boolean
+  isSettingsOpen: boolean
   pagesInIndexingState: Map<
     string,
     {
@@ -87,6 +88,13 @@ interface IndexationState {
       notIndexed: number
     }>
   }
+  indexation_auto_settings_modal: {
+    is_open: boolean
+    website_id: string | null
+    indexation_auto_activated: boolean
+    indexation_auto_update_pages_activated: boolean
+    submitting: boolean
+  }
   autoIndexationModal: {
     isFetching: boolean
     isOpen: boolean
@@ -119,10 +127,18 @@ const initialState: IndexationState = {
   pagesInIndexingState: new Map(),
   filterNameValue: "",
   fetching: false,
+  isSettingsOpen: false,
   pagination: {
     total: 0,
     page: 1,
     limit: 50,
+  },
+  indexation_auto_settings_modal: {
+    is_open: false,
+    website_id: null,
+    indexation_auto_activated: false,
+    indexation_auto_update_pages_activated: false,
+    submitting: false,
   },
   stats: {
     total: 0,
@@ -226,6 +242,50 @@ export function indexationReducer(
         ...state.onboardingModal,
         seen: action.payload.value,
       },
+    }
+  }
+
+  if (action.type === types.IndexationAutoSettingsModalSubmitting) {
+    return {
+      ...state,
+      indexation_auto_settings_modal: {
+        ...state.indexation_auto_settings_modal,
+        submitting: action.payload.value,
+      },
+    }
+  }
+
+  if (action.type === types.IndexationAutoSettingsModalSetIsOpen) {
+    return {
+      ...state,
+      indexation_auto_settings_modal: {
+        ...state.indexation_auto_settings_modal,
+        is_open: action.payload.is_open,
+        website_id: action.payload.website_id,
+        indexation_auto_activated: action.payload.indexation_auto_activated,
+        indexation_auto_update_pages_activated:
+          action.payload.indexation_auto_update_pages_activated,
+      },
+    }
+  }
+
+  if (action.type === types.IndexationAutoSettingsModalClose) {
+    return {
+      ...state,
+      indexation_auto_settings_modal: {
+        ...initialState.indexation_auto_settings_modal,
+      },
+    }
+  }
+
+  if (action.type === types.IndexationSettingsToggle) {
+    const value = action.payload.hasOwnProperty("value")
+      ? action.payload.value
+      : !state.isSettingsOpen
+
+    return {
+      ...state,
+      isSettingsOpen: Boolean(value),
     }
   }
 
@@ -604,6 +664,37 @@ export function indexationReducer(
         ...state.searchEngineModal,
         isOpen: action.payload.value,
       },
+    }
+  }
+
+  if (action.type === types.IndexationAutoSettingsModalChange) {
+    if (action.payload.key === "indexation_auto_activated") {
+      return {
+        ...state,
+        indexation_auto_settings_modal: {
+          ...state.indexation_auto_settings_modal,
+          indexation_auto_activated: action.payload.value,
+          indexation_auto_update_pages_activated:
+            action.payload.value === false
+              ? false
+              : state.indexation_auto_settings_modal
+                  .indexation_auto_update_pages_activated,
+        },
+      }
+    }
+
+    if (action.payload.key === "indexation_auto_update_pages_activated") {
+      return {
+        ...state,
+        indexation_auto_settings_modal: {
+          ...state.indexation_auto_settings_modal,
+          [action.payload.key]: action.payload.value,
+          indexation_auto_activated:
+            action.payload.value === true
+              ? true
+              : state.indexation_auto_settings_modal.indexation_auto_activated,
+        },
+      }
     }
   }
 

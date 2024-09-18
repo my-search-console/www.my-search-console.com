@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from "react-redux"
-import { RootState } from "../../../../../redux/store"
 import { IssueTypes } from "../../../../../entities/IssueEntity"
+import { RootState } from "../../../../../redux/store"
 
 const mapState = (state: RootState, props: { type: IssueTypes }) => {
   const website = state.roast.website

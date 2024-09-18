@@ -1,18 +1,12 @@
-import React, { useEffect, useRef, useState } from "react"
+import { useLocation } from "@reach/router"
 import "chartjs-adapter-date-fns"
-import { ContainerProps, connector } from "./containers/Chart.container"
+import React, { useEffect, useRef } from "react"
 import {
   RankingOrderByType,
   RankingStatsForFrontend,
 } from "../../../entities/RankingWebsiteEntity"
-import { RenderChart } from "../../general/RenderChart/RenderChart"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import {
-  ArrowDownTrayIcon,
-  ArrowPathIcon,
-  CircleStackIcon,
-} from "@heroicons/react/20/solid"
-import { Logo } from "../../UI/Logo"
+import { RenderChart } from "./components/RenderChart/RenderChart"
+import { connector, ContainerProps } from "./containers/Chart.container"
 
 type Props = {
   onMount: () => void
@@ -23,53 +17,31 @@ type Props = {
   onShow: () => void
   isRealUserData: boolean
   onDownload: () => void
+  type: RankingOrderByType
 }
 
 const Wrapper: React.FC<Props> = (props) => {
+  useEffect(() => {
+    props.onMount()
+  }, [])
+
   const ref = useRef<HTMLDivElement>(null)
+  const location = useLocation()
+  const search = new URL(location.href || "https://www.foudroyer.com")
+  const type = search.searchParams.get("orderBy") || "clicks"
 
   return (
     <div>
-      {!props.isRealUserData && (
-        <div className="mb-4 mt-4 flex items-center justify-center">
-          <ButtonPrimary disabled={props.isFetching} onClick={props.onShow}>
-            {props.isFetching && (
-              <ArrowPathIcon className="h-5 w-5 animate-spin" />
-            )}
-            {!props.isFetching && <CircleStackIcon className="h-5 w-5" />}
-            <span className="ml-1">Show my data</span>
-          </ButtonPrimary>
-        </div>
-      )}
-
-      <div
-        ref={ref}
-        id="render-chart"
-        className="bg-gradient-to-br from-blue-200 to-sky-200 p-8 pb-4"
-      >
-        <div className="shadow-btn-2 relative w-full rounded-lg border-2 border-slate-100 bg-white p-4 shadow-slate-100">
+      <div ref={ref} id="render-chart">
+        <div className="relative w-full rounded-lg border border-slate-100 bg-white p-4 ">
           <RenderChart
             date={props.stats.date}
-            type={"clicks"}
-            aspect="aspect-[16/7]"
+            type={type as RankingOrderByType}
+            aspect="aspect-[16/6]"
             isFetching={props.isFetching}
-            onFilter={props.onFilter}
+            onFilter={() => null}
           />
         </div>
-
-        <div className="mt-4 flex justify-center">
-          <ButtonSecondary size="sm">
-            <Logo className="mr-1 h-5 w-5" />
-            <span>foudroyer.com</span>
-          </ButtonSecondary>
-        </div>
-      </div>
-
-      <div className="mt-4 flex justify-center space-x-2">
-        <ButtonSecondary onClick={props.onDownload}>
-          <ArrowDownTrayIcon className="mr-2 h-5 w-5" />
-          <span>Download</span>
-        </ButtonSecondary>
       </div>
     </div>
   )

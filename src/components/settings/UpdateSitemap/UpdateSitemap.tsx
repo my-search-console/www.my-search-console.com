@@ -1,13 +1,13 @@
-import React from "react"
-import { ContainerProps, connector } from "./containers/UpdateSitemap.container"
-import { SettingSection } from "../SettingSection/SettingSection"
-import { ButtonSecondary } from "../../UI/Button/Button"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { ArrowPathIcon } from "@heroicons/react/20/solid"
+import classnames from "classnames"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
-import classnames from "classnames"
-import { Tooltip } from "../../UI/Tooltip"
+import React from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { ButtonSecondary } from "../../UI/Button/Button"
+import { SettingSection } from "../SettingSection/SettingSection"
+import { OpenSitemapManagerModalButton } from "./components/OpenSitemapManagerModalButton/OpenSitemapManagerModalButton"
+import { connector, ContainerProps } from "./containers/UpdateSitemap.container"
 
 dayjs.extend(relativeTime)
 
@@ -17,37 +17,21 @@ export const UpdateSitemapButtonWrapper: React.FC<{
   showLabel?: boolean
   sitemapUpdatedAt: Date | null
 }> = (props) => (
-  <Tooltip
-    direction={"bottom"}
-    align="right"
-    label={
-      <div className="text-center">
-        <span className="mr-1">Sync Sitemap</span>
-        <div>
-          <FormattedMessage id="settings/update-sitemap/last-update" />
-          <span className="ml-1">
-            {dayjs(props.sitemapUpdatedAt).fromNow()}
-          </span>
-        </div>
-      </div>
-    }
-  >
-    <ButtonSecondary size="sm" onClick={props.onSyncSitemap}>
-      <ArrowPathIcon
-        className={classnames(
-          "h-4 w-4",
-          props.isFetching && "animate-spin",
-          props.showLabel && "mr-2"
-        )}
-      />
-      {props.isFetching && props.showLabel && (
-        <FormattedMessage id="settings/update-sitemap/synchronizing" />
+  <ButtonSecondary size="sm" onClick={props.onSyncSitemap}>
+    <ArrowPathIcon
+      className={classnames(
+        "h-4 w-4",
+        props.isFetching && "animate-spin",
+        props.showLabel && "mr-2"
       )}
-      {!props.isFetching && props.showLabel && (
-        <FormattedMessage id="settings/update-sitemap/synchronize" />
-      )}
-    </ButtonSecondary>
-  </Tooltip>
+    />
+    {props.isFetching && props.showLabel && (
+      <FormattedMessage id="settings/update-sitemap/synchronizing" />
+    )}
+    {!props.isFetching && props.showLabel && (
+      <FormattedMessage id="settings/update-sitemap/synchronize" />
+    )}
+  </ButtonSecondary>
 )
 
 export const Wrapper: React.FC<{
@@ -65,32 +49,7 @@ export const Wrapper: React.FC<{
       }
     >
       <div className="flex flex-wrap items-center gap-2">
-        <ButtonSecondary size="sm" onClick={props.onClick}>
-          <FormattedMessage id="settings/update-sitemap/cta" />
-        </ButtonSecondary>
-
-        <UpdateSitemapButtonWrapper showLabel {...props} />
-
-        {props.sitemapUrl && (
-          <div>
-            <a
-              target="_blank"
-              href={props.sitemapUrl}
-              className="ml-1 flex items-center justify-center font-display text-xs text-blue-400 underline"
-            >
-              {props.sitemapUrl}
-            </a>
-            {props.sitemapUpdatedAt && (
-              <div className="ml-1 flex font-display text-xs text-slate-400">
-                <FormattedMessage id="settings/update-sitemap/last-update" />
-
-                <span className="ml-1">
-                  {dayjs(props.sitemapUpdatedAt).fromNow()}
-                </span>
-              </div>
-            )}
-          </div>
-        )}
+        <OpenSitemapManagerModalButton />
       </div>
     </SettingSection>
   )

@@ -1,20 +1,19 @@
+import { RouteComponentProps } from "@reach/router"
 import React from "react"
-import { Seo } from "../components/general/Seo/Seo"
-import { Navbar } from "../components/general/Navbar/Navbar"
-import { Container } from "../components/UI/Container"
-import { Footer } from "../components/marketing/Footer"
-import { FilterBar } from "../components/analytics/FilterBar/FilterBar"
+import { useIntl } from "react-intl"
+import { AnalyticsActivateModal } from "../components/analytics/AnalyticsActivateModal/AnalyticsActivateModal"
 import { HistogramModal } from "../components/analytics/HistogramModal/HistogramModal"
-import { PremiumModal } from "../components/payment/PremiumModal/PremiumModal"
-import { Notifications } from "../components/general/Notifications/Notifications"
 import { CreateWebsiteModal } from "../components/general/CreateWebsiteModal/CreateWebsiteModal"
 import { MobileNavbar } from "../components/general/MobileNavbar/MobileNavbar"
-import { useIntl } from "react-intl"
-import { RouteComponentProps } from "@reach/router"
+import { Navbar } from "../components/general/Navbar/Navbar"
+import { Notifications } from "../components/general/Notifications/Notifications"
 import { Protected } from "../components/general/Protected/Protected"
-import { HorizontalHistogramKeywords } from "../components/keywords/HorizontalHistogramKeywords/HorizontalHistogramKeywords"
+import { Seo } from "../components/general/Seo/Seo"
 import { AddKeywordsModal } from "../components/keywords/AddKeywordsModal/AddKeywordsModal"
 import { KeywordsPaywall } from "../components/keywords/KeywordsPaywall/KeywordsPaywall"
+import { Footer } from "../components/marketing/Footer"
+import { PremiumModal } from "../components/payment/UpsellConfirmationModal/UpsellConfirmationModal"
+import { Container } from "../components/UI/Container"
 
 export const KeywordsRoute: React.FC<RouteComponentProps> = () => {
   const intl = useIntl()
@@ -52,6 +51,7 @@ export const KeywordsRoute: React.FC<RouteComponentProps> = () => {
       <HistogramModal />
       <PremiumModal />
       <Footer />
+      <AnalyticsActivateModal />
       <Notifications />
     </Protected>
   )

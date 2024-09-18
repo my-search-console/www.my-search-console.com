@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import { ReactNode } from "react"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
@@ -19,7 +19,7 @@ const mapState = (
 
 const mapDispatch = (dispatch: any) => ({
   onAuthenticate: () => {
-    dispatch(actions.auth.$authenticateWithGoogle())
+    dispatch(actions.auth.$goToAuthentication())
   },
 })
 

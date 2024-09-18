@@ -1,14 +1,13 @@
-import React, { useEffect } from "react"
 import { Chart } from "chart.js/auto"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/IndexationReportChart.container"
-import { Loader } from "../../../../general/Loader/Loader"
-import { bigNumberFormatter } from "../../../../../utils/bigNumberFormatter"
+import React, { useEffect } from "react"
 import { useIntl } from "react-intl"
+import { bigNumberFormatter } from "../../../../../utils/bigNumberFormatter"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary, ButtonSecondary } from "../../../../UI/Button/Button"
+import { Loader } from "../../../../general/Loader/Loader"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/IndexationReportChart.container"
 
 type Props = {
   graph: Array<{
@@ -198,6 +197,7 @@ const Wrapper: React.FC<Props> = (props) => {
   return (
     <div className="relative w-full rounded-lg border border-slate-100 bg-white p-2 sm:p-4">
       {props.isFetching && <Loader />}
+
       <RenderChart
         date={props.graph}
         displayEmptyState={props.noTotalFromQueue}

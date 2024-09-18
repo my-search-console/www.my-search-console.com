@@ -40,7 +40,7 @@ export const Features: React.FC<{
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-2xl">
             <As
               component={props.label.component}
-              className="font-display text-base font-semibold leading-7 text-blue-400"
+              className="font-display text-base font-semibold leading-7 text-pink-400"
             >
               {props.label.value}
             </As>
@@ -52,7 +52,10 @@ export const Features: React.FC<{
               {props.title.value}
             </As>
 
-            <As component={"p"} className="text-lg leading-8 text-slate-500">
+            <As
+              component={"p"}
+              className="mt-4 text-lg leading-8 text-slate-500"
+            >
               {props.description}
             </As>
           </div>
@@ -67,15 +70,15 @@ export const Features: React.FC<{
                   onClick={() => setSelected(index)}
                   className={classNames(
                     index === selected
-                      ? "block bg-blue-50"
-                      : "hover:bg-blue-50",
+                      ? "block bg-pink-50"
+                      : "hover:bg-pink-50",
                     "relative my-2 flex cursor-pointer flex-col items-start justify-center rounded-lg border border-transparent p-4 transition-all duration-300 ease-in-out"
                   )}
                 >
                   <dt className="flex items-center font-display font-semibold text-slate-900">
                     <span
                       // @ts-ignore
-                      className="mr-3 text-blue-400"
+                      className="mr-3 text-pink-400"
                       aria-hidden="true"
                     >
                       0{index + 1}

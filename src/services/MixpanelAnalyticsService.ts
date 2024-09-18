@@ -1,11 +1,11 @@
 import mixpanel from "mixpanel-browser"
-import { AnalyticsEntity } from "../entities/AnalyticsEntity"
-import { IAnalyticsService } from "../interfaces/IAnalyticsService"
 import {
   MIXPANEL_DEVELOPMENT_API_KEY,
   MIXPANEL_HOST,
   MIXPANEL_PRODUCTION_API_KEY,
 } from "../constants/mixpanel"
+import { AnalyticsEntity } from "../entities/AnalyticsEntity"
+import { IAnalyticsService } from "../interfaces/IAnalyticsService"
 
 const API_KEY =
   process.env.NODE_ENV === "production"

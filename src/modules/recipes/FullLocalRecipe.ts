@@ -1,28 +1,35 @@
-import { MixpanelAnalyticsService } from "./../../services/MixpanelAnalyticsService"
-import { IModule } from "../../interfaces/IModule"
-import { WindowLocationService } from "../../services/WindowLocationService"
-import { InMemoryWebsitesRepository } from "../../repositories/InMemoryWebsitesRepository"
-import { InMemoryAuthRepository } from "../../repositories/InMemoryAuthRepository"
-import { InMemoryLocalStorageService } from "../../services/InMemoryLocalStorageService"
-import { InMemoryAnalyticsService } from "../../services/InMemoryAnalyticsService"
-import { InMemoryPaymentService } from "../../services/InMemoryPaymentService"
-import StatsResponse from "../seeds/StatsResponse.json"
-import StatsHistogramCountryResponse from "../seeds/StatsHistogramCountryResponse.json"
-import StatsHistogramQueryResponse from "../seeds/StatsHistogramQueryResponse.json"
-import StatsHistogramSourceResponse from "../seeds/StatsHistogramSourceResponse.json"
-import StatsHistogramDeviceResponse from "../seeds/StatsHistogramDeviceResponse.json"
-import OpportunitiesResponse from "../seeds/OpportunitiesResponse.json"
-import {
-  RankingStatEntity,
-  RankingStatsForFrontend,
-} from "../../entities/RankingWebsiteEntity"
-import { InMemoryIndexationService } from "../../services/InMemoryIndexationService"
 import {
   IndexationQueueStatus,
   IndexationType,
   OpportunityEntity,
   PaymentPlansEntity,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
+import { localStorageKeys } from "../../constants/localStorageKeys"
+import {
+  RankingStatEntity,
+  RankingStatsForFrontend,
+} from "../../entities/RankingWebsiteEntity"
+import { IModule } from "../../interfaces/IModule"
+import { InMemoryAuthRepository } from "../../repositories/InMemoryAuthRepository"
+import { InMemoryKeywordsRepository } from "../../repositories/InMemoryKeywordsRepository"
+import { InMemoryOpportunitiesRepository } from "../../repositories/InMemoryOpportunitiesRepository"
+import { InMemoryPagesRepository } from "../../repositories/InMemoryPagesRepository"
+import { InMemoryPaymentsRepository } from "../../repositories/InMemoryPaymentsRepository"
+import { InMemoryRoastRepository } from "../../repositories/InMemoryRoastRepository"
+import { InMemorySpreadRepository } from "../../repositories/InMemorySpreadRepository"
+import { InMemoryStatsRepository } from "../../repositories/InMemoryStatsRepository"
+import { InMemoryWebsitesRepository } from "../../repositories/InMemoryWebsitesRepository"
+import { InMemoryIndexationService } from "../../services/InMemoryIndexationService"
+import { InMemoryLocalStorageService } from "../../services/InMemoryLocalStorageService"
+import { InMemoryPaymentService } from "../../services/InMemoryPaymentService"
+import { WindowLocationService } from "../../services/WindowLocationService"
+import OpportunitiesResponse from "../seeds/OpportunitiesResponse.json"
+import { AllRoastSeeds } from "../seeds/RoastSeeds"
+import StatsHistogramCountryResponse from "../seeds/StatsHistogramCountryResponse.json"
+import StatsHistogramDeviceResponse from "../seeds/StatsHistogramDeviceResponse.json"
+import StatsHistogramQueryResponse from "../seeds/StatsHistogramQueryResponse.json"
+import StatsHistogramSourceResponse from "../seeds/StatsHistogramSourceResponse.json"
+import StatsResponse from "../seeds/StatsResponse.json"
 import {
   AllWebsiteSeeds,
   WebsiteForDemo,
@@ -30,14 +37,7 @@ import {
   WebsitePremium,
   WebsitesBasic,
 } from "../seeds/WebsitesSeeds"
-import { localStorageKeys } from "../../constants/localStorageKeys"
-import { InMemoryPaymentsRepository } from "../../repositories/InMemoryPaymentsRepository"
-import { InMemoryKeywordsRepository } from "../../repositories/InMemoryKeywordsRepository"
-import { InMemoryPagesRepository } from "../../repositories/InMemoryPagesRepository"
-import { InMemoryOpportunitiesRepository } from "../../repositories/InMemoryOpportunitiesRepository"
-import { InMemorySpreadRepository } from "../../repositories/InMemorySpreadRepository"
-import { InMemoryRoastRepository } from "../../repositories/InMemoryRoastRepository"
-import { AllRoastSeeds } from "../seeds/RoastSeeds"
+import { MixpanelAnalyticsService } from "./../../services/MixpanelAnalyticsService"
 
 export class FullLocalRecipe implements IModule {
   build() {
@@ -51,6 +51,7 @@ export class FullLocalRecipe implements IModule {
     const PaymentService = new InMemoryPaymentService()
     const PaymentsRepository = new InMemoryPaymentsRepository()
     const SpreadRepository = new InMemorySpreadRepository()
+    const StatsRepository = new InMemoryStatsRepository()
     const RoastRepository = new InMemoryRoastRepository()
 
     const KeywordsRepository = new InMemoryKeywordsRepository()
@@ -94,6 +95,7 @@ export class FullLocalRecipe implements IModule {
 
     PaymentsRepository.__storePaymentsInfo({
       cancel_url: "",
+      paused_at: null,
       cancellation_effective_date: null,
       fk_user_id: "me",
       paddle_user_id: "",
@@ -270,7 +272,6 @@ export class FullLocalRecipe implements IModule {
       {
         created_at: new Date(),
         fk_website_id: WebsitePremium.id,
-        id: "1",
         indexed_at: new Date(),
         page: "https://www.sudoku.academy",
         page_updated_at: new Date(),
@@ -279,12 +280,11 @@ export class FullLocalRecipe implements IModule {
         checked_indexation_state_at: new Date(),
         inspection_google_page: null,
         is_indexed: true,
-        indexation_state: IndexationType.ERROR_UNKNOWN,
+        indexation_state: IndexationType["error-unknown"],
       },
       {
         created_at: new Date(),
         fk_website_id: WebsitePremium.id,
-        id: "1",
         indexed_at: null,
         page: "https://www.sudoku.academy/fr/",
         page_updated_at: new Date(),
@@ -293,7 +293,7 @@ export class FullLocalRecipe implements IModule {
         checked_indexation_state_at: null,
         inspection_google_page: null,
         is_indexed: false,
-        indexation_state: IndexationType.ERROR_UNKNOWN,
+        indexation_state: IndexationType["error-unknown"],
       },
     ])
 
@@ -306,6 +306,7 @@ export class FullLocalRecipe implements IModule {
     }
 
     return {
+      StatsRepository,
       RoastRepository,
       PaymentsRepository,
       PaymentService,

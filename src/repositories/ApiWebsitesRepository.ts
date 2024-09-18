@@ -1,7 +1,14 @@
-import { ErrorEntity, WebsiteEntity } from "@my-search-console/interfaces"
+import {
+  ErrorEntity,
+  UserEntity,
+  UserWithRoleEntity,
+  WebsiteEntity,
+} from "@foudroyer/interfaces"
+import { SitemapEntity } from "../entities/SitemapEntity"
 import {
   ActivateResponse,
   AddSourceResponse,
+  AddUserToWebsiteResponse,
   CheckResponse,
   CreateWebsiteParams,
   CreateWebsiteResponse,
@@ -11,8 +18,11 @@ import {
   FetchResponse,
   FetchWebsiteAnalyticsStatusResponse,
   FetchYandexDomainsResponse,
+  GetUsersFromWebsiteResponse,
   IWebsitesRepository,
   RefreshSitemapAndIndexationResponse,
+  SitemapsDeleteResponse,
+  SitemapsFetchAllResponse,
   StatsForHistogramResponse,
   StatsResponse,
   UpdateCredentialsResponse,
@@ -23,6 +33,123 @@ import { ApiService } from "../services/ApiService"
 
 export class ApiWebsitesRepository implements IWebsitesRepository {
   constructor(private apiService: ApiService) {}
+
+  /**
+   *
+   *
+   * SITEMAP
+   *
+   *
+   */
+
+  async SitemapsFetchAll(params: {
+    websiteId: string
+  }): Promise<SitemapsFetchAllResponse> {
+    try {
+      const response = await this.apiService.post<{
+        sitemaps: SitemapEntity[]
+      }>(`/sitemap/fetch-all`, {
+        websiteId: params.websiteId,
+      })
+
+      if (response.data.statusCode === 400)
+        return { error: true, code: response.data.message }
+
+      return { error: false, body: { sitemaps: response.data.sitemaps } }
+    } catch (error) {
+      return { error: true, code: ErrorEntity.UNKNOWN_ERROR }
+    }
+  }
+
+  async SitemapsDelete(params: {
+    websiteId: string
+    id: SitemapEntity["id"]
+  }): Promise<SitemapsDeleteResponse> {
+    try {
+      const response = await this.apiService.delete<{}>(`/sitemap/delete`, {
+        websiteId: params.websiteId,
+        id: params.id,
+      })
+
+      if (response.data.statusCode === 400)
+        return { error: true, code: response.data.message }
+
+      return { error: false, body: {} }
+    } catch (error) {
+      return { error: true, code: ErrorEntity.UNKNOWN_ERROR }
+    }
+  }
+
+  /**
+   *
+   *
+   * ====================================================================
+   *
+   *
+   */
+
+  async addUserToWebsite(params: {
+    websiteId: string
+    email: string
+  }): Promise<AddUserToWebsiteResponse> {
+    try {
+      const response = await this.apiService.post<UserEntity>(
+        `/websites/add-user`,
+        {
+          websiteId: params.websiteId,
+          email: params.email,
+        }
+      )
+
+      if (response.data.statusCode === 400)
+        return { error: true, code: response.data.message }
+
+      return { error: false, body: { success: true } }
+    } catch (error) {
+      return { error: true, code: ErrorEntity.UNKNOWN_ERROR }
+    }
+  }
+
+  async removeUserToWebsite(params: {
+    websiteId: string
+    email: string
+  }): Promise<AddUserToWebsiteResponse> {
+    try {
+      const response = await this.apiService.delete<UserEntity>(
+        `/websites/remove-user`,
+        {
+          websiteId: params.websiteId,
+          email: params.email,
+        }
+      )
+
+      if (response.data.statusCode === 400)
+        return { error: true, code: response.data.message }
+
+      return { error: false, body: { success: true } }
+    } catch (error) {
+      return { error: true, code: ErrorEntity.UNKNOWN_ERROR }
+    }
+  }
+
+  async getUsersFromWebsite(params: {
+    websiteId: string
+  }): Promise<GetUsersFromWebsiteResponse> {
+    try {
+      const response = await this.apiService.post<{
+        users: UserWithRoleEntity[]
+      }>(`/websites/get-users`, {
+        websiteId: params.websiteId,
+      })
+
+      if (response.data.statusCode === 400)
+        return { error: true, code: response.data.message }
+
+      return { error: false, body: response.data.users }
+    } catch (error) {
+      return { error: true, code: ErrorEntity.UNKNOWN_ERROR }
+    }
+  }
 
   async delete(params: { websiteId: string }): Promise<DeleteResponse> {
     try {
@@ -41,11 +168,11 @@ export class ApiWebsitesRepository implements IWebsitesRepository {
 
   async fetchStats(params: {
     website: string
-
     filter?: {
       source: string | null
       query: string | null
       device: string | null
+      page: string | null
       country: string | null
       from: string | Date
       to: string | Date
@@ -87,10 +214,11 @@ export class ApiWebsitesRepository implements IWebsitesRepository {
           country: string | null
           from: string | Date
           to: string | Date
+          page: string | null
         }
       | undefined
     page: number
-    type: "source" | "device" | "query" | "country"
+    type: "source" | "device" | "query" | "country" | "page"
     orderBy?:
       | "clicks"
       | "impressions"
@@ -197,7 +325,7 @@ export class ApiWebsitesRepository implements IWebsitesRepository {
   async fetchGoogleDomains(): Promise<FetchGoogleDomainsResponse> {
     try {
       const response = await this.apiService.get<{ id: string }[]>(
-        `/ranking/websites/google`
+        `/websites/google`
       )
 
       if (response.data.statusCode === 400)
@@ -312,6 +440,44 @@ export class ApiWebsitesRepository implements IWebsitesRepository {
       const response = await this.apiService.post<WebsiteEntity>(`/websites`, {
         searchConsoleDomain: domain,
       })
+
+      if (response.data.statusCode === 400)
+        return { error: true, code: response.data.message }
+
+      return { error: false, body: response.data }
+    } catch (error) {
+      return { error: true, code: ErrorEntity.UNKNOWN_ERROR }
+    }
+  }
+
+  async reset(params: { websiteId: string }): Promise<ActivateResponse> {
+    try {
+      const response = await this.apiService.post<WebsiteEntity>(
+        `/websites/reset`,
+        {
+          websiteId: params.websiteId,
+        }
+      )
+
+      if (response.data.statusCode === 400)
+        return { error: true, code: response.data.message }
+
+      return { error: false, body: response.data }
+    } catch (error) {
+      return { error: true, code: ErrorEntity.UNKNOWN_ERROR }
+    }
+  }
+
+  async activateAnalytics(params: {
+    websiteId: string
+  }): Promise<ActivateResponse> {
+    try {
+      const response = await this.apiService.post<WebsiteEntity>(
+        `/websites/set-analytics-activated`,
+        {
+          websiteId: params.websiteId,
+        }
+      )
 
       if (response.data.statusCode === 400)
         return { error: true, code: response.data.message }

@@ -1,16 +1,13 @@
 import React from "react"
 
-import { IndexationReportStats } from "./components/IndexationReportStats/IndexationReportStats"
-import { IndexationReportPages } from "./components/IndexationReportPages/IndexationReportPages"
 import {
-  ContainerProps,
   connector,
+  ContainerProps,
 } from "./containers/IndexationReportPage.containers"
 
-import { IndexationReportChart } from "./components/IndexationReportChart/IndexationReportChart"
-import { IndexationReportNonPremium } from "./components/IndexationReportNonPremium/IndexationReportNonPremium"
-import { HelperBlock } from "../../general/HelperBlock/HelperBlock"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { HelperBlock } from "../../general/HelperBlock/HelperBlock"
+import { WebsiteStatsIndexationReportTimeSeries } from "../WebsiteStatsIndexationReportTimeSeries/WebsiteStatsIndexationReportTimeSeries"
 
 export const Wrapper: React.FC<{ isPremium: boolean }> = (props) => {
   return (
@@ -25,13 +22,13 @@ export const Wrapper: React.FC<{ isPremium: boolean }> = (props) => {
 
       <>
         <div className="mt-2"></div>
-        <IndexationReportChart />
+        <WebsiteStatsIndexationReportTimeSeries />
 
-        <div className="mt-2"></div>
+        {/* <div className="mt-2"></div>
         <IndexationReportStats />
 
         <div className="mt-2"></div>
-        <IndexationReportPages />
+        <IndexationReportPages /> */}
       </>
     </div>
   )

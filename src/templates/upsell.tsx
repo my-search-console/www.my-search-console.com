@@ -2,10 +2,9 @@ import { PageProps } from "gatsby"
 import React from "react"
 import { useIntl } from "react-intl"
 import { Navbar } from "../components/general/Navbar/Navbar"
+import { Notifications } from "../components/general/Notifications/Notifications"
 import { Seo } from "../components/general/Seo/Seo"
 import { Footer } from "../components/marketing/Footer"
-import { Notifications } from "../components/general/Notifications/Notifications"
-import { ScopeNotFoundModal } from "../components/general/ScopeNotFoundModal/ScopeNotFoundModal"
 import { PricingUpsell } from "../components/marketing/PricingUpsell/PricingUpsell"
 
 type Props = PageProps<
@@ -49,7 +48,6 @@ const PricingUpsellPage: React.FC<Props> = (props) => {
         </main>
       </div>
 
-      <ScopeNotFoundModal />
       <Notifications />
       <Footer />
     </>

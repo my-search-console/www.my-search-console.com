@@ -1,8 +1,8 @@
 import { connect, ConnectedProps } from "react-redux"
+import { IssueTypes } from "../../../../../entities/IssueEntity"
+import { RoastWithReportEntity } from "../../../../../entities/RoastEntity"
 import { actions } from "../../../../../redux/actions"
 import { RootState } from "../../../../../redux/store"
-import { RoastWithReportEntity } from "../../../../../entities/RoastEntity"
-import { IssueTypes } from "../../../../../entities/IssueEntity"
 
 const mapState = (state: RootState) => ({
   websites: state.roast.entities.map((id) =>

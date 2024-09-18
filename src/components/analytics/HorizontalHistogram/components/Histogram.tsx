@@ -1,26 +1,28 @@
+import { Menu, Transition } from "@headlessui/react"
+import {
+  ArrowsPointingOutIcon,
+  ArrowTopRightOnSquareIcon,
+  EllipsisHorizontalIcon,
+} from "@heroicons/react/20/solid"
+import { useLocation } from "@reach/router"
+import classNames from "classnames"
 import React, { Fragment } from "react"
+import { useIntl } from "react-intl"
 import {
   RankingOrderByType,
   RankingStatEntity,
 } from "../../../../entities/RankingWebsiteEntity"
-import { Menu, Transition } from "@headlessui/react"
-import {
-  ArrowsPointingOutIcon,
-  EllipsisHorizontalIcon,
-} from "@heroicons/react/20/solid"
-import classNames from "classnames"
-import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
-import { Loader } from "../../../general/Loader/Loader"
 import {
   bigNumberFormatter,
   universalFormatNumber,
 } from "../../../../utils/bigNumberFormatter"
-import { MenuFilterItem } from "./MenuFilterItem"
-import { useLocation } from "@reach/router"
+import { formatUrl } from "../../../../utils/formatUrl"
 import { getFiltersFromUrl } from "../../../../utils/getFiltersFromUrl"
-import { Tooltip } from "../../../UI/Tooltip"
-import { useIntl } from "react-intl"
 import { setArrowIcon, setEvolutionColor } from "../../../../utils/setEvolution"
+import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
+import { Loader } from "../../../general/Loader/Loader"
+import { Tooltip } from "../../../UI/Tooltip"
+import { MenuFilterItem } from "./MenuFilterItem"
 
 function addRelativePercentage(
   data: RankingStatEntity[],
@@ -32,6 +34,7 @@ function addRelativePercentage(
   const total = data.reduce((accumularor, value) => {
     return accumularor + value[type]
   }, 0)
+
   const relative = [...data].map((item) => ({
     ...item,
     percentage: (item[filters.orderBy ?? "clicks"] / total) * 100,
@@ -53,15 +56,16 @@ function addRelativePercentage(
 }
 
 export const Histogram: React.FC<{
-  type: "device" | "query" | "country" | "source"
+  type: "device" | "query" | "country" | "source" | "page"
   data: Array<RankingStatEntity>
   hideActions?: boolean
   label: string
-  color: "orange" | "blue" | "pink" | "green"
+  color: "orange" | "blue" | "pink" | "green" | "slate"
   isFetching: boolean
+  view: RankingOrderByType
+  fluid?: boolean
   onShowMore: () => void
   onChangeView: (view: RankingOrderByType) => void
-  view: RankingOrderByType
   onClick: (value: string) => void
 }> = (props) => {
   const dataWithRelativePercentage = addRelativePercentage(
@@ -71,7 +75,12 @@ export const Histogram: React.FC<{
   const { locale } = useIntl()
 
   return (
-    <div className="relative min-h-[200px] w-full rounded-lg border border-slate-100 bg-white p-4 font-display">
+    <div
+      className={classNames(
+        "relative min-h-[200px] w-full rounded-lg border border-slate-100 bg-white p-4 font-display",
+        props.fluid && "col-span-full"
+      )}
+    >
       {props.isFetching && <Loader></Loader>}
       <div className="flex items-center justify-between">
         <div className="font-display font-medium">
@@ -81,13 +90,13 @@ export const Histogram: React.FC<{
           {!props.hideActions && (
             <button
               onClick={props.onShowMore}
-              className="-mt-1 mr-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition duration-300 ease-in-out hover:bg-blue-100 hover:text-blue-500"
+              className="-mt-1 mr-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition duration-300 ease-in-out hover:bg-pink-100 hover:text-pink-500"
             >
               <ArrowsPointingOutIcon className="h-4 w-4" />
             </button>
           )}
           <Menu as="div" className="relative">
-            <Menu.Button className="-mr-1 -mt-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition duration-300 ease-in-out hover:bg-blue-100 hover:text-blue-500">
+            <Menu.Button className="-mr-1 -mt-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition duration-300 ease-in-out hover:bg-pink-100 hover:text-pink-500">
               <EllipsisHorizontalIcon className="h-5 w-5" />
             </Menu.Button>
 
@@ -140,9 +149,10 @@ export const Histogram: React.FC<{
                 className={classNames(
                   "absolute left-0 top-0 block h-full rounded-lg",
                   props.color === "orange" && "bg-orange-50",
-                  props.color === "pink" && "bg-blue-100",
+                  props.color === "pink" && "bg-pink-100",
                   props.color === "blue" && "bg-blue-50",
-                  props.color === "green" && "bg-emerald-50"
+                  props.color === "green" && "bg-emerald-50",
+                  props.color === "slate" && "bg-slate-50"
                 )}
                 style={{ width: item.percentage + "%" }}
               ></div>
@@ -154,7 +164,24 @@ export const Histogram: React.FC<{
                   // @ts-ignore
                   <FormattedMessage id={`country/${item[props.label]}`} />
                 )}
-                {props.type !== "country" && item[props.label]}
+
+                {props.type === "page" && (
+                  <div className="flex items-center">
+                    <span>{formatUrl(item[props.label])}</span>
+                    <a
+                      href={item[props.label]}
+                      className="ml-2"
+                      target="_blank"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ArrowTopRightOnSquareIcon className="w-4 h-4" />
+                    </a>
+                  </div>
+                )}
+
+                {props.type !== "country" &&
+                  props.type !== "page" &&
+                  item[props.label]}
               </span>
             </div>
             <div className="justify-end">

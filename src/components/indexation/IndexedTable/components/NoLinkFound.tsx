@@ -1,13 +1,7 @@
-import {
-  ArrowPathIcon,
-  MagnifyingGlassCircleIcon,
-  NoSymbolIcon,
-} from "@heroicons/react/20/solid"
-import classNames from "classnames"
+import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid"
 import React from "react"
-import { SmallStyle } from "../../../UI/Button/Button"
-import { ContainerProps, connector } from "./containers/NoLinkFound.containers"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
+import { connector, ContainerProps } from "./containers/NoLinkFound.containers"
 
 const Wrapper: React.FC<{
   onEmptyFilter: () => void

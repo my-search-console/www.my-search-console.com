@@ -1,9 +1,9 @@
 import React from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import {
   connector,
   ContainerProps,
 } from "./containers/IndexationAutoEmpty.containers"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid"
 

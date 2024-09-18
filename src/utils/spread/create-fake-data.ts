@@ -30,6 +30,7 @@ const generateDate = (): RankingStatEntity[] => {
       device: "unknown",
       country: "",
       source: "yandex",
+      page: "",
     }
 
     return entity
@@ -81,5 +82,9 @@ export const createFakeDataForSpread = () => {
     },
     query: [],
     sources: [],
+    pages: [],
+    yandex: [],
+    google: [],
+    bing: [],
   }
 }

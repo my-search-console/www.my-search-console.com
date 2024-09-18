@@ -1,5 +1,5 @@
-import { IRepositoryResponse } from "./IApiResponse"
 import { RoastWithReportEntity } from "../entities/RoastEntity"
+import { IRepositoryResponse } from "./IApiResponse"
 
 export type FetchRoastResponse = IRepositoryResponse<{
   websites: RoastWithReportEntity[]

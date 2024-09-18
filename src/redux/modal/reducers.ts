@@ -1,22 +1,24 @@
-import * as types from "./types";
+import * as types from "./types"
 
 interface ModalState {
-  isOpen: boolean;
+  isOpen: boolean
   cta: {
-    isOpen: boolean;
-    title: string | null;
-    description: string | null;
-    onSubmit: Function | null;
-    isLoading: boolean;
-  };
+    isOpen: boolean
+    title: string | null
+    description: string | null
+    onSubmit: Function | null
+    isLoading: boolean
+  }
+  lastTimeOpenNewsModal: Date | null
   comingSoon: {
-    isOpen: boolean;
-    type: "bing" | "yandex" | "builder" | "ranking";
-  };
+    isOpen: boolean
+    type: "bing" | "yandex" | "builder" | "ranking"
+  }
 }
 
 const initialState: ModalState = {
   isOpen: false,
+  lastTimeOpenNewsModal: null,
   cta: {
     isOpen: false,
     title: null,
@@ -28,7 +30,7 @@ const initialState: ModalState = {
     type: "bing",
     isOpen: false,
   },
-};
+}
 
 export function modalReducer(
   state = initialState,
@@ -38,14 +40,21 @@ export function modalReducer(
     return {
       ...state,
       isOpen: true,
-    };
+    }
+  }
+
+  if (action.type === types.NewsStoreLastTimeSeenModal) {
+    return {
+      ...state,
+      lastTimeOpenNewsModal: action.payload.value,
+    }
   }
 
   if (action.type === types.close) {
     return {
       ...state,
       isOpen: false,
-    };
+    }
   }
 
   if (action.type === types.openCta) {
@@ -59,14 +68,14 @@ export function modalReducer(
         description: action.payload.description || null,
         isLoading: false,
       },
-    };
+    }
   }
 
   if (action.type === types.closeCta) {
     return {
       ...state,
       cta: { ...state.cta, isOpen: false, isLoading: false, onSubmit: null },
-    };
+    }
   }
 
   if (action.type === types.onOpenComingSoon) {
@@ -77,29 +86,29 @@ export function modalReducer(
         isOpen: true,
         type: action.payload.type,
       },
-    };
+    }
   }
 
   if (action.type === types.onCloseComingSoon) {
     return {
       ...state,
       comingSoon: { ...state.comingSoon, isOpen: false },
-    };
+    }
   }
 
   if (action.type === types.ctaFetching) {
     return {
       ...state,
       cta: { ...state.cta, isLoading: true },
-    };
+    }
   }
 
   if (action.type === types.ctaFetchEnd) {
     return {
       ...state,
       cta: { ...state.cta, isLoading: false },
-    };
+    }
   }
 
-  return state;
+  return state
 }

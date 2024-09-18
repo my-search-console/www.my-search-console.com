@@ -1,10 +1,10 @@
+import { OpportunityEntity } from "@foudroyer/interfaces"
 import React from "react"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/OpportunitiesHorizontalHistogram"
 import { Histogram } from "./components/Histogram"
-import { OpportunityEntity } from "@my-search-console/interfaces"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/OpportunitiesHorizontalHistogram"
 
 const Wrapper: React.FC<{
   opportunities: OpportunityEntity[]

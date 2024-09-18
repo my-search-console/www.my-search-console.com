@@ -1,12 +1,12 @@
-import React from "react"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/MakeWebsitePublic.container"
-import { SettingSection } from "../SettingSection/SettingSection"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Switch } from "@headlessui/react"
 import classNames from "classnames"
+import React from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { SettingSection } from "../SettingSection/SettingSection"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/MakeWebsitePublic.container"
 
 export const Wrapper: React.FC<{
   onToggle: () => void

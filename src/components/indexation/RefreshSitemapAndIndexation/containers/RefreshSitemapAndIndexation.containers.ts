@@ -12,7 +12,7 @@ const mapDispatch = (dispatch: any) => ({
     dispatch(actions.websites.$refreshSitemapAndIndexation())
   },
   onChangeSitemap() {
-    dispatch(actions.websites.setOpenSitemapModal({ value: true }))
+    dispatch(actions.websites.$openSitemapModal())
   },
 })
 

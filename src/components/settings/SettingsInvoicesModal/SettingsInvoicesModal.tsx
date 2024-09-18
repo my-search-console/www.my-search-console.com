@@ -1,14 +1,14 @@
+import { Dialog } from "@headlessui/react"
+import { DocumentChartBarIcon } from "@heroicons/react/24/outline"
 import React, { useEffect } from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { Loader } from "../../general/Loader/Loader"
+import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
+import { Modal } from "../../UI/Modal/Modal"
 import {
   connector,
   ContainerProps,
 } from "./containers/SettingsInvoicesModal.containers"
-import { Modal } from "../../UI/Modal/Modal"
-import { DocumentChartBarIcon } from "@heroicons/react/24/outline"
-import { Dialog } from "@headlessui/react"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { Loader } from "../../general/Loader/Loader"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 
 type Props = {
   isOpen: boolean

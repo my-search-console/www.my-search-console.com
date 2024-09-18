@@ -1,7 +1,9 @@
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid"
 import { ILocationService } from "../interfaces/ILocationService"
 
 export class InMemoryLocationService implements ILocationService {
+  refresh(url: string): void {
+    throw new Error("Method not implemented.")
+  }
   private history: Array<{ to: string; state: any }> = []
   private baseLocation: string = "http://local.dev"
   private location: string = this.baseLocation

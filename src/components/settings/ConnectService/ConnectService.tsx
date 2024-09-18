@@ -1,18 +1,13 @@
 import React from "react"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/ConnectService.container"
-import GoogleLogo from "../../../assets/socials/google.svg"
-import BingLogo from "../../../assets/socials/bing.svg"
-import YandexLogo from "../../../assets/socials/yandex.svg"
-import { SettingSection } from "../SettingSection/SettingSection"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import {
   SourceBingButton,
-  SourceGoogleButton,
   SourceYandexButton,
 } from "../../general/SourceButtons/SourceButtons"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/ConnectService.container"
 
 export const Wrapper: React.FC<{
   connectedWithGoogle: boolean
@@ -21,27 +16,29 @@ export const Wrapper: React.FC<{
   onClick: (source: "yandex" | "bing") => void
 }> = (props) => {
   return (
-    <SettingSection
-      title={<FormattedMessage id="settings/connect-sources/title" />}
-      description={
-        <FormattedMessage id="settings/connect-sources/description" />
-      }
-    >
-      <div className="flex gap-2">
-        <SourceGoogleButton
-          onClick={() => false}
-          isActive={props.connectedWithGoogle}
-        />
-        <SourceBingButton
-          onClick={() => props.onClick("bing")}
-          isActive={props.connectedWithBing}
-        />
-        <SourceYandexButton
-          onClick={() => props.onClick("yandex")}
-          isActive={props.connectedWithYandex}
-        />
+    <div className="mt-2 flex max-w-7xl justify-between rounded-lg border border-slate-100 p-4">
+      <div>
+        <div className="font-display text-sm font-medium">
+          <FormattedMessage id="settings/connect-sources/title" />
+        </div>
+        <p className="max-w-3xl text-sm text-slate-500">
+          <FormattedMessage id="settings/connect-sources/description" />
+        </p>
       </div>
-    </SettingSection>
+
+      <div className="">
+        <div className="flex gap-2">
+          <SourceBingButton
+            onClick={() => props.onClick("bing")}
+            isActive={props.connectedWithBing}
+          />
+          <SourceYandexButton
+            onClick={() => props.onClick("yandex")}
+            isActive={props.connectedWithYandex}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 

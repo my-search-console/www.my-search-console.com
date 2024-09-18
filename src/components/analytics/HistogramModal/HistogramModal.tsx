@@ -1,31 +1,21 @@
+import {
+  ArrowDownRightIcon,
+  ArrowRightIcon,
+  ArrowTopRightOnSquareIcon,
+  ArrowUpRightIcon,
+} from "@heroicons/react/20/solid"
+import classNames from "classnames"
 import React, { ReactElement } from "react"
+import { useIntl } from "react-intl"
+import { RankingStatEntity } from "../../../entities/RankingWebsiteEntity"
+import { universalFormatNumber } from "../../../utils/bigNumberFormatter"
+import { formatUrl } from "../../../utils/formatUrl"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { Modal } from "../../UI/Modal/Modal"
 import {
   connector,
   ContainerProps,
 } from "./containers/HistogramModal.containers"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { RankingStatEntity } from "../../../entities/RankingWebsiteEntity"
-import {
-  bigNumberFormatter,
-  universalFormatNumber,
-} from "../../../utils/bigNumberFormatter"
-import { Modal } from "../../UI/Modal/Modal"
-import {
-  ArrowDownRightIcon,
-  ArrowRightIcon,
-  ArrowUpRightIcon,
-} from "@heroicons/react/20/solid"
-import classNames from "classnames"
-import { Tooltip } from "../../UI/Tooltip"
-import { useIntl } from "react-intl"
-
-type Props = {
-  isOpen: boolean
-  stats: RankingStatEntity[]
-  isFetching: boolean
-  onClose: () => void
-  type: "device" | "query" | "country" | "source"
-}
 
 function getEvolutionFromPreviousAndCurrentValues(options: {
   type: string
@@ -78,7 +68,7 @@ function setArrowIcon(options: {
 }
 
 const TableHead: React.FC<{
-  type: "device" | "query" | "country" | "source"
+  type: "device" | "query" | "country" | "source" | "page"
 }> = (props) => {
   return (
     <div className="sticky -top-4 z-10 w-full min-w-[1000px] bg-white bg-opacity-90 px-2 pb-2 pt-4  sm:-top-8 sm:px-4 sm:pt-8">
@@ -140,7 +130,7 @@ const DisplayEvolution: React.FC<{
 }
 
 const ValuesList: React.FC<{
-  type: "device" | "query" | "country" | "source"
+  type: "device" | "query" | "country" | "source" | "page"
   stats: RankingStatEntity[]
 }> = (props) => {
   return (
@@ -156,7 +146,25 @@ const ValuesList: React.FC<{
                 // @ts-ignore
                 <FormattedMessage id={`country/${item[props.type]}`} />
               )}
-              {props.type !== "country" && item[props.type]}
+
+              {props.type === "page" && (
+                <div className="flex items-center">
+                  <span>{formatUrl(item[props.type])}</span>
+
+                  <a
+                    href={item[props.type]}
+                    className="ml-2"
+                    target="_blank"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <ArrowTopRightOnSquareIcon className="w-4 h-4" />
+                  </a>
+                </div>
+              )}
+
+              {props.type !== "country" &&
+                props.type !== "page" &&
+                item[props.type]}
             </span>
           </div>
           <DisplayEvolution item={item} type="clicks" />
@@ -169,7 +177,7 @@ const ValuesList: React.FC<{
   )
 }
 
-export const Wrapper: React.FC<Props> = (props) => {
+export const Wrapper: React.FC<ContainerProps> = (props) => {
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose} leavePaddingTop>
       <div
@@ -183,8 +191,4 @@ export const Wrapper: React.FC<Props> = (props) => {
   )
 }
 
-export const Container: React.FC<ContainerProps> = (props) => (
-  <Wrapper {...props} />
-)
-
-export const HistogramModal = connector(Container)
+export const HistogramModal = connector(Wrapper)

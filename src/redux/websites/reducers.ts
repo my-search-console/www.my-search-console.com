@@ -1,16 +1,23 @@
-import { WebsiteEntity } from "@my-search-console/interfaces"
+import { UserWithRoleEntity, WebsiteEntity } from "@foudroyer/interfaces"
 import { uniq } from "ramda"
-import * as types from "./types"
+import { SitemapEntity } from "../../entities/SitemapEntity"
 import { isUrlValidForFoudroyer } from "../../utils/isUrlValidForFoudroyer"
+import * as types from "./types"
 
 interface WebsitesState {
   google: WebsiteEntity[]
+  users: UserWithRoleEntity[]
   areCredentialsGood: boolean
+
+  filter: string
+
   addSitemap: {
+    sitemaps: SitemapEntity[]
     isOpen: boolean
     value: string | null
     isFetching: boolean
   }
+
   addCredentials: {
     website: WebsiteEntity | null
     isOpen: boolean
@@ -38,11 +45,16 @@ interface WebsitesState {
 
 const initialState: WebsitesState = {
   entities: [],
+  users: [],
   map: new Map(),
   areCredentialsGood: false,
   google: [],
   fetching: false,
+
+  filter: "",
+
   addSitemap: {
+    sitemaps: [],
     isOpen: false,
     value: null,
     isFetching: false,
@@ -87,6 +99,37 @@ export function websitesReducer(
       map,
     }
   }
+  /**
+   *
+   *
+   *
+   * SITEMAP
+   *
+   *
+   *
+   *
+   */
+
+  if (action.type === types.SitemapsStore) {
+    return {
+      ...state,
+      addSitemap: {
+        ...state.addSitemap,
+        sitemaps: action.payload.sitemaps,
+      },
+    }
+  }
+
+  /**
+   *
+   *
+   *
+   * ==============================================================================
+   *
+   *
+   *
+   *
+   */
 
   if (action.type === types.StoreGoogle) {
     return {
@@ -107,8 +150,16 @@ export function websitesReducer(
 
   if (action.type === types.updateWebsite) {
     state.map.set(action.payload.website.id, action.payload.website)
+
     return {
       ...state,
+    }
+  }
+
+  if (action.type === types.WebsiteStoreUsers) {
+    return {
+      ...state,
+      users: action.payload.users,
     }
   }
 
@@ -203,6 +254,7 @@ export function websitesReducer(
       ...state,
       activeWebsite: action.payload.id,
       website: state.map.get(action.payload.id || "") || null,
+      filter: "",
     }
   }
 
@@ -223,13 +275,31 @@ export function websitesReducer(
     }
   }
 
-  if (action.type === types.setCredentialsIsOpen) {
+  if (action.type === types.WebsitesFilter) {
     return {
       ...state,
+      filter: action.payload.value,
+    }
+  }
+
+  if (action.type === types.setCredentialsIsOpen) {
+    if (action.payload.value === false) {
+      return {
+        ...state,
+        addCredentials: {
+          ...state.addCredentials,
+          isOpen: false,
+        },
+      }
+    }
+
+    return {
+      ...state,
+      website: action.payload.website,
       addCredentials: {
         ...initialState.addCredentials,
         website: action.payload.website,
-        isOpen: action.payload.value,
+        isOpen: true,
       },
     }
   }

@@ -1,7 +1,5 @@
 import { connect, ConnectedProps } from "react-redux"
-import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
-import { IndexationSearchEngines } from "../../../../entities/SearchEngineEntity"
 
 const mapState = (state: RootState) => ({
   fetching: state.indexation.autoIndexationModal.isFetching,

@@ -1,6 +1,6 @@
 import { promises as fs } from "fs"
 import path from "path"
-import { prop, groupBy } from "ramda"
+import { groupBy, prop } from "ramda"
 
 function getDatabaseDirectory() {
   return path.resolve(__dirname, "translations.tsv")

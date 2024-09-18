@@ -1,10 +1,10 @@
 import React from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { Modal } from "../../UI/Modal/Modal"
 import {
   connector,
   ContainerProps,
 } from "./containers/AnalyticsComingSoonModal.containers"
-import { Modal } from "../../UI/Modal/Modal"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 
 type Props = {
   isOpen: boolean

@@ -1,3 +1,3 @@
-import { BuilderProductsToTheme } from "@my-search-console/interfaces"
+import { BuilderProductsToTheme } from "@foudroyer/interfaces"
 
 export const products = Object.values(BuilderProductsToTheme)

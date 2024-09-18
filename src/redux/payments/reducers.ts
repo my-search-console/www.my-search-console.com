@@ -1,12 +1,11 @@
-import { is } from "ramda"
 import {
   PaymentEntity,
   PaymentPlansEntity,
   PaymentPricesEntity,
-  ProductEntity,
-} from "@my-search-console/interfaces"
-import * as types from "./types"
+} from "@foudroyer/interfaces"
 import { AnalyticsPaymentEntityPaymentSources } from "../../entities/AnalyticsEntity"
+import { InvoiceEntity } from "../../interfaces/IPaymentsRepository"
+import * as types from "./types"
 
 interface PaymentsState {
   isLoading: boolean
@@ -23,10 +22,17 @@ interface PaymentsState {
     modal: {
       isOpen: boolean
     }
-    invoices: any[]
+    invoices: InvoiceEntity[]
   }
+  actualIndexationPlan: PaymentEntity | null
+  actualAnalyticsPlan: PaymentPlansEntity
   paymentPlan: string
   products: PaymentPricesEntity
+  upsellConfirmationModal: {
+    plan: PaymentPlansEntity
+    interval: "yearly" | "monthly"
+    isOpen: boolean
+  }
 }
 
 const initialState: PaymentsState = {
@@ -40,28 +46,55 @@ const initialState: PaymentsState = {
     isUpsell: false,
     isClosable: true,
   },
+  upsellConfirmationModal: {
+    plan: PaymentPlansEntity["indexation"],
+    interval: "monthly",
+    isOpen: false,
+  },
   invoices: {
     modal: {
       isOpen: false,
     },
     invoices: [],
   },
+  actualIndexationPlan: null,
+  actualAnalyticsPlan: PaymentPlansEntity["analytics/free"],
   paymentPlan: "",
   products: {
     currency: "EUR",
-    free: {
+    ["indexation/free"]: {
       monthly: 0,
       yearly: 0,
     },
-    starter: {
+    indexation: {
+      monthly: 29.99,
+      yearly: 299,
+    },
+    enterprise: {
+      monthly: 129.99,
+      yearly: 1290,
+    },
+    newbie: {
       monthly: 9.99,
       yearly: 99,
     },
-    professional: {
+    [PaymentPlansEntity["indexation/teams"]]: {
+      monthly: 49.99,
+      yearly: 499,
+    },
+    ["analytics/free"]: {
+      monthly: 0,
+      yearly: 0,
+    },
+    ["analytics/beginner"]: {
+      monthly: 9.99,
+      yearly: 99,
+    },
+    ["analytics/pro"]: {
       monthly: 19.99,
       yearly: 199,
     },
-    enterprise: {
+    ["analytics/enterprise"]: {
       monthly: 29.99,
       yearly: 299,
     },
@@ -91,6 +124,11 @@ export function paymentsReducer(
       ...state,
       payments: action.payload,
       plans: new Set(action.payload.map(({ plan }) => plan)),
+      actualIndexationPlan:
+        action.payload.find(({ plan }) => !plan.includes("analytics")) || null,
+      actualAnalyticsPlan:
+        action.payload.find(({ plan }) => plan.includes("analytics"))?.plan ||
+        PaymentPlansEntity["analytics/free"],
     }
   }
 
@@ -129,6 +167,26 @@ export function paymentsReducer(
       ...state,
       modal: {
         ...state.modal,
+        isOpen: false,
+      },
+    }
+  }
+
+  if (action.type === types.PaymentsUpsellConfirmationOpenModal) {
+    if (action.payload.isOpen === true) {
+      return {
+        ...state,
+        upsellConfirmationModal: {
+          ...state.upsellConfirmationModal,
+          ...action.payload,
+        },
+      }
+    }
+
+    return {
+      ...state,
+      upsellConfirmationModal: {
+        ...state.upsellConfirmationModal,
         isOpen: false,
       },
     }

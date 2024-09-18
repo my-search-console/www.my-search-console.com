@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
 import classNames from "classnames"
 import React from "react"
-import { getSecondaryStyle, SmallStyle } from "../../../../UI/Button/Button"
+import { getSecondaryStyle } from "../../../../UI/Button/Button"
 import {
   connector,
   ContainerProps,

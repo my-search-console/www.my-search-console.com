@@ -1,24 +1,61 @@
-import { IApiResponse, IRepositoryResponse } from "./../interfaces/IApiResponse"
-import { ApiService } from "../services/ApiService"
+import {
+  ErrorEntity,
+  PaymentEntity,
+  PaymentPlansEntity,
+  PaymentPricesEntity,
+} from "@foudroyer/interfaces"
 import {
   FetchUserResponse,
   GetPricesResponse,
   IPaymentsRepository,
   UpsellResponse,
 } from "../interfaces/IPaymentsRepository"
-import {
-  ErrorEntity,
-  PaymentEntity,
-  PaymentPlansEntity,
-  PaymentPricesEntity,
-  ProductEntity,
-} from "@my-search-console/interfaces"
+import { ApiService } from "../services/ApiService"
 
 export class ApiPaymentsRepository implements IPaymentsRepository {
   constructor(private apiService: ApiService) {}
+
   async getPrices(): Promise<GetPricesResponse> {
     const response = await this.apiService.get<PaymentPricesEntity>(
       `/payments/prices`
+    )
+
+    if (response.data.statusCode === 400)
+      return {
+        error: true,
+        code: response.data.message,
+      }
+
+    return {
+      error: false,
+      body: response.data,
+    }
+  }
+
+  async pause(params: { subscriptionId: string }): Promise<GetPricesResponse> {
+    const response = await this.apiService.post<PaymentPricesEntity>(
+      `/payments/pause`,
+      params
+    )
+
+    if (response.data.statusCode === 400)
+      return {
+        error: true,
+        code: response.data.message,
+      }
+
+    return {
+      error: false,
+      body: response.data,
+    }
+  }
+
+  async unpause(params: {
+    subscriptionId: string
+  }): Promise<GetPricesResponse> {
+    const response = await this.apiService.post<PaymentPricesEntity>(
+      `/payments/unpause`,
+      params
     )
 
     if (response.data.statusCode === 400)

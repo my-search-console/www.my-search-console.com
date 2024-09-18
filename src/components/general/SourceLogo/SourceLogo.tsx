@@ -1,9 +1,9 @@
 import React from "react"
 
-import GoogleSvg from "../../../assets/socials/google.svg"
-import YandexSvg from "../../../assets/socials/yandex.svg"
 import BingSvg from "../../../assets/socials/bing.svg"
+import GoogleSvg from "../../../assets/socials/google.svg"
 import NaverSvg from "../../../assets/socials/naver.svg"
+import YandexSvg from "../../../assets/socials/yandex.svg"
 
 export const GoogleLogo = (props) => {
   return <img src={GoogleSvg} {...props} />

@@ -1,13 +1,12 @@
-import { PaymentPlansEntity } from "@my-search-console/interfaces"
-import React, { useEffect } from "react"
+import { PaymentPlansEntity } from "@foudroyer/interfaces"
+import React from "react"
 import { FilterBar } from "../../analytics/FilterBar/FilterBar"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { HelperBlock } from "../../general/HelperBlock/HelperBlock"
-import { Pricing } from "../../marketing/Pricing/Pricing"
 import { OpportunitiesHorizontalHistogram } from "../OpportunitiesHorizontalHistogram/OpportunitiesHorizontalHistogram"
 import {
-  ContainerProps,
   connector,
+  ContainerProps,
 } from "./containers/OpportunitiesPaywall.containers"
 
 type Props = {
@@ -16,12 +15,6 @@ type Props = {
 }
 
 export const Wrapper: React.FC<Props> = (props) => {
-  const isMoreThanThreeDays = props.signedUpAt
-    ? new Date().getTime() - props.signedUpAt.getTime() > 259200000
-    : false
-  if (isMoreThanThreeDays && props.plans.size === 0) {
-    return <Pricing />
-  }
   return (
     <div className="my-4">
       <FilterBar />

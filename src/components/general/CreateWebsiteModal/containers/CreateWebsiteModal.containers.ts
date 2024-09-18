@@ -1,7 +1,7 @@
+import { UserEntity } from "@foudroyer/interfaces"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
-import { UserEntity } from "@my-search-console/interfaces"
 
 const mapState = (state: RootState) => ({
   websites: state.websites.createWebsiteModal.domains,

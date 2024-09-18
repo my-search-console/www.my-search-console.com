@@ -1,15 +1,13 @@
 import React from "react"
 
-import { IndexationAutoStats } from "./components/IndexationAutoStats/IndexationAutoStats"
-import { IndexationAutoPages } from "./components/IndexationAutoPages/IndexationAutoPages"
 import { IndexationAutoChart } from "../IndexationAutoChart/IndexationAutoChart"
+import { IndexationAutoPages } from "./components/IndexationAutoPages/IndexationAutoPages"
+import { IndexationAutoStats } from "./components/IndexationAutoStats/IndexationAutoStats"
 import {
-  ContainerProps,
   connector,
+  ContainerProps,
 } from "./containers/IndexationAutoPage.containers"
 
-import { IndexationAutoEmpty } from "../IndexationAutoEmpty/IndexationAutoEmpty"
-import { PageHeading } from "../../general/PageHeading"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { HelperBlock } from "../../general/HelperBlock/HelperBlock"
 
@@ -36,9 +34,6 @@ export const Wrapper: React.FC<{ isPremium: boolean }> = (props) => {
 
         <div className="mt-2"></div>
         <IndexationAutoPages />
-
-        <div className="mt-2"></div>
-        <IndexationAutoEmpty />
       </>
     </div>
   )

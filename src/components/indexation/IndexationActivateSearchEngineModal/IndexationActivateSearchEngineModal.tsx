@@ -1,16 +1,16 @@
-import React, { useEffect } from "react"
+import { UserEntity } from "@foudroyer/interfaces"
+import { Dialog } from "@headlessui/react"
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline"
+import React from "react"
+import tutoVideo from "../../../assets/videos/activate-search-engine.mp4"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
+import { ButtonPrimary } from "../../UI/Button/Button"
+import { Modal } from "../../UI/Modal/Modal"
 import {
   connector,
   ContainerProps,
 } from "./containers/IndexationActivateSearchEngineModal.containers"
-import { Modal } from "../../UI/Modal/Modal"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline"
-import { Dialog } from "@headlessui/react"
-import { ButtonPrimary } from "../../UI/Button/Button"
-import { UserEntity } from "@my-search-console/interfaces"
-import tutoVideo from "../../../assets/videos/activate-search-engine.mp4"
-import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
 
 type Props = {
   isOpen: boolean
@@ -45,14 +45,14 @@ export const Wrapper: React.FC<Props> = (props) => {
         <div className="mx-auto flex h-full max-w-2xl items-start px-2">
           <video
             src={tutoVideo}
-            className="w-full rounded-lg ring-8 ring-blue-50"
+            className="w-full rounded-lg ring-8 ring-pink-50"
             autoPlay
             muted
             loop
           ></video>
         </div>
         <div className="mt-3 sm:mt-5" onClick={props.onClose}>
-          <FoudroyerLink to="/dashboard/">
+          <FoudroyerLink to="/">
             <ButtonPrimary fullWidth>
               <FormattedMessage id="indexation/modal/activate-search-engine/cta" />
             </ButtonPrimary>

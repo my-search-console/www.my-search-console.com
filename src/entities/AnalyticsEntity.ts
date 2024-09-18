@@ -12,10 +12,28 @@ type PagesEvents = {
   }
 }
 
-export type AuthenticationAnalyticsEntity = Base & {
-  category: "authentication"
-  action: "logout" | "login"
-}
+export type AuthenticationAnalyticsEntity = Base &
+  (
+    | {
+        category: "authentication"
+        action: "logout" | "login"
+      }
+    | {
+        category: "authentication"
+        action: "trying_to_connect"
+        data: {
+          state: string
+          error?: string
+        }
+      }
+    | {
+        category: "authentication"
+        action: "error"
+        data: {
+          href: string
+        }
+      }
+  )
 
 export type AnalyticsPaymentEntityPaymentSources =
   | "query"
@@ -34,6 +52,7 @@ export type AnalyticsPaymentEntityPaymentSources =
   | "landing"
   | "indexation/report"
   | "navbar"
+  | "multi-google-search"
 
 export type ModalAnalyticsEntity = Base &
   (
@@ -73,10 +92,20 @@ export type RoastAnalyticsEntity = Base & {
   action: "refresh-all"
 }
 
-export type PaymentAnalyticsEntity = Base & {
-  category: "payment"
-  action: "open" | "success" | "close"
-}
+export type PaymentAnalyticsEntity = Base &
+  (
+    | {
+        category: "payment"
+        action: "open" | "success" | "close"
+      }
+    | {
+        category: "payment"
+        action: "unsubscribe" | "pause"
+        data: {
+          why: string
+        }
+      }
+  )
 
 export type WebsiteAnalyticsEntity = Base & {
   category: "websites"
@@ -105,7 +134,26 @@ export type IndexationAnalyticsEntity = Base & {
   }
 }
 
+export type SitemapyAnalyticsEntity = Base &
+  (
+    | {
+        category: "sitemapy"
+        action: "fetch"
+        data: {
+          url: string
+        }
+      }
+    | {
+        category: "sitemapy"
+        action: "error"
+        data: {
+          message: string
+        }
+      }
+  )
+
 export type AnalyticsEntity =
+  | SitemapyAnalyticsEntity
   | PagesEvents
   | RoastAnalyticsEntity
   | NewsAnalyticsEntity

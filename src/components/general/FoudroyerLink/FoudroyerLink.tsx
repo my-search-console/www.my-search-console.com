@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
-import { normalizeUrl } from "../../../utils/normalizeUrl"
 import { useIntl } from "react-intl"
+import { normalizeUrl } from "../../../utils/normalizeUrl"
 
 export const FoudroyerLink: React.FC<{
   to: string
@@ -11,14 +11,19 @@ export const FoudroyerLink: React.FC<{
   ariaLabel?: string
 }> = (props) => {
   const { locale } = useIntl()
+  const to = normalizeUrl({ url: props.to, locale })
+
+  if (props.to.startsWith("/")) {
+    return (
+      <Link className={props.className} to={to} target={props.target}>
+        {props.children}
+      </Link>
+    )
+  }
+
   return (
-    <Link
-      className={props.className}
-      to={normalizeUrl({ url: props.to, locale })}
-      target={props.target}
-      aria-label={props.ariaLabel}
-    >
+    <a href={to} className={props.className}>
       {props.children}
-    </Link>
+    </a>
   )
 }

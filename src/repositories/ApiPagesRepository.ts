@@ -5,15 +5,15 @@ import {
   IndexationSourceType,
   IndexationType,
   PageEntity,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
 import {
   FetchResponse,
   FilterParams,
-  IPagesRepository,
   IndexationAutoFetchQueueResponse,
   IndexationAutoFetchResponse,
   IndexationAutoSaveResponse,
   IndexationReportFetchQueueResponse,
+  IPagesRepository,
   SendAdvancedFilterPagesToQueueResponse,
   SubmitManuallyPagesResponse,
 } from "../interfaces/IPagesRepository"
@@ -177,6 +177,26 @@ export class ApiPagesRepository implements IPagesRepository {
     }
   }
 
+  async SendAdvancedFilterPagesToCheck(
+    params: FilterParams & { sources: IndexationSourceType[] }
+  ): Promise<SendAdvancedFilterPagesToQueueResponse> {
+    const url = `/indexation/filters-to-check`
+
+    const response = await this.apiService.post<void>(url, {
+      ...params.filter,
+      sources: params.sources,
+    })
+
+    if (response.data.statusCode === 400) {
+      return { error: true, code: response.data.message }
+    }
+
+    return {
+      error: false,
+      body: null,
+    }
+  }
+
   async IndexationAutoFetch(params: {
     websiteId: string
   }): Promise<IndexationAutoFetchResponse> {
@@ -233,6 +253,27 @@ export class ApiPagesRepository implements IPagesRepository {
       websiteId: params.websiteId,
       sources,
       indexation_auto_activated: params.body.isActive,
+    })
+
+    if (response.data.statusCode === 400) {
+      return { error: true, code: response.data.message }
+    }
+
+    return {
+      error: false,
+      body: response.data,
+    }
+  }
+
+  async IndexationSourceToggle(params: {
+    websiteId: string
+    source: IndexationSourceType
+  }): Promise<IndexationAutoSaveResponse> {
+    const url = `/indexation/settings/toggle-source`
+
+    const response = await this.apiService.put<IndexationSettingsEntity>(url, {
+      websiteId: params.websiteId,
+      source: params.source,
     })
 
     if (response.data.statusCode === 400) {

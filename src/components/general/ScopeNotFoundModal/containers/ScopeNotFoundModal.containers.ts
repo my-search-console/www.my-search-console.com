@@ -5,8 +5,8 @@ import { RootState } from "../../../../redux/store"
 const mapState = (state: RootState) => ({})
 
 const mapDispatch = (dispatch: any) => ({
-  onClose: () => {
-    dispatch(actions.modal.$closeScopeNotFoundModal())
+  onLogin: () => {
+    dispatch(actions.auth.$goToAuthentication())
   },
 })
 

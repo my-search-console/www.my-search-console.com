@@ -1,11 +1,17 @@
-import { ErrorEntity, UserEntity } from "@my-search-console/interfaces"
+import {
+  ErrorEntity,
+  UserEntity,
+  UserToGoogleSearchConsoleWithEmailsEntity,
+} from "@foudroyer/interfaces"
 import { InternalErrorEntity } from "../entities/InternalErrorEntity"
 import {
-  IAuthRepository,
   AuthenticateWithGoogleResponse,
-  GetUserInfoResponse,
-  GetSourcesResponse,
   AuthenticateWithYandexResponse,
+  GetSourcesResponse,
+  GetUserInfoResponse,
+  GoogleSearchAccountDeleteResponse,
+  GoogleSearchAccountGetParentsResponse,
+  IAuthRepository,
 } from "../interfaces/IAuthRepository"
 import { ApiService } from "../services/ApiService"
 
@@ -19,14 +25,16 @@ export class ApiAuthRepository implements IAuthRepository {
   private openBrowserAndGetCode(
     url: string
   ): Promise<
-    { error: false; body: string } | { error: true; code: InternalErrorEntity }
+    | { error: false; body: string }
+    | { error: true; code: InternalErrorEntity; data?: { href: string } }
   > {
     return new Promise(async (resolve) => {
       const browser = window.open(url)
 
       const interval = setInterval(() => {
-        if (!browser || !browser.window) {
+        if (!browser || !browser.window || browser.closed) {
           clearInterval(interval)
+
           return resolve({
             error: true,
             code: InternalErrorEntity.GOOGLE_BROWSER_CLOSED,
@@ -34,21 +42,31 @@ export class ApiAuthRepository implements IAuthRepository {
         }
 
         try {
-          const href = browser?.window.location.href
+          const href = browser.window.location.href
           const url = new URL(href)
           const code = url.searchParams.get("code") as string
 
-          if (code) {
+          if (href === "about:blank") {
+          } else if (code) {
             clearInterval(interval)
             browser.close()
             return resolve({ error: false, body: code })
+          } else {
+            clearInterval(interval)
+            browser.close()
+
+            return resolve({
+              error: true,
+              code: InternalErrorEntity.GOOGLE_AUTH_NO_CODE,
+              data: { href },
+            })
           }
         } catch (error) {}
       }, 500)
     })
   }
 
-  private async getAuthenticationUrl(
+  async getAuthenticationUrl(
     type: "google" | "yandex" | "bing"
   ): Promise<
     { error: true; code: ErrorEntity } | { error: false; body: string }
@@ -64,7 +82,7 @@ export class ApiAuthRepository implements IAuthRepository {
     return { error: false, body: response.data.url }
   }
 
-  private async postAuthenticationCode(params: {
+  async postAuthenticationCode(params: {
     code: string
     callbackUrl: string
     type: "google" | "yandex" | "bing"
@@ -134,25 +152,120 @@ export class ApiAuthRepository implements IAuthRepository {
     return { error: false, body: response.data }
   }
 
-  async authenticateWithGoogle(params?: {
-    language: string
-  }): Promise<AuthenticateWithGoogleResponse> {
-    const callbackUrl = this.getCallbackUrl("google")
-    // const response = await this.getAuthenticationUrl("google")
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   * GOOGLE SEARCH ACCOUNT
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   */
 
-    // if (response.error === true) {
-    //   return {
-    //     error: true,
-    //     code: response.code,
-    //   }
-    // }
+  async GoogleSearchAccountGetParents(): Promise<GoogleSearchAccountGetParentsResponse> {
+    const response = await this.apiService.get<
+      UserToGoogleSearchConsoleWithEmailsEntity[]
+    >("/auth/parents")
+
+    if (response.data.statusCode === 400)
+      return {
+        error: true,
+        code: response.data.message,
+      }
+
+    return { error: false, body: response.data }
+  }
+
+  async GoogleSearchAccountDelete(params: {
+    id: UserToGoogleSearchConsoleWithEmailsEntity["id"]
+  }): Promise<GoogleSearchAccountDeleteResponse> {
+    const response = await this.apiService.delete<any>(
+      "/auth/google-search-account",
+      { id: params.id }
+    )
+
+    if (response.data.statusCode === 400)
+      return {
+        error: true,
+        code: response.data.message,
+      }
+
+    return { error: false, body: response.data }
+  }
+
+  async addGoogleSearchAccount(params?: { language: string }): Promise<any> {
+    const callbackUrl = this.getCallbackUrl("google")
 
     const code = await this.openBrowserAndGetCode(
-      `https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fwebmasters.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&response_type=code&client_id=969703850541-ul7kv0o24cbo0gcvhgdf3cjcn8vbv6j4.apps.googleusercontent.com&redirect_uri=${callbackUrl}`
+      `https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fwebmasters.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&response_type=code&client_id=749607665220-nm0esgq5d60qi92s8svuevekktvdf150.apps.googleusercontent.com&redirect_uri=${callbackUrl}`
     )
 
     if (code.error === true) {
       return { error: true, code: code.code }
+    }
+
+    try {
+      const response = await this.apiService.post(
+        `/auth/google/add-search-console/callback`,
+        {
+          code: code.body || "bad-code",
+          callbackUrl: callbackUrl,
+          language: params?.language || "en",
+        }
+      )
+
+      if (response.data.statusCode === 400) {
+        return { error: true, code: response.data.message }
+      }
+
+      return { error: false, body: true }
+    } catch (e) {
+      // @ts-ignore
+      return { error: true, code: e.message }
+    }
+  }
+
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   * =======
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   */
+
+  async authenticateWithGoogle(params?: {
+    language: string
+  }): Promise<AuthenticateWithGoogleResponse> {
+    const callbackUrl = this.getCallbackUrl("google")
+
+    const code = await this.openBrowserAndGetCode(
+      `https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fwebmasters.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&response_type=code&client_id=749607665220-nm0esgq5d60qi92s8svuevekktvdf150.apps.googleusercontent.com&redirect_uri=${callbackUrl}`
+    )
+
+    if (code.error === true) {
+      return { error: true, code: code.code, data: code.data }
     }
 
     const accessToken = await this.postAuthenticationCode({

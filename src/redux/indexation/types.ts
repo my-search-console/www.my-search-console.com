@@ -5,8 +5,7 @@ import {
   IndexationType,
   PageEntity,
   WebsiteEntity,
-} from "@my-search-console/interfaces"
-import exp from "constants"
+} from "@foudroyer/interfaces"
 import { IndexationSearchEngines } from "../../entities/SearchEngineEntity"
 
 export const Store = "PAGES_STORE"
@@ -33,6 +32,12 @@ export interface IndexationSetOnboardingModalSeenAction {
   payload: { value: boolean }
 }
 
+export const IndexationSettingsToggle = "IndexationSettingsToggle"
+export interface IndexationSettingsToggleAction {
+  type: typeof IndexationSettingsToggle
+  payload: { value?: boolean }
+}
+
 export const IndexationSetOnboardingModalIsOpen =
   "IndexationSetOnboardingModalIsOpen"
 export interface IndexationSetOnboardingModalIsOpenAction {
@@ -51,6 +56,35 @@ export const IndexationAutoIndexationModalSetIsOpen =
 export interface IndexationAutoIndexationModalSetIsOpenAction {
   type: typeof IndexationAutoIndexationModalSetIsOpen
   payload: { value: boolean }
+}
+
+export const IndexationAutoSettingsModalSetIsOpen =
+  "IndexationAutoSettingsModalSetIsOpen"
+export interface IndexationAutoSettingsModalSetIsOpenAction {
+  type: typeof IndexationAutoSettingsModalSetIsOpen
+  payload: {
+    is_open: boolean
+    website_id: string | null
+    indexation_auto_activated: boolean
+    indexation_auto_update_pages_activated: boolean
+  }
+}
+
+export const IndexationAutoSettingsModalChange =
+  "IndexationAutoSettingsModalChange"
+export interface IndexationAutoSettingsModalChangeAction {
+  type: typeof IndexationAutoSettingsModalChange
+  payload: {
+    key: "indexation_auto_activated" | "indexation_auto_update_pages_activated"
+    value: boolean
+  }
+}
+
+export const IndexationAutoSettingsModalClose =
+  "IndexationAutoSettingsModalClose"
+export interface IndexationAutoSettingsModalCloseAction {
+  type: typeof IndexationAutoSettingsModalClose
+  payload: {}
 }
 
 export const IndexationAutoSetFetching = "IndexationAutoSetFetching"
@@ -416,6 +450,13 @@ export interface IndexationDownloadGoogleApiKeyAction {
   }
 }
 
+export const IndexationAutoSettingsModalSubmitting =
+  "IndexationAutoSettingsModalSubmitting"
+export interface IndexationAutoSettingsModalSubmittingAction {
+  type: typeof IndexationAutoSettingsModalSubmitting
+  payload: { value: boolean }
+}
+
 export const IndexationStoreGoogleApiKeys = "IndexationStoreGoogleApiKeys"
 export interface IndexationStoreGoogleApiKeysAction {
   type: typeof IndexationStoreGoogleApiKeys
@@ -506,6 +547,10 @@ export type IndexationActionTypes =
   | IndexationSwitchViewAction
   | IndexationAutoSetFetchingAction
   | IndexationAutoFilterAction
+  | IndexationAutoSettingsModalSetIsOpenAction
+  | IndexationAutoSettingsModalCloseAction
+  | IndexationAutoSettingsModalChangeAction
+  | IndexationAutoSettingsModalSubmittingAction
   /*********************************************************
    *
    * Manage Google API keys
@@ -520,3 +565,9 @@ export type IndexationActionTypes =
    *
    *********************************************************/
   | IndexationToggleSearchEngineModalAction
+  /**
+   *
+   * Settings
+   *
+   */
+  | IndexationSettingsToggleAction

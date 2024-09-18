@@ -1,11 +1,11 @@
-import React from "react"
-import classNames from "classnames"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/OpportunityItem.container"
+import { OpportunityEntity } from "@foudroyer/interfaces"
 import { StarIcon } from "@heroicons/react/20/solid"
-import { OpportunityEntity } from "@my-search-console/interfaces"
+import classNames from "classnames"
+import React from "react"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/OpportunityItem.container"
 
 function getGrade(opportunity: OpportunityEntity): number {
   const rules = {

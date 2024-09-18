@@ -1,12 +1,12 @@
+import { ArrowPathIcon } from "@heroicons/react/20/solid"
 import React from "react"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/AddManuallyPagesToIndexation.container"
-import { SettingSection } from "../SettingSection/SettingSection"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { ButtonSecondary } from "../../UI/Button/Button"
-import { ArrowPathIcon } from "@heroicons/react/20/solid"
+import { SettingSection } from "../SettingSection/SettingSection"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/AddManuallyPagesToIndexation.container"
 
 export const Wrapper: React.FC<{
   onChange: (value: string) => void

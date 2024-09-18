@@ -1,12 +1,12 @@
 import React, { useEffect } from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import {
   connector,
   ContainerProps,
 } from "./containers/WebsitesGoogle.containers"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 
-import { ButtonSecondary } from "../../UI/Button/Button"
 import { ItemLoading } from "../../indexation/IndexedTable/components/ItemLoading"
+import { ButtonSecondary } from "../../UI/Button/Button"
 
 type Props = {
   websites: { id: string }[]

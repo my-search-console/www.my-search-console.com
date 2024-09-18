@@ -1,13 +1,37 @@
-import { ErrorEntity, UserEntity } from "@my-search-console/interfaces"
+import { ErrorEntity, UserEntity } from "@foudroyer/interfaces"
 import {
-  IAuthRepository,
   AuthenticateWithGoogleResponse,
-  GetUserInfoResponse,
-  GetSourcesResponse,
   AuthenticateWithYandexResponse,
+  GetSourcesResponse,
+  GetUserInfoResponse,
+  GoogleSearchAccountGetParentsResponse,
+  IAuthRepository,
 } from "../interfaces/IAuthRepository"
 
 export class InMemoryAuthRepository implements IAuthRepository {
+  postAuthenticationCode(params: {
+    code: string
+    callbackUrl: string
+    type: "yandex" | "bing" | "google"
+    language?: string | undefined
+  }): Promise<
+    { error: true; code: ErrorEntity } | { error: false; body: string }
+  > {
+    throw new Error("Method not implemented.")
+  }
+  addGoogleSearchAccount(
+    params?: { language: string } | undefined
+  ): Promise<AuthenticateWithGoogleResponse> {
+    throw new Error("Method not implemented.")
+  }
+  GoogleSearchAccountGetParents(): Promise<GoogleSearchAccountGetParentsResponse> {
+    throw new Error("Method not implemented.")
+  }
+  GoogleSearchAccountDelete(params: {
+    id: number
+  }): Promise<GoogleSearchAccountGetParentsResponse> {
+    throw new Error("Method not implemented.")
+  }
   private users: UserEntity[] = []
 
   async store(users: typeof this.users) {

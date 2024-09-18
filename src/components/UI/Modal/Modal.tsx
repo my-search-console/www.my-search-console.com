@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react"
 import classNames from "classnames"
 import React, { Fragment } from "react"
+import { Loader } from "../../general/Loader/Loader"
 
 type Props = {
   isOpen: boolean
@@ -10,6 +11,7 @@ type Props = {
   isConstrainted?: boolean
   leavePaddingTop?: boolean
   isClosable?: boolean
+  fetching?: boolean
 }
 
 export const Modal: React.FC<Props> = (props) => {
@@ -34,7 +36,7 @@ export const Modal: React.FC<Props> = (props) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-slate-900 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-slate-900 bg-opacity-90 transition-opacity" />
         </Transition.Child>
 
         <Transition.Child
@@ -48,11 +50,14 @@ export const Modal: React.FC<Props> = (props) => {
         >
           <Dialog.Panel
             className={classNames(
-              "relative z-10 mx-auto flex max-h-full flex-col overflow-auto rounded-md border border-slate-100 bg-white p-4 md:h-auto md:p-8 md:py-8",
+              "relative z-10 mx-auto flex max-h-full flex-col overflow-auto rounded-md border border-slate-100 bg-white",
               props.className
             )}
           >
-            {props.children}
+            {props.fetching && <Loader />}
+            <div className=" p-4 md:h-auto md:p-8 md:py-8">
+              {props.children}
+            </div>
           </Dialog.Panel>
         </Transition.Child>
       </Dialog>

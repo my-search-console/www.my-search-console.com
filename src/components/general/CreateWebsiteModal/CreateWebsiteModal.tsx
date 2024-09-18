@@ -1,19 +1,20 @@
-import React, { Fragment } from "react"
-import { Dialog, RadioGroup, Transition } from "@headlessui/react"
+import { UserEntity } from "@foudroyer/interfaces"
+import { Dialog, RadioGroup } from "@headlessui/react"
+import { PlusCircleIcon } from "@heroicons/react/20/solid"
+import { InboxIcon } from "@heroicons/react/24/outline"
+import classNames from "classnames"
+import React from "react"
+import { getCrispUrl } from "../../../utils/crisp"
+import { isUrlValidForFoudroyer } from "../../../utils/isUrlValidForFoudroyer"
+import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
+import { Modal } from "../../UI/Modal/Modal"
+import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
+import { FoudroyerLink } from "../FoudroyerLink/FoudroyerLink"
+import { Loader } from "../Loader/Loader"
 import {
   connector,
   ContainerProps,
 } from "./containers/CreateWebsiteModal.containers"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
-import classNames from "classnames"
-import { Loader } from "../Loader/Loader"
-import { isUrlValidForFoudroyer } from "../../../utils/isUrlValidForFoudroyer"
-import { FoudroyerLink } from "../FoudroyerLink/FoudroyerLink"
-import { Modal } from "../../UI/Modal/Modal"
-import { PlusCircleIcon } from "@heroicons/react/20/solid"
-import { InboxIcon } from "@heroicons/react/24/outline"
-import { UserEntity } from "@my-search-console/interfaces"
 
 type Props = {
   websites: { id: string }[]
@@ -30,7 +31,7 @@ type Props = {
 
 export const Wrapper: React.FC<Props> = (props) => {
   return (
-    <Modal isOpen={props.isOpen} onClose={() => {}} className="max-w-lg">
+    <Modal isOpen={props.isOpen} onClose={props.onClose} className="max-w-lg">
       <div className="mx-auto ">
         {props.isGlobalFetching && (
           <Loader
@@ -39,9 +40,9 @@ export const Wrapper: React.FC<Props> = (props) => {
             }
           />
         )}
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
           <PlusCircleIcon
-            className="h-6 w-6 text-blue-500"
+            className="h-6 w-6 text-pink-500"
             aria-hidden="true"
           />
         </div>
@@ -98,7 +99,7 @@ export const Wrapper: React.FC<Props> = (props) => {
                     planIdx === 0 ? "rounded-tl-md rounded-tr-md" : "",
                     planIdx === props.websites.length - 1 ? "" : "border",
                     checked
-                      ? "z-10 border-b-blue-100 border-t-blue-100 bg-blue-50"
+                      ? "z-10 border-b-pink-100 border-t-pink-100 bg-pink-50"
                       : "border-b-gray-200 border-t-transparent",
                     "relative flex cursor-pointer flex-col border-l-0 border-r-0 p-3 focus:outline-none md:pl-4 md:pr-6"
                   )
@@ -110,9 +111,9 @@ export const Wrapper: React.FC<Props> = (props) => {
                       <span
                         className={classNames(
                           checked
-                            ? "border-transparent bg-blue-500"
+                            ? "border-transparent bg-pink-500"
                             : "border-gray-300 bg-white",
-                          active ? "ring-2 ring-blue-500 ring-offset-2" : "",
+                          active ? "ring-2 ring-pink-500 ring-offset-2" : "",
                           "flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border"
                         )}
                         aria-hidden="true"
@@ -122,7 +123,7 @@ export const Wrapper: React.FC<Props> = (props) => {
                       <RadioGroup.Label
                         as="span"
                         className={classNames(
-                          checked ? "text-blue-500" : "text-gray-900",
+                          checked ? "text-pink-500" : "text-gray-900",
                           "ml-3 font-medium",
                           isUrlValidForFoudroyer({ url: plan.id })
                             ? ""
@@ -145,7 +146,7 @@ export const Wrapper: React.FC<Props> = (props) => {
       <a
         target="_blank"
         className="mt-2 block text-center text-xs text-blue-500 underline"
-        href={`https://go.crisp.chat/chat/embed/?website_id=b5235ee2-e9d5-4d06-9c92-488f64e57c8d&user_email=${props.user?.email}&token_id=${props.user?.id}&session_merge=true&crisp_sid=${props.user?.id}`}
+        href={getCrispUrl(props.user)}
       >
         <FormattedMessage id="create-modal/need-help" />
       </a>

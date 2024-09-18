@@ -1,10 +1,10 @@
 import React from "react"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/IndexationReportHelp.containers"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
 import { ButtonPrimary } from "../../../../UI/Button/Button"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/IndexationReportHelp.containers"
 
 type Props = {
   onClickSubscribe: () => void
@@ -12,11 +12,11 @@ type Props = {
 
 export const Wrapper: React.FC<Props> = (props) => {
   return (
-    <div className="rounded-md  bg-blue-50  p-4">
-      <div className="font-display text-sm text-blue-500">
+    <div className="rounded-md  bg-pink-50  p-4">
+      <div className="font-display text-sm text-pink-500">
         <FormattedMessage id="indexation/reports/non-premium/title" />
       </div>
-      <p className="text-sm text-blue-400">
+      <p className="text-sm text-pink-400">
         <FormattedMessage id="indexation/reports/non-premium/description" />
       </p>
       <div className="mt-2">

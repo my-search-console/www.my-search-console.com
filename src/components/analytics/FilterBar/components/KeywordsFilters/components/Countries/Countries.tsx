@@ -1,14 +1,13 @@
-import { Fragment, useEffect } from "react"
 import { Menu, Transition } from "@headlessui/react"
-import React from "react"
-import classNames from "classnames"
-import { getSecondaryStyle } from "../../../../../../UI/Button/Button"
 import { ChevronDownIcon } from "@heroicons/react/20/solid"
-import { ContainerProps, connector } from "./containers/Countries.container"
-import { FormattedMessage } from "../../../../../../general/FormattedMessage/FormattedMessage"
-import { countries } from "../../../../../../../constants/countries"
+import classNames from "classnames"
+import React, { Fragment } from "react"
 import { useIntl } from "react-intl"
+import { countries } from "../../../../../../../constants/countries"
+import { FormattedMessage } from "../../../../../../general/FormattedMessage/FormattedMessage"
+import { getSecondaryStyle } from "../../../../../../UI/Button/Button"
 import { Items } from "./components/Items"
+import { connector, ContainerProps } from "./containers/Countries.container"
 
 export const Wrapper: React.FC<{
   onChangeCountry: (params: { country: string }) => void

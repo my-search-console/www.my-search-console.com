@@ -1,13 +1,11 @@
-import React, { useEffect } from "react"
-import { Chart } from "chart.js/auto"
 import "chartjs-adapter-date-fns"
-import { GraphTooltip } from "../GraphTooltip"
-import { ContainerProps, connector } from "./containers/GeneralChart.container"
+import React from "react"
 import {
   RankingOrderByType,
   RankingStatsForFrontend,
 } from "../../../entities/RankingWebsiteEntity"
 import { RenderChart } from "../../general/RenderChart/RenderChart"
+import { connector, ContainerProps } from "./containers/GeneralChart.container"
 
 type Props = {
   onMount: () => void

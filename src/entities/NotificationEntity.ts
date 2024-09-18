@@ -1,4 +1,4 @@
-import { ErrorEntity } from "@my-search-console/interfaces"
+import { ErrorEntity } from "@foudroyer/interfaces"
 import { InternalErrorEntity } from "./InternalErrorEntity"
 
 export enum NotificationMessageEntity {
@@ -20,7 +20,7 @@ export enum NotificationMessageEntity {
 
 export type NotificationEntity = {
   type: "info" | "success" | "error" | "warning"
-  message: ErrorEntity | InternalErrorEntity | NotificationMessageEntity
+  message?: ErrorEntity | InternalErrorEntity | NotificationMessageEntity
   id: number
   timeout?: number
   onValidate?: Function

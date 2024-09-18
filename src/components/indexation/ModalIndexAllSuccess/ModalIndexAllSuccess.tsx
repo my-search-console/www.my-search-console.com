@@ -1,16 +1,15 @@
+import { Dialog } from "@headlessui/react"
+import { ChartBarIcon, CheckIcon } from "@heroicons/react/20/solid"
+import { useLocation } from "@reach/router"
 import React from "react"
+import { Confetti } from "../../general/Confetti/Confetti"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { ButtonSecondary } from "../../UI/Button/Button"
+import { Modal } from "../../UI/Modal/Modal"
 import {
   connector,
   ContainerProps,
 } from "./containers/ModalIndexAllSuccess.containers"
-import { Dialog } from "@headlessui/react"
-import { BellIcon, ChartBarIcon, CheckIcon } from "@heroicons/react/20/solid"
-import { useLocation } from "@reach/router"
-import { useIntl } from "react-intl"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { Modal } from "../../UI/Modal/Modal"
-import { Confetti } from "../../general/Confetti/Confetti"
-import { ButtonSecondary } from "../../UI/Button/Button"
 
 type Props = {
   onClose: () => void

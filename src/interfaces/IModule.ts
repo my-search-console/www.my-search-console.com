@@ -1,22 +1,25 @@
-import { IKeywordsRepository } from "./IKeywordsRepository"
-import { IOpportunitiesRepository } from "./IOpportunitiesRepository"
-import { ILocationService } from "./ILocationService"
-import { IWebsitesRepository } from "./IWebsitesRepository"
-import { IAuthRepository } from "./IAuthRepository"
-import { ILocalStorageService } from "./ILocalStorageService"
+import { ApiAuthRepository } from "../repositories/ApiAuthRepository"
 import { IAnalyticsService } from "./IAnalyticsService"
-import { IPaymentService } from "./IPaymentService"
 import { IIndexationService } from "./IIndexationService"
+import { IKeywordsRepository } from "./IKeywordsRepository"
+import { ILocalStorageService } from "./ILocalStorageService"
+import { ILocationService } from "./ILocationService"
+import { ILogsRepository } from "./ILogsRepository"
+import { IOpportunitiesRepository } from "./IOpportunitiesRepository"
 import { IPagesRepository } from "./IPagesRepository"
+import { IPaymentService } from "./IPaymentService"
 import { IPaymentsRepository } from "./IPaymentsRepository"
-import { ISpreadRepository } from "./ISpreadRepository"
 import { IRoastRepository } from "./IRoastRepository"
+import { ISitemapsService } from "./ISitemapsService"
+import { ISpreadRepository } from "./ISpreadRepository"
+import { IStatsRepository } from "./IStatsRepository"
+import { IWebsitesRepository } from "./IWebsitesRepository"
 
 export type Modules = {
   LocationService: ILocationService
   WebsitesRepository: IWebsitesRepository
   AnalyticsService: IAnalyticsService
-  AuthRepository: IAuthRepository
+  AuthRepository: ApiAuthRepository
   LocalStorageService: ILocalStorageService
   PaymentService: IPaymentService
   PaymentsRepository: IPaymentsRepository
@@ -26,6 +29,9 @@ export type Modules = {
   OpportunitiesRepository: IOpportunitiesRepository
   SpreadRepository: ISpreadRepository
   RoastRepository: IRoastRepository
+  StatsRepository: IStatsRepository
+  LogsRepository: ILogsRepository
+  SitemapsService: ISitemapsService
 }
 
 export interface IModule {

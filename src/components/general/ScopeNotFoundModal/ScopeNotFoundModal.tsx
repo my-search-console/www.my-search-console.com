@@ -1,41 +1,36 @@
+import { ExclamationTriangleIcon } from "@heroicons/react/20/solid"
 import React from "react"
+import { ButtonSecondary } from "../../UI/Button/Button"
+import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
+import { Navbar } from "../Navbar/Navbar"
+import { Seo } from "../Seo/Seo"
+import Illustration from "./assets/scope-not-found.mp4"
 import {
   connector,
   ContainerProps,
 } from "./containers/ScopeNotFoundModal.containers"
-import { ButtonPrimary } from "../../UI/Button/Button"
-import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
-import { Modal } from "../../UI/Modal/Modal"
-import { Dialog } from "@headlessui/react"
-import { ExclamationTriangleIcon } from "@heroicons/react/20/solid"
-import { useLocation } from "@reach/router"
-import Illustration from "./assets/scope-not-found.mp4"
 
 type Props = {
-  onClose: () => void
+  onLogin: () => void
 }
 
 export const Wrapper: React.FC<Props> = (props) => {
-  const location = useLocation()
-
-  const isOpen = location.href?.includes("scope-not-found") || false
-
   return (
-    <Modal isOpen={isOpen} onClose={props.onClose}>
-      <div className="relative max-w-md">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
+    <>
+      <Seo title={""} description={""} lang={"en"} langUrls={[]} />
+      <Navbar />
+      <div className="relative mx-auto mt-8 max-w-xl">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-50">
           <ExclamationTriangleIcon
-            className="h-6 w-6 text-blue-400"
+            className="h-6 w-6 text-pink-400"
             aria-hidden="true"
           />
         </div>
+
         <div className="mt-3 sm:mt-5">
-          <Dialog.Title
-            as="h3"
-            className="text-center font-display text-base font-semibold leading-6 text-slate-900"
-          >
+          <div className="text-center font-display text-base font-semibold leading-6 text-slate-900">
             <FormattedMessage id="modal/source-not-found/title" />
-          </Dialog.Title>
+          </div>
           <div className="mt-2">
             <p className="text-sm text-slate-500">
               <FormattedMessage id="google/auth/scope-not-found" />
@@ -52,12 +47,12 @@ export const Wrapper: React.FC<Props> = (props) => {
         </div>
 
         <div className="mt-4">
-          <ButtonPrimary fullWidth size="md" onClick={props.onClose}>
+          <ButtonSecondary fullWidth size="md" onClick={props.onLogin}>
             <FormattedMessage id="modal/source-not-found/submit" />
-          </ButtonPrimary>
+          </ButtonSecondary>
         </div>
       </div>
-    </Modal>
+    </>
   )
 }
 

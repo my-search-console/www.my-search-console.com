@@ -1,5 +1,3 @@
-import { createStoreForTests } from "../../../utils/createStoreForTests"
-
 describe("assistant tests suite", () => {
   it("if a user do not have websites added, should show the assistant", async () => {})
   it("when the assistant appear, he should say a welcome message", async () => {})

@@ -16,6 +16,14 @@ export const VideoPlayer: React.FC<{
 
   useEffect(() => {
     setLoadVideo(true)
+
+    if (props.autoplay) {
+      setPlay(true)
+
+      setTimeout(() => {
+        videoRef.current?.play()
+      }, 1000)
+    }
   }, [])
 
   const togglePlay = () => {
@@ -29,27 +37,15 @@ export const VideoPlayer: React.FC<{
   }
 
   return (
-    <div className="relative w-full rounded-lg ring-8 ring-blue-100">
+    <div className="relative w-full rounded-lg ring-8 ring-pink-100">
       <Image
-        className={clsx(props.classNames?.image, "ring-8 ring-blue-100")}
+        className={clsx(props.classNames?.image, "ring-8 ring-pink-100")}
         src={props.illustration}
         alt={props.alt}
       />
 
       <video
         ref={videoRef}
-        onLoadedData={() => {
-          console.log(props)
-          console.log(videoRef)
-
-          if (props.autoplay) {
-            setPlay(true)
-
-            setTimeout(() => {
-              videoRef.current?.play()
-            }, 100)
-          }
-        }}
         className={clsx(props.classNames?.video, "absolute inset-0")}
         playsInline={props.autoplay}
         loop={props.autoplay}

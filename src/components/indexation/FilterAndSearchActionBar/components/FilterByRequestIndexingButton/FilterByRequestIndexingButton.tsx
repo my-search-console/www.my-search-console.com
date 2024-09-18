@@ -6,9 +6,9 @@ import {
 
 import { FunnelIcon } from "@heroicons/react/20/solid"
 import classNames from "classnames"
-import { Tooltip } from "../../../../UI/Tooltip"
-import { getSecondaryStyle } from "../../../../UI/Button/Button"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
+import { getSecondaryStyle } from "../../../../UI/Button/Button"
+import { Tooltip } from "../../../../UI/Tooltip"
 
 type Props = {
   active: boolean
@@ -35,7 +35,7 @@ export const Wrapper: React.FC<Props> = (props) => {
           className={classNames(
             getSecondaryStyle({ size: "sm" }),
             "relative flex h-auto cursor-pointer items-center justify-center rounded-md bg-slate-50 px-4",
-            !props.active && "!bg-blue-50 !text-blue-400"
+            !props.active && "!bg-pink-50 !text-pink-400"
           )}
         >
           <FunnelIcon className={classNames("h-5 w-5")} />

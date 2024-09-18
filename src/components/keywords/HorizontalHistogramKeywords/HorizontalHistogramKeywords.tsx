@@ -1,10 +1,10 @@
 import React from "react"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/HorizontalHistogram.container"
 import { RankingStatEntity } from "../../../entities/RankingWebsiteEntity"
 import { Histogram } from "./components/Histogram"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/HorizontalHistogram.container"
 
 const Wrapper: React.FC<{
   stats: RankingStatEntity[]

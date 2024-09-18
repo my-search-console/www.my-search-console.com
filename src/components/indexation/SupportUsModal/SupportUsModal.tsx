@@ -1,19 +1,17 @@
-import React from "react"
-import {
-  connector,
-  ContainerProps,
-} from "./containers/SupportUsModal.containers"
-import ExclamationIcon from "@heroicons/react/20/solid/ExclamationCircleIcon"
-import { ButtonPrimary } from "../../UI/Button/Button"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { useIntl } from "react-intl"
-import { Modal } from "../../UI/Modal/Modal"
 import { Dialog } from "@headlessui/react"
 import {
   ArrowTopRightOnSquareIcon,
   HandRaisedIcon,
 } from "@heroicons/react/20/solid"
 import { useLocation } from "@reach/router"
+import React from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { ButtonPrimary } from "../../UI/Button/Button"
+import { Modal } from "../../UI/Modal/Modal"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/SupportUsModal.containers"
 
 type Props = {
   onClose: () => void
@@ -25,9 +23,9 @@ export const Wrapper: React.FC<Props> = (props) => {
   return (
     <Modal isOpen={href.includes("#support-us-modal")} onClose={props.onClose}>
       <div className="relative max-w-md">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-50">
           <HandRaisedIcon
-            className="h-6 w-6 text-blue-400"
+            className="h-6 w-6 text-pink-400"
             aria-hidden="true"
           />
         </div>

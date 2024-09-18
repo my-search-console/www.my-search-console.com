@@ -1,8 +1,8 @@
 import React from "react"
 import { Provider } from "react-redux"
-import { init } from "./src/redux/store"
-import { ModuleProvider } from "./src/modules/ModuleProvider"
 import { StaticInitialization } from "./src/components/general/StaticInitialization/StaticInitialization"
+import { ModuleProvider } from "./src/modules/ModuleProvider"
+import { init } from "./src/redux/store"
 
 export default ({ element }) => {
   const module = new ModuleProvider().build()

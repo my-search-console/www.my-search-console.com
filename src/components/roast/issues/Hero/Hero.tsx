@@ -1,11 +1,11 @@
-import React from "react"
 import { ArrowLeftIcon } from "@heroicons/react/20/solid"
+import React from "react"
+import { IssueTypes } from "../../../../entities/IssueEntity"
 import { Confetti } from "../../../general/Confetti/Confetti"
+import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
 import { FoudroyerLink } from "../../../general/FoudroyerLink/FoudroyerLink"
 import { ButtonSecondary } from "../../../UI/Button/Button"
-import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
-import { IssueTypes } from "../../../../entities/IssueEntity"
-import { ContainerProps, connector } from "./containers/Hero.container"
+import { connector, ContainerProps } from "./containers/Hero.container"
 
 export const Wrapper: React.FC<{ type: IssueTypes; success: boolean }> = (
   props
@@ -13,7 +13,7 @@ export const Wrapper: React.FC<{ type: IssueTypes; success: boolean }> = (
   <div className="relative mt-4 rounded-md p-8 text-center">
     <Confetti isOpen={props.success} respawn={false} />
 
-    <p className="text-center font-display text-lg font-medium text-blue-400">
+    <p className="text-center font-display text-lg font-medium text-pink-400">
       <FormattedMessage id={`roast/${props.type}/hero/label`} />
     </p>
 

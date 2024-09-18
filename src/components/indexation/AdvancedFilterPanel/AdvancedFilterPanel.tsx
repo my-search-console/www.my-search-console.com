@@ -1,15 +1,13 @@
+import { IndexationType } from "@foudroyer/interfaces"
+import { BoltIcon } from "@heroicons/react/20/solid"
 import React from "react"
+import { useIntl } from "react-intl"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
 import {
   connector,
   ContainerProps,
 } from "./containers/AdvancedFilterPanel.container"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { Switch } from "@headlessui/react"
-import classNames from "classnames"
-import { BoltIcon } from "@heroicons/react/20/solid"
-import { IndexationType } from "@my-search-console/interfaces"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { useIntl } from "react-intl"
 
 type Props = {
   onClose: () => void

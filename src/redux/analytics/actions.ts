@@ -1,16 +1,13 @@
-import * as types from "./types"
+import { PaymentPlansEntity, WebsiteEntity } from "@foudroyer/interfaces"
 import { ThunkAction } from "redux-thunk"
-import { RootState } from "../store"
-import { actions } from "../actions"
 import { localStorageKeys } from "../../constants/localStorageKeys"
-import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
-import { normalizeUrl } from "../../utils/normalizeUrl"
 import { getFiltersFromUrl } from "../../utils/getFiltersFromUrl"
+import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
 import { moveDate } from "../../utils/moveDateFromUrl"
-import {
-  PaymentPlansEntity,
-  WebsiteEntity,
-} from "@my-search-console/interfaces"
+import { normalizeUrl } from "../../utils/normalizeUrl"
+import { actions } from "../actions"
+import { RootState } from "../store"
+import * as types from "./types"
 
 export const RankingSetToastAccepted = (
   payload: types.RankingSetAnalyticsToastDataLateAcceptedAction["payload"]
@@ -103,21 +100,6 @@ export const RankingHistogramModalSetType = (
   payload,
 })
 
-const showPaywall = (props: {
-  signupDate: Date
-  plans: Set<PaymentPlansEntity>
-}) => {
-  const { signupDate, plans } = props
-  // true if signed up more that 3 days ago
-  const signedUpMoreThan3DaysAgo = Boolean(
-    signupDate &&
-      new Date(signupDate) <
-        new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000)
-  )
-
-  return plans.size === 0 && signedUpMoreThan3DaysAgo
-}
-
 export const $fetch =
   (props?: { force?: boolean }): ThunkAction<any, RootState, any, any> =>
   async (dispatch, getState) => {
@@ -132,7 +114,7 @@ export const $fetch =
 
     dispatch(RankingSetFetching({ value: true }))
 
-    const { source, query, country, device, from, to, orderBy } =
+    const { source, query, country, device, from, to, orderBy, page } =
       getFiltersFromUrl({
         url: fullUrl,
       })
@@ -149,6 +131,7 @@ export const $fetch =
       from,
       to,
       orderBy,
+      page,
       websiteId,
     ].toString()
 
@@ -168,6 +151,7 @@ export const $fetch =
         device,
         from,
         to,
+        page,
       },
       isPublic,
       orderBy,
@@ -194,7 +178,7 @@ export const $fetch =
 
 export const $openAndfetchByHistogram =
   (props: {
-    type: "device" | "query" | "country" | "source"
+    type: "device" | "query" | "country" | "source" | "page"
   }): ThunkAction<any, RootState, any, any> =>
   async (dispatch, getState) => {
     const { di, lang } = getState()
@@ -207,7 +191,7 @@ export const $openAndfetchByHistogram =
     dispatch(RankingHistogramModalSetFetching({ value: true }))
     dispatch(RankingHistogramModalSetToggle({ value: true }))
 
-    const { source, query, country, device, from, to, orderBy } =
+    const { source, query, country, device, from, to, orderBy, page } =
       getFiltersFromUrl({
         url: fullUrl,
       })
@@ -221,6 +205,7 @@ export const $openAndfetchByHistogram =
         device,
         from,
         to,
+        page,
       },
       orderBy,
       page: 0,
@@ -243,7 +228,7 @@ export const $openAndfetchByHistogram =
 
 export const $RankingStoreFilter =
   (props: {
-    type: "query" | "country" | "device" | "source" | "date"
+    type: "query" | "country" | "device" | "source" | "date" | "page"
     value: string
   }): ThunkAction<any, RootState, any, any> =>
   async (dispatch, getState) => {
@@ -322,6 +307,56 @@ export const $RankingSetDate =
     })
 
     dispatch(actions.ranking.$fetch())
+  }
+
+export const $AnalyticsSubmitCalendar =
+  (props: {
+    from: string
+    to: string
+  }): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const { di, websites, payments } = getState()
+
+    if (!websites.activeWebsite) return
+
+    const url = new URL(di.LocationService.getFullUrl())
+
+    url.searchParams.set("from", props.from)
+    url.searchParams.set("to", props.to)
+    url.searchParams.delete("period")
+
+    di.LocationService.navigate(url.toString(), {
+      disableScroll: true,
+    })
+
+    dispatch(actions.ranking.$fetch())
+
+    dispatch(actions.ranking.$AnalyticsCloseCalendar())
+  }
+
+export const $AnalyticsOpenCalendar =
+  (): ThunkAction<any, RootState, any, any> => (dispatch, getState) => {
+    const { di } = getState()
+    const url = new URL(di.LocationService.getFullUrl())
+
+    url.searchParams.set("calendar", "true")
+
+    di.LocationService.navigate(url.toString(), {
+      disableScroll: true,
+    })
+  }
+
+export const $AnalyticsCloseCalendar =
+  (): ThunkAction<any, RootState, any, any> => (dispatch, getState) => {
+    const { di } = getState()
+
+    const url = new URL(di.LocationService.getFullUrl())
+
+    url.searchParams.delete("calendar")
+
+    di.LocationService.navigate(url.toString(), {
+      disableScroll: true,
+    })
   }
 
 export const $RankingSetOneDayDate =
@@ -455,4 +490,136 @@ export const $onNextPeriod =
     })
 
     dispatch(actions.ranking.$fetch())
+  }
+
+/**
+ *
+ *
+ *
+ *
+ *
+ * ACTIVATE
+ *
+ *
+ *
+ *
+ *
+ */
+
+export const AnalyticsSetAnalyticsDiscoverModalIsFetching = (
+  payload: types.AnalyticsSetAnalyticsDiscoverModalIsFetchingAction["payload"]
+): types.RankingActionTypes => ({
+  type: types.AnalyticsSetAnalyticsDiscoverModalIsFetching,
+  payload,
+})
+
+export const AnalyticsSetAnalyticsDiscoverModalIsOpen =
+  (
+    payload: types.AnalyticsSetAnalyticsDiscoverModalIsOpenAction["payload"]
+  ): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const { di, websites, lang } = getState()
+    const url = di.LocationService.getFullUrl()
+    const id = "#analytics-activate-modal=true"
+
+    if (payload.value === true) {
+      di.LocationService.navigate(url.concat(id))
+    } else {
+      di.LocationService.navigate(di.LocationService.getPathname())
+    }
+  }
+
+const allowedWebsitesByPlan = (plan?: PaymentPlansEntity) => {
+  if (plan === PaymentPlansEntity["analytics/beginner"]) return 3
+  if (plan === PaymentPlansEntity["analytics/pro"]) return 10
+  if (plan === PaymentPlansEntity["analytics/enterprise"]) return 20
+
+  if (plan === PaymentPlansEntity["indexation"]) return 10
+  if (plan === PaymentPlansEntity["indexation/free"]) return 1
+  if (plan === PaymentPlansEntity["newbie"]) return 1
+  if (plan === PaymentPlansEntity["enterprise"]) return 10000
+
+  return 1
+}
+
+const shouldShowPricingPage =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { websites, payments } = getState()
+
+    return false
+
+    const activeWebsites = websites.entities.filter((id) => {
+      const website = websites.map.get(id) as WebsiteEntity
+      return website.already_activated
+    })
+
+    return (
+      activeWebsites.length >=
+      allowedWebsitesByPlan(payments.actualIndexationPlan?.plan)
+    )
+  }
+
+export const $ActivateAnalytics =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di, websites, lang } = getState()
+
+    if (!websites.activeWebsite) {
+      return false
+    }
+
+    // if (await dispatch(shouldShowPricingPage())) {
+    //   dispatch(
+    //     actions.ranking.AnalyticsSetAnalyticsDiscoverModalIsOpen({
+    //       value: false,
+    //     })
+    //   )
+
+    //   di.LocationService.navigate(
+    //     normalizeUrl({
+    //       url: `/pricing/analytics?need-upgrade=true`,
+    //       locale: lang.lang,
+    //     })
+    //   )
+
+    //   return false
+    // }
+
+    dispatch(
+      actions.ranking.AnalyticsSetAnalyticsDiscoverModalIsFetching({
+        value: true,
+      })
+    )
+
+    dispatch(
+      actions.ranking.RankingSetFetching({
+        value: true,
+      })
+    )
+
+    await di.WebsitesRepository.activateAnalytics({
+      websiteId: websites.activeWebsite,
+    })
+
+    await dispatch(actions.websites.$fetchAll({ force: true }))
+
+    dispatch(
+      actions.ranking.AnalyticsSetAnalyticsDiscoverModalIsFetching({
+        value: false,
+      })
+    )
+
+    dispatch(
+      actions.ranking.RankingSetFetching({
+        value: false,
+      })
+    )
+
+    di.LocationService.navigate(
+      normalizeUrl({
+        url: `/analytics/${websites.activeWebsite}`,
+        locale: lang.lang,
+      })
+    )
+
+    dispatch(actions.ranking.$fetch({ force: true }))
   }

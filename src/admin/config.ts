@@ -16,13 +16,37 @@ type Collection = {
   files?: Array<any>
 }
 
+const SelectElement = (props: {
+  label: string
+  name: string
+  options: string[]
+  defaultValue: string
+}) => ({
+  widget: "select",
+  ...props,
+  default: props.defaultValue,
+})
+
 const StringElement = ({
   label,
   name,
   defaultValue = "default text",
-  hint = null,
+  hint = "",
   required = true,
-}) => ({
+}: {
+  label: string
+  name: string
+  defaultValue?: string
+  hint?: string
+  required?: boolean
+}): {
+  label: string
+  name: string
+  widget: string
+  default: string
+  required: boolean
+  hint?: string
+} => ({
   label,
   name,
   widget: "string",
@@ -131,9 +155,15 @@ const TagElement = ({
 const ImageElement = ({
   label,
   name,
-  hint = "The image should have a max with as 1200px. You can use https://www.iloveimg.com/resize-image for online resizer.",
+  hint = "The image should have a max width of 1200px. You can use https://www.iloveimg.com/resize-image for online resizer.",
   fields = [],
   required = true,
+}: {
+  label: string
+  name: string
+  hint?: string
+  fields?: Array<any>
+  required?: boolean
 }) => ({
   label: label,
   name: name,
@@ -265,7 +295,7 @@ const PublicationDateElements = () => [
     label: "Published At",
     name: "published_at",
     widget: "datetime",
-    date_format: "DD.MM.YYYY",
+    date_format: "YYYY-MM-DD",
     time_format: "HH:mm",
     picker_utc: false,
   },
@@ -273,7 +303,7 @@ const PublicationDateElements = () => [
     label: "Updated At",
     name: "updated_at",
     widget: "datetime",
-    date_format: "DD.MM.YYYY",
+    date_format: "YYYY-MM-DD",
     time_format: "HH:mm",
     picker_utc: false,
   },
@@ -395,7 +425,15 @@ const MarketingVideo = {
 const MarketingPricing = {
   label: "💅 Pricing",
   name: "marketing/pricing",
-  fields: [BooleanElement({ label: "show", name: "show" })],
+  fields: [
+    BooleanElement({ label: "show", name: "show" }),
+    SelectElement({
+      label: "scope",
+      name: "scope",
+      options: ["indexation", "analytics"],
+      defaultValue: "indexation",
+    }),
+  ],
 }
 
 const MarketingFaq = {
@@ -648,8 +686,6 @@ const EmailContentImage = ImageElement({
 //   ],
 // }
 
-
-
 const ArticleContentRichText = {
   label: "📝 Text",
   name: "article/rich_text",
@@ -688,6 +724,12 @@ const ArticleContentImage = ImageElement({
     }),
   ],
 })
+
+const ArticleContentVideo = {
+  label: "💅 Video",
+  name: "article/video",
+  fields: [...VideoElements()],
+}
 
 const Pages: Collection = {
   name: "pages",
@@ -738,6 +780,49 @@ const Pages: Collection = {
   ],
 }
 
+const News: Collection = {
+  name: "news",
+  label: "🖊 news",
+  folder: "cms/news",
+  create: true,
+  format: "json",
+  editor: {
+    preview: false,
+  },
+  slug: "{{lang}}-{{campaign}}",
+  summary: "/{{lang}}/{{campaign}}",
+  view_groups: [{ label: "lang", field: "lang" }],
+  fields: [
+    IdElement(),
+    TypeElement({ value: "news" }),
+    LangElement(),
+    StringElement({
+      label: "campaign",
+      name: "campaign",
+    }),
+    ...PublicationDateElements(),
+    StringElement({
+      label: "Title",
+      name: "title",
+    }),
+    StringElement({
+      label: "Description",
+      name: "description",
+    }),
+    {
+      label: "Content",
+      name: "content",
+      widget: "list",
+      types: [
+        ArticleContentTitle,
+        ArticleContentImage,
+        ArticleContentRichText,
+        ArticleContentVideo,
+      ],
+    },
+  ],
+}
+
 export const config = {
   backend: {
     name: "git-gateway",
@@ -761,5 +846,5 @@ export const config = {
   local_backend: true,
   media_folder: "cms/assets",
   public_folder: "../assets",
-  collections: [Pages],
+  collections: [Pages, News],
 }

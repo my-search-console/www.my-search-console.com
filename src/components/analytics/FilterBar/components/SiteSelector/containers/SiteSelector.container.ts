@@ -1,10 +1,7 @@
+import { WebsiteEntity } from "@foudroyer/interfaces"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../../../redux/actions"
 import { RootState } from "../../../../../../redux/store"
-import {
-  PaymentPlansEntity,
-  WebsiteEntity,
-} from "@my-search-console/interfaces"
 
 const mapState = (state: RootState, props: { readonly?: boolean }) => ({
   isPremium: Boolean(

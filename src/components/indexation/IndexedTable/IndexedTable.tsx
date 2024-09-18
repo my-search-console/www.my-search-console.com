@@ -1,30 +1,29 @@
-import React, { ReactNode } from "react"
 import {
   ArrowTopRightOnSquareIcon,
   BoltIcon,
-  CheckBadgeIcon,
   CheckCircleIcon,
   CheckIcon,
   ClockIcon,
   XCircleIcon,
 } from "@heroicons/react/20/solid"
+import React, { ReactNode } from "react"
 
-import { IndexationType, PageEntity } from "@my-search-console/interfaces"
-import { useEffect } from "react"
-import { ItemLoading } from "./components/ItemLoading"
-import { ButtonSecondary } from "../../UI/Button/Button"
-import { connector, ContainerProps } from "./containers/AllPages.containers"
-import GoogleLogo from "../../../assets/socials/google.svg"
-import YandexLogo from "../../../assets/socials/yandex.svg"
-import BingLogo from "../../../assets/socials/bing.svg"
-import NaverLog from "../../../assets/socials/naver.svg"
-import { Tooltip } from "../../UI/Tooltip"
+import { IndexationType, PageEntity } from "@foudroyer/interfaces"
 import { Transition } from "@headlessui/react"
 import classNames from "classnames"
-import { NoLinkFound } from "./components/NoLinkFound"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
+import BingLogo from "../../../assets/socials/bing.svg"
+import GoogleLogo from "../../../assets/socials/google.svg"
+import NaverLog from "../../../assets/socials/naver.svg"
+import YandexLogo from "../../../assets/socials/yandex.svg"
+import { formatUrl } from "../../../utils/formatUrl"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { ButtonSecondary } from "../../UI/Button/Button"
+import { Tooltip } from "../../UI/Tooltip"
+import { ItemLoading } from "./components/ItemLoading"
+import { NoLinkFound } from "./components/NoLinkFound"
+import { connector, ContainerProps } from "./containers/AllPages.containers"
 
 dayjs.extend(relativeTime)
 
@@ -41,19 +40,6 @@ type Props = {
     }
   >
   onIndex: (params: PageEntity) => void
-}
-
-const formatUrl = (url: string) => {
-  try {
-    const formatted = decodeURIComponent(
-      url.replace(/https?:\/\/[a-z0-9\-_.]+/, "")
-    )
-    if (formatted === "") return "/"
-    return formatted
-  } catch (e) {
-    console.log(url)
-    return url
-  }
 }
 
 export const ItemContainer: React.FC<{
@@ -122,7 +108,7 @@ const SourceIndexingLoader: React.FC<{ finished: boolean; logo: string }> = (
           "h-9 w-9 transition-all duration-300  ease-in-out md:h-10 md:w-10",
           props.finished
             ? " fill-transparent text-emerald-500"
-            : " animate-spin fill-blue-500 text-slate-200"
+            : " animate-spin fill-pink-500 text-slate-200"
         )}
         viewBox="0 0 100 101"
         fill="none"
@@ -172,8 +158,7 @@ const Item: React.FC<{
 
                     {props.page.submitted_at && (
                       <div>
-                        Submitted{" "}
-                        {dayjs(props.page.request_indexing_at).fromNow()}
+                        Submitted {dayjs(props.page.submitted_at).fromNow()}
                       </div>
                     )}
 
@@ -198,8 +183,16 @@ const Item: React.FC<{
                     props.page.indexation_state === IndexationType.INDEXING &&
                       "!text-slate-300",
 
+                    props.page.indexation_state ===
+                      IndexationType["checking-indexation-state"] &&
+                      "!text-sky-400",
+
                     props.page.indexation_state === IndexationType.SUBMITTED &&
                       "!text-blue-300",
+
+                    props.page.indexation_state ===
+                      IndexationType["first-check-done-but-not-indexed"] &&
+                      "!text-indigo-300",
 
                     "text-orange-300"
                   )}

@@ -1,33 +1,17 @@
-import React, { useEffect } from "react"
-import { connector, ContainerProps } from "./containers/WebsitesList.containers"
-import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
-import { WebsiteEntity } from "@my-search-console/interfaces/dist/entities/WebsiteEntity"
-import { Tooltip } from "../../../UI/Tooltip"
 import {
-  SourceBingButton,
-  SourceGoogleButton,
-  SourceNaverButton,
-  SourceYandexButton,
-} from "../../../general/SourceButtons/SourceButtons"
-import { Switch } from "@headlessui/react"
-import logoSkate from "../../../../assets/logo/logo-skate.svg"
-import classNames from "classnames"
-import { ButtonPrimary, ButtonSecondary } from "../../../UI/Button/Button"
-import { IndexationSearchEngines } from "../../../../entities/SearchEngineEntity"
-import { IndexationSourceType } from "@my-search-console/interfaces"
-import {
-  ArrowPathIcon,
   BugAntIcon,
-  ChartBarIcon,
   FolderOpenIcon,
   ServerIcon,
 } from "@heroicons/react/20/solid"
-import { bigNumberFormatter } from "../../../../utils/bigNumberFormatter"
-import { ItemLoading } from "../../../indexation/IndexedTable/components/ItemLoading"
-import { FoudroyerLink } from "../../../general/FoudroyerLink/FoudroyerLink"
-import { UpdateSitemapButton } from "../../../settings/UpdateSitemap/UpdateSitemap"
-import { RoastWithReportEntity } from "../../../../entities/RoastEntity"
+import classNames from "classnames"
+import React, { useEffect } from "react"
 import { IssueTypes } from "../../../../entities/IssueEntity"
+import { RoastWithReportEntity } from "../../../../entities/RoastEntity"
+import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
+import { ItemLoading } from "../../../indexation/IndexedTable/components/ItemLoading"
+import { ButtonPrimary, ButtonSecondary } from "../../../UI/Button/Button"
+import { Tooltip } from "../../../UI/Tooltip"
+import { connector, ContainerProps } from "./containers/WebsitesList.containers"
 
 type Props = {
   websites: RoastWithReportEntity[]
@@ -46,7 +30,7 @@ export const Wrapper: React.FC<Props> = (props) => {
     <div className="">
       <div className="mt-2" />
       <div className="flex flex-col items-center justify-center py-8 text-center">
-        <p className="text-center font-display text-lg font-medium text-blue-400">
+        <p className="text-center font-display text-lg font-medium text-pink-400">
           <FormattedMessage id="roast/dashboard/hero/label" />
         </p>
         <h1 className="mx-auto flex flex-col font-display text-4xl font-semibold leading-tight tracking-tight text-slate-900 ">
@@ -63,7 +47,7 @@ export const Wrapper: React.FC<Props> = (props) => {
                 width="93"
                 height="87"
                 viewBox="0 0 93 87"
-                className="-rotate-[30deg] scale-90 animate-pulse text-blue-500"
+                className="-rotate-[30deg] scale-90 animate-pulse text-pink-500"
                 fill="none"
               >
                 <path

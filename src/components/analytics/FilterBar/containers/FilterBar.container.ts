@@ -11,7 +11,7 @@ const mapState = (state: RootState, props: { readonly?: boolean }) => ({
 
 const mapDispatch = (dispatch: any) => ({
   onFilter(params: {
-    type: "source" | "date" | "query" | "country" | "device"
+    type: "source" | "date" | "query" | "country" | "device" | "page"
     value: string
   }) {
     dispatch(actions.ranking.$RankingStoreFilter(params))

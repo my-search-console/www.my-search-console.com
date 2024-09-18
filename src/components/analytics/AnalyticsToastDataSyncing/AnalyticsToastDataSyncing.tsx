@@ -1,10 +1,10 @@
-import React from "react"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/AnalyticsToastDataSyncing.container"
 import { ClockIcon } from "@heroicons/react/20/solid"
+import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/AnalyticsToastDataSyncing.container"
 
 export const Wrapper: React.FC<{
   isAnalyticsSyncDone: boolean

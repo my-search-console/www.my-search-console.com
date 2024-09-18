@@ -1,12 +1,12 @@
 import React from "react"
 
-import { connector, ContainerProps } from "./containers/PremiumModal.containers"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { Modal } from "../../UI/Modal/Modal"
+import { PaymentPlansEntity } from "@foudroyer/interfaces"
 import dayjs from "dayjs"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Pricing } from "../../marketing/Pricing/Pricing"
-import { PaymentPlansEntity } from "@my-search-console/interfaces"
 import { PricingUpsell } from "../../marketing/PricingUpsell/PricingUpsell"
+import { Modal } from "../../UI/Modal/Modal"
+import { connector, ContainerProps } from "./containers/PremiumModal.containers"
 
 export const getTimeout = (end: Date) => {
   const timeBeforeEndDate = dayjs(end).diff(new Date(), "days")
@@ -61,7 +61,6 @@ export const Wrapper: React.FC<Props> = (props) => {
       isOpen={props.isOpen}
       leavePaddingTop
       onClose={props.onClose}
-      isClosable={props.isClosable}
       className="!p-0"
     >
       {upsellCondition && <PricingUpsell />}

@@ -1,7 +1,7 @@
 import React from "react"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { Text } from "./Text"
 import { Code } from "./Code"
+import { Text } from "./Text"
 
 export const RobotsJavascript: React.FC<{ context: any }> = () => (
   <>

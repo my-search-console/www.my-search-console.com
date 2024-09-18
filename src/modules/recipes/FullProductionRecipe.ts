@@ -1,18 +1,21 @@
 import { IModule } from "../../interfaces/IModule"
-import { WindowLocationService } from "../../services/WindowLocationService"
-import { ApiWebsitesRepository } from "../../repositories/ApiWebsitesRepository"
 import { ApiAuthRepository } from "../../repositories/ApiAuthRepository"
-import { WindowLocalStorageService } from "../../services/WindowLocalStorageService"
-import { ApiService } from "../../services/ApiService"
-import { MixpanelAnalyticsService } from "../../services/MixpanelAnalyticsService"
-import { PaddlePaymentService } from "../../services/PaddlePaymentService"
-import { ApiIndexationService } from "../../services/ApiIndexationService"
-import { ApiPagesRepository } from "../../repositories/ApiPagesRepository"
 import { ApiKeywordsRepository } from "../../repositories/ApiKeywordsRepository"
+import { ApiLogsRepository } from "../../repositories/ApiLogsRepository"
 import { ApiOpportunitiesRepository } from "../../repositories/ApiOpportunitiesRepository"
+import { ApiPagesRepository } from "../../repositories/ApiPagesRepository"
 import { ApiPaymentsRepository } from "../../repositories/ApiPaymentsRepository"
-import { ApiSpreadRepository } from "../../repositories/ApiSpreadRepository"
 import { ApiRoastRepository } from "../../repositories/ApiRoastRepository"
+import { ApiSpreadRepository } from "../../repositories/ApiSpreadRepository"
+import { ApiStatsRepository } from "../../repositories/ApiStatsRepository"
+import { ApiWebsitesRepository } from "../../repositories/ApiWebsitesRepository"
+import { ApiIndexationService } from "../../services/ApiIndexationService"
+import { ApiService } from "../../services/ApiService"
+import { ApiSitemapsService } from "../../services/ApiSitemapsService"
+import { PaddlePaymentService } from "../../services/PaddlePaymentService"
+import { PlausibleAnalyticsService } from "../../services/PlausibleAnalyticsService"
+import { WindowLocalStorageService } from "../../services/WindowLocalStorageService"
+import { WindowLocationService } from "../../services/WindowLocationService"
 
 export class FullProductionRecipe implements IModule {
   build() {
@@ -20,22 +23,28 @@ export class FullProductionRecipe implements IModule {
     const apiService = new ApiService(LocalStorageService)
 
     const LocationService = new WindowLocationService()
-    const AnalyticsService = new MixpanelAnalyticsService()
+    const AnalyticsService = new PlausibleAnalyticsService()
     const PaymentService = new PaddlePaymentService()
     const PaymentsRepository = new ApiPaymentsRepository(apiService)
+    const LogsRepository = new ApiLogsRepository(apiService)
 
     const PagesRepository = new ApiPagesRepository(apiService)
     const WebsitesRepository = new ApiWebsitesRepository(apiService)
     const IndexationService = new ApiIndexationService(apiService)
     const AuthRepository = new ApiAuthRepository(apiService)
     const SpreadRepository = new ApiSpreadRepository(apiService)
+    const StatsRepository = new ApiStatsRepository(apiService)
     const RoastRepository = new ApiRoastRepository(apiService)
 
     const KeywordsRepository = new ApiKeywordsRepository(apiService)
 
     const OpportunitiesRepository = new ApiOpportunitiesRepository(apiService)
+    const SitemapsService = new ApiSitemapsService(apiService)
 
     return {
+      SitemapsService,
+      LogsRepository,
+      StatsRepository,
       RoastRepository,
       SpreadRepository,
       PaymentService,

@@ -1,5 +1,3 @@
-import { WebsiteEntity } from "@my-search-console/interfaces"
-import { IndexationSearchEngines } from "./../../../../../../entities/SearchEngineEntity"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../../../redux/actions"
 import { RootState } from "../../../../../../redux/store"
@@ -16,6 +14,9 @@ const mapState = (state: RootState) => ({
 const mapDispatch = (dispatch: any) => ({
   onIndexAll: () => {
     dispatch(actions.indexation.$indexAll())
+  },
+  onCheckAll: () => {
+    dispatch(actions.indexation.$checkAll())
   },
   onToggleView: (view: "auto" | "indexation" | "report") => {
     dispatch(actions.indexation.$IndexationSwitchView(view))

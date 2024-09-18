@@ -1,21 +1,19 @@
 import { IModule } from "../interfaces/IModule"
 import { InMemoryAuthRepository } from "../repositories/InMemoryAuthRepository"
 import { InMemoryKeywordsRepository } from "../repositories/InMemoryKeywordsRepository"
+import { InMemoryLogsRepository } from "../repositories/InMemoryLogsRepository"
+import { InMemoryOpportunitiesRepository } from "../repositories/InMemoryOpportunitiesRepository"
 import { InMemoryPagesRepository } from "../repositories/InMemoryPagesRepository"
 import { InMemoryPaymentsRepository } from "../repositories/InMemoryPaymentsRepository"
+import { InMemoryRoastRepository } from "../repositories/InMemoryRoastRepository"
+import { InMemorySpreadRepository } from "../repositories/InMemorySpreadRepository"
+import { InMemoryStatsRepository } from "../repositories/InMemoryStatsRepository"
 import { InMemoryWebsitesRepository } from "../repositories/InMemoryWebsitesRepository"
 import { InMemoryAnalyticsService } from "../services/InMemoryAnalyticsService"
 import { InMemoryIndexationService } from "../services/InMemoryIndexationService"
 import { InMemoryLocalStorageService } from "../services/InMemoryLocalStorageService"
 import { InMemoryLocationService } from "../services/InMemoryLocationService"
 import { InMemoryPaymentService } from "../services/InMemoryPaymentService"
-import { InMemoryOpportunitiesRepository } from "../repositories/InMemoryOpportunitiesRepository"
-import {
-  WebsiteActivated,
-  WebsiteNoSitemap,
-  WebsiteNotActivated,
-} from "./seeds/WebsitesSeeds"
-import { InMemorySpreadRepository } from "../repositories/InMemorySpreadRepository"
 
 export class TestModule implements IModule {
   build() {
@@ -31,8 +29,14 @@ export class TestModule implements IModule {
     const KeywordsRepository = new InMemoryKeywordsRepository()
     const OpportunitiesRepository = new InMemoryOpportunitiesRepository()
     const SpreadRepository = new InMemorySpreadRepository()
+    const RoastRepository = new InMemoryRoastRepository()
+    const StatsRepository = new InMemoryStatsRepository()
+    const LogsRepository = new InMemoryLogsRepository()
 
     return {
+      LogsRepository,
+      RoastRepository,
+      StatsRepository,
       SpreadRepository,
       PaymentsRepository,
       PaymentService,

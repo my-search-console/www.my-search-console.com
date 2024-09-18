@@ -1,12 +1,12 @@
 import React from "react"
 import {
-  ContainerProps,
   connector,
+  ContainerProps,
 } from "./containers/KeywordsFilters.container"
 
-import { Sources } from "./components/Sources/Sources"
-import { Devices } from "./components/Devices/Devices"
 import { Countries } from "./components/Countries/Countries"
+import { Devices } from "./components/Devices/Devices"
+import { Sources } from "./components/Sources/Sources"
 
 export const Wrapper: React.FC<{}> = (props) => {
   return (

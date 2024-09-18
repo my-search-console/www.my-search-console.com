@@ -1,7 +1,7 @@
+import { useLocation } from "@reach/router"
+import { graphql, useStaticQuery } from "gatsby"
 import React, { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
-import { useLocation } from "@reach/router"
-import { useStaticQuery, graphql } from "gatsby"
 
 type Breadcrumb = { label: string; url: string }
 

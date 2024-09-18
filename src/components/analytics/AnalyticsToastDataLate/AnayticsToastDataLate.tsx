@@ -1,13 +1,13 @@
-import React, { useEffect } from "react"
 import { InformationCircleIcon } from "@heroicons/react/20/solid"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/AnalyticsToastDataLate.container"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import classNames from "classnames"
-import { SmallStyle } from "../../UI/Button/Button"
+import React, { useEffect } from "react"
 import { useIntl } from "react-intl"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { SmallStyle } from "../../UI/Button/Button"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/AnalyticsToastDataLate.container"
 
 export const Wrapper: React.FC<{
   toastAccepted: boolean

@@ -1,15 +1,13 @@
-import React, { Fragment } from "react"
-import { Dialog, Transition } from "@headlessui/react"
-import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
 import { useLocation } from "@reach/router"
-import {
-  connector,
-  ContainerProps,
-} from "./containers/SelectLanguageModal.containers"
+import React from "react"
 import languages from "../../../constants/languages.json"
 import { normalizeUrl } from "../../../utils/normalizeUrl"
 import { ButtonSecondary } from "../../UI/Button/Button"
 import { Modal } from "../../UI/Modal/Modal"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/SelectLanguageModal.containers"
 
 export const Wrapper: React.FC<{}> = (props) => {
   const location = useLocation()
@@ -27,7 +25,7 @@ export const Wrapper: React.FC<{}> = (props) => {
               removeLocaleIfExists: true,
             })}
             key={lang.id}
-            className="w-1/4 grow cursor-pointer rounded bg-slate-50 py-5 font-display font-medium outline-none transition-all duration-300 ease-in-out hover:border-blue-100 hover:bg-blue-50 hover:text-blue-400 focus:ring-2"
+            className="w-1/4 grow cursor-pointer rounded bg-slate-50 py-5 font-display font-medium outline-none transition-all duration-300 ease-in-out hover:border-pink-100 hover:bg-pink-50 hover:text-pink-400 focus:ring-2"
           >
             <img
               className="mx-auto block h-7 w-7 rounded-full"

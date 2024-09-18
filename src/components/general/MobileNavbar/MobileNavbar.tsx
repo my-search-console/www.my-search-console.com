@@ -1,15 +1,15 @@
 import {
   BoltIcon,
-  Cog8ToothIcon,
-  PresentationChartBarIcon,
   HashtagIcon,
   LightBulbIcon,
+  PresentationChartBarIcon,
+  TrophyIcon,
 } from "@heroicons/react/24/outline"
 import { useLocation } from "@reach/router"
 import clsx from "clsx"
 import React, { ReactNode } from "react"
 import { FoudroyerLink } from "../FoudroyerLink/FoudroyerLink"
-import { ContainerProps, connector } from "./containers/MobileNavbar.container"
+import { connector, ContainerProps } from "./containers/MobileNavbar.container"
 
 const Item: React.FC<{
   children: ReactNode
@@ -25,8 +25,8 @@ const Item: React.FC<{
       <FoudroyerLink
         to={props.to}
         className={clsx(
-          "flex h-full w-full items-center justify-center rounded duration-300 ease-in-out hover:bg-blue-50 hover:text-blue-500",
-          isActive && " bg-blue-50 text-blue-500"
+          "flex h-full w-full items-center justify-center rounded duration-300 ease-in-out hover:bg-pink-50 hover:text-pink-500",
+          isActive && " bg-pink-50 text-pink-500"
         )}
       >
         {props.children}
@@ -38,6 +38,7 @@ const Item: React.FC<{
 export const Wrapper: React.FC<{
   activeWebsite: string | null
 }> = (props) => {
+  return <></>
   return (
     <div
       className={clsx(
@@ -61,8 +62,8 @@ export const Wrapper: React.FC<{
           <LightBulbIcon className="h-7 w-7" />
         </Item>
 
-        <Item to={"/settings/" + props.activeWebsite} name="Settings">
-          <Cog8ToothIcon className="h-7 w-7" />
+        <Item to={"/show-off/" + props.activeWebsite} name="Show Off">
+          <TrophyIcon className="h-7 w-7" />
         </Item>
       </div>
     </div>

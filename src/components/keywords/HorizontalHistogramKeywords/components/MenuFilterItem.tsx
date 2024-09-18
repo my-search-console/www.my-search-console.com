@@ -1,7 +1,7 @@
 import { Menu } from "@headlessui/react"
-import { RankingOrderByType } from "../../../../entities/RankingWebsiteEntity"
 import classNames from "classnames"
 import React from "react"
+import { RankingOrderByType } from "../../../../entities/RankingWebsiteEntity"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
 
 export const MenuFilterItem: React.FC<{
@@ -13,7 +13,7 @@ export const MenuFilterItem: React.FC<{
       {({ active }) => (
         <button
           className={classNames(
-            active ? "bg-blue-100 text-blue-500" : "",
+            active ? "bg-pink-100 text-pink-500" : "",
             "block w-full px-4 py-2 text-left text-sm transition-all duration-300 ease-in-out"
           )}
           onClick={() => props.onChangeView(props.type)}

@@ -1,10 +1,10 @@
-import React, { ReactNode } from "react"
 import { CheckCircleIcon, ClockIcon } from "@heroicons/react/20/solid"
+import React, { ReactNode } from "react"
 
 import {
   IndexationQueueEntity,
   IndexationQueueStatus,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
 import { ItemLoading } from "./components/ItemLoading"
 import {
   connector,
@@ -13,11 +13,11 @@ import {
 
 import classNames from "classnames"
 
+import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
+import { Tooltip } from "../../../../UI/Tooltip"
+
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
-import { Tooltip } from "../../../../UI/Tooltip"
-import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-
 dayjs.extend(relativeTime)
 
 const formatUrl = (url: string) => {

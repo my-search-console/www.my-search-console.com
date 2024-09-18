@@ -1,29 +1,26 @@
 import React from "react"
-import { Hero } from "../components/marketing/Hero/Hero"
 import { Navbar } from "../components/general/Navbar/Navbar"
-import { Title } from "../components/marketing/Title/Title"
-import { Video } from "../components/general/Video/Video"
-import { Text } from "../components/marketing/Text/Text"
-import { Seo } from "../components/general/Seo/Seo"
-import { Footer } from "../components/marketing/Footer"
-import { Author } from "../components/marketing/Author/Author"
-import { PricingLanding } from "../components/marketing/Pricing/Pricing"
-import { Features } from "../components/marketing/Features/Features"
-import { Faq } from "../components/marketing/Faq/Faq"
-import { Testimonials } from "../components/marketing/Testimonials/Testimonials"
-import { ScopeNotFoundModal } from "../components/general/ScopeNotFoundModal/ScopeNotFoundModal"
 import { Notifications } from "../components/general/Notifications/Notifications"
-import { PremiumModal } from "../components/payment/PremiumModal/PremiumModal"
-import { NewsModal } from "../components/general/News/components/NewsModal/NewsModal"
+import { Seo } from "../components/general/Seo/Seo"
+import { Video } from "../components/general/Video/Video"
+import { ArticleTitle } from "../components/marketing/ArticleTitle/ArticleTitle"
+import { Author } from "../components/marketing/Author/Author"
+import { Faq } from "../components/marketing/Faq/Faq"
+import { Features } from "../components/marketing/Features/Features"
+import { Footer } from "../components/marketing/Footer"
+import { Hero } from "../components/marketing/Hero/Hero"
+import { Mdx } from "../components/marketing/Mdx/Mdx"
+import { PricingLanding } from "../components/marketing/Pricing/Pricing"
+import { Testimonials } from "../components/marketing/Testimonials/Testimonials"
+import { Text } from "../components/marketing/Text/Text"
+import { Title } from "../components/marketing/Title/Title"
+import { Toc } from "../components/marketing/Toc/Toc"
 import {
   ArticleEntity,
   ArticleTOC,
   ArticleTypes,
 } from "../entities/ArticleEntity"
-import { Toc } from "../components/marketing/Toc/Toc"
 import { slugifyForAnchors } from "../utils/normalizeUrl"
-import { Mdx } from "../components/marketing/Mdx/Mdx"
-import { ArticleTitle } from "../components/marketing/ArticleTitle/ArticleTitle"
 
 const getTableOfContentItems = (
   content: ArticleEntity["content"]
@@ -38,8 +35,6 @@ const getTableOfContentItems = (
 }
 
 function Page(props) {
-  console.log(props)
-
   return (
     <div className="antialiased">
       <Seo
@@ -128,8 +123,6 @@ function Page(props) {
         return content.type
       })}
 
-      <ScopeNotFoundModal />
-      <PremiumModal />
       <Notifications />
       <Footer />
     </div>

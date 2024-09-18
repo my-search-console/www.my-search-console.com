@@ -1,7 +1,8 @@
 import {
   ErrorEntity,
   IndexationGoogleCloudApiKeyEntity,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
+import { IndexationSearchEngines } from "../entities/SearchEngineEntity"
 import {
   AddGoogleApiKeyResponse,
   CheckIndexNowKeyResponse,
@@ -11,7 +12,6 @@ import {
   IndexResponseType,
 } from "../interfaces/IIndexationService"
 import { ApiService } from "./ApiService"
-import { IndexationSearchEngines } from "../entities/SearchEngineEntity"
 
 export class ApiIndexationService implements IIndexationService {
   constructor(private apiService: ApiService) {}
@@ -22,6 +22,26 @@ export class ApiIndexationService implements IIndexationService {
     const response = await this.apiService.get<{
       google_cloud_api_keys: IndexationGoogleCloudApiKeyEntity[]
     }>(`/indexation/google_cloud_api_keys/${params.websiteId}`)
+
+    if (response.data.statusCode === 400)
+      return {
+        error: true,
+        code: response.data.message,
+      }
+
+    return {
+      error: false,
+      body: response.data,
+    }
+  }
+
+  async refreshGoogleApiKey(params: {
+    id: string
+  }): Promise<AddGoogleApiKeyResponse> {
+    const response = await this.apiService.put<{
+      error: boolean
+      body: { isActivated: boolean }
+    }>(`/indexation/google_cloud_api_keys/check`, { keyId: params.id })
 
     if (response.data.statusCode === 400)
       return {
@@ -135,6 +155,32 @@ export class ApiIndexationService implements IIndexationService {
       return {
         error: false,
         body: { success: true },
+      }
+    } catch (error) {
+      return { error: true, code: ErrorEntity.UNKNOWN_ERROR }
+    }
+  }
+
+  async updateIndexationAutoSettings(params: {
+    websiteId: string
+    indexation_auto_activated: boolean
+    indexation_auto_update_pages_activated: boolean
+  }): Promise<any> {
+    try {
+      const response = await this.apiService.put<any>(
+        `/indexation/settings`,
+        params
+      )
+
+      if (response.data.statusCode === 400)
+        return {
+          error: true,
+          code: response.data.message,
+        }
+
+      return {
+        error: false,
+        body: response.data,
       }
     } catch (error) {
       return { error: true, code: ErrorEntity.UNKNOWN_ERROR }

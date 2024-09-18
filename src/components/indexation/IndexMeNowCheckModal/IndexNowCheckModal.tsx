@@ -1,15 +1,14 @@
-import React, { Fragment } from "react"
-import { Dialog, RadioGroup, Transition } from "@headlessui/react"
+import { WebsiteEntity } from "@foudroyer/interfaces"
+import { Dialog } from "@headlessui/react"
+import { ArrowDownTrayIcon, KeyIcon } from "@heroicons/react/20/solid"
+import React from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
+import { Modal } from "../../UI/Modal/Modal"
 import {
   connector,
   ContainerProps,
 } from "./containers/IndexNowCheckModal.containers"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ArrowDownTrayIcon, KeyIcon } from "@heroicons/react/20/solid"
-import { Cancel } from "../../general/Cancel/Cancel"
-import { Modal } from "../../UI/Modal/Modal"
-import { WebsiteEntity } from "@my-search-console/interfaces"
 
 type Props = {
   isOpen: boolean
@@ -24,13 +23,13 @@ export const Wrapper: React.FC<Props> = (props) => {
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose}>
       <div className="max-w-md">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-          <KeyIcon className="h-6 w-6 text-blue-500" aria-hidden="true" />
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
+          <KeyIcon className="h-6 w-6 text-pink-500" aria-hidden="true" />
         </div>
-        <div className="mt-3 text-center sm:mt-5">
+        <div className="mt-3  sm:mt-5">
           <Dialog.Title
             as="h3"
-            className="font-display text-base font-semibold leading-6 text-slate-900"
+            className="font-display text-center text-base font-semibold leading-6 text-slate-900"
           >
             <FormattedMessage id="indexation/modal/index-now/need-key/title"></FormattedMessage>
           </Dialog.Title>
@@ -55,6 +54,12 @@ export const Wrapper: React.FC<Props> = (props) => {
                   ),
                 }}
               />
+            </p>
+          </div>
+
+          <div className="mt-4">
+            <p className="text-sm font-display text-amber-500 bg-amber-50 p-4 rounded-md border border-amber-100">
+              <FormattedMessage id="indexation/modal/index-now/need-key/warning-shopify" />
             </p>
           </div>
         </div>

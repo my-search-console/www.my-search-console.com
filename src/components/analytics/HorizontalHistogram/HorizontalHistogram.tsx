@@ -1,26 +1,26 @@
 import React from "react"
 import {
-  ContainerProps,
-  connector,
-} from "./containers/HorizontalHistogram.container"
-import {
   RankingOrderByType,
   RankingStatEntity,
   RankingStatsForFrontend,
 } from "../../../entities/RankingWebsiteEntity"
 import { Histogram } from "./components/Histogram"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/HorizontalHistogram.container"
 
 const Wrapper: React.FC<{
   stats: RankingStatsForFrontend
   isFetching: boolean
   hideActions?: boolean
   onFilter: (params: {
-    type: "query" | "country" | "device" | "source" | "date"
+    type: "query" | "country" | "device" | "source" | "date" | "page"
     value: string
   }) => void
   onChangeView: (view: RankingOrderByType) => void
   onShowMore: (params: {
-    type: "device" | "query" | "country" | "source"
+    type: "device" | "query" | "country" | "source" | "page"
   }) => void
   view: RankingOrderByType
 }> = (props) => {
@@ -74,6 +74,19 @@ const Wrapper: React.FC<{
         onChangeView={props.onChangeView}
         data={props.stats.devices as RankingStatEntity[]}
         hideActions={props.hideActions}
+      />
+      <Histogram
+        type="page"
+        label="page"
+        color="slate"
+        isFetching={props.isFetching}
+        view={props.view}
+        onClick={(value) => props.onFilter({ type: "page", value })}
+        onShowMore={() => props.onShowMore({ type: "page" })}
+        onChangeView={props.onChangeView}
+        data={props.stats.pages as RankingStatEntity[]}
+        hideActions={props.hideActions}
+        fluid
       />
     </div>
   )

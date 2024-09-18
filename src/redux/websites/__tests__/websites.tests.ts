@@ -1,9 +1,8 @@
-import { ErrorEntity } from "@my-search-console/interfaces"
+import { ErrorEntity } from "@foudroyer/interfaces"
 import { NotificationMessageEntity } from "../../../entities/NotificationEntity"
 import {
   WebsiteActivated,
   WebsiteNoSitemap,
-  WebsiteNotActivated,
 } from "../../../modules/seeds/WebsitesSeeds"
 import { createStoreForTests } from "../../../utils/createStoreForTests"
 

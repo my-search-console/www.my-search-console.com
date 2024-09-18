@@ -1,7 +1,7 @@
 import {
   ErrorEntity,
   IndexationGoogleCloudApiKeyEntity,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
 import {
   AddGoogleApiKeyResponse,
   CheckIndexNowKeyResponse,
@@ -12,6 +12,11 @@ import {
 } from "../interfaces/IIndexationService"
 
 export class InMemoryIndexationService implements IIndexationService {
+  refreshGoogleApiKey(params: {
+    id: string
+  }): Promise<AddGoogleApiKeyResponse> {
+    throw new Error("Method not implemented.")
+  }
   private requests: number = 0
   private keys: Array<IndexationGoogleCloudApiKeyEntity> = []
 
@@ -47,6 +52,9 @@ export class InMemoryIndexationService implements IIndexationService {
     key: string
   }): Promise<AddGoogleApiKeyResponse> {
     this.keys.push({
+      checked_at: new Date(),
+      has_error: false,
+      is_downloadable_by_user: false,
       id: Date.now().toString(),
       fk_website_id: params.websiteId,
       google_cloud_api_key: JSON.stringify({
@@ -86,7 +94,7 @@ export class InMemoryIndexationService implements IIndexationService {
 
   async __deleteGoogleApiKey(params: { project_id: string }) {
     this.keys = this.keys.filter(
-      ({ project_id }) => project_id !== params.project_id
+      ({ google_cloud_api_key }) => google_cloud_api_key !== params.project_id
     )
 
     return {
@@ -98,7 +106,16 @@ export class InMemoryIndexationService implements IIndexationService {
   async __storeGoogleApiKeys(params: {
     keys: Array<{ project_id: string; email: string }>
   }) {
-    this.keys = params.keys
+    this.keys = params.keys.map((key) => ({
+      checked_at: new Date(),
+      created_at: new Date(),
+      fk_website_id: "",
+      google_cloud_api_key: "",
+      has_error: false,
+      id: key.project_id,
+      is_downloadable_by_user: false,
+      updated_at: new Date(),
+    }))
 
     return {
       error: false,

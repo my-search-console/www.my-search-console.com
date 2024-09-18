@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react"
-import { Container } from "../../UI/Container"
+import React from "react"
 import ReactMarkdown from "react-markdown"
+import { Container } from "../../UI/Container"
 
 export const Text: React.FC<{
   value: any

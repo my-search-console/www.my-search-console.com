@@ -1,5 +1,5 @@
-import React from "react"
 import { RouteComponentProps } from "@reach/router"
+import React from "react"
 import { KeywordsRoute } from "../../../routes/keywords"
 
 const KeywordsPage: React.FC<RouteComponentProps> = (props) => {

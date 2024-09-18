@@ -1,5 +1,5 @@
-import { bigNumberFormatter } from "../../utils/bigNumberFormatter"
 import { IntlShape } from "react-intl"
+import { bigNumberFormatter } from "../../utils/bigNumberFormatter"
 
 const getOrCreateTooltip = (chart) => {
   let tooltip = chart.canvas.parentNode.querySelector("div") as HTMLDivElement

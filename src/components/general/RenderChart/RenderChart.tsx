@@ -1,47 +1,50 @@
 import { Chart } from "chart.js/auto"
+import classNames from "classnames"
 import dayjs from "dayjs"
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { useIntl } from "react-intl"
 import {
-  RankingStatsForFrontend,
   RankingOrderByType,
+  RankingStatsForFrontend,
 } from "../../../entities/RankingWebsiteEntity"
 import { bigNumberFormatter } from "../../../utils/bigNumberFormatter"
 import { GraphTooltip } from "../../analytics/GraphTooltip"
 import { Loader } from "../Loader/Loader"
-import classNames from "classnames"
 
-function repositionTooltip(e: { clientX: number; clientY: number }) {
-  const canvas = document.getElementById("myChart") as HTMLCanvasElement
-  const tooltipEl = canvas.parentNode?.querySelector("div") as HTMLDivElement
+const repositionTooltip =
+  (canvas: HTMLCanvasElement) => (e: { clientX: number; clientY: number }) => {
+    const tooltipEl = canvas.parentNode?.querySelector("div") as HTMLDivElement
 
-  const onMobile = window.innerWidth < 768
+    const onMobile = window.innerWidth < 768
 
-  if (tooltipEl) {
-    // if the tooltip is trespassing the right border of the parent element, we reposition it to the left of the cursor
-    const parent = tooltipEl.parentNode as HTMLDivElement
-    const x = e.clientX - parent.getBoundingClientRect().left
-    const y = e.clientY - parent.getBoundingClientRect().top
+    if (tooltipEl) {
+      // if the tooltip is trespassing the right border of the parent element, we reposition it to the left of the cursor
+      const parent = tooltipEl.parentNode as HTMLDivElement
+      const x = e.clientX - parent.getBoundingClientRect().left
+      const y = e.clientY - parent.getBoundingClientRect().top
 
-    if (x + tooltipEl.clientWidth > parent.clientWidth - (onMobile ? 15 : 0)) {
-      tooltipEl.style.left = ""
-      tooltipEl.style.right = `${0 - (onMobile ? 15 : 0)}px`
-    } else {
-      tooltipEl.style.left = `${x - (onMobile ? -15 : 0)}px`
-      tooltipEl.style.right = ""
-    }
+      if (
+        x + tooltipEl.clientWidth >
+        parent.clientWidth - (onMobile ? 15 : 0)
+      ) {
+        tooltipEl.style.left = ""
+        tooltipEl.style.right = `${0 - (onMobile ? 15 : 0)}px`
+      } else {
+        tooltipEl.style.left = `${x - (onMobile ? -15 : 0)}px`
+        tooltipEl.style.right = ""
+      }
 
-    // on mobile, reposition tooltip on top of cursor for better readability
-    tooltipEl.style.top =
-      y + (onMobile ? -40 : 0) - tooltipEl.clientHeight + "px"
-    tooltipEl.style.opacity = "1"
+      // on mobile, reposition tooltip on top of cursor for better readability
+      tooltipEl.style.top =
+        y + (onMobile ? -40 : 0) - tooltipEl.clientHeight + "px"
+      tooltipEl.style.opacity = "1"
 
-    // if cursor is out of parent area, hide tooltip
-    if (x < 0 || x > parent.clientWidth || y < 0 || y > parent.clientHeight) {
-      tooltipEl.style.opacity = "0"
+      // if cursor is out of parent area, hide tooltip
+      if (x < 0 || x > parent.clientWidth || y < 0 || y > parent.clientHeight) {
+        tooltipEl.style.opacity = "0"
+      }
     }
   }
-}
 
 export const RenderChart: React.FC<{
   date: RankingStatsForFrontend["date"]
@@ -51,9 +54,10 @@ export const RenderChart: React.FC<{
   aspect?: string
 }> = (props) => {
   const intl = useIntl()
+  const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    var canvas = document.getElementById("myChart") as HTMLCanvasElement
+    var canvas = ref.current as HTMLCanvasElement
     if (!canvas) return
 
     const ctx = canvas.getContext("2d")
@@ -82,12 +86,15 @@ export const RenderChart: React.FC<{
     }
 
     // triger following listener only if hovering over canvas
-    canvas.addEventListener("mousemove", repositionTooltip)
+    canvas.addEventListener("mousemove", repositionTooltip(canvas))
     // also reposition on touchmove
     canvas.addEventListener("touchmove", (e) => {
       // if touch is inside canvas, reposition tooltip
       const touch = e.touches[0]
-      repositionTooltip({ clientX: touch.clientX, clientY: touch.clientY })
+      repositionTooltip(canvas)({
+        clientX: touch.clientX,
+        clientY: touch.clientY,
+      })
     })
 
     // when touch stats, prevent page scrolling
@@ -95,7 +102,10 @@ export const RenderChart: React.FC<{
       // e.preventDefault()
       // if touch is outside canvas, hide tooltip
       const touch = e.touches[0]
-      repositionTooltip({ clientX: touch.clientX, clientY: touch.clientY })
+      repositionTooltip(canvas)({
+        clientX: touch.clientX,
+        clientY: touch.clientY,
+      })
     })
 
     // when leaving canvas, hide tooltip
@@ -126,8 +136,8 @@ export const RenderChart: React.FC<{
             tension: 0,
             pointBorderColor: "rgba(0, 0, 0, 0)",
             pointBackgroundColor: "rgba(236, 72, 153, 1)",
-            pointHoverBackgroundColor: "rgb(255, 99, 132)",
-            pointHoverBorderColor: "rgb(255, 99, 132)",
+            pointHoverBackgroundColor: "rgba(255, 99, 132, 1)",
+            pointHoverBorderColor: "rgba(255, 99, 132, 1)",
           },
           {
             label: "Previous Clicks",
@@ -346,7 +356,7 @@ export const RenderChart: React.FC<{
 
     return () => {
       chart.destroy()
-      window.removeEventListener("mousemove", repositionTooltip)
+      window.removeEventListener("mousemove", repositionTooltip(canvas))
     }
   }, [props.date])
 
@@ -360,7 +370,7 @@ export const RenderChart: React.FC<{
       >
         {props.isFetching && <Loader></Loader>}
         {/* set width to 100% and important */}
-        <canvas id="myChart"></canvas>
+        <canvas ref={ref}></canvas>
       </div>
     </>
   )

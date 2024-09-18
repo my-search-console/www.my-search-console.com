@@ -1,10 +1,10 @@
 import {
   PaymentEntity,
+  PaymentPlansEntity,
   PaymentPricesEntity,
-  ProductEntity,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
 import { AnalyticsPaymentEntityPaymentSources } from "../../entities/AnalyticsEntity"
-import { GetPricesResponse } from "../../interfaces/IPaymentsRepository"
+import { InvoiceEntity } from "../../interfaces/IPaymentsRepository"
 
 export const PaymentsSetLoading = "PaymentsSetLoading"
 export interface PaymentsSetLoadingAction {
@@ -21,14 +21,7 @@ export interface PaymentsStoreAction {
 export const PaymentsStoreInvoices = "PaymentsStoreInvoices"
 export interface PaymentsStoreInvoicesAction {
   type: typeof PaymentsStoreInvoices
-  payload: {
-    id: string
-    amount: number
-    currency: string
-    date: string
-    status: string
-    invoice_url: string | undefined
-  }
+  payload: InvoiceEntity[]
 }
 
 export const PaymentsStorePlans = "PaymentsStorePlans"
@@ -54,6 +47,21 @@ export interface PaymentsOpenModalAction {
       }
 }
 
+export const PaymentsUpsellConfirmationOpenModal =
+  "PaymentsUpsellConfirmationOpenModal"
+export interface PaymentsUpsellConfirmationOpenModalAction {
+  type: typeof PaymentsUpsellConfirmationOpenModal
+  payload:
+    | {
+        isOpen: true
+        interval: "yearly" | "monthly"
+        plan: PaymentPlansEntity
+      }
+    | {
+        isOpen: false
+      }
+}
+
 export const PaymentsOpenInvoicesModal = "PaymentsOpenInvoicesModal"
 export interface PaymentsOpenInvoicesModalAction {
   type: typeof PaymentsOpenInvoicesModal
@@ -74,3 +82,4 @@ export type PaymentsActionTypes =
   | PaymentsOpenInvoicesModalAction
   | PaymentSetPaymentPlanAction
   | PaymentsStorePlansAction
+  | PaymentsUpsellConfirmationOpenModalAction

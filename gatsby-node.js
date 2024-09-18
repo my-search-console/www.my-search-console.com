@@ -324,40 +324,18 @@ value
 faq
 }`
 
-// const ShowOffGetNumberOfDownloadsFromUmami = async () => {
-//   return axios.default
-//     .get(
-//       `https://api.umami.is/v1/event-data/fields?websiteId=74cd50e0-f967-42c1-abd5-ccb69a83a403&startAt=0&endAt=${new Date().getTime()}`,
-//       {
-//         headers: {
-//           "x-umami-api-key": "ArSF73b6uLZell8JVjeYQF4tZ4CWvuQ4",
-//         },
-//       }
-//     )
-//     .then(({ data }) => {
-//       return data.map(({ total, fieldValue }) => ({
-//         gptId: fieldValue,
-//         count: total,
-//       }))
-//     })
-//     .catch((e) => {
-//       return 10
-//     })
-// }
-
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  const nbUsers = await axios
-    .get(
-      process.env.NODE_ENV === "production"
-        ? "https://api.foudroyer.com/stats/users/total"
-        : "http://localhost:8080/stats/users/total"
-    )
-    .then((res) => res.data)
-    .catch((err) => {
-      return 6000
-    })
+  const nbUsers = 0
+
+  const pagesIndexed = 30000
+
+  const stats = {
+    pagesIndexed,
+    users: nbUsers,
+    websiteUpdatedAt: new Date(),
+  }
 
   languages.forEach(({ id }) => {
     createPage({
@@ -366,6 +344,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       context: {
         langKey: id,
         languages,
+        stats,
         canonicals: languages.map((lang) => {
           if (lang.id === "en")
             return {
@@ -393,6 +372,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       context: {
         langKey: id,
         languages,
+        stats,
+        indexable: false,
         canonicals: languages.map((lang) => {
           if (lang.id === "en")
             return {
@@ -416,6 +397,52 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(
     `
       {
+        news: allNewsJson {
+          edges {
+            node {
+              content {
+                ... on ArticleContentRichText {
+                  content
+                  type
+                }
+                ... on ArticleContentVideo {
+                  alt
+                  autoplay
+                  type
+                  src {
+                    publicURL
+                  }
+                  illustration {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                ... on ArticleContentImage {
+                  alt
+                  legend
+                  type
+                  src {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                ... on ArticleContentTitle {
+                  value
+                  component
+                }
+              }
+              lang
+              title
+              published_at
+              updated_at
+              description
+              id: jsonId
+            }
+          }
+        }
+
         pages: allPagesJson {
           nodes {
             id
@@ -444,6 +471,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   url
                 }
               }
+
               ... on MarketingTitle {
                 __typename
                 title {
@@ -452,6 +480,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 }
                 type
               }
+
               ... on MarketingText {
                 __typename
                 value
@@ -610,8 +639,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path: normalize(page.lang, page.url),
       component: PageTemplate,
       context: {
-        langKey: page.langKey,
+        langKey: page.lang,
         languages,
+        stats,
+        updated_at: page.updated_at,
         canonicals: pages
           .filter(({ url, lang }) => {
             return page.url === url
@@ -868,6 +899,7 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
       fields: {
         type: "String!",
         show: "Boolean",
+        scope: "String",
       },
     }),
 
@@ -980,6 +1012,12 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
     }
     `,
 
+    `
+    type ArticleToc {
+      type: String!
+      title: TextWithHtmlTag
+    }`,
+
     schema.buildObjectType({
       name: "MarketingFeature",
       fields: {
@@ -1032,11 +1070,11 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
         // "MarketingContactInline",
 
         `ArticleContentRichText`,
-        // `ArticleContentVideo`,
-        `ArticleToc`,
+        `ArticleContentVideo`,
         `ArticleContentImage`,
         "ArticleContentTitle",
-        // "ArticleQuote",
+        "ArticleQuote",
+        "ArticleToc",
       ],
       resolveType: (value) => {
         if (value.type === "marketing/hero") return "MarketingHero"
@@ -1060,12 +1098,32 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
         //   return "MarketingContactInline"
 
         if (value.type === "article/rich_text") return "ArticleContentRichText"
-        // if (value.type === "article/video") return "ArticleContentVideo"
+        if (value.type === "article/video") return "ArticleContentVideo"
         if (value.type === "article/title") return "ArticleContentTitle"
         if (value.type === "article/image") return "ArticleContentImage"
         if (value.type === "article/toc") return "ArticleToc"
         // if (value.type === "article/quote") return "ArticleQuote"
         // if (value.type === "article/recipe") return "ArticleRecipe"
+
+        throw new Error(
+          `GraphQl/Schema/ResolveType: ${value.type} is not resolved`
+        )
+      },
+    }),
+
+    schema.buildUnionType({
+      name: `NewsContent`,
+      types: [
+        `ArticleContentRichText`,
+        `ArticleContentVideo`,
+        `ArticleContentImage`,
+        "ArticleContentTitle",
+      ],
+      resolveType: (value) => {
+        if (value.type === "article/rich_text") return "ArticleContentRichText"
+        if (value.type === "article/video") return "ArticleContentVideo"
+        if (value.type === "article/title") return "ArticleContentTitle"
+        if (value.type === "article/image") return "ArticleContentImage"
 
         throw new Error(
           `GraphQl/Schema/ResolveType: ${value.type} is not resolved`
@@ -1127,6 +1185,18 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
         updated_at: "Date",
         published_at: "Date",
         content: "[PageContent]",
+      },
+    }),
+
+    schema.buildObjectType({
+      name: "NewsJson",
+      interfaces: ["Node"],
+      fields: {
+        type: "String",
+        lang: "String",
+        updated_at: "Date",
+        published_at: "Date",
+        content: "[NewsContent]",
       },
     }),
 
@@ -1275,4 +1345,46 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
     }
     `,
   ])
+}
+
+module.exports.sourceNodes = async (gatsbyApi) => {
+  const nbUsers = await axios
+    .get(
+      process.env.NODE_ENV === "production"
+        ? "https://api.foudroyer.com/stats/users/total"
+        : "http://localhost:8080/stats/users/total"
+    )
+    .then((res) => res.data)
+    .catch((err) => {
+      return 6000
+    })
+
+  const pagesIndexed = await axios
+    .get(
+      process.env.NODE_ENV === "production"
+        ? "https://api.foudroyer.com/stats/indexation/indexed/total"
+        : "http://localhost:8080/stats/indexation/indexed/total"
+    )
+    .then((res) => res.data)
+    .catch((err) => {
+      return 3000000
+    })
+
+  const yourData = {
+    users: nbUsers,
+    indexed: pagesIndexed,
+    websiteUpdatedAt: new Date(),
+  }
+
+  const node = {
+    ...yourData,
+    // Required fields
+    id: gatsbyApi.createNodeId(`stats`),
+    internal: {
+      type: `Stats`,
+      contentDigest: gatsbyApi.createContentDigest(yourData),
+    },
+  }
+
+  gatsbyApi.actions.createNode(node)
 }

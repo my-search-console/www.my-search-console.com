@@ -20,6 +20,9 @@ const mapDispatch = (dispatch: any) => ({
       })
     )
   },
+  onOpenCalendar() {
+    dispatch(actions.ranking.$AnalyticsOpenCalendar())
+  },
 })
 
 export const connector = connect(mapState, mapDispatch)

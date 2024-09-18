@@ -1,9 +1,5 @@
-import {
-  PaymentEntity,
-  PaymentPlansEntity,
-  PaymentPricesEntity,
-} from "@my-search-console/interfaces"
-import { IApiResponse, IRepositoryResponse } from "../interfaces/IApiResponse"
+import { PaymentEntity, PaymentPlansEntity } from "@foudroyer/interfaces"
+import { IRepositoryResponse } from "../interfaces/IApiResponse"
 import {
   FetchInvoicesResponse,
   FetchUserResponse,
@@ -13,6 +9,12 @@ import {
 } from "../interfaces/IPaymentsRepository"
 
 export class InMemoryPaymentsRepository implements IPaymentsRepository {
+  pause(params: { subscriptionId: string }): Promise<any> {
+    throw new Error("Method not implemented.")
+  }
+  unpause(params: { subscriptionId: string }): Promise<any> {
+    throw new Error("Method not implemented.")
+  }
   fetchInvoices(): Promise<FetchInvoicesResponse> {
     return new Promise((resolve) => {
       resolve({
@@ -35,6 +37,10 @@ export class InMemoryPaymentsRepository implements IPaymentsRepository {
       resolve({
         error: false,
         body: {
+          "indexation/free": {
+            monthly: 129.99,
+            yearly: 1299,
+          },
           currency: "EUR",
           indexation: {
             monthly: 29.99,
@@ -45,6 +51,26 @@ export class InMemoryPaymentsRepository implements IPaymentsRepository {
             yearly: 1299,
           },
           newbie: {
+            monthly: 9.99,
+            yearly: 99,
+          },
+          "indexation/teams": {
+            monthly: 9.99,
+            yearly: 99,
+          },
+          "analytics/beginner": {
+            monthly: 9.99,
+            yearly: 99,
+          },
+          "analytics/enterprise": {
+            monthly: 9.99,
+            yearly: 99,
+          },
+          "analytics/free": {
+            monthly: 9.99,
+            yearly: 99,
+          },
+          "analytics/pro": {
             monthly: 9.99,
             yearly: 99,
           },
@@ -71,6 +97,7 @@ export class InMemoryPaymentsRepository implements IPaymentsRepository {
       paddle_user_id: "",
       plan: PaymentPlansEntity.enterprise,
       interval: "monthly",
+      paused_at: null,
     }
 
     this.paymentsInfo = [newPlan]

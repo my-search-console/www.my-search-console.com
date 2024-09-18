@@ -1,9 +1,12 @@
-import { ErrorEntity } from "@my-search-console/interfaces"
-import { StatsResponse } from "../interfaces/IWebsitesRepository"
+import { ErrorEntity } from "@foudroyer/interfaces"
 import { RankingStatsForFrontend } from "../entities/RankingWebsiteEntity"
 import { ISpreadRepository } from "../interfaces/ISpreadRepository"
+import { StatsResponse } from "../interfaces/IWebsitesRepository"
 
 export class InMemorySpreadRepository implements ISpreadRepository {
+  fetchLadder(): Promise<any> {
+    throw new Error("Method not implemented.")
+  }
   private stats: RankingStatsForFrontend = {
     global: {
       click_through_rate: 0,

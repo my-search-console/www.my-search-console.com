@@ -1,22 +1,17 @@
+import { ArrowUturnLeftIcon, FunnelIcon } from "@heroicons/react/20/solid"
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
+import classNames from "classnames"
+import clsx from "clsx"
 import React from "react"
-import { ArrowUturnLeftIcon } from "@heroicons/react/20/solid"
+import { useIntl } from "react-intl"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { getSecondaryStyle } from "../../UI/Button/Button"
 import {
   connector,
   ContainerProps,
 } from "./containers/InputFilterName.containers"
-import { useIntl } from "react-intl"
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import classNames from "classnames"
-import { getSecondaryStyle } from "../../UI/Button/Button"
 
-type Props = {
-  value: string
-  onChange: (str: string) => void
-  onSearch: () => void
-}
-
-export const Wrapper: React.FC<Props> = (props) => {
+export const Wrapper: React.FC<ContainerProps> = (props) => {
   const intl = useIntl()
   return (
     <div className="flex w-full">
@@ -33,16 +28,14 @@ export const Wrapper: React.FC<Props> = (props) => {
             aria-hidden="true"
           />
         </div>
-        <div
-          className="absolute inset-y-0 right-0 flex items-center p-2"
-          onClick={props.onSearch}
-        >
+        <div className="absolute inset-y-0 right-0 flex items-center p-2">
           <button
+            onClick={props.onSearch}
             className={classNames(
               getSecondaryStyle({
                 size: "sm",
               }),
-              "h-full rounded px-4 font-display text-sm font-medium transition-all duration-300 ease-in-out hover:bg-blue-50 hover:text-blue-400"
+              "h-full rounded px-4 font-display text-sm font-medium transition-all duration-300 ease-in-out hover:bg-pink-50 hover:text-pink-400"
             )}
           >
             <span className="hidden md:inline">
@@ -50,15 +43,28 @@ export const Wrapper: React.FC<Props> = (props) => {
             </span>
             <ArrowUturnLeftIcon className="ml-2 inline-block h-4 w-4 -scale-y-100 transform" />
           </button>
+
+          <button
+            type="button"
+            onClick={props.onFilter}
+            className={clsx(
+              getSecondaryStyle({
+                size: "sm",
+              }),
+              "ml-2 h-full"
+            )}
+          >
+            <FunnelIcon className="h-4 w-4" />
+          </button>
         </div>
         <input
           type={"text"}
           autoComplete="off"
-          className="block h-14 w-full rounded-md border-slate-100 pl-10 text-slate-900 placeholder-slate-500 focus:border-blue-300 focus:ring-blue-300"
+          className="block h-14 w-full rounded-md border-slate-100 pl-10 text-slate-900 placeholder-slate-500 focus:border-pink-300 focus:ring-pink-300"
           placeholder={intl.formatMessage({
             id: "pages/filter/input/placeholder",
           })}
-          value={props.value}
+          value={props.value || ""}
           onChange={(e) => props.onChange(e.target.value || "")}
         />
       </form>

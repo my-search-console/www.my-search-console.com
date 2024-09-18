@@ -5,6 +5,9 @@ export const normalizeUrl = (params: {
   locale: string
   removeLocaleIfExists?: boolean
 }) => {
+  if (params.url.startsWith("http") && !params.url.includes("foudroyer"))
+    return params.url
+
   if (params.url.startsWith("#")) {
     return `${params.url}`
   }

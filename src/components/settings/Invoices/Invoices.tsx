@@ -1,13 +1,11 @@
-import React, { useEffect } from "react"
-import { ContainerProps, connector } from "./containers/Invoices.container"
-import { SettingSection } from "../SettingSection/SettingSection"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { CreditCardIcon, XMarkIcon } from "@heroicons/react/20/solid"
-import { PaymentEntity } from "@my-search-console/interfaces"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ArrowDownCircleIcon, SparklesIcon } from "@heroicons/react/24/solid"
-import { SettingsInvoicesModal } from "../SettingsInvoicesModal/SettingsInvoicesModal"
+import { PaymentEntity } from "@foudroyer/interfaces"
 import { DocumentChartBarIcon } from "@heroicons/react/24/outline"
+import React from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { ButtonSecondary } from "../../UI/Button/Button"
+import { SettingSection } from "../SettingSection/SettingSection"
+import { SettingsInvoicesModal } from "../SettingsInvoicesModal/SettingsInvoicesModal"
+import { connector, ContainerProps } from "./containers/Invoices.container"
 
 export const Wrapper: React.FC<{
   payments: PaymentEntity[]

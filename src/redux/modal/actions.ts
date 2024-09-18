@@ -1,6 +1,8 @@
-import * as types from "./types"
 import { ThunkAction } from "redux-thunk"
+import { localStorageKeys } from "../../constants/localStorageKeys"
+import { actions } from "../actions"
 import { RootState } from "../store"
+import * as types from "./types"
 
 export const close = (): types.ModalActionTypes => ({
   type: types.close,
@@ -63,32 +65,6 @@ export const $closeSupportUsModal =
     di.LocationService.navigate(url.replace("#support-us-modal", ""))
   }
 
-export const $openNewsModal =
-  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
-    const { di } = getState()
-
-    const url = di.LocationService.getFullUrl()
-
-    di.LocationService.navigate(url + "#news-modal")
-    di.AnalyticsService.send({
-      category: "news",
-      action: "open",
-    })
-  }
-
-export const $closeNewsModal =
-  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
-    const { di } = getState()
-
-    const url = di.LocationService.getFullUrl()
-
-    di.LocationService.navigate(url.replace("#news-modal", ""))
-    di.AnalyticsService.send({
-      category: "news",
-      action: "close",
-    })
-  }
-
 export const $closeScopeNotFoundModal =
   (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
     const { di } = getState()
@@ -127,4 +103,80 @@ export const $closeIndexAllSuccess =
     const url = di.LocationService.getFullUrl()
 
     di.LocationService.navigate(url.replace("#index-all-success", ""))
+  }
+
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ * NEWS
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
+export const $openNewsModal =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di } = getState()
+
+    const url = di.LocationService.getFullUrl()
+
+    di.LocationService.navigate(url + "#news-modal")
+    di.AnalyticsService.send({
+      category: "news",
+      action: "open",
+    })
+
+    dispatch(actions.modal.$NewsSaveLastTimeSeenModal())
+  }
+
+export const $closeNewsModal =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di } = getState()
+
+    const url = di.LocationService.getFullUrl()
+
+    di.LocationService.navigate(url.replace("#news-modal", ""))
+    di.AnalyticsService.send({
+      category: "news",
+      action: "close",
+    })
+  }
+
+export const NewsStoreLastTimeSeenModal = (
+  payload: types.NewsStoreLastTimeSeenModalAction["payload"]
+): types.ModalActionTypes => ({
+  type: types.NewsStoreLastTimeSeenModal,
+  payload,
+})
+
+export const $NewsFetchLastTimeSeenModal =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di } = getState()
+
+    const value = di.LocalStorageService.get(localStorageKeys.NEWS) || null
+
+    dispatch(
+      actions.modal.NewsStoreLastTimeSeenModal({
+        value: value ? new Date(value) : null,
+      })
+    )
+  }
+
+export const $NewsSaveLastTimeSeenModal =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di } = getState()
+
+    di.LocalStorageService.store(localStorageKeys.NEWS, new Date().toString())
+    dispatch(
+      actions.modal.NewsStoreLastTimeSeenModal({
+        value: new Date(),
+      })
+    )
   }

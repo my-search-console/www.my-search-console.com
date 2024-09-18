@@ -83,7 +83,7 @@ export interface RankingHistogramModalSetToggleAction {
 export const RankingHistogramModalSetType = "RankingHistogramModalSetType"
 export interface RankingHistogramModalSetTypeAction {
   type: typeof RankingHistogramModalSetType
-  payload: { value: "device" | "query" | "country" | "source" }
+  payload: { value: "device" | "query" | "country" | "source" | "page" }
 }
 
 export const RankingStoreStatsHistogram = "RankingStoreStatsHistogram"
@@ -101,7 +101,48 @@ export interface AnalyticsSetAnalyticsComingSoonModalIsOpenAction {
   }
 }
 
+/**
+ *
+ *
+ *
+ * ACTIVATE
+ *
+ *
+ *
+ */
+
+export const AnalyticsSetAnalyticsDiscoverModalIsFetching =
+  "AnalyticsSetAnalyticsDiscoverModalIsFetching"
+export interface AnalyticsSetAnalyticsDiscoverModalIsFetchingAction {
+  type: typeof AnalyticsSetAnalyticsDiscoverModalIsFetching
+  payload: {
+    value: boolean
+  }
+}
+
+export const AnalyticsSetAnalyticsDiscoverModalIsOpen =
+  "AnalyticsSetAnalyticsDiscoverModalIsOpen"
+export interface AnalyticsSetAnalyticsDiscoverModalIsOpenAction {
+  type: typeof AnalyticsSetAnalyticsDiscoverModalIsOpen
+  payload: {
+    value: boolean
+  }
+}
+
 export type RankingActionTypes =
+  /**
+   *
+   * ACTIVATE
+   *
+   */
+  | AnalyticsSetAnalyticsDiscoverModalIsFetchingAction
+  | AnalyticsSetAnalyticsDiscoverModalIsOpenAction
+
+  /**
+   *
+   * TOAST
+   *
+   */
   | RankingSetAnalyticsToastDataLateAcceptedAction
   | RankingSetFetchingAction
   | RankingStoreFilterQueryAction

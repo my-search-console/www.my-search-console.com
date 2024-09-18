@@ -2,14 +2,7 @@ export function buildLinkDependingOnAuthStatus(params: {
   isAuth: boolean
   website: string | null
   feature: "shared" | string | null
-  tool:
-    | "home"
-    | "indexation"
-    | "analytics"
-    | "settings"
-    | "keywords"
-    | "opportunities"
-    | "dashboard"
+  tool: "home" | "analytics" | "settings" | "user" | "keywords"
 }) {
   if (!params.isAuth) {
     if (params.tool === "home") {
@@ -25,8 +18,8 @@ export function buildLinkDependingOnAuthStatus(params: {
     return `/administration?tool=${params.tool}`
   }
 
-  if (params.tool === "dashboard") {
-    return "/dashboard/"
+  if (params.tool === "user") {
+    return "/user/"
   }
 
   if (params.website) {

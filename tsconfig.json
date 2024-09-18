@@ -105,7 +105,7 @@
     "./src/**/*",
     "./gatsby-node.ts",
     "./gatsby-config.ts",
-    "./plugins/**/*",
-    "src/components/indexation/IndexationAutoModal/containers/IndexationAutoModal.containers.ts"
+    "./gatsby-browser.tsx",
+    "./plugins/**/*"
   ]
 }

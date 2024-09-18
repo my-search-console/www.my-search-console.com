@@ -1,6 +1,6 @@
-import * as types from "./types"
 import { ThunkAction } from "redux-thunk"
 import { RootState } from "../store"
+import * as types from "./types"
 
 export const AssistantSetOpenState = (
   payload: types.AssistantSetOpenStateAction["payload"]

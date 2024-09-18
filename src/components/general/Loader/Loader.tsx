@@ -3,13 +3,13 @@ import React, { ReactNode } from "react"
 export function Loader(props: { additionnalText?: ReactNode }) {
   return (
     <div
-      className="absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-white bg-opacity-90 backdrop-blur-sm"
+      className="absolute top-0 bottom-0 right-0 left-0 z-10 flex h-full w-full items-center justify-center bg-white bg-opacity-90 backdrop-blur-sm"
       role="status"
     >
       <div className="text-center">
         <svg
           aria-hidden="true"
-          className="mr-2 inline-block h-10 w-10 animate-spin fill-blue-500 text-slate-200 dark:text-slate-200"
+          className="mr-2 inline-block h-10 w-10 animate-spin fill-pink-500 text-slate-200 dark:text-slate-200"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

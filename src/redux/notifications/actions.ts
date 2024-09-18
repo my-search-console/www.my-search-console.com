@@ -1,7 +1,7 @@
+import { ErrorEntity } from "@foudroyer/interfaces"
 import { ThunkAction } from "redux-thunk"
-import * as types from "./types"
-import { ErrorEntity } from "@my-search-console/interfaces"
 import { actions } from "../actions"
+import * as types from "./types"
 
 export const store = (
   payload: types.storeAction["payload"]

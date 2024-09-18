@@ -1,27 +1,26 @@
-import React from "react"
-import { ButtonSecondary } from "../../../UI/Button/Button"
+import { Dialog } from "@headlessui/react"
 import {
   CheckCircleIcon,
   ExclamationTriangleIcon,
   XCircleIcon,
 } from "@heroicons/react/20/solid"
-import { IssueEntity, IssueNames } from "../../../../entities/IssueEntity"
-import { Modal as GlobalModal } from "../../../UI/Modal/Modal"
-import { Dialog } from "@headlessui/react"
-import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
 import classNames from "classnames"
-import { useIntl } from "react-intl"
-import { ServerError } from "./components/ServerError"
+import React from "react"
+import { IssueEntity, IssueNames } from "../../../../entities/IssueEntity"
+import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
+import { ButtonSecondary } from "../../../UI/Button/Button"
+import { Modal as GlobalModal } from "../../../UI/Modal/Modal"
+import { RobotsCrawlAllowed } from "./components/RobotsCrawlAllowed"
 import { RobotsEmpty } from "./components/RobotsEmpty"
 import { RobotsJavascript } from "./components/RobotsJavascript"
+import { ServerError } from "./components/ServerError"
 import { ServerNotHttps } from "./components/ServerHttps"
-import { RobotsCrawlAllowed } from "./components/RobotsCrawlAllowed"
-import { ServerNotScDomainNotSameUrl } from "./components/ServerNotScDomainNotSameUrl"
-import { ServerNotScDomain } from "./components/ServerNotScDomain"
 import { ServerNoIndex } from "./components/ServerNoIndex"
+import { ServerNotScDomain } from "./components/ServerNotScDomain"
+import { ServerNotScDomainNotSameUrl } from "./components/ServerNotScDomainNotSameUrl"
+import { SitemapBadFormed } from "./components/SitemapBadFormed"
 import { SitemapNoSitemap } from "./components/SitemapNoSitemap"
 import { SitemapServerError } from "./components/SitemapServerError"
-import { SitemapBadFormed } from "./components/SitemapBadFormed"
 
 type Props = {
   isOpen: boolean

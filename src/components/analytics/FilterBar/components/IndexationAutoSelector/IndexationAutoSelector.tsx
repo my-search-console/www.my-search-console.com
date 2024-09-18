@@ -1,6 +1,5 @@
 import React from "react"
 import { ButtonSecondary } from "../../../../UI/Button/Button"
-import { Tooltip } from "../../../../UI/Tooltip"
 import {
   connector,
   ContainerProps,

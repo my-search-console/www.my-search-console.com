@@ -1,12 +1,14 @@
+import { PaymentPlansEntity } from "@foudroyer/interfaces"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
-import { PaymentPlansEntity } from "@my-search-console/interfaces"
+import { getCrispUrl } from "../../../../utils/crisp"
 
 const mapState = (state: RootState) => ({
   source: state.payments.modal.source,
-  type: PaymentPlansEntity.starter,
+  type: PaymentPlansEntity.indexation,
   products: state.payments.products,
+  actualPlan: state.payments.actualIndexationPlan,
 })
 
 const mapDispatch = (dispatch: any) => ({
@@ -14,16 +16,18 @@ const mapDispatch = (dispatch: any) => ({
     dispatch(actions.payments.PaymentsOpenModal({ value: false }))
   },
   onSubscribe: (plan: PaymentPlansEntity, interval: "monthly" | "yearly") => {
-    dispatch(actions.websites.$openPaymentModal(plan, interval))
-  },
-  onSupport: () => {
-    window.open(
-      `https://go.crisp.chat/chat/embed/?website_id=b5235ee2-e9d5-4d06-9c92-488f64e57c8d`,
-      "_blank"
+    dispatch(
+      actions.payments.$pay({
+        plan,
+        interval,
+      })
     )
   },
+  onSupport: () => {
+    window.open(getCrispUrl(), "_blank")
+  },
   onLoadAdjustedPricing: () => {
-    dispatch(actions.payments.$getPricing())
+    // dispatch(actions.payments.$getPricing())
   },
 })
 

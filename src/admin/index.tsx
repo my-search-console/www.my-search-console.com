@@ -1,10 +1,10 @@
 //@ts-ignore
 window.CMS_MANUAL_INIT = true
 
-import CMS from "netlify-cms-app"
-import { UniqueIdWidget } from "./widgets/UniqueIdWidget"
-import { config } from "./config"
+import CMS from "decap-cms-app"
 import { v4 } from "uuid"
+import { config } from "./config"
+import { UniqueIdWidget } from "./widgets/UniqueIdWidget"
 
 // @ts-ignore
 CMS.init({ config })

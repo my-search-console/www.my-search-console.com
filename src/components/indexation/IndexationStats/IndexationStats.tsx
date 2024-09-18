@@ -1,12 +1,12 @@
+import { IndexationType, PageEntity } from "@foudroyer/interfaces"
 import classNames from "classnames"
 import React, { ReactNode } from "react"
-import { IndexationType, PageEntity } from "@my-search-console/interfaces"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/IndexationStats.containers"
-import { Loader } from "../../general/Loader/Loader"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { Loader } from "../../general/Loader/Loader"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/IndexationStats.containers"
 
 type Props = {
   filterIndexationState: PageEntity["indexation_state"] | null
@@ -46,7 +46,7 @@ const Item: React.FC<{
           type="radio"
           checked={props.selected}
           onChange={() => {}}
-          className="ml-auto h-4 w-4 border-slate-200 text-blue-400 focus:ring-blue-400"
+          className="ml-auto h-4 w-4 border-slate-200 text-pink-400 focus:ring-pink-400"
         />
       </dt>
       <dd className="mt-1 flex items-center justify-between">

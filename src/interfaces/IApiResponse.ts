@@ -1,4 +1,4 @@
-import { ErrorEntity } from "@my-search-console/interfaces"
+import { ErrorEntity } from "@foudroyer/interfaces"
 import { InternalErrorEntity } from "../entities/InternalErrorEntity"
 
 export type IApiResponse<T> =
@@ -7,4 +7,4 @@ export type IApiResponse<T> =
 
 export type IRepositoryResponse<T> =
   | ({ error: false } & { body: T })
-  | { error: true; code: ErrorEntity | InternalErrorEntity }
+  | { error: true; code: ErrorEntity | InternalErrorEntity; data?: any }

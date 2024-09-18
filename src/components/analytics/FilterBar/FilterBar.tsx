@@ -1,13 +1,15 @@
-import React from "react"
 import { XMarkIcon } from "@heroicons/react/20/solid"
-import { ContainerProps, connector } from "./containers/FilterBar.container"
 import { useLocation } from "@reach/router"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { SiteSelector } from "./components/SiteSelector/SiteSelector"
+import React from "react"
+import { formatUrl } from "../../../utils/formatUrl"
 import { getWebsiteIdFromUrl } from "../../../utils/getWebsiteIdFromUrl"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { SettingsToggleButton } from "../../indexation/Settings/Settings"
 import { DateSelector } from "./components/DateSelector/DateSelector"
 import { KeywordsFilters } from "./components/KeywordsFilters/KeywordsFilters"
+import { SiteSelector } from "./components/SiteSelector/SiteSelector"
 import { SourceSelector } from "./components/SourceSelector/SourceSelector"
+import { connector, ContainerProps } from "./containers/FilterBar.container"
 
 function getFiltersFromUrl(href: string) {
   const url = new URL(href)
@@ -15,14 +17,16 @@ function getFiltersFromUrl(href: string) {
   const device = url.searchParams.get("device")
   const country = url.searchParams.get("country")
   const source = url.searchParams.get("source")
+  const page = url.searchParams.get("page")
 
   return [
     { type: "query", value: query },
     { type: "country", value: country },
     { type: "device", value: device },
     { type: "source", value: source },
+    { type: "page", value: page },
   ].filter(({ value }) => !!value) as {
-    type: "source" | "date" | "query" | "country" | "device"
+    type: "source" | "date" | "query" | "country" | "device" | "page"
     value: string
   }[]
 }
@@ -30,7 +34,7 @@ function getFiltersFromUrl(href: string) {
 export const Wrapper: React.FC<{
   isPremium: boolean
   onFilter: (params: {
-    type: "source" | "date" | "query" | "country" | "device"
+    type: "source" | "date" | "query" | "country" | "device" | "page"
     value: string
   }) => void
   readonly: boolean
@@ -60,17 +64,20 @@ export const Wrapper: React.FC<{
                     <li key={type}>
                       <button
                         type="button"
-                        className="inline-flex h-10 items-center rounded-md bg-slate-50  px-4 pl-3 pr-1.5 font-display text-sm font-medium text-slate-900 transition duration-300 ease-in-out hover:bg-blue-100 hover:text-blue-500  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="inline-flex h-10 items-center rounded-md bg-slate-50  px-4 pl-3 pr-1.5 font-display text-sm font-medium text-slate-900 transition duration-300 ease-in-out hover:bg-pink-100 hover:text-pink-500  focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
                         onClick={() => props.onFilter({ value, type })}
                       >
                         <span>
                           {type === "country" ? (
                             // @ts-ignore
                             <FormattedMessage id={"country/" + value} />
+                          ) : type === "page" ? (
+                            formatUrl(value)
                           ) : (
                             value
                           )}
                         </span>
+
                         <XMarkIcon
                           className="ml-1 h-4 w-4"
                           aria-hidden="true"
@@ -88,8 +95,10 @@ export const Wrapper: React.FC<{
           {options.showSourceSelector && <SourceSelector />}
           {options.showDateSelector && <DateSelector />}
           {options.showKeywordsFilters && <KeywordsFilters />}
+          {feature === "indexation" && <SettingsToggleButton />}
         </div>
       </div>
+
       {filters.length > 0 && (
         <div className="no-scroll-bar sticky top-0 -z-10 mt-1 flex h-fit w-full items-center overflow-x-scroll rounded-md border border-slate-100 bg-white bg-opacity-80 py-2 backdrop-blur-sm transition-all md:hidden">
           <ul className="flex h-full items-center gap-1 whitespace-nowrap px-2 font-display">
@@ -98,7 +107,7 @@ export const Wrapper: React.FC<{
                 <li key={type}>
                   <button
                     type="button"
-                    className="inline-flex h-10 items-center rounded-md bg-slate-50  px-4 pl-3 pr-1.5 font-display text-sm font-medium text-slate-900 transition duration-300 ease-in-out hover:bg-blue-100 hover:text-blue-500  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="inline-flex h-10 items-center rounded-md bg-slate-50  px-4 pl-3 pr-1.5 font-display text-sm font-medium text-slate-900 transition duration-300 ease-in-out hover:bg-pink-100 hover:text-pink-500  focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
                     onClick={() => props.onFilter({ value, type })}
                   >
                     <span>

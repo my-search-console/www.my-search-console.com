@@ -1,8 +1,8 @@
+import dayjs from "dayjs"
 import { RankingStatEntity } from "../entities/RankingWebsiteEntity"
 import { IRepositoryResponse } from "../interfaces/IApiResponse"
 import { IKeywordsRepository } from "../interfaces/IKeywordsRepository"
 import { ApiService } from "../services/ApiService"
-import dayjs from "dayjs"
 
 export class ApiKeywordsRepository implements IKeywordsRepository {
   constructor(private apiService: ApiService) {}

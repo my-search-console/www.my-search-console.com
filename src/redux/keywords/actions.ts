@@ -1,13 +1,10 @@
-import {
-  NotificationEntity,
-  NotificationMessageEntity,
-} from "./../../entities/NotificationEntity"
-import * as types from "./types"
+import { PaymentPlansEntity } from "@foudroyer/interfaces/dist/entities/PaymentEntity"
 import { ThunkAction } from "redux-thunk"
-import { RootState } from "../store"
-import { actions } from "../actions"
 import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
-import { PaymentPlansEntity } from "@my-search-console/interfaces/dist/entities/PaymentEntity"
+import { actions } from "../actions"
+import { RootState } from "../store"
+import { NotificationMessageEntity } from "./../../entities/NotificationEntity"
+import * as types from "./types"
 
 export const KeywordsStoreKeywords = (
   payload: types.KeywordsStoreKeywordsAction["payload"]
@@ -128,15 +125,7 @@ const showPaywall = (props: {
   signupDate: Date
   plans: Set<PaymentPlansEntity>
 }) => {
-  const { signupDate, plans } = props
-  // true if signed up more that 3 days ago
-  const signedUpMoreThan3DaysAgo = Boolean(
-    signupDate &&
-      new Date(signupDate) <
-        new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000)
-  )
-
-  return plans.size === 0 && signedUpMoreThan3DaysAgo
+  return false
 }
 
 export const $fetchKeywords =

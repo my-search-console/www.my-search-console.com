@@ -1,10 +1,10 @@
 import axios from "axios"
+import { localStorageKeys } from "../constants/localStorageKeys"
 import { IApiResponse } from "../interfaces/IApiResponse"
 import { ILocalStorageService } from "../interfaces/ILocalStorageService"
-import { localStorageKeys } from "../constants/localStorageKeys"
 
 const PRODUCTION_ENDPOINT = "https://api.my-search-console.com"
-const DEVELOPMENT_ENDPOINT = "http://localhost:8080"
+const DEVELOPMENT_ENDPOINT = "http://localhost:3000"
 
 export class ApiService {
   constructor(private localStorageService: ILocalStorageService) {

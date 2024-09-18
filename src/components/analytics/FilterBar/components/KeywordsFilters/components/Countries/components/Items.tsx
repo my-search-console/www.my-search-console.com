@@ -12,7 +12,7 @@ export const Items: React.FC<{
       {({ active }) => (
         <button
           className={classNames(
-            active ? "bg-blue-50 text-blue-400" : "",
+            active ? "bg-pink-50 text-pink-400" : "",
             "flex w-full min-w-fit items-center py-2 pl-4 text-left text-sm transition-all duration-300 ease-in-out"
           )}
           onClick={props.onClick}

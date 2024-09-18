@@ -27,4 +27,8 @@ export class WindowLocationService implements ILocationService {
   back() {
     return navigate(-1)
   }
+
+  refresh(url: string) {
+    window.location.href = url
+  }
 }

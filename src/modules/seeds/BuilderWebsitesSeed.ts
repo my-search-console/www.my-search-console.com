@@ -1,7 +1,7 @@
 import {
   BuilderWebsiteEntity,
   BuilderWebsiteTheme,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
 
 export const BuilderWebsiteNoDomain: BuilderWebsiteEntity = {
   id: "234567-345678-345677",

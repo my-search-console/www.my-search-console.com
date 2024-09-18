@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from "react-redux"
-import { RootState } from "../../../../redux/store"
 import { actions } from "../../../../redux/actions"
+import { RootState } from "../../../../redux/store"
 
 const mapState = (state: RootState) => ({
   notifications: state.notifications.notifications,

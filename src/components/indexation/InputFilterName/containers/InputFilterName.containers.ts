@@ -18,6 +18,9 @@ const mapDispatch = (dispatch: any) => ({
   onSearch: () => {
     dispatch(actions.indexation.filter.fields.$apply())
   },
+  onFilter: () => {
+    dispatch(actions.indexation.ToggleFilterPanel())
+  },
 })
 
 export const connector = connect(mapState, mapDispatch)

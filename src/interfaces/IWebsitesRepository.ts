@@ -1,12 +1,16 @@
-import { WebsiteEntity } from "@my-search-console/interfaces"
-import { IRepositoryResponse } from "./IApiResponse"
+import { UserWithRoleEntity, WebsiteEntity } from "@foudroyer/interfaces"
 import {
-  RankingStatsForFrontend,
   RankingStatEntity,
+  RankingStatsForFrontend,
 } from "../entities/RankingWebsiteEntity"
+import { SitemapEntity } from "../entities/SitemapEntity"
+import { IRepositoryResponse } from "./IApiResponse"
 
 export type ActivateResponse = IRepositoryResponse<WebsiteEntity>
 export type UpdateSitemapResponse = IRepositoryResponse<WebsiteEntity>
+export type GetUsersFromWebsiteResponse = IRepositoryResponse<
+  UserWithRoleEntity[]
+>
 export type FetchWebsiteAnalyticsStatusResponse = IRepositoryResponse<{
   is_finished: boolean
 }>
@@ -29,6 +33,9 @@ export type CheckResponse = IRepositoryResponse<CheckResponseEntity>
 export type RefreshSitemapAndIndexationResponse = IRepositoryResponse<{
   success: boolean
 }>
+export type AddUserToWebsiteResponse = IRepositoryResponse<{
+  success: boolean
+}>
 
 export type CreateWebsiteResponse = IRepositoryResponse<WebsiteEntity>
 export type CreateWebsiteParams = {
@@ -44,24 +51,64 @@ export type StatsForHistogramResponse = IRepositoryResponse<RankingStatEntity[]>
 export type AddSourceResponse = IRepositoryResponse<WebsiteEntity>
 export type DeleteResponse = IRepositoryResponse<null>
 
+/**
+ *
+ *
+ * SITEMAP
+ *
+ *
+ */
+
+export type SitemapsFetchAllResponse = IRepositoryResponse<{
+  sitemaps: SitemapEntity[]
+}>
+
+export type SitemapsDeleteResponse = IRepositoryResponse<any>
+
+/**
+ *
+ *
+ * ============================================================
+ *
+ *
+ */
+
 export interface IWebsitesRepository {
+  activateAnalytics(params: { websiteId: string }): Promise<ActivateResponse>
+  reset(params: { websiteId: string }): Promise<ActivateResponse>
+
   addSource(params: {
     websiteId: string
     type: "yandex" | "bing"
     url: string
   }): Promise<AddSourceResponse>
+
   updateCredentials(params: {
     website: string
     credentials: string
   }): Promise<UpdateCredentialsResponse>
+
   refreshSitemapAndIndexation(params: {
     websiteId: string
   }): Promise<RefreshSitemapAndIndexationResponse>
+
+  addUserToWebsite(params: {
+    websiteId: string
+    email: string
+  }): Promise<AddUserToWebsiteResponse>
+
+  removeUserToWebsite(params: {
+    websiteId: string
+    email: string
+  }): Promise<AddUserToWebsiteResponse>
+
   check(params: { website: string }): Promise<CheckResponse>
+
   updateIsPublic(params: {
     websiteId: string
     isPublic: boolean
   }): Promise<UpdateIsPublicResponse>
+
   fetch(params?: { websiteId: string }): Promise<FetchResponse>
   activate(domain: string): Promise<ActivateResponse>
   updateSitemap(params: {
@@ -69,9 +116,37 @@ export interface IWebsitesRepository {
     sitemap: string
   }): Promise<UpdateSitemapResponse>
 
+  getUsersFromWebsite(params: {
+    websiteId: string
+  }): Promise<GetUsersFromWebsiteResponse>
+
   fetchWebsiteAnalyticsStatus(params: {
     websiteId: string
   }): Promise<FetchWebsiteAnalyticsStatusResponse>
+
+  /**
+   *
+   *
+   * SITEMAP
+   *
+   *
+   */
+  SitemapsFetchAll(params: {
+    websiteId: string
+  }): Promise<SitemapsFetchAllResponse>
+
+  SitemapsDelete(params: {
+    websiteId: string
+    id: SitemapEntity["id"]
+  }): Promise<SitemapsFetchAllResponse>
+
+  /**
+   *
+   *
+   * ========================================================================
+   *
+   *
+   */
 
   fetch(): Promise<FetchResponse>
   delete(params: { websiteId: string }): Promise<DeleteResponse>
@@ -88,6 +163,7 @@ export interface IWebsitesRepository {
       country: string | null
       from: Date | string
       to: Date | string
+      page: string | null
     }
     orderBy?:
       | "clicks"
@@ -103,11 +179,12 @@ export interface IWebsitesRepository {
       query: string | null
       device: string | null
       country: string | null
+      page: string | null
       from: Date | string
       to: Date | string
     }
     page: number
-    type: "device" | "source" | "query" | "country"
+    type: "device" | "source" | "query" | "country" | "page"
     orderBy?:
       | "clicks"
       | "impressions"

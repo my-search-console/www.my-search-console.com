@@ -4,10 +4,10 @@ import {
   ContainerProps,
 } from "./containers/IndexationStatsBar.containers"
 
-import { IndexationType, PageEntity } from "@my-search-console/interfaces"
-import { Tooltip } from "../../UI/Tooltip"
+import { IndexationType, PageEntity } from "@foudroyer/interfaces"
 import classNames from "classnames"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { Tooltip } from "../../UI/Tooltip"
 import { ItemLoading } from "../IndexedTable/components/ItemLoading"
 
 type Props = {
@@ -27,6 +27,7 @@ const Bar: React.FC<{
   type: IndexationType
   total: number
   value: number
+  tooltipPosition?: "center" | "right"
   onClick: () => void
 }> = (props) => {
   if (props.value === 0 || !props.value) return <></>
@@ -52,6 +53,12 @@ const Bar: React.FC<{
         props.type === IndexationType.SUBMITTED &&
           "!border-blue-400 !bg-blue-300 !shadow-blue-400",
 
+        props.type === IndexationType["checking-indexation-state"] &&
+          "!border-sky-400 !bg-sky-300 !shadow-sky-400",
+
+        props.type === IndexationType["first-check-done-but-not-indexed"] &&
+          "!border-indigo-400 !bg-indigo-300 !shadow-indigo-400",
+
         "border-orange-300 bg-orange-100 shadow-orange-300",
 
         !props.isVisible && "opacity-20 hover:opacity-100"
@@ -59,7 +66,7 @@ const Bar: React.FC<{
     >
       <Tooltip
         direction={"bottom"}
-        align={"center"}
+        align={props.tooltipPosition || "center"}
         // @ts-ignore
         label={
           <div>
@@ -90,6 +97,8 @@ const getAllErrorsWithoutMainStats = (stats: {
         IndexationType.NOT_INDEXED,
         IndexationType.INDEXING,
         IndexationType.SUBMITTED,
+        IndexationType["first-check-done-but-not-indexed"],
+        IndexationType["checking-indexation-state"],
         "total",
       ].includes(key as IndexationType)
   )
@@ -132,29 +141,10 @@ export const Wrapper: React.FC<Props> = (props) => {
           onClick={() => props.onToggleFilter(IndexationType.NOT_INDEXED)}
         />
 
-        {allErrorsStats.map((key) => {
-          if (props.stats[key] === 0) return <></>
-
-          return (
-            <Bar
-              key={key}
-              value={props.stats[key]}
-              total={props.stats.total}
-              isVisible={
-                !Boolean(
-                  props.filterIndexationState &&
-                    props.filterIndexationState !== IndexationType[key]
-                )
-              }
-              type={IndexationType[key]}
-              onClick={() => props.onToggleFilter(IndexationType[key])}
-            />
-          )
-        })}
-
         <Bar
           value={props.stats[IndexationType.SUBMITTED]}
           total={props.stats.total}
+          tooltipPosition="right"
           isVisible={
             !Boolean(
               props.filterIndexationState &&
@@ -166,8 +156,47 @@ export const Wrapper: React.FC<Props> = (props) => {
         />
 
         <Bar
+          value={props.stats[IndexationType["checking-indexation-state"]]}
+          total={props.stats.total}
+          tooltipPosition="right"
+          isVisible={
+            !Boolean(
+              props.filterIndexationState &&
+                props.filterIndexationState !==
+                  IndexationType["checking-indexation-state"]
+            )
+          }
+          type={IndexationType["checking-indexation-state"]}
+          onClick={() =>
+            props.onToggleFilter(IndexationType["checking-indexation-state"])
+          }
+        />
+
+        <Bar
+          value={
+            props.stats[IndexationType["first-check-done-but-not-indexed"]]
+          }
+          total={props.stats.total}
+          tooltipPosition="right"
+          isVisible={
+            !Boolean(
+              props.filterIndexationState &&
+                props.filterIndexationState !==
+                  IndexationType["first-check-done-but-not-indexed"]
+            )
+          }
+          type={IndexationType["first-check-done-but-not-indexed"]}
+          onClick={() =>
+            props.onToggleFilter(
+              IndexationType["first-check-done-but-not-indexed"]
+            )
+          }
+        />
+
+        <Bar
           value={props.stats[IndexationType.INDEXING]}
           total={props.stats.total}
+          tooltipPosition="right"
           isVisible={
             !Boolean(
               props.filterIndexationState &&
@@ -177,6 +206,29 @@ export const Wrapper: React.FC<Props> = (props) => {
           type={IndexationType.INDEXING}
           onClick={() => props.onToggleFilter(IndexationType.INDEXING)}
         />
+
+        {allErrorsStats.map((key, index) => {
+          if (props.stats[key] === 0) return <></>
+
+          return (
+            <Bar
+              key={key}
+              value={props.stats[key]}
+              total={props.stats.total}
+              tooltipPosition={
+                index === allErrorsStats.length - 1 ? "right" : "center"
+              }
+              isVisible={
+                !Boolean(
+                  props.filterIndexationState &&
+                    props.filterIndexationState !== IndexationType[key]
+                )
+              }
+              type={IndexationType[key]}
+              onClick={() => props.onToggleFilter(IndexationType[key])}
+            />
+          )
+        })}
       </div>
     </div>
   )

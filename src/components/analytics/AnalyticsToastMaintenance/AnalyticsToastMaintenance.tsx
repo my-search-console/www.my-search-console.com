@@ -1,8 +1,6 @@
-import React from "react"
 import { InformationCircleIcon } from "@heroicons/react/20/solid"
+import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import classNames from "classnames"
-import { SmallStyle } from "../../UI/Button/Button"
 
 export const AnalyticsToastMaintenance: React.FC = () => {
   return (

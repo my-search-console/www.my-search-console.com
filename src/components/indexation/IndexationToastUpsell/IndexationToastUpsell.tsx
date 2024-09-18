@@ -1,13 +1,13 @@
-import React, { useEffect } from "react"
+import { PaymentPlansEntity } from "@foudroyer/interfaces"
 import { InformationCircleIcon } from "@heroicons/react/20/solid"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/IndexationToastUpsell.container"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import classNames from "classnames"
+import React from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { SmallStyle } from "../../UI/Button/Button"
-import { PaymentPlansEntity } from "@my-search-console/interfaces"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/IndexationToastUpsell.container"
 
 export const Wrapper: React.FC<{
   plans: Set<PaymentPlansEntity>

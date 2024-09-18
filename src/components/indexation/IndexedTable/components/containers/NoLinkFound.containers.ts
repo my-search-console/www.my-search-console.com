@@ -1,4 +1,3 @@
-import { PageEntity } from "@my-search-console/interfaces"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../../redux/actions"
 import { RootState } from "../../../../../redux/store"

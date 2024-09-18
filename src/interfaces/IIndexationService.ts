@@ -1,4 +1,4 @@
-import { IndexationGoogleCloudApiKeyEntity } from "@my-search-console/interfaces"
+import { IndexationGoogleCloudApiKeyEntity } from "@foudroyer/interfaces"
 import { IndexationSearchEngines } from "../entities/SearchEngineEntity"
 import { IApiResponse, IRepositoryResponse } from "./IApiResponse"
 
@@ -38,8 +38,17 @@ export interface IIndexationService {
     websiteId: string
   }): Promise<GetGoogleApiKeysResponse>
 
+  refreshGoogleApiKey(params: { id: string }): Promise<AddGoogleApiKeyResponse>
+
   addGoogleApiKey(params: {
     websiteId: string
     key: string
   }): Promise<AddGoogleApiKeyResponse>
+
+  updateIndexationAutoSettings(params: {
+    websiteId: string
+    indexation_auto_activated: boolean
+    indexation_auto_update_pages_activated: boolean
+    sources: string[]
+  }): Promise<IApiResponse<any>>
 }

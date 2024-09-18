@@ -1,14 +1,14 @@
-import React, { useEffect } from "react"
 import { Chart } from "chart.js/auto"
 import "chartjs-adapter-date-fns"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/IndexationAutoChart.container"
-import { Loader } from "../../general/Loader/Loader"
-import { bigNumberFormatter } from "../../../utils/bigNumberFormatter"
-import dayjs from "dayjs"
+import React, { useEffect } from "react"
 import { useIntl } from "react-intl"
+import { bigNumberFormatter } from "../../../utils/bigNumberFormatter"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { Loader } from "../../general/Loader/Loader"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/IndexationAutoChart.container"
 
 type Props = {
   graph: Array<{
@@ -16,11 +16,13 @@ type Props = {
     done: number
     queue: number
   }>
+  noTotalFromQueue: boolean
   isFetching: boolean
 }
 
 const RenderChart: React.FC<{
   date: Array<{ date: Date; done: number; queue: number }>
+  displayEmptyState: boolean
   isFetching: boolean
 }> = (props) => {
   const intl = useIntl()
@@ -170,6 +172,18 @@ const RenderChart: React.FC<{
   return (
     <>
       <div className="relative m-auto aspect-[16/3] w-full">
+        {props.displayEmptyState && (
+          <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center bg-white bg-opacity-90">
+            <div className="max-w-md text-center">
+              <h2 className=" font-display text-sm font-semibold">
+                <FormattedMessage id="chart/empty-state/title" />
+              </h2>
+              <p className="text-sm text-slate-400">
+                <FormattedMessage id="chart/empty-state/description" />
+              </p>
+            </div>
+          </div>
+        )}
         <canvas id="myChart"></canvas>
       </div>
     </>
@@ -180,7 +194,12 @@ const Wrapper: React.FC<Props> = (props) => {
   return (
     <div className="relative w-full rounded-lg border border-slate-100 bg-white p-2 sm:p-4">
       {props.isFetching && <Loader />}
-      <RenderChart date={props.graph} isFetching={props.isFetching} />
+
+      <RenderChart
+        displayEmptyState={props.noTotalFromQueue}
+        date={props.graph}
+        isFetching={props.isFetching}
+      />
     </div>
   )
 }

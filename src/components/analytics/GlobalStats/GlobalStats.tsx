@@ -1,24 +1,24 @@
-import React from "react"
 import {
   ArrowDownRightIcon,
   ArrowRightIcon,
   ArrowUpRightIcon,
 } from "@heroicons/react/20/solid"
-import { ContainerProps, connector } from "./containers/GlobalStats.container"
+import classNames from "classnames"
+import React from "react"
+import { useIntl } from "react-intl"
 import {
   RankingOrderByType,
   RankingStatsForFrontend,
 } from "../../../entities/RankingWebsiteEntity"
-import classNames from "classnames"
 import {
   bigNumberFormatter,
   universalFormatNumber,
 } from "../../../utils/bigNumberFormatter"
+import { setArrowIcon, setEvolutionColor } from "../../../utils/setEvolution"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../general/Loader/Loader"
 import { Tooltip } from "../../UI/Tooltip"
-import { useIntl } from "react-intl"
-import { setArrowIcon, setEvolutionColor } from "../../../utils/setEvolution"
+import { connector, ContainerProps } from "./containers/GlobalStats.container"
 
 function isDecimal(n: number) {
   return n % 1 !== 0
@@ -92,7 +92,7 @@ const Item: React.FC<{
         className={classNames(
           "relative cursor-pointer overflow-hidden rounded-lg border border-slate-100 transition-all duration-300 ease-in-out hover:border-transparent hover:ring-2",
           props.selected && "border-transparent ring-2",
-          props.type === "clicks" && "ring-blue-100",
+          props.type === "clicks" && "ring-pink-100",
           props.type === "impressions" && "ring-fuchsia-100",
           props.type === "position" && "ring-amber-100",
           props.type === "click_through_rate" && "ring-sky-100"
@@ -105,7 +105,7 @@ const Item: React.FC<{
             <FormattedMessage id={`analytics/histogram/filter/${props.type}`} />
           </dt>
           <dd className="items-center justify-between sm:flex">
-            <div className="flex flex-wrap items-center text-2xl font-semibold text-blue-500">
+            <div className="flex flex-wrap items-center text-2xl font-semibold text-pink-500">
               {formatNumber(props.value, props.style)}
             </div>
             <div className="text-right">

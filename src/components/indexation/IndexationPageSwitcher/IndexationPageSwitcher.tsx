@@ -1,10 +1,10 @@
 import React from "react"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/IndexationPageSwitcher.containers"
 import { IndexationAutoPage } from "../IndexationAutoPage/IndexationAutoPage"
 import { IndexationManualPage } from "../IndexationManualPage/IndexationManualPage"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/IndexationPageSwitcher.containers"
 
 import { IndexationReportPage } from "../IndexationReportPage/IndexationReportPage"
 

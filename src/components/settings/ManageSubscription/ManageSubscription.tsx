@@ -1,22 +1,22 @@
-import React, { useEffect } from "react"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/ManageSubscription.container"
-import { SettingSection } from "../SettingSection/SettingSection"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { CreditCardIcon, XMarkIcon } from "@heroicons/react/20/solid"
-import { PaymentEntity } from "@my-search-console/interfaces"
+import { PaymentEntity } from "@foudroyer/interfaces"
+import { CreditCardIcon, PlayIcon, XMarkIcon } from "@heroicons/react/20/solid"
+import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ArrowDownCircleIcon, SparklesIcon } from "@heroicons/react/24/solid"
+import { ButtonSecondary } from "../../UI/Button/Button"
+import { SettingSection } from "../SettingSection/SettingSection"
 import { SettingsInvoicesModal } from "../SettingsInvoicesModal/SettingsInvoicesModal"
-import { DocumentChartBarIcon } from "@heroicons/react/24/outline"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/ManageSubscription.container"
 
 export const Wrapper: React.FC<{
   payments: PaymentEntity[]
   isYearly: boolean
   isLoading: boolean
   onOpenInvoicesModal: () => void
+  onOpenUnsubscribe: () => void
+  onResume: () => void
 }> = (props) => {
   if (props.payments.length === 0) return <></>
 
@@ -33,6 +33,21 @@ export const Wrapper: React.FC<{
             Your subscription will end at:{" "}
             {new Date(payment.cancellation_effective_date).toISOString()}
           </div>
+        </div>
+      </SettingSection>
+    )
+
+  if (payment.paused_at)
+    return (
+      <SettingSection
+        title={<FormattedMessage id="settings/resume/title" />}
+        description={<FormattedMessage id="settings/resume/description" />}
+      >
+        <div className="flex flex-col items-start gap-2">
+          <ButtonSecondary size="sm" onClick={props.onResume}>
+            <PlayIcon className="mr-1 h-5 w-5" />{" "}
+            <FormattedMessage id="settings/resume/button" />
+          </ButtonSecondary>
         </div>
       </SettingSection>
     )
@@ -56,12 +71,11 @@ export const Wrapper: React.FC<{
             <FormattedMessage id="settings/payments/update" />
           </ButtonSecondary>
         </a>
-        <a href={payment.cancel_url} target="_blank">
-          <ButtonSecondary size="sm">
-            <XMarkIcon className="mr-1 h-5 w-5" />
-            <FormattedMessage id="settings/payments/cancel" />
-          </ButtonSecondary>
-        </a>
+
+        <ButtonSecondary size="sm" onClick={props.onOpenUnsubscribe}>
+          <XMarkIcon className="mr-1 h-5 w-5" />
+          <FormattedMessage id="settings/payments/cancel" />
+        </ButtonSecondary>
       </div>
       <SettingsInvoicesModal />
     </SettingSection>

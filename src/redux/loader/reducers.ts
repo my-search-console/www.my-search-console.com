@@ -1,12 +1,12 @@
-import * as types from "./types";
+import * as types from "./types"
 
 interface PlayState {
-  isLoading: boolean;
+  isLoading: boolean
 }
 
 const initialState: PlayState = {
   isLoading: false,
-};
+}
 
 export function loaderReducer(
   state = initialState,
@@ -16,8 +16,8 @@ export function loaderReducer(
     return {
       ...state,
       isLoading: action.payload.value,
-    };
+    }
   }
 
-  return state;
+  return state
 }

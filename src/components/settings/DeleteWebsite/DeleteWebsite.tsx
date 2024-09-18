@@ -1,11 +1,11 @@
-import React, { useState } from "react"
-import { ContainerProps, connector } from "./containers/DeleteWebsite.container"
-import { SettingSection } from "../SettingSection/SettingSection"
-import { SmallStyle } from "../../UI/Button/Button"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import classNames from "classnames"
+import { PaymentPlansEntity } from "@foudroyer/interfaces"
 import { TrashIcon } from "@heroicons/react/20/solid"
-import { PaymentPlansEntity } from "@my-search-console/interfaces"
+import classNames from "classnames"
+import React, { useState } from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { SmallStyle } from "../../UI/Button/Button"
+import { SettingSection } from "../SettingSection/SettingSection"
+import { connector, ContainerProps } from "./containers/DeleteWebsite.container"
 
 export const Wrapper: React.FC<{
   isFetching: boolean

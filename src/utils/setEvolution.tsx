@@ -1,7 +1,7 @@
 import {
-  ArrowUpRightIcon,
   ArrowDownRightIcon,
   ArrowRightIcon,
+  ArrowUpRightIcon,
 } from "@heroicons/react/20/solid"
 import React, { ReactNode } from "react"
 

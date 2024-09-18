@@ -1,5 +1,5 @@
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
 import React from "react"
-import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image"
 
 type Props = {
   src?: any

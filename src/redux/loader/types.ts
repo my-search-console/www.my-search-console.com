@@ -1,7 +1,7 @@
-export const setLoading = "loader/setLoading";
+export const setLoading = "loader/setLoading"
 export interface setLoadingAction {
-  type: typeof setLoading;
-  payload: { value: boolean };
+  type: typeof setLoading
+  payload: { value: boolean }
 }
 
-export type DarkModeActionTypes = setLoadingAction;
+export type DarkModeActionTypes = setLoadingAction

@@ -11,10 +11,14 @@ export interface RankingState {
   stats: RankingStatsForFrontend
   orderBy: RankingOrderByType
   histogramModal: {
-    type: "device" | "query" | "country" | "source"
+    type: "device" | "query" | "country" | "source" | "page"
     isOpen: boolean
     isFetching: boolean
     stats: RankingStatEntity[]
+  }
+  analyticsDiscoverModal: {
+    isOpen: boolean
+    isFetching: boolean
   }
   isFinished: boolean
   histogramView: RankingOrderByType
@@ -36,6 +40,10 @@ const initialState: RankingState = {
     isFetching: false,
     stats: [],
   },
+  analyticsDiscoverModal: {
+    isOpen: false,
+    isFetching: false,
+  },
   histogramView: "clicks",
   stats: {
     global: {
@@ -53,6 +61,7 @@ const initialState: RankingState = {
     devices: [],
     date: [],
     countries: [],
+    pages: [],
   },
   analyticsToastDataLateAccepted: true,
   analyticsComingSoonModal: {
@@ -92,6 +101,34 @@ export function rankingReducer(
       analyticsComingSoonModal: {
         ...state.analyticsComingSoonModal,
         isOpen: action.payload.value,
+      },
+    }
+  }
+
+  /**
+   *
+   *
+   * ACTIVATE MODAL
+   *
+   *
+   */
+
+  if (action.type === types.AnalyticsSetAnalyticsDiscoverModalIsOpen) {
+    return {
+      ...state,
+      analyticsDiscoverModal: {
+        ...state.analyticsDiscoverModal,
+        isOpen: action.payload.value,
+      },
+    }
+  }
+
+  if (action.type === types.AnalyticsSetAnalyticsDiscoverModalIsFetching) {
+    return {
+      ...state,
+      analyticsDiscoverModal: {
+        ...state.analyticsDiscoverModal,
+        isFetching: action.payload.value,
       },
     }
   }

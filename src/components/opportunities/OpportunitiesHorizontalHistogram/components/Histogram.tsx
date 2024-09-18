@@ -1,4 +1,4 @@
-import { OpportunityEntity } from "@my-search-console/interfaces"
+import { OpportunityEntity } from "@foudroyer/interfaces"
 import React from "react"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../../general/Loader/Loader"

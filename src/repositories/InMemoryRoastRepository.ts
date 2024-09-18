@@ -1,13 +1,13 @@
 import { uniqWith } from "ramda"
 import {
-  IRoastRepository,
   FetchRoastResponse,
-  RoastRoastResponse,
+  IRoastRepository,
   RoastRefreshResponse,
+  RoastRoastResponse,
 } from "../interfaces/IRoastRepository"
 
+import { ErrorEntity } from "@foudroyer/interfaces"
 import { RoastWithReportEntity } from "../entities/RoastEntity"
-import { ErrorEntity } from "@my-search-console/interfaces"
 
 export class InMemoryRoastRepository implements IRoastRepository {
   private websites: RoastWithReportEntity[] = []

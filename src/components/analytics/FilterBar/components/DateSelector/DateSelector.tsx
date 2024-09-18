@@ -1,13 +1,12 @@
 import { Menu, Transition } from "@headlessui/react"
-import { getSecondaryStyle } from "../../../../UI/Button/Button"
-import { Fragment } from "react"
-import React from "react"
-import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
 import { useLocation } from "@reach/router"
-import { DateSelectorItem } from "./DateSelectorItem"
 import dayjs from "dayjs"
-import { connector, ContainerProps } from "./containers/DateSelector.container"
+import React, { Fragment } from "react"
+import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
+import { getSecondaryStyle } from "../../../../UI/Button/Button"
 import { ArrowSelector } from "../ArrowSelector/ArrowSelector"
+import { connector, ContainerProps } from "./containers/DateSelector.container"
+import { DateSelectorItem } from "./DateSelectorItem"
 
 function displayFilter(props: {
   period: string | null
@@ -45,11 +44,7 @@ function displayFilter(props: {
   }
 }
 
-export const Wrapper: React.FC<{
-  isPremium: boolean
-  isDemo: boolean
-  onSetDate: (params: { period: string | null; date: string | null }) => void
-}> = (props) => {
+export const Wrapper: React.FC<ContainerProps> = (props) => {
   const url = new URL(useLocation().href)
   const date = url.searchParams.get("date")
   const period = url.searchParams.get("period")
@@ -96,7 +91,6 @@ export const Wrapper: React.FC<{
               period="30d"
               date={null}
               formattedMessage="analytics/filters/30d"
-              // locked={!props.isPremium && !props.isDemo}
             />
 
             <hr className="my-2 border-slate-100"></hr>
@@ -109,7 +103,13 @@ export const Wrapper: React.FC<{
                 .subtract(1, "month")
                 .format("YYYY-MM-DD")}
               formattedMessage="analytics/filters/last-month"
-              // locked={!props.isPremium && !props.isDemo}
+            />
+
+            <DateSelectorItem
+              onSetDate={props.onOpenCalendar}
+              period={"30d"}
+              date={null}
+              formattedMessage="analytics/filters/calendar"
             />
           </div>
         </Menu.Items>

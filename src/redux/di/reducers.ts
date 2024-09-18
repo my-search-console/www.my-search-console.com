@@ -1,6 +1,6 @@
-import * as types from "./types"
-import { TestModule } from "../../modules/TestModule"
 import { Modules } from "../../interfaces/IModule"
+import { TestModule } from "../../modules/TestModule"
+import * as types from "./types"
 
 type DiState = Modules
 

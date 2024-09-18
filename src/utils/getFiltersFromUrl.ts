@@ -7,6 +7,7 @@ export const getFiltersFromUrl = (params: { url: string }) => {
     const query = filter.searchParams.get("query")
     const country = filter.searchParams.get("country")
     const device = filter.searchParams.get("device")
+    const page = filter.searchParams.get("page")
     const period = filter.searchParams.get("period")
     const orderBy = filter.searchParams.get("orderBy") as
       | "clicks"
@@ -27,6 +28,7 @@ export const getFiltersFromUrl = (params: { url: string }) => {
       query,
       country,
       device,
+      page,
       orderBy,
       from,
       to,
@@ -77,6 +79,7 @@ export const getFiltersFromUrl = (params: { url: string }) => {
       device: null,
       orderBy: null,
       query: null,
+      page: null,
       source: null,
       from: dayjs().subtract(11, "days").format("YYYY-MM-DD"),
       to: dayjs().subtract(4, "days").format("YYYY-MM-DD"),

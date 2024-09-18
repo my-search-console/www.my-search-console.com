@@ -1,7 +1,7 @@
+import dayjs from "dayjs"
 import { RankingStatEntity } from "../entities/RankingWebsiteEntity"
 import { RoastWithReportEntity } from "../entities/RoastEntity"
 import { IRepositoryResponse } from "../interfaces/IApiResponse"
-import { IKeywordsRepository } from "../interfaces/IKeywordsRepository"
 import {
   FetchRoastResponse,
   IRoastRepository,
@@ -9,7 +9,6 @@ import {
   RoastRoastResponse,
 } from "../interfaces/IRoastRepository"
 import { ApiService } from "../services/ApiService"
-import dayjs from "dayjs"
 
 export class ApiRoastRepository implements IRoastRepository {
   constructor(private apiService: ApiService) {}

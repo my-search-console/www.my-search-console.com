@@ -7,19 +7,20 @@ const mapState = (state: RootState) => ({
   orderBy: state.ranking.orderBy,
   isFetching: state.spread.isFetching,
   isRealUserData: state.spread.isRealUserData,
+  type: state.spread.type,
 })
 
 const mapDispatch = (dispatch: any) => ({
-  onMount: () => {},
-  onShow: () => {
-    dispatch(actions.spread.$fetchRealData())
+  onMount: () => {
+    dispatch(actions.spread.$fetchIfConnected())
   },
-  onFilter: (date: string) => {
-    // dispatch(actions.ranking.$RankingSetOneDayDate({ date }))
+  onShow: () => {
+    dispatch(actions.spread.$fetchOrConnect())
   },
   onDownload: () => {
     dispatch(actions.spread.$download())
   },
+  onFilter() {},
 })
 
 export const connector = connect(mapState, mapDispatch)

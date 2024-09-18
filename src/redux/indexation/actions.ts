@@ -1,21 +1,21 @@
-import { IndexationSearchEngines } from "./../../entities/SearchEngineEntity"
-import dayjs from "dayjs"
-import * as types from "./types"
-import { ThunkAction } from "redux-thunk"
-import { RootState } from "../store"
-import { actions } from "../actions"
 import {
   ErrorEntity,
   IndexationSourceType,
   IndexationType,
   PageEntity,
   WebsiteEntity,
-} from "@my-search-console/interfaces"
-import { NotificationMessageEntity } from "../../entities/NotificationEntity"
+} from "@foudroyer/interfaces"
+import dayjs from "dayjs"
 import delay from "delay"
-import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
-import { InternalErrorEntity } from "../../entities/InternalErrorEntity"
+import { ThunkAction } from "redux-thunk"
 import { localStorageKeys } from "../../constants/localStorageKeys"
+import { ModalKeys } from "../../entities/ModalEntity"
+import { NotificationMessageEntity } from "../../entities/NotificationEntity"
+import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
+import { actions } from "../actions"
+import { RootState } from "../store"
+import { IndexationSearchEngines } from "./../../entities/SearchEngineEntity"
+import * as types from "./types"
 
 export const store = (
   payload: types.StoreAction["payload"]
@@ -32,6 +32,13 @@ export const IndexationStoreStats = (
   payload: types.IndexationStoreStatsAction["payload"]
 ): types.IndexationActionTypes => ({
   type: types.IndexationStoreStats,
+  payload,
+})
+
+export const IndexationSettingsToggle = (
+  payload: types.IndexationSettingsToggleAction["payload"]
+): types.IndexationActionTypes => ({
+  type: types.IndexationSettingsToggle,
   payload,
 })
 
@@ -324,12 +331,18 @@ export const $IndexationAddManuallySubmit =
     )
 
     if (response.error === true) {
-      return dispatcher(
-        actions.notifications.create({
-          type: "error",
-          message: response.code,
-        })
-      )
+      if (response.code === ErrorEntity.INDEXATION_WITHOUT_SEARCH_ENGINE) {
+        return dispatcher(
+          actions.indexation.IndexationToggleSearchEngineModal({ value: true })
+        )
+      } else {
+        return dispatcher(
+          actions.notifications.create({
+            type: "error",
+            message: response.code,
+          })
+        )
+      }
     }
 
     dispatcher(
@@ -341,6 +354,7 @@ export const $IndexationAddManuallySubmit =
         type: "success",
       })
     )
+    dispatcher(actions.indexation.$fetch())
   }
 
 // ********************************************************* /
@@ -504,26 +518,13 @@ export const $indexAll =
     try {
       if (sources.length === 0) {
         return dispatcher(
-          actions.notifications.create({
-            type: "warning",
-            message: NotificationMessageEntity.INDEXATION_NO_FILTER_SELECTED,
-          })
-        )
-      }
-
-      if (payments.plans.size === 0) {
-        return dispatcher(
-          actions.payments.$PaymentsOpenModal({
-            value: true,
-            type: "indexation",
-            source: "indexation/index-all",
-          })
+          actions.indexation.IndexationToggleSearchEngineModal({ value: true })
         )
       }
 
       dispatcher(actions.indexation.setFetching({ fetching: true }))
 
-      await di.PagesRepository.SendAdvancedFilterPagesToQueue({
+      const response = await di.PagesRepository.SendAdvancedFilterPagesToQueue({
         filter: {
           website: website.id,
           indexation: pages.filter.panel.applied.indexation_state,
@@ -540,9 +541,29 @@ export const $indexAll =
         sources,
       })
 
-      await delay(3000)
-
       dispatcher(actions.indexation.setFetching({ fetching: false }))
+
+      if (
+        response.error &&
+        response.code === ErrorEntity.INDEXATION_BULK_INDEX_NOT_ALLOWED
+      ) {
+        return dispatcher(
+          actions.payments.$PaymentsOpenModal({
+            value: true,
+            type: "indexation",
+            source: "indexation/index-all",
+          })
+        )
+      }
+
+      if (response.error) {
+        return dispatcher(
+          actions.notifications.create({
+            type: "error",
+            message: response.code,
+          })
+        )
+      }
 
       updateAllIndexingState({
         pages: pages.pages,
@@ -556,6 +577,81 @@ export const $indexAll =
       })
 
       dispatcher(actions.modal.$openIndexAllSuccess())
+
+      dispatcher(actions.indexation.filter.fields.$reset())
+    } catch (error) {}
+  }
+
+export const $checkAll =
+  (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
+    const {
+      indexation: pages,
+      websites: { website },
+      di,
+    } = getState()
+
+    if (!website) return false
+
+    try {
+      dispatcher(actions.indexation.setFetching({ fetching: true }))
+
+      const response = await di.PagesRepository.SendAdvancedFilterPagesToCheck({
+        filter: {
+          website: website.id,
+          indexation: pages.filter.panel.applied.indexation_state,
+          from: pages.filter.panel.applied.from,
+          to: pages.filter.panel.applied.to,
+          limit: 100000000000,
+          offset: pages.pagination.page,
+          sort: "desc",
+          search: pages.filter.panel.applied.search_value,
+          searchRule: pages.filter.panel.applied.search_rule,
+          hideRequestIndexingState:
+            !pages.filter.panel.applied.show_indexed_pages,
+        },
+        sources: [IndexationSourceType.google],
+      })
+
+      dispatcher(actions.indexation.setFetching({ fetching: false }))
+
+      if (
+        response.error &&
+        response.code === ErrorEntity.INDEXATION_BULK_INDEX_NOT_ALLOWED
+      ) {
+        return dispatcher(
+          actions.payments.$PaymentsOpenModal({
+            value: true,
+            type: "indexation",
+            source: "indexation/index-all",
+          })
+        )
+      }
+
+      if (response.error) {
+        return dispatcher(
+          actions.notifications.create({
+            type: "error",
+            message: response.code,
+          })
+        )
+      }
+
+      updateAllIndexingState({
+        pages: pages.pages,
+        sources: [IndexationSourceType.google],
+        state: "finished",
+        dispatcher,
+      })
+
+      pages.pages.forEach(({ url }) => {
+        dispatcher(dispatcher(PagesIndexationRemoveIndexingState({ id: url })))
+      })
+
+      dispatcher(
+        actions.notifications.create({
+          type: "success",
+        })
+      )
 
       dispatcher(actions.indexation.filter.fields.$reset())
     } catch (error) {}
@@ -803,70 +899,18 @@ export const IndexationAutoIndexationModalToggleActivate = (
 export const $IndexationToggle =
   (params: {
     website: WebsiteEntity
-    type: "source" | "auto-indexing"
-    source?: IndexationSourceType
+    source: IndexationSourceType
   }): ThunkAction<any, RootState, any, any> =>
   async (dispatcher, getState) => {
-    const { di, payments } = getState()
+    const { di } = getState()
 
-    const updateSources = (value: IndexationSourceType) => {
-      const sources = params.website.indexation_auto_activated_sources
+    const response = await di.PagesRepository.IndexationSourceToggle({
+      websiteId: params.website.id,
+      source: params.source,
+    })
 
-      if (sources.includes(value)) {
-        return sources.filter((source) => source !== value)
-      } else {
-        return [...sources, value]
-      }
-    }
-
-    const mustAddGoogleCloudApiKey =
-      params.type === "source" &&
-      params.source === "google" &&
-      params.website.google_api_keys.length === 0
-    const mustAddIndexNowKey =
-      params.type === "source" &&
-      (params.source === "bing" ||
-        params.source === "yandex" ||
-        params.source === "naver") &&
-      !params.website.index_now_installed
-
-    if (mustAddGoogleCloudApiKey) {
-      return dispatcher(
-        actions.websites.setCredentialsIsOpen({
-          value: true,
-          website: params.website,
-        })
-      )
-    }
-    if (mustAddIndexNowKey) {
-      return dispatcher(
-        actions.websites.WebsiteIndexNowModalSetOpen({
-          value: true,
-          website: params.website,
-        })
-      )
-    }
-
-    const autoIndexingValue =
-      params.type === "auto-indexing"
-        ? !Boolean(params.website.indexation_auto_activated)
-        : Boolean(params.website.indexation_auto_activated)
-    const sourcesValue =
-      params.type === "source" && params.source
-        ? updateSources(params.source)
-        : params.website.indexation_auto_activated_sources
-
-    if (!params.website) return
-
-    const keys = params.website.indexation_auto_activated_sources
-
-    if (params.type === "auto-indexing") {
-      if (!keys.length) {
-        return dispatcher(
-          actions.indexation.IndexationToggleSearchEngineModal({ value: true })
-        )
-      }
-      if (payments.plans.size === 0) {
+    if (response.error) {
+      if (response.code === ErrorEntity.INDEXATION_AUTO_INDEX_NOT_ALLOWED) {
         return dispatcher(
           actions.payments.$PaymentsOpenModal({
             value: true,
@@ -874,47 +918,34 @@ export const $IndexationToggle =
             source: "indexation/auto-index",
           })
         )
+      } else if (
+        response.code ===
+        ErrorEntity.SHOULD_CREATE_GOOGLE_KEYS_BEFORE_ENABLE_INDEXATION
+      ) {
+        return dispatcher(
+          actions.websites.setCredentialsIsOpen({
+            value: true,
+            website: params.website,
+          })
+        )
+      } else if (
+        response.code ===
+        ErrorEntity.SHOULD_INSTALL_INDEX_NOW_BEFORE_ENABLE_INDEXATION
+      ) {
+        return dispatcher(
+          actions.websites.WebsiteIndexNowModalSetOpen({
+            value: true,
+            website: params.website,
+          })
+        )
+      } else {
+        return dispatcher(
+          actions.notifications.create({
+            type: "error",
+            message: response.code,
+          })
+        )
       }
-    }
-
-    dispatcher(actions.indexation.IndexationAutoSetFetching({ value: true }))
-
-    const searchEngines = {
-      google: sourcesValue.includes("google"),
-      yandex: sourcesValue.includes("yandex"),
-      bing: sourcesValue.includes("bing"),
-      naver: sourcesValue.includes("naver"),
-    }
-
-    const isActive = !sourcesValue.length ? false : autoIndexingValue
-
-    const response = await di.PagesRepository.IndexationAutoSave({
-      websiteId: params.website.id,
-      body: {
-        isActive: isActive,
-        searchEngines,
-      },
-    })
-
-    dispatcher(
-      actions.websites.updateWebsite({
-        website: {
-          ...params.website,
-          indexation_auto_activated_sources: sourcesValue,
-          indexation_auto_activated: isActive,
-        },
-      })
-    )
-
-    dispatcher(actions.indexation.IndexationAutoSetFetching({ value: false }))
-
-    if (response.error) {
-      return dispatcher(
-        actions.notifications.create({
-          type: "error",
-          message: response.code,
-        })
-      )
     }
 
     dispatcher(
@@ -924,11 +955,30 @@ export const $IndexationToggle =
         timeout: 2000,
       })
     )
+
+    dispatcher(
+      actions.websites.updateWebsite({
+        website: {
+          ...params.website,
+          indexation_auto_activated_sources: response.body.sources,
+        },
+      })
+    )
   }
 
 /**
  *
+ *
+ *
+ *
+ *
+ *
  * Indexation Queue
+ *
+ *
+ *
+ *
+ *
  *
  */
 
@@ -965,7 +1015,26 @@ export const $IndexationAutoQueueFetch =
       )
     }
 
-    dispatcher(actions.indexation.IndexationAutoQueueStore(response.body))
+    const data = {
+      ...response.body,
+      graph:
+        response.body.stats.total > 0
+          ? response.body.graph
+          : Array(30)
+              .fill(0)
+              .map((item, index) => ({
+                ...item,
+                date: dayjs()
+                  .subtract(30 - index, "day")
+                  .format("YYYY-MM-DD"),
+                done: Math.round((indexation.stats.total / 30) * index),
+                queue: Math.round(
+                  indexation.stats.total - (indexation.stats.total / 30) * index
+                ),
+              })),
+    }
+
+    dispatcher(actions.indexation.IndexationAutoQueueStore(data))
   }
 
 /**
@@ -1187,6 +1256,168 @@ export const $IndexationDownloadGoogleApiKey =
         })
       )
     }
+  }
+
+export const $IndexationRefreshGoogleApiKey =
+  (id: string): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const {
+      di,
+      websites: { website },
+    } = getState()
+
+    if (!website) return false
+
+    const response = await di.IndexationService.refreshGoogleApiKey({
+      id,
+    })
+
+    if (response.error) {
+      return dispatch(
+        actions.notifications.create({
+          type: "error",
+          message: response.code,
+        })
+      )
+    } else {
+      dispatch(
+        actions.notifications.create({
+          type: "success",
+        })
+      )
+      dispatch(actions.websites.$WebsiteStoreGoogleApiKeys(website))
+      dispatch(actions.websites.$fetchAll({ force: true }))
+    }
+  }
+
+export const $IndexationAutoSettingsModalClose =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di } = getState()
+
+    di.LocationService.navigate(di.LocationService.getPathname(), {
+      disableScroll: true,
+    })
+  }
+
+export const IndexationAutoSettingsModalSubmitting = (
+  payload: types.IndexationAutoSettingsModalSubmittingAction["payload"]
+): types.IndexationActionTypes => ({
+  type: types.IndexationAutoSettingsModalSubmitting,
+  payload,
+})
+
+export const $IndexationAutoSettingsModalSave =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di, indexation, websites } = getState()
+
+    if (!websites.website) return
+
+    dispatch(
+      actions.indexation.IndexationAutoSettingsModalSubmitting({ value: true })
+    )
+
+    const response = await di.IndexationService.updateIndexationAutoSettings({
+      websiteId: indexation.indexation_auto_settings_modal.website_id as string,
+      indexation_auto_activated:
+        indexation.indexation_auto_settings_modal.indexation_auto_activated,
+      indexation_auto_update_pages_activated:
+        indexation.indexation_auto_settings_modal
+          .indexation_auto_update_pages_activated,
+      sources: websites.website.indexation_auto_activated_sources,
+    })
+
+    dispatch(
+      actions.indexation.IndexationAutoSettingsModalSubmitting({ value: false })
+    )
+
+    if (response.error) {
+      if (response.code === ErrorEntity.INDEXATION_AUTO_INDEX_NOT_ALLOWED) {
+        return dispatch(
+          actions.payments.$PaymentsOpenModal({
+            value: true,
+            type: "indexation",
+            source: "indexation/auto-index",
+          })
+        )
+      } else if (
+        response.code === ErrorEntity.INDEXATION_WITHOUT_SEARCH_ENGINE
+      ) {
+        return dispatch(
+          actions.indexation.IndexationToggleSearchEngineModal({ value: true })
+        )
+      } else {
+        return dispatch(
+          actions.notifications.create({
+            type: "error",
+            message: response.code,
+          })
+        )
+      }
+    }
+
+    dispatch(
+      actions.websites.updateWebsite({
+        website: {
+          ...websites.website,
+          indexation_auto_activated:
+            indexation.indexation_auto_settings_modal.indexation_auto_activated,
+          indexation_auto_update_pages_activated:
+            indexation.indexation_auto_settings_modal
+              .indexation_auto_update_pages_activated,
+        },
+      })
+    )
+
+    dispatch(
+      actions.notifications.create({
+        type: "success",
+        message: NotificationMessageEntity.SYNC_SUCCESS,
+        timeout: 2000,
+      })
+    )
+
+    dispatch(actions.indexation.$IndexationAutoSettingsModalClose())
+  }
+
+export const IndexationAutoSettingsModalChange = (
+  payload: types.IndexationAutoSettingsModalChangeAction["payload"]
+): types.IndexationActionTypes => ({
+  type: types.IndexationAutoSettingsModalChange,
+  payload,
+})
+
+export const IndexationAutoSettingsModalSetIsOpen = (
+  payload: types.IndexationAutoSettingsModalSetIsOpenAction["payload"]
+): types.IndexationActionTypes => ({
+  type: types.IndexationAutoSettingsModalSetIsOpen,
+  payload,
+})
+
+export const $IndexationAutoSettingsModalOpen =
+  (params: { websiteId: string }): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const { di } = getState()
+
+    dispatch(actions.websites.setActiveWebsite({ id: params.websiteId }))
+
+    const { websites } = getState()
+
+    dispatch(
+      actions.indexation.IndexationAutoSettingsModalSetIsOpen({
+        is_open: true,
+        website_id: params.websiteId,
+        indexation_auto_activated:
+          websites.website?.indexation_auto_activated || false,
+        indexation_auto_update_pages_activated:
+          websites.website?.indexation_auto_update_pages_activated || false,
+      })
+    )
+
+    di.LocationService.navigate(
+      di.LocationService.getPathname() +
+        `?${ModalKeys["indexation-auto-modal"]}=${params.websiteId}`,
+      { disableScroll: true }
+    )
   }
 
 /*********************************************************

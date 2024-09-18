@@ -1,8 +1,8 @@
-import React from "react"
-import { connector, ContainerProps } from "./containers/Pagination.containers"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid"
+import React from "react"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
+import { connector, ContainerProps } from "./containers/Pagination.containers"
 
 type Props = {
   page: number

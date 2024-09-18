@@ -1,7 +1,7 @@
 import { connect, ConnectedProps } from "react-redux"
+import { RankingOrderByType } from "../../../../entities/RankingWebsiteEntity"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
-import { RankingOrderByType } from "../../../../entities/RankingWebsiteEntity"
 
 const mapState = (state: RootState, props: { hideActions?: boolean }) => ({
   stats: state.ranking.stats,
@@ -12,12 +12,14 @@ const mapState = (state: RootState, props: { hideActions?: boolean }) => ({
 
 const mapDispatch = (dispatch: any) => ({
   onFilter(params: {
-    type: "query" | "country" | "device" | "source" | "date"
+    type: "query" | "country" | "device" | "source" | "date" | "page"
     value: string
   }) {
     dispatch(actions.ranking.$RankingStoreFilter(params))
   },
-  onShowMore(props: { type: "device" | "query" | "country" | "source" }) {
+  onShowMore(props: {
+    type: "device" | "query" | "country" | "source" | "page"
+  }) {
     dispatch(actions.ranking.$openAndfetchByHistogram(props))
   },
   onChangeView(view: RankingOrderByType) {

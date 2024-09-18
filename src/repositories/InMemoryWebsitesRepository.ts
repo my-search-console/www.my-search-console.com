@@ -1,39 +1,66 @@
-import { ErrorEntity, WebsiteEntity } from "@my-search-console/interfaces"
-import { uniqWith } from "ramda"
 import {
-  CreateWebsiteParams,
-  CreateWebsiteResponse,
-  FetchBingDomainsResponse,
-  FetchGoogleDomainsResponse,
-  FetchResponse,
-  FetchYandexDomainsResponse,
-  IWebsitesRepository,
-  StatsForHistogramResponse,
-  StatsResponse,
-  ActivateResponse,
-  CheckResponse,
-  CheckResponseEntity,
-  RefreshSitemapAndIndexationResponse,
-  UpdateCredentialsResponse,
-  UpdateSitemapResponse,
-  AddSourceResponse,
-  FetchWebsiteAnalyticsStatusResponse,
-  DeleteResponse,
-  UpdateIsPublicResponse,
-} from "../interfaces/IWebsitesRepository"
+  ErrorEntity,
+  UserEntity,
+  UserWithRoleEntity,
+  WebsiteEntity,
+} from "@foudroyer/interfaces"
+import { uniqWith } from "ramda"
 import {
   RankingStatEntity,
   RankingStatsForFrontend,
 } from "../entities/RankingWebsiteEntity"
+import {
+  ActivateResponse,
+  AddSourceResponse,
+  AddUserToWebsiteResponse,
+  CheckResponse,
+  CheckResponseEntity,
+  CreateWebsiteParams,
+  CreateWebsiteResponse,
+  DeleteResponse,
+  FetchBingDomainsResponse,
+  FetchGoogleDomainsResponse,
+  FetchResponse,
+  FetchWebsiteAnalyticsStatusResponse,
+  FetchYandexDomainsResponse,
+  GetUsersFromWebsiteResponse,
+  IWebsitesRepository,
+  RefreshSitemapAndIndexationResponse,
+  SitemapsFetchAllResponse,
+  StatsForHistogramResponse,
+  StatsResponse,
+  UpdateCredentialsResponse,
+  UpdateIsPublicResponse,
+  UpdateSitemapResponse,
+} from "../interfaces/IWebsitesRepository"
 
 export class InMemoryWebsitesRepository implements IWebsitesRepository {
+  reset(params: { websiteId: string }): Promise<ActivateResponse> {
+    throw new Error("Method not implemented.")
+  }
+  activateAnalytics(params: { websiteId: string }): Promise<ActivateResponse> {
+    throw new Error("Method not implemented.")
+  }
+  SitemapsFetchAll(params: {
+    websiteId: string
+  }): Promise<SitemapsFetchAllResponse> {
+    throw new Error("Method not implemented.")
+  }
+  SitemapsDelete(params: {
+    websiteId: string
+    id: number
+  }): Promise<SitemapsFetchAllResponse> {
+    throw new Error("Method not implemented.")
+  }
   updateIsPublic(params: {
     websiteId: string
     isPublic: boolean
   }): Promise<UpdateIsPublicResponse> {
     throw new Error("Method not implemented.")
   }
+
   private websites: WebsiteEntity[] = []
+  private users: UserEntity[] = []
 
   private checkResponses: { [x: string]: CheckResponseEntity } = {}
   private updateCredentialsResponses: {
@@ -47,6 +74,50 @@ export class InMemoryWebsitesRepository implements IWebsitesRepository {
     )([...this.websites, website])
 
     return website
+  }
+
+  async getUsersFromWebsite(params: {
+    websiteId: string
+  }): Promise<GetUsersFromWebsiteResponse> {
+    return {
+      error: false,
+      body: this.users as UserWithRoleEntity[],
+    }
+  }
+
+  async addUserToWebsite(params: {
+    websiteId: string
+    email: string
+  }): Promise<AddUserToWebsiteResponse> {
+    const entity: UserEntity = {
+      id: params.email,
+      email: params.email,
+      language: "en",
+      created_at: new Date(),
+      username: null,
+      last_connected_at: new Date(),
+    }
+
+    this.users = [...this.users, entity]
+
+    return {
+      error: false,
+      body: { success: true },
+    }
+  }
+
+  async removeUserToWebsite(params: {
+    websiteId: string
+    email: string
+  }): Promise<AddUserToWebsiteResponse> {
+    this.users = this.users.filter(({ email }) => {
+      return params.email !== email
+    })
+
+    return {
+      error: false,
+      body: { success: true },
+    }
   }
 
   async fetchWebsiteAnalyticsStatus(params: {
@@ -71,8 +142,6 @@ export class InMemoryWebsitesRepository implements IWebsitesRepository {
 
   async check(params: { website: string }): Promise<CheckResponse> {
     const found = this.checkResponses[params.website]
-
-    console.log(params.website)
 
     if (!found)
       return {
@@ -155,6 +224,8 @@ export class InMemoryWebsitesRepository implements IWebsitesRepository {
       indexation_auto_activated: false,
       indexation_auto_activated_sources: [],
       google_api_keys: [],
+      does_google_api_keys_have_errors: false,
+      does_sitemaps_have_errors: false,
     }
 
     this.websites.push(entity)

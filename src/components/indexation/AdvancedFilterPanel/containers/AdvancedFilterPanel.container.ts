@@ -1,7 +1,7 @@
+import { IndexationType } from "@foudroyer/interfaces"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
-import { IndexationType } from "@my-search-console/interfaces"
 
 const mapState = (state: RootState) => ({
   show: state.indexation.filter.panel.isOpen,

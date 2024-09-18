@@ -1,11 +1,5 @@
 import classNames from "classnames"
-import React, {
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import React, { ReactNode, useEffect, useRef, useState } from "react"
 
 export const Tooltip: React.FC<{
   direction: "top" | "left" | "bottom" | "right"
@@ -34,7 +28,7 @@ export const Tooltip: React.FC<{
   return (
     <div
       className={classNames(
-        `group relative inline-block font-display`,
+        `group relative inline-block`,
         props.fluid ? "w-full" : ""
       )}
     >
@@ -51,7 +45,7 @@ export const Tooltip: React.FC<{
           props.direction === "bottom" ? "-bottom-1 translate-y-full" : ""
         } ${props.align === "right" ? "right-0" : ""} ${
           props.align === "center" ? "left-0 right-0 mx-auto" : ""
-        } pointer-events-none z-10 flex transform items-center justify-center opacity-0 transition-all duration-300 ease-in-out ${
+        } pointer-events-none font-display z-10 flex transform items-center justify-center opacity-0 transition-all duration-300 ease-in-out ${
           show ? "opacity-100 " : ""
         }`}
       >

@@ -9,7 +9,7 @@ export const Cancel: React.FC<Props> = (props) => (
     <div
       className={`group flex transform cursor-pointer items-center transition-all duration-300`}
     >
-      <div className="relative z-10 rounded p-2 text-slate-400 transition-all duration-300 ease-in-out group-hover:bg-blue-50 group-hover:text-blue-400">
+      <div className="relative z-10 rounded p-2 text-slate-400 transition-all duration-300 ease-in-out group-hover:bg-pink-50 group-hover:text-pink-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -25,7 +25,7 @@ export const Cancel: React.FC<Props> = (props) => (
           />
         </svg>
       </div>
-      <div className="-translate-x-8 transform p-2 text-sm font-semibold uppercase text-blue-400 opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100">
+      <div className="-translate-x-8 transform p-2 text-sm font-semibold uppercase text-pink-400 opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100">
         {props.children}
       </div>
     </div>

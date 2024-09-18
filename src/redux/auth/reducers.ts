@@ -1,4 +1,7 @@
-import { UserEntity } from "@my-search-console/interfaces"
+import {
+  UserEntity,
+  UserToGoogleSearchConsoleWithEmailsEntity,
+} from "@foudroyer/interfaces"
 import * as types from "./types"
 
 interface AuthState {
@@ -12,6 +15,8 @@ interface AuthState {
   }
   isPremium: boolean
   initialised: boolean
+
+  googleSearchAccounts: UserToGoogleSearchConsoleWithEmailsEntity[]
 }
 
 const initialState: AuthState = {
@@ -25,12 +30,40 @@ const initialState: AuthState = {
   },
   isPremium: false,
   initialised: false,
+
+  googleSearchAccounts: [],
 }
 
 export function authReducer(
   state = initialState,
   action: types.AuthActionTypes
 ): AuthState {
+  /**
+   *
+   *
+   * GOOGLE SEARCH CONSOLE ACCOUNTS
+   *
+   *
+   */
+
+  if (action.type === types.AuthGoogleSearchConsoleAccountsStore) {
+    return {
+      ...state,
+      googleSearchAccounts: action.payload.accounts,
+    }
+  }
+
+  /**
+   *
+   *
+   *
+   *
+   * ==================
+   *
+   *
+   *
+   *
+   */
   if (action.type === types.storeUser) {
     return {
       ...state,

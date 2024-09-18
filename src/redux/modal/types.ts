@@ -1,52 +1,60 @@
-import { ITranslations } from "../../interfaces/ITranslations";
+import { ITranslations } from "../../interfaces/ITranslations"
 
-export const open = "REDUX_MODAL_OPEN";
-export const close = "REDUX_MODAL_CLOSE";
-export const openCta = "REDUX_MODAL_CTA_OPEN";
-export const closeCta = "REDUX_MODAL_CTA_CLOSE";
-export const ctaFetching = "REDUX_MODAL_CTA_FETCHING";
-export const ctaFetchEnd = "REDUX_MODAL_CTA_FETCHEND";
+export const close = "REDUX_MODAL_CLOSE"
+export const openCta = "REDUX_MODAL_CTA_OPEN"
+export const closeCta = "REDUX_MODAL_CTA_CLOSE"
+export const ctaFetching = "REDUX_MODAL_CTA_FETCHING"
+export const ctaFetchEnd = "REDUX_MODAL_CTA_FETCHEND"
 
+export const open = "REDUX_MODAL_OPEN"
 export interface openAction {
-  type: typeof open;
+  type: typeof open
+}
+
+export const NewsStoreLastTimeSeenModal = "NewsStoreLastTimeSeenModal"
+export interface NewsStoreLastTimeSeenModalAction {
+  type: typeof NewsStoreLastTimeSeenModal
+  payload: {
+    value: Date | null
+  }
 }
 
 export interface closeAction {
-  type: typeof close;
+  type: typeof close
 }
 
 export interface ctaFetchingAction {
-  type: typeof ctaFetching;
+  type: typeof ctaFetching
 }
 
 export interface ctaFetchEndAction {
-  type: typeof ctaFetchEnd;
+  type: typeof ctaFetchEnd
 }
 
 export interface openCtaAction {
-  type: typeof openCta;
+  type: typeof openCta
   payload: {
-    onSubmit?: Function;
-    title: ITranslations["keys"];
-    description?: ITranslations["keys"];
-  };
+    onSubmit?: Function
+    title: ITranslations["keys"]
+    description?: ITranslations["keys"]
+  }
 }
 
-export const onOpenComingSoon = "modals/onOpenComingSoon";
+export const onOpenComingSoon = "modals/onOpenComingSoon"
 export interface onOpenComingSoonAction {
-  type: typeof onOpenComingSoon;
+  type: typeof onOpenComingSoon
   payload: {
-    type: "yandex" | "bing" | "builder" | "ranking";
-  };
+    type: "yandex" | "bing" | "builder" | "ranking"
+  }
 }
 
-export const onCloseComingSoon = "modals/onCloseComingSoon";
+export const onCloseComingSoon = "modals/onCloseComingSoon"
 export interface onCloseComingSoonAction {
-  type: typeof onCloseComingSoon;
+  type: typeof onCloseComingSoon
 }
 
 export interface closeCtaAction {
-  type: typeof closeCta;
+  type: typeof closeCta
 }
 
 export type ModalActionTypes =
@@ -57,4 +65,5 @@ export type ModalActionTypes =
   | onOpenComingSoonAction
   | onCloseComingSoonAction
   | ctaFetchingAction
-  | ctaFetchEndAction;
+  | ctaFetchEndAction
+  | NewsStoreLastTimeSeenModalAction

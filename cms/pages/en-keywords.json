@@ -82,14 +82,6 @@
           }
         }
       ]
-    },
-    {
-      "type": "marketing/pricing",
-      "show": true
-    },
-    {
-      "type": "marketing/faq",
-      "show": true
     }
   ]
 }

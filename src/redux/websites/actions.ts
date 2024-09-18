@@ -1,22 +1,20 @@
-import { navigate } from "@reach/router"
-import { IndexationSearchEngines } from "./../../entities/SearchEngineEntity"
-import { WebsiteActivated } from "./../../modules/seeds/WebsitesSeeds"
-import * as types from "./types"
-import { ThunkAction } from "redux-thunk"
-import { RootState } from "../store"
-import { actions } from "../actions"
-import { NotificationMessageEntity } from "../../entities/NotificationEntity"
-import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
 import {
   ErrorEntity,
-  IndexationGoogleCloudApiKeyEntity,
-  IndexationSourceType,
+  findPlanByNameAndInterval,
   PaymentPlansEntity,
   WebsiteEntity,
-} from "@my-search-console/interfaces"
-import { normalizeUrl } from "../../utils/normalizeUrl"
+} from "@foudroyer/interfaces"
+import { ThunkAction } from "redux-thunk"
 import { TOOLS_AVAILABLE } from "../../constants/tools"
-import { getProductIdByPlan } from "../../utils/getProductIdByPlan"
+import { ModalKeys } from "../../entities/ModalEntity"
+import { NotificationMessageEntity } from "../../entities/NotificationEntity"
+import { SitemapEntity } from "../../entities/SitemapEntity"
+import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
+import { normalizeUrl } from "../../utils/normalizeUrl"
+import { actions } from "../actions"
+import { RootState } from "../store"
+import { IndexationSearchEngines } from "./../../entities/SearchEngineEntity"
+import * as types from "./types"
 
 export const Reset = (): types.WebsitesActionTypes => ({
   type: types.Reset,
@@ -33,6 +31,13 @@ export const CreateWebsiteSetFetching = (
   payload: types.CreateWebsiteSetFetchingAction["payload"]
 ): types.WebsitesActionTypes => ({
   type: types.CreateWebsiteSetFetching,
+  payload,
+})
+
+export const WebsitesFilter = (
+  payload: types.WebsitesFilterAction["payload"]
+): types.WebsitesActionTypes => ({
+  type: types.WebsitesFilter,
   payload,
 })
 
@@ -184,116 +189,45 @@ export const $getWebsiteInfoReadOnly =
     await dispatcher(actions.websites.$setWebsiteActiveFromUrl())
   }
 
-export const $saveSitemap =
-  (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
-    const { di, websites } = getState()
-
-    if (!websites.addSitemap.value) {
-      dispatcher(
-        actions.notifications.create({
-          message: NotificationMessageEntity.WEBSITES_SITEMAP_UPDATE_EMPTY,
-          type: "error",
-        })
-      )
-
-      return false
-    }
-
-    dispatcher(setSitemapFetching({ value: true }))
-
-    const website = await di.WebsitesRepository.updateSitemap({
-      website: websites.activeWebsite as string,
-      sitemap: websites.addSitemap.value,
-    })
-
-    dispatcher(setSitemapFetching({ value: false }))
-
-    if (website.error === true) {
-      dispatcher(
-        actions.notifications.create({
-          type: "error",
-          message: website.code,
-        })
-      )
-
-      return false
-    }
-
-    dispatcher(
-      actions.notifications.create({
-        type: "success",
-        message: NotificationMessageEntity.SYNC_SUCCESS,
-      })
-    )
-
-    dispatcher(updateWebsite({ website: website.body }))
-    dispatcher(setSitemapFetching({ value: false }))
-    dispatcher(actions.indexation.$fetch())
-  }
-
-export const $refreshSitemapAndIndexation =
-  (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
-    const { di, websites } = getState()
-
-    if (!websites.activeWebsite) {
-      return dispatcher(
-        actions.notifications.create({
-          message: NotificationMessageEntity.WEBSITES_NOT_SELECTED,
-          type: "error",
-        })
-      )
-    }
-
-    dispatcher(actions.websites.setSitemapFetching({ value: true }))
-
-    const response = await di.WebsitesRepository.refreshSitemapAndIndexation({
-      websiteId: websites.activeWebsite,
-    })
-
-    if (response.error === true) {
-      dispatcher(
-        actions.notifications.create({
-          type: "error",
-          message: response.code,
-        })
-      )
-
-      return dispatcher(actions.websites.setSitemapFetching({ value: false }))
-    }
-
-    dispatcher(actions.websites.setSitemapFetching({ value: false }))
-    dispatcher(
-      actions.notifications.create({
-        type: "success",
-        message: NotificationMessageEntity.SYNC_SUCCESS,
-      })
-    )
-    dispatcher(actions.indexation.$fetch())
-  }
-
 export const $syncWebsiteAndCheckEverything =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
     const { di } = getState()
 
     const { feature } = getWebsiteIdFromUrl(di.LocationService.getFullUrl())
 
-    if (feature === "shared")
+    if (feature === "shared") {
       return dispatcher(actions.websites.$getWebsiteInfoReadOnly())
+    }
 
     await dispatcher(actions.websites.$fetchAll())
     await dispatcher(actions.websites.$setWebsiteActiveFromUrl())
     await dispatcher(actions.websites.$check())
-    await dispatcher(
+
+    dispatcher(
       actions.websites.$WebsiteStoreGoogleApiKeys(
         getState().websites.website as WebsiteEntity
       )
     )
-    await dispatcher(actions.websites.$syncAnalytics())
-    await dispatcher(actions.keywords.$fetchKeywords())
-    await dispatcher(actions.opportunities.$fetchOpportunities())
-    await dispatcher(actions.indexation.$fetch())
-    // await dispatcher(actions.indexation.$IndexationAutoQueueFetch())
+
+    dispatcher(actions.websites.$syncAnalytics())
+
+    if (feature === "indexation") {
+      dispatcher(actions.indexation.$fetch())
+      dispatcher(actions.stats.$StatsWebsiteIndexationStateFetch())
+    }
+
+    if (feature === "analytics") {
+      await dispatcher(actions.ranking.$fetch())
+    }
+
+    if (feature === "keywords") {
+      await dispatcher(actions.keywords.$fetchKeywords())
+    }
+
+    if (feature === "settings")
+      return dispatcher(actions.websites.$fetchUsersWithRightsOnThisWebsite())
   }
+
 export const $WebsiteIsPublicToggle =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
     const { di, websites, payments } = getState()
@@ -357,6 +291,10 @@ export const $check =
       )
     }
 
+    if (!response.body.isSitemapValid) {
+      dispatcher(actions.websites.$openSitemapModal())
+    }
+
     dispatcher(storeCheck(response.body))
   }
 
@@ -364,30 +302,80 @@ export const $syncAnalytics =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
     const { di, websites } = getState()
 
-    const websiteId = websites.activeWebsite || ""
     const website = websites.map.get(websites.activeWebsite || "")
     const { feature } = getWebsiteIdFromUrl(di.LocationService.getFullUrl())
 
     if (!website) return
 
-    const isFinishedResponse =
-      await di.WebsitesRepository.fetchWebsiteAnalyticsStatus({ websiteId })
+    // if (
+    //   ["analytics", "keywords", "opportunities"].includes(feature || "") &&
+    //   !website.is_analytics_activated
+    // ) {
+    //   return dispatcher(
+    //     actions.ranking.AnalyticsSetAnalyticsDiscoverModalIsOpen({
+    //       value: true,
+    //     })
+    //   )
+    // }
+  }
 
-    if (isFinishedResponse.error) {
-    } else {
-      dispatcher(
-        actions.ranking.AnalyticsStoreIsFinishedStatus({
-          value: isFinishedResponse.body.is_finished,
+export const $deleteWebsite =
+  (websiteId?: string): ThunkAction<any, RootState, any, any> =>
+  async (dispatcher, getState) => {
+    const { di, websites, lang } = getState()
+
+    const website = websiteId || websites.activeWebsite
+
+    if (!website) {
+      return dispatcher(
+        actions.notifications.create({
+          type: "error",
+          message: ErrorEntity.WEBSITE_NOT_FOUND,
         })
       )
     }
 
-    if (feature === "analytics") {
-      dispatcher(actions.ranking.$fetch())
-    }
+    await di.WebsitesRepository.delete({
+      websiteId: website,
+    })
+
+    dispatcher(
+      actions.notifications.create({
+        type: "success",
+        message: NotificationMessageEntity.WEBSITES_DELETED,
+      })
+    )
+
+    di.LocationService.navigate(
+      normalizeUrl({
+        url: "/administration/",
+        locale: lang.lang,
+      }),
+      {
+        disableScroll: true,
+      }
+    )
+
+    dispatcher(actions.websites.$fetchAll({ force: true }))
   }
 
-export const $deleteWebsite =
+export const $openResetConfirmationModale =
+  (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
+    const { di } = getState()
+
+    const url = di.LocationService.getFullUrl()
+
+    di.LocationService.navigate(url + "#reset-website")
+  }
+
+export const $closeResetConfirmationModale =
+  (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
+    const { di } = getState()
+
+    di.LocationService.back()
+  }
+
+export const $resetWebsite =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
     const { di, websites, lang } = getState()
 
@@ -402,23 +390,29 @@ export const $deleteWebsite =
       )
     }
 
-    di.WebsitesRepository.delete({
+    dispatcher(actions.websites.setFetching(true))
+
+    const response = await di.WebsitesRepository.reset({
       websiteId,
     })
 
-    dispatcher(
-      actions.notifications.create({
-        type: "success",
-        message: NotificationMessageEntity.WEBSITES_DELETED,
-      })
-    )
+    dispatcher(actions.websites.setFetching(false))
 
-    di.LocationService.navigate(
-      normalizeUrl({
-        url: "/administration?tool=analytics",
-        locale: lang.lang,
-      })
-    )
+    if (response.error) {
+      dispatcher(
+        actions.notifications.create({
+          type: "error",
+          message: response.code,
+        })
+      )
+    } else {
+      dispatcher(actions.websites.$closeResetConfirmationModale())
+      dispatcher(
+        actions.notifications.create({
+          type: "success",
+        })
+      )
+    }
   }
 
 export const $saveCredentials =
@@ -448,16 +442,15 @@ export const $saveCredentials =
       key: addCredentials.value,
     })
 
+    dispatcher(setCredentialsFetching({ value: false }))
+
     if (response.error === true) {
-      dispatcher(
+      return dispatcher(
         actions.notifications.create({
           type: "error",
           message: response.code,
         })
       )
-
-      dispatcher(setCredentialsFetching({ value: false }))
-      return false
     }
 
     dispatcher(
@@ -467,7 +460,6 @@ export const $saveCredentials =
       })
     )
 
-    dispatcher(setCredentialsFetching({ value: false }))
     dispatcher(setIsCredentialsAreGood({ value: true }))
 
     dispatcher(actions.websites.$WebsiteStoreGoogleApiKeys(website))
@@ -475,13 +467,15 @@ export const $saveCredentials =
 
 export const $WebsiteCreateModal =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
+    const { payments, websites } = getState()
+
     dispatcher($CreateWebsiteFetchGoogleDomains())
     dispatcher(WebsiteAddSourceModalSetIsOpen({ isOpen: true, type: "google" }))
   }
 
 export const $activate =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
-    const { di, websites } = getState()
+    const { di, websites, lang } = getState()
 
     if (websites.fetching) return false
     if (!websites.createWebsiteModal.selected) return false
@@ -504,18 +498,12 @@ export const $activate =
         return dispatcher(setFetching(false))
       }
 
+      dispatcher(WebsiteAddSourceModalSetIsOpen({ isOpen: false }))
+
       await dispatcher($fetchAll({ force: true }))
 
-      dispatcher(WebsiteAddSourceModalSetIsOpen({ isOpen: false }))
       dispatcher(
         actions.websites.$changeWebsite({ websiteId: response.body.id })
-      )
-
-      dispatcher(
-        actions.notifications.create({
-          type: "success",
-          message: NotificationMessageEntity.WEBSITES_CREATE_SUCCESS,
-        })
       )
 
       return
@@ -654,8 +642,9 @@ export const $fetchAndRedirectToWebsiteActive =
 
     const activeWebsiteId = websites.entities[0]
 
-    if (!activeWebsiteId)
+    if (!activeWebsiteId) {
       return dispatcher(actions.websites.$WebsiteCreateModal())
+    }
 
     const activeTool = new URL(
       di.LocationService.getFullUrl()
@@ -692,16 +681,22 @@ export const $changeWebsite =
 
     di.LocationService.navigate(
       normalizeUrl({
-        url: `/${feature || "analytics"}/${params.websiteId}`,
+        url: `/${feature}/${params.websiteId}`,
         locale: lang.lang,
       })
     )
 
     dispatcher(setActiveWebsite({ id: params.websiteId }))
     dispatcher(actions.websites.$check())
+    dispatcher(actions.websites.$syncAnalytics())
 
-    if (feature === "analytics") {
-      dispatcher(actions.websites.$syncAnalytics())
+    if (feature === "indexation") {
+      dispatcher(actions.indexation.IndexationReset())
+      dispatcher(actions.stats.$StatsWebsiteIndexationStateFetch())
+      dispatcher(actions.indexation.$fetch())
+      dispatcher(
+        actions.indexation.$IndexationToastIndexationStatsFetchAccepted()
+      )
     }
 
     if (feature === "keywords") {
@@ -709,8 +704,8 @@ export const $changeWebsite =
       dispatcher(actions.keywords.$fetchKeywords())
     }
 
-    if (feature === "opportunities") {
-      dispatcher(actions.opportunities.$fetchOpportunities())
+    if (feature === "analytics") {
+      dispatcher(actions.ranking.$fetch())
     }
 
     if (feature === "settings") {
@@ -719,6 +714,7 @@ export const $changeWebsite =
           websites.map.get(params.websiteId) as WebsiteEntity
         )
       )
+      dispatcher(actions.websites.$fetchUsersWithRightsOnThisWebsite())
     }
   }
 
@@ -825,8 +821,6 @@ export const $linkSourceToWebsite =
     if (!websiteSelected) return false
 
     if (source === "yandex") {
-      if (websiteSelected.yandex_domain) return
-
       if (!auth.accountConnectedTo.yandex) {
         const response = await di.AuthRepository.authenticateWithYandex()
 
@@ -850,8 +844,6 @@ export const $linkSourceToWebsite =
     }
 
     if (source === "bing") {
-      if (websiteSelected.bing_domain && !force) return
-
       if (!auth.accountConnectedTo.bing || force) {
         const response = await di.AuthRepository.authenticateWithBing()
 
@@ -882,16 +874,19 @@ export const $openPaymentModal =
   ): ThunkAction<void, RootState, any, any> =>
   async (dispatcher, getState) => {
     const { di, auth, payments, lang } = getState()
+    const planWithInfo = findPlanByNameAndInterval({ planName: plan, interval })
 
     if (!auth.user?.email) {
-      return dispatcher(actions.auth.$authenticateWithGoogle())
+      return dispatcher(actions.auth.$goToAuthentication())
     }
 
+    // @ts-ignore
     if (plan === "free") {
       dispatcher(actions.payments.PaymentsOpenModal({ value: false }))
+
       return di.LocationService.navigate(
         normalizeUrl({
-          url: "/administration?tool=analytics/",
+          url: "/",
           locale: lang.lang,
         })
       )
@@ -916,7 +911,7 @@ export const $openPaymentModal =
 
     const response = await di.PaymentService.openDialog({
       email: auth.user.email,
-      productId: getProductIdByPlan(plan, interval),
+      productId: planWithInfo.id,
       coupon_code: null,
       customData: {
         userId: auth.user.id,
@@ -955,6 +950,7 @@ export const $openPaymentModal =
             subscription_id: "",
             update_url: "",
             interval: interval,
+            paused_at: null,
           },
         ])
       )
@@ -967,14 +963,6 @@ export const $openPaymentModal =
           interval,
         },
       })
-
-      dispatcher(
-        actions.payments.PaymentsOpenModal({
-          value: true,
-          type: "indexation",
-          source: "indexation/quota",
-        })
-      )
     }
   }
 
@@ -1102,6 +1090,13 @@ export const WebsiteStoreGoogleApiKeys = (
   payload,
 })
 
+export const WebsiteStoreUsers = (
+  payload: types.WebsiteStoreUsersAction["payload"]
+): types.WebsitesActionTypes => ({
+  type: types.WebsiteStoreUsers,
+  payload,
+})
+
 export const $WebsiteStoreGoogleApiKeys =
   (website: WebsiteEntity): ThunkAction<any, RootState, any, any> =>
   async (dispatch, getState) => {
@@ -1130,6 +1125,80 @@ export const $WebsiteStoreGoogleApiKeys =
     )
   }
 
+export const $fetchUsersWithRightsOnThisWebsite =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di, websites } = getState()
+
+    if (!websites.website) return false
+
+    const response = await di.WebsitesRepository.getUsersFromWebsite({
+      websiteId: websites.website.id,
+    })
+
+    if (response.error) {
+      return dispatch(
+        actions.notifications.create({
+          type: "error",
+          message: response.code,
+        })
+      )
+    }
+
+    dispatch(
+      actions.websites.WebsiteStoreUsers({
+        users: response.body,
+      })
+    )
+  }
+
+export const $addUserOnThisWebsite =
+  (params: { email: string }): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const { di, websites } = getState()
+
+    if (!websites.website) return false
+
+    const response = await di.WebsitesRepository.addUserToWebsite({
+      websiteId: websites.website.id,
+      email: params.email,
+    })
+
+    if (response.error) {
+      return dispatch(
+        actions.notifications.create({
+          type: "error",
+          message: response.code,
+        })
+      )
+    }
+
+    dispatch(actions.websites.$fetchUsersWithRightsOnThisWebsite())
+  }
+
+export const $removeUserOnThisWebsite =
+  (params: { email: string }): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const { di, websites } = getState()
+
+    if (!websites.website) return false
+
+    const response = await di.WebsitesRepository.removeUserToWebsite({
+      websiteId: websites.website.id,
+      email: params.email,
+    })
+
+    if (response.error) {
+      return dispatch(
+        actions.notifications.create({
+          type: "error",
+          message: response.code,
+        })
+      )
+    }
+
+    dispatch(actions.websites.$fetchUsersWithRightsOnThisWebsite())
+  }
+
 export const navigateOrShowModal =
   (website: WebsiteEntity): ThunkAction<any, RootState, any, any> =>
   async (dispatcher, getState) => {
@@ -1152,4 +1221,244 @@ export const navigateOrShowModal =
         locale: lang.lang,
       })
     )
+  }
+
+/**
+ * ========================================================================
+ *
+ * SITEMAP
+ *
+ * ========================================================================
+ */
+
+export const SitemapsStore = (
+  payload: types.SitemapsStoreAction["payload"]
+): types.WebsitesActionTypes => ({
+  type: types.SitemapsStore,
+  payload,
+})
+
+export const $SitemapsFetch =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di, websites } = getState()
+
+    if (!websites.website) return false
+
+    dispatch(actions.websites.setSitemapFetching({ value: true }))
+
+    const response = await di.WebsitesRepository.SitemapsFetchAll({
+      websiteId: websites.website.id,
+    })
+
+    dispatch(actions.websites.setSitemapFetching({ value: false }))
+
+    if (response.error) {
+      return dispatch(
+        actions.notifications.create({
+          type: "error",
+          message: response.code,
+        })
+      )
+    }
+
+    dispatch(
+      actions.websites.SitemapsStore({
+        sitemaps: response.body.sitemaps,
+      })
+    )
+  }
+
+export const $openSitemapModal =
+  (params?: { websiteId?: string }): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const { di, websites } = getState()
+
+    const websiteId = params?.websiteId || websites.website?.id
+
+    if (!websiteId) return false
+
+    dispatch(
+      actions.websites.setActiveWebsite({
+        id: websiteId,
+      })
+    )
+
+    dispatch(actions.websites.setOpenSitemapModal({ value: true }))
+
+    dispatch(actions.websites.$SitemapsFetch())
+  }
+
+export const $DeleteConfirmModalOpen =
+  (params: { websiteId: string }): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const { di } = getState()
+
+    di.LocationService.navigate(
+      di.LocationService.getPathname() +
+        `?${ModalKeys["remove-website-confirmation-modal"]}=${params?.websiteId}`,
+      { disableScroll: true }
+    )
+  }
+
+export const $DeleteConfirmModalClose =
+  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
+    const { di } = getState()
+
+    di.LocationService.navigate(di.LocationService.getPathname(), {
+      disableScroll: true,
+    })
+  }
+
+export const $SitemapsDelete =
+  (params: {
+    id: SitemapEntity["id"]
+  }): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const { di, websites } = getState()
+
+    if (!websites.website) return false
+
+    dispatch(actions.websites.setSitemapFetching({ value: true }))
+
+    const response = await di.WebsitesRepository.SitemapsDelete({
+      websiteId: websites.website.id,
+      id: params.id,
+    })
+
+    dispatch(actions.websites.setSitemapFetching({ value: false }))
+
+    if (response.error) {
+      return dispatch(
+        actions.notifications.create({
+          type: "error",
+          message: response.code,
+        })
+      )
+    }
+
+    dispatch(actions.websites.$SitemapsFetch())
+  }
+
+export const $saveSitemap =
+  (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
+    const { di, websites } = getState()
+
+    if (!websites.addSitemap.value) {
+      dispatcher(
+        actions.notifications.create({
+          message: NotificationMessageEntity.WEBSITES_SITEMAP_UPDATE_EMPTY,
+          type: "error",
+        })
+      )
+
+      return false
+    }
+
+    dispatcher(setSitemapFetching({ value: true }))
+
+    const website = await di.WebsitesRepository.updateSitemap({
+      website: websites.activeWebsite as string,
+      sitemap: websites.addSitemap.value,
+    })
+
+    if (website.error === true) {
+      dispatcher(setSitemapFetching({ value: false }))
+
+      return dispatcher(
+        actions.notifications.create({
+          type: "error",
+          message: website.code,
+        })
+      )
+    }
+
+    dispatcher(
+      actions.notifications.create({
+        type: "success",
+        message: NotificationMessageEntity.SYNC_SUCCESS,
+      })
+    )
+
+    dispatcher(actions.websites.updateSitemap({ value: "" }))
+    dispatcher(actions.websites.$SitemapsFetch())
+    dispatcher(actions.indexation.$fetch())
+  }
+
+export const $refreshSitemapAndIndexation =
+  (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
+    const { di, websites } = getState()
+
+    if (!websites.activeWebsite) {
+      return dispatcher(
+        actions.notifications.create({
+          message: NotificationMessageEntity.WEBSITES_NOT_SELECTED,
+          type: "error",
+        })
+      )
+    }
+
+    dispatcher(actions.websites.setSitemapFetching({ value: true }))
+
+    const response = await di.WebsitesRepository.refreshSitemapAndIndexation({
+      websiteId: websites.activeWebsite,
+    })
+
+    if (response.error === true) {
+      dispatcher(
+        actions.notifications.create({
+          type: "error",
+          message: response.code,
+        })
+      )
+
+      return dispatcher(actions.websites.setSitemapFetching({ value: false }))
+    }
+
+    dispatcher(actions.websites.setSitemapFetching({ value: false }))
+    dispatcher(
+      actions.notifications.create({
+        type: "success",
+        message: NotificationMessageEntity.SYNC_SUCCESS,
+      })
+    )
+    dispatcher(actions.websites.$SitemapsFetch())
+    dispatcher(actions.indexation.$fetch())
+    dispatcher(actions.websites.$fetchAll({ force: true }))
+  }
+
+/**
+ * ========================================================================
+ *
+ *
+ *
+ *
+ *
+ *
+ * ========================================================================
+ */
+
+export const $WebsitesOpenAddUsersModal =
+  (params: { websiteId: string }): ThunkAction<any, RootState, any, any> =>
+  async (dispatcher, getState) => {
+    const { di } = getState()
+
+    dispatcher(actions.websites.setActiveWebsite({ id: params.websiteId }))
+    dispatcher(actions.websites.$fetchUsersWithRightsOnThisWebsite())
+
+    di.LocationService.navigate(
+      di.LocationService.getPathname() +
+        `#${ModalKeys["add-user-to-website-modal"]}`,
+      {
+        disableScroll: true,
+      }
+    )
+  }
+
+export const $WebsitesCloseAddUsersModal =
+  (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
+    const { di } = getState()
+
+    di.LocationService.navigate(di.LocationService.getPathname(), {
+      disableScroll: true,
+    })
   }

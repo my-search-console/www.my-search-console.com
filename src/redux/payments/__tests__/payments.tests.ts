@@ -1,10 +1,4 @@
-import {
-  ErrorEntity,
-  IndexationType,
-  PageEntity,
-  PaymentEntity,
-  WebsiteEntity,
-} from "@my-search-console/interfaces"
+import { PaymentEntity } from "@foudroyer/interfaces"
 import { WebsiteActivated } from "../../../modules/seeds/WebsitesSeeds"
 import { createStoreForTests } from "../../../utils/createStoreForTests"
 

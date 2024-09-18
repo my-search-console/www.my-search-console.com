@@ -1,16 +1,12 @@
+import { IndexationQueueStatus } from "@foudroyer/interfaces"
 import classNames from "classnames"
 import React, { ReactNode } from "react"
-import {
-  IndexationQueueStatus,
-  IndexationType,
-  PageEntity,
-} from "@my-search-console/interfaces"
-import {
-  ContainerProps,
-  connector,
-} from "./containers/IndexationAutoStats.containers"
-import { Loader } from "../../../../general/Loader/Loader"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
+import { Loader } from "../../../../general/Loader/Loader"
+import {
+  connector,
+  ContainerProps,
+} from "./containers/IndexationAutoStats.containers"
 
 type Props = {
   isFetching: boolean
@@ -49,7 +45,7 @@ const Item: React.FC<{
           type="radio"
           checked={props.selected}
           onChange={() => {}}
-          className="ml-auto h-4 w-4 border-slate-200 text-blue-400 focus:ring-blue-400"
+          className="ml-auto h-4 w-4 border-slate-200 text-pink-400 focus:ring-pink-400"
         />
       </dt>
       <dd className="mt-1 flex items-center justify-between">

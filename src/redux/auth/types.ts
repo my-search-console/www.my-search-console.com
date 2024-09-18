@@ -1,4 +1,32 @@
-import { UserEntity } from "@my-search-console/interfaces"
+import {
+  UserEntity,
+  UserToGoogleSearchConsoleWithEmailsEntity,
+} from "@foudroyer/interfaces"
+
+/**
+ *
+ *
+ * GOOGLE SEARCH CONSOLE ACCOUNTS
+ *
+ *
+ *
+ */
+
+export const AuthGoogleSearchConsoleAccountsStore =
+  "AuthGoogleSearchConsoleAccountsStore"
+export interface AuthGoogleSearchConsoleAccountsStoreAction {
+  type: typeof AuthGoogleSearchConsoleAccountsStore
+  payload: { accounts: UserToGoogleSearchConsoleWithEmailsEntity[] }
+}
+
+/**
+ *
+ *
+ * ==================
+ *
+ *
+ *
+ */
 
 export const storeUser = "AUTH_STORE_USER"
 export interface storeUserAction {
@@ -35,3 +63,13 @@ export type AuthActionTypes =
   | AuthLogoutAction
   | AuthSetInitializedAction
   | AuthStoreSourcesAction
+
+  /**
+   *
+   *
+   * GOOGLE SEARCH CONSOLE ACCOUNTS
+   *
+   *
+   *
+   */
+  | AuthGoogleSearchConsoleAccountsStoreAction

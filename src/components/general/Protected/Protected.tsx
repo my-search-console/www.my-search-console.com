@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from "react"
-import { connector, ContainerProps } from "./containers/Protected.containers"
 import { Loader } from "../Loader/Loader"
+import { connector, ContainerProps } from "./containers/Protected.containers"
 
 type Props = {
   onMount: () => void

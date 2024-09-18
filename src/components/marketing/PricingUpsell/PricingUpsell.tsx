@@ -1,19 +1,16 @@
-import React, { useEffect } from "react"
+import { PaymentPlansEntity, PaymentPricesEntity } from "@foudroyer/interfaces"
 import { PlusIcon } from "@heroicons/react/20/solid"
-import { ButtonPrimary } from "../../UI/Button/Button"
 import classNames from "classnames"
+import getSymbolFromCurrency from "currency-symbol-map"
+import React, { useEffect } from "react"
+import { ITranslations } from "../../../interfaces/ITranslations"
+import { Confirm } from "../../general/ConfirmButton/ConfirmButton"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { ButtonPrimary } from "../../UI/Button/Button"
 import {
   connector,
   ContainerProps,
 } from "./containers/PricingUpsell.containers"
-import getSymbolFromCurrency from "currency-symbol-map"
-import { ITranslations } from "../../../interfaces/ITranslations"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import {
-  PaymentPlansEntity,
-  PaymentPricesEntity,
-} from "@my-search-console/interfaces"
-import { Confirm } from "../../general/ConfirmButton/ConfirmButton"
 
 const tiers: Array<{
   name: ITranslations["keys"]
@@ -152,7 +149,7 @@ export const Wrapper: React.FC<Props> = (props) => {
         <div className="mx-auto max-w-4xl">
           <a
             href="#"
-            className="font-display text-base font-semibold text-blue-400"
+            className="font-display text-base font-semibold text-pink-400"
           >
             <FormattedMessage id={"marketing/pricing-upsell/label"} />
           </a>
@@ -210,7 +207,7 @@ export const Wrapper: React.FC<Props> = (props) => {
                   <div>
                     <h2
                       id={tier.id}
-                      className="font-display text-base font-semibold leading-7 text-blue-400"
+                      className="font-display text-base font-semibold leading-7 text-pink-400"
                     >
                       <FormattedMessage id={tier.name} />
                     </h2>
@@ -258,7 +255,7 @@ export const Wrapper: React.FC<Props> = (props) => {
                             className="flex gap-x-3 font-display"
                           >
                             <PlusIcon
-                              className="h-6 w-5 flex-none text-blue-400"
+                              className="h-6 w-5 flex-none text-pink-400"
                               aria-hidden="true"
                             />
 
@@ -281,7 +278,7 @@ export const Wrapper: React.FC<Props> = (props) => {
                         {(isConfirmed) => (
                           <ButtonPrimary fullWidth size="md">
                             {!isConfirmed && (
-                              <div className="inline-flex h-10 w-full items-center justify-center rounded-md bg-slate-900 px-4 font-display text-sm font-semibold text-white transition duration-300 ease-in-out hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-300">
+                              <div className="inline-flex h-10 w-full items-center justify-center rounded-md bg-slate-900 px-4 font-display text-sm font-semibold text-white transition duration-300 ease-in-out hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-300">
                                 <FormattedMessage
                                   id={"marketing/pricing/premium/cta"}
                                 />

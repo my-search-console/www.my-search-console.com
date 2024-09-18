@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
 import ConfettiGenerator from "confetti-js"
+import React, { useEffect } from "react"
 
 const Canva: React.FC<{ respawn: boolean; speed?: number }> = (props) => {
   useEffect(() => {

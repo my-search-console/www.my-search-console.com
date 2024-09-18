@@ -1,5 +1,5 @@
-import React from "react"
 import { RouteComponentProps } from "@reach/router"
+import React from "react"
 import { PublicAnalyticsRoute } from "../../routes/public-analytics"
 
 const AnalyticsPage: React.FC<RouteComponentProps> = (props) => {

@@ -1,4 +1,4 @@
-import { WebsiteEntity } from "@my-search-console/interfaces"
+import { WebsiteEntity } from "@foudroyer/interfaces"
 
 export const WebsitePremium: WebsiteEntity = {
   id: "www.sudoku.academy",
@@ -28,6 +28,9 @@ export const WebsitePremium: WebsiteEntity = {
       fk_website_id: "www.sudoku.academy",
       created_at: new Date(),
       updated_at: new Date(),
+      checked_at: new Date(),
+      has_error: false,
+      is_downloadable_by_user: false,
     },
   ],
 }
@@ -60,6 +63,9 @@ export const WebsiteForDemo: WebsiteEntity = {
       fk_website_id: "www.sudoku.academy",
       created_at: new Date(),
       updated_at: new Date(),
+      checked_at: new Date(),
+      has_error: false,
+      is_downloadable_by_user: false,
     },
   ],
 }
@@ -91,6 +97,9 @@ export const WebsiteNotActivated: WebsiteEntity = {
       fk_website_id: "www.sudoku.academy",
       created_at: new Date(),
       updated_at: new Date(),
+      checked_at: new Date(),
+      has_error: false,
+      is_downloadable_by_user: false,
     },
   ],
 }
@@ -122,6 +131,9 @@ export const WebsiteActivated: WebsiteEntity = {
       fk_website_id: "www.sudoku.academy",
       created_at: new Date(),
       updated_at: new Date(),
+      checked_at: new Date(),
+      has_error: false,
+      is_downloadable_by_user: false,
     },
   ],
 }
@@ -153,6 +165,9 @@ export const WebsiteNoSitemap: WebsiteEntity = {
       fk_website_id: "www.sudoku.academy",
       created_at: new Date(),
       updated_at: new Date(),
+      checked_at: new Date(),
+      has_error: false,
+      is_downloadable_by_user: false,
     },
   ],
 }
@@ -184,6 +199,9 @@ export const WebsiteNotActivatedAndNotPremium: WebsiteEntity = {
       fk_website_id: "www.sudoku.academy",
       created_at: new Date(),
       updated_at: new Date(),
+      checked_at: new Date(),
+      has_error: false,
+      is_downloadable_by_user: false,
     },
   ],
 }

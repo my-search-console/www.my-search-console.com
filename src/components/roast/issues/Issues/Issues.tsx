@@ -1,19 +1,14 @@
-import React, { useState } from "react"
-import { connector, ContainerProps } from "./containers/Issues.container"
-import { ButtonSecondary } from "../../../UI/Button/Button"
 import {
   CheckCircleIcon,
   ExclamationTriangleIcon,
   XCircleIcon,
 } from "@heroicons/react/20/solid"
+import React, { useState } from "react"
 import { IssueEntity } from "../../../../entities/IssueEntity"
-import { Dialog } from "@headlessui/react"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
-import { InputFile } from "../../../indexation/UpdateCredentialsModal/components/InputFile"
-import classNames from "classnames"
-import ReactMarkdown from "react-markdown"
-import { useIntl } from "react-intl"
+import { ButtonSecondary } from "../../../UI/Button/Button"
 import { Modal } from "../Modal/Modal"
+import { connector, ContainerProps } from "./containers/Issues.container"
 
 type Props = {
   issues: IssueEntity[]

@@ -1,16 +1,15 @@
-import { Select } from "./../../../../redux/websites/types"
-import { CreateWebsiteModal } from "./../../../general/CreateWebsiteModal/CreateWebsiteModal"
-import { IndexationSearchEngines } from "./../../../../entities/SearchEngineEntity"
-import { WebsiteEntity } from "@my-search-console/interfaces/dist/entities/WebsiteEntity"
+import { WebsiteEntity } from "@foudroyer/interfaces/dist/entities/WebsiteEntity"
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
+import { IndexationSearchEngines } from "./../../../../entities/SearchEngineEntity"
 
 const mapState = (state: RootState) => ({
   websites: state.websites.entities.map((id) =>
     state.websites.map.get(id)
   ) as WebsiteEntity[],
   fetching: state.websites.fetching,
+  filter: state.websites.filter,
 })
 
 const mapDispatch = (dispatch: any) => ({
@@ -21,11 +20,17 @@ const mapDispatch = (dispatch: any) => ({
       })
     )
   },
+  onClickUser: (params: { websiteId: string }) => {
+    dispatch(
+      actions.websites.$WebsitesOpenAddUsersModal({
+        websiteId: params.websiteId,
+      })
+    )
+  },
   onToggleAutoIndexing: (params: { website: WebsiteEntity }) => {
     dispatch(
-      actions.indexation.$IndexationToggle({
-        type: "auto-indexing",
-        website: params.website,
+      actions.indexation.$IndexationAutoSettingsModalOpen({
+        websiteId: params.website.id,
       })
     )
   },
@@ -35,7 +40,6 @@ const mapDispatch = (dispatch: any) => ({
   }) => {
     dispatch(
       actions.indexation.$IndexationToggle({
-        type: "source",
         source: params.source,
         website: params.website,
       })
@@ -44,7 +48,7 @@ const mapDispatch = (dispatch: any) => ({
   onAddWebsite: () => {
     dispatch(actions.websites.$WebsiteCreateModal())
   },
-  onBoost: (params: { website: WebsiteEntity }) => {
+  onClickKeys: (params: { website: WebsiteEntity }) => {
     dispatch(
       actions.websites.setCredentialsIsOpen({
         value: true,
@@ -52,8 +56,17 @@ const mapDispatch = (dispatch: any) => ({
       })
     )
   },
+  onClickSitemap: (params: { website: WebsiteEntity }) => {
+    dispatch(
+      actions.websites.$openSitemapModal({ websiteId: params.website.id })
+    )
+  },
   onSeeDetails: (params: { website: WebsiteEntity }) => {
     dispatch(actions.websites.navigateOrShowModal(params.website))
+  },
+
+  onDelete(websiteId: string) {
+    dispatch(actions.websites.$DeleteConfirmModalOpen({ websiteId }))
   },
 })
 

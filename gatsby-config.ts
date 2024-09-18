@@ -1,17 +1,7 @@
 import type { GatsbyConfig } from "gatsby"
 import path from "path"
-import {
-  MIXPANEL_DEVELOPMENT_API_KEY,
-  MIXPANEL_HOST,
-  MIXPANEL_PRODUCTION_API_KEY,
-} from "./src/constants/mixpanel"
 
 const URL = "https://www.my-search-console.com"
-
-const MIXPANEL_API_KEY =
-  process.env.NODE_ENV === "production"
-    ? MIXPANEL_PRODUCTION_API_KEY
-    : MIXPANEL_DEVELOPMENT_API_KEY
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -55,6 +45,13 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        name: "news",
+        path: `./cms/news`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         name: "assets",
         path: "./src/assets/",
       },
@@ -93,10 +90,22 @@ const config: GatsbyConfig = {
               return { path: "no-index" }
             }
 
+            if (page.path.includes("administration")) {
+              return { path: "no-index" }
+            }
+
+            if (page.path.includes("authentication")) {
+              return { path: "no-index" }
+            }
+
+            if (page.path.includes("/user/")) {
+              return { path: "no-index" }
+            }
+
             if (page?.pageContext?.meta?.indexable === false)
               return { path: "no-index" }
 
-            return { ...page }
+            return { ...page, lastmod: page.updated_at }
           })
         },
         filterPages: ({ path }) => {
@@ -105,11 +114,11 @@ const config: GatsbyConfig = {
           if (path.includes("no-index")) return true
           return false
         },
-        serialize: ({ path, lastmod }) => {
+        serialize: (props) => {
           return {
-            url: path,
-            lastmod,
-            priority: lastmod ? 1 : 1,
+            url: props.path,
+            lastmod: props.pageContext.updated_at,
+            priority: props.pageContext.updated_at ? 1 : 1,
           }
         },
         query: `
@@ -122,6 +131,18 @@ const config: GatsbyConfig = {
           }
         }
       `,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "src/assets/logo/icon.png",
+        name: `Foudroyer`,
+        short_name: `Foudroyer`,
+        start_url: `/`,
+        background_color: `#000`,
+        theme_color: `#fbcfe8`,
+        display: `standalone`,
       },
     },
     "gatsby-plugin-mdx",
@@ -144,30 +165,35 @@ const config: GatsbyConfig = {
       __key: "pages",
     },
     {
-      resolve: `gatsby-plugin-umami`,
+      resolve: `gatsby-plugin-posthog`,
       options: {
-        websiteId: "92e76490-3adf-4921-8eb6-cb2b14d83b64",
-        srcUrl: "https://analytics.eu.umami.is/script.js",
-        includeInDevelopment: false,
-        autoTrack: true,
-        respectDoNotTrack: true,
-        dataCache: false,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-mixpanel",
-      options: {
-        apiToken: MIXPANEL_API_KEY,
-        mixpanelConfig: {
-          api_host: MIXPANEL_HOST,
-          debug: process.env.NODE_ENV === "production" ? false : true,
-          persistence: "localStorage",
+        // Specify the API key for your Posthog Project (required)
+        apiKey: "phc_S12kKoz6D9mIV2wfp0MQpcMEUDGsHOiCjM5edIEHW8s",
+        // Specify the app host if self-hosting (optional, default: https://app.posthog.com)
+        apiHost: "https://eu.i.posthog.com",
+        // Puts tracking script in the head instead of the body (optional, default: true)
+        head: true,
+        // Enable posthog analytics tracking during development (optional, default: false)
+        isEnabledDevMode: true,
+        // Pass custom variables to posthog.init() (optional)
+        initOptions: {
+          person_profiles: "identified_only",
+          loaded: (posthog) => {
+            posthog.debug() // debug mode in development
+          },
         },
-        pageViews: "all",
-        trackPageViewsAs: "Page View",
       },
     },
   ],
+}
+
+if (process.env.NODE_ENV === "production") {
+  config.plugins?.push({
+    resolve: "@sentry/gatsby",
+    options: {
+      dsn: "https://f6d6eb4963584afc93e51f7d3136b07e@o1172147.ingest.sentry.io/6267024",
+    },
+  })
 }
 
 export default config

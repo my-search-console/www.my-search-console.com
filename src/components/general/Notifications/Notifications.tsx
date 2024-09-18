@@ -1,15 +1,15 @@
-import React, { Fragment } from "react"
 import { Transition } from "@headlessui/react"
 import CheckCircleIcon from "@heroicons/react/20/solid/CheckCircleIcon"
+import ExclamationIcon from "@heroicons/react/20/solid/ExclamationTriangleIcon"
 import InformationCircleIcon from "@heroicons/react/20/solid/InformationCircleIcon"
 import XCircleIcon from "@heroicons/react/20/solid/XCircleIcon"
-import ExclamationIcon from "@heroicons/react/20/solid/ExclamationTriangleIcon"
 import XIcon from "@heroicons/react/20/solid/XMarkIcon"
-import { connector, ContainerProps } from "./containers/Notifications.container"
-import { NotificationEntity } from "../../../entities/NotificationEntity"
-import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
 import classNames from "classnames"
+import React, { Fragment } from "react"
+import { NotificationEntity } from "../../../entities/NotificationEntity"
+import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
+import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
+import { connector, ContainerProps } from "./containers/Notifications.container"
 
 const Notification: React.FC<{
   onRemove: () => any
@@ -59,7 +59,7 @@ const Notification: React.FC<{
               )}
               {props.type === "warning" && (
                 <ExclamationIcon
-                  className="h-6 w-6 text-blue-400"
+                  className="h-6 w-6 text-pink-400"
                   aria-hidden="true"
                 />
               )}
@@ -80,7 +80,7 @@ const Notification: React.FC<{
                 )}
               </p>
 
-              {props.type !== "success" && (
+              {props.type !== "success" && props.message && (
                 <p className="mt-1 text-sm text-slate-500">
                   <FormattedMessage id={props.message} />
                 </p>

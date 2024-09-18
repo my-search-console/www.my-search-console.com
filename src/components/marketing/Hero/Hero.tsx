@@ -1,12 +1,11 @@
-import React, { ReactNode } from "react"
-import { Container } from "../../UI/Container"
-import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary } from "../../UI/Button/Button"
-import ReactMarkdown from "react-markdown"
-import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
-import { connector, ContainerProps } from "./containers/Hero.containers"
 import { StarIcon } from "@heroicons/react/20/solid"
-import { buildLinkDependingOnAuthStatus } from "../../../utils/buildLinkDependingOnAuthStatus"
+import React, { ReactNode } from "react"
+import ReactMarkdown from "react-markdown"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
+import { ButtonPrimary } from "../../UI/Button/Button"
+import { Container } from "../../UI/Container"
+import { connector, ContainerProps } from "./containers/Hero.containers"
 
 const commenters = [
   {
@@ -80,13 +79,13 @@ export const Wrapper: React.FC<{
         style={{
           animationDelay: "300ms",
         }}
-        className="absolute right-20 top-20 hidden h-20 w-20 animate-bounce  rounded-full bg-blue-50 lg:block"
+        className="absolute right-20 top-20 hidden h-20 w-20 animate-bounce  rounded-full bg-pink-50 lg:block"
       ></div>
       <div className="absolute left-20 top-28 hidden h-20 w-20 animate-bounce  rounded-xl bg-blue-50 delay-300 lg:block"></div>
 
       <Container className="flex flex-col items-center justify-center  pb-10 pt-20 text-center">
         {props.label && (
-          <p className="text-center font-display text-lg font-medium text-blue-400">
+          <p className="text-center font-display text-lg font-medium text-pink-400">
             {props.label}
           </p>
         )}
@@ -107,12 +106,12 @@ export const Wrapper: React.FC<{
         <div className="mt-10 flex justify-center gap-x-6">
           {props.authenticated && (
             <div>
-              <FoudroyerLink to={"/administration?tool=analytics"}>
+              <FoudroyerLink to={"/administration/"}>
                 <ButtonPrimary>
                   <FormattedMessage id="landing/access" />
                 </ButtonPrimary>
               </FoudroyerLink>
-              {!props.hideUsers && <Customers nbUsers={props.nbUsers} />}
+              {/* {!props.hideUsers && <Customers nbUsers={props.nbUsers} />} */}
             </div>
           )}
 
@@ -121,7 +120,7 @@ export const Wrapper: React.FC<{
               <ButtonPrimary onClick={props.onAuthenticate}>
                 <FormattedMessage id="landing/try" />
               </ButtonPrimary>
-              <Customers nbUsers={props.nbUsers} />
+              {/* <Customers nbUsers={props.nbUsers} /> */}
             </div>
           )}
         </div>

@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react"
 import {
   ArrowTopRightOnSquareIcon,
   CheckCircleIcon,
   ClockIcon,
 } from "@heroicons/react/20/solid"
+import React, { ReactNode } from "react"
 
-import { IndexationQueueEntity } from "@my-search-console/interfaces"
+import { IndexationQueueEntity } from "@foudroyer/interfaces"
 import { ItemLoading } from "./components/ItemLoading"
 import {
   connector,
@@ -16,8 +16,8 @@ import classNames from "classnames"
 
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
-import { Tooltip } from "../../../../UI/Tooltip"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
+import { Tooltip } from "../../../../UI/Tooltip"
 
 dayjs.extend(relativeTime)
 

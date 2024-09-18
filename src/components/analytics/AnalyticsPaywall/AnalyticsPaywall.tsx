@@ -1,16 +1,14 @@
-import { PaymentPlansEntity } from "@my-search-console/interfaces"
+import { PaymentPlansEntity } from "@foudroyer/interfaces"
 import React from "react"
-import { Pricing } from "../../marketing/Pricing/Pricing"
-import { AnalyticsComingSoonModal } from "../AnalyticsComingSoonModal/AnalyticsComingSoonModal"
-import { AnalyticsToastDataLate } from "../AnalyticsToastDataLate/AnayticsToastDataLate"
-import { AnalyticsToastDataSyncing } from "../AnalyticsToastDataSyncing/AnalyticsToastDataSyncing"
+import { CreateWebsiteModal } from "../../general/CreateWebsiteModal/CreateWebsiteModal"
+import { AnalyticsActivateModal } from "../AnalyticsActivateModal/AnalyticsActivateModal"
 import { FilterBar } from "../FilterBar/FilterBar"
 import { GeneralChart } from "../GeneralChart/GeneralChart"
 import { GlobalStats } from "../GlobalStats/GlobalStats"
 import { HorizontalHistogram } from "../HorizontalHistogram/HorizontalHistogram"
 import {
-  ContainerProps,
   connector,
+  ContainerProps,
 } from "./containers/AnalyticsPaywall.containers"
 
 type Props = {
@@ -22,12 +20,18 @@ export const Wrapper: React.FC<Props> = (props) => {
   return (
     <div className="my-4">
       <FilterBar />
+      {/* <ConnectService /> */}
       <div className="relative">
+        {/* <AnalyticsToastDataLate /> */}
+        {/* <AnalyticsToastDataSyncing /> */}
+        {/* <AnalyticsComingSoonModal /> */}
         <div className="mt-4" />
         <GlobalStats />
         <GeneralChart />
         <HorizontalHistogram />
       </div>
+      <CreateWebsiteModal />
+      <AnalyticsActivateModal />
     </div>
   )
 }

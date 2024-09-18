@@ -1,10 +1,11 @@
 import {
   IndexationQueueEntity,
   IndexationQueueStatus,
+  IndexationSettingsEntity,
   IndexationSourceType,
   IndexationType,
   PageEntity,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
 import { IRepositoryResponse } from "./IApiResponse"
 
 export type FilterParams = {
@@ -46,7 +47,8 @@ export type IndexationAutoFetchResponse = IRepositoryResponse<{
   isActive: boolean
 }>
 
-export type IndexationAutoSaveResponse = IRepositoryResponse<any>
+export type IndexationAutoSaveResponse =
+  IRepositoryResponse<IndexationSettingsEntity>
 export type IndexationAutoFetchQueueResponse = IRepositoryResponse<{
   pages: IndexationQueueEntity[]
   stats: {
@@ -111,7 +113,16 @@ export interface IPagesRepository {
     }
   }): Promise<IndexationAutoSaveResponse>
 
+  IndexationSourceToggle(params: {
+    websiteId: string
+    source: IndexationSourceType
+  }): Promise<IndexationAutoSaveResponse>
+
   SendAdvancedFilterPagesToQueue(
+    params: FilterParams & { sources: IndexationSourceType[] }
+  ): Promise<SendAdvancedFilterPagesToQueueResponse>
+
+  SendAdvancedFilterPagesToCheck(
     params: FilterParams & { sources: IndexationSourceType[] }
   ): Promise<SendAdvancedFilterPagesToQueueResponse>
 

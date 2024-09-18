@@ -1,20 +1,23 @@
 import React from "react"
-import { IndexationStats } from "../IndexationStats/IndexationStats"
+import { AdvancedFilterPanel } from "../AdvancedFilterPanel/AdvancedFilterPanel"
+import { FilterAndSearchActionBar } from "../FilterAndSearchActionBar/FilterAndSearchActionBar"
+import { IndexationStatsBar } from "../IndexationStatsBar/IndexationStatsBar"
 import { AllPages } from "../IndexedTable/IndexedTable"
 import { Pagination } from "../Pagination/Pagination"
 import { RefreshSitemapAndIndexation } from "../RefreshSitemapAndIndexation/RefreshSitemapAndIndexation"
-import { SourceSelector } from "../../analytics/FilterBar/components/SourceSelector/SourceSelector"
-import { AdvancedFilterPanel } from "../AdvancedFilterPanel/AdvancedFilterPanel"
-import { IndexationReportChart } from "../IndexationReportPage/components/IndexationReportChart/IndexationReportChart"
-import { IndexationToastUpsell } from "../IndexationToastUpsell/IndexationToastUpsell"
-import { IndexationStatsBar } from "../IndexationStatsBar/IndexationStatsBar"
-import { FilterAndSearchActionBar } from "../FilterAndSearchActionBar/FilterAndSearchActionBar"
+import { WebsiteStatsIndexationReportTimeSeries } from "../WebsiteStatsIndexationReportTimeSeries/WebsiteStatsIndexationReportTimeSeries"
 
 export const IndexationManualPage = () => (
   <div className="min-h-screen">
     <div className="mt-2"></div>
-    <IndexationToastUpsell />
 
+    {/* <HelperBlock
+      title={<FormattedMessage id="indexation/manual/help/title" />}
+      description={<FormattedMessage id="indexation/manual/help/description" />}
+    /> */}
+
+    <div className="mt-2"></div>
+    <WebsiteStatsIndexationReportTimeSeries />
     <div className="mt-2"></div>
     <RefreshSitemapAndIndexation />
 
@@ -23,6 +26,8 @@ export const IndexationManualPage = () => (
 
     <div className="mt-2"></div>
     <FilterAndSearchActionBar />
+    <div className="mt-2"></div>
+    <AdvancedFilterPanel />
 
     <div className="mt-2"></div>
     <AllPages />

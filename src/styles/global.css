@@ -57,21 +57,30 @@ input[type="number"] {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply bg-blue-50;
+  @apply bg-pink-50;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply bg-blue-200;
+  @apply bg-pink-200;
   border-radius: 9999px;
+}
+
+.no-scroll-bar::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }
 
 .no-scroll-bar::-webkit-scrollbar-thumb {
   background: transparent;
+  width: 0px;
+  height: 0px;
 }
 
 .no-scroll-bar::-webkit-scrollbar-track {
   background: transparent;
+  width: 0px;
+  height: 0px;
 }
 
 .site-selector-scroll-mobile {
@@ -97,4 +106,97 @@ input[type="number"] {
 .shadow-btn:hover,
 .shadow-btn-2:hover {
   box-shadow: 0 0px transparent;
+}
+
+/* 
+
+Infinite Loop
+
+*/
+
+@keyframes slideAnim {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.looper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    z-index: 1;
+
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    z-index: 1;
+
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 100%
+    );
+  }
+}
+
+.looper__innerList {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.looper__innerList[data-animate="true"] .looper__listInstance {
+  animation: slideAnim linear infinite;
+}
+
+.looper__listInstance {
+  display: flex;
+  width: max-content;
+
+  animation: none;
+}
+
+#root {
+  flex: 1;
+  padding: 16px;
+  font-family: sans-serif;
+  color: var(--offwhite);
+  background: linear-gradient(-45deg, #4c468b, #05031a);
+}
+
+.description {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.contentBlock--one:last-of-type {
+  color: var(--green);
+  margin-right: 36px;
+}
+.contentBlock--two {
+  color: var(--green);
+  font-size: 48px;
+  background: rgba(255, 255, 255, 0.05);
 }

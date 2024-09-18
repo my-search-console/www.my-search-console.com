@@ -2,16 +2,16 @@ import {
   IndexationQueueEntity,
   IndexationSourceType,
   PageEntity,
-} from "@my-search-console/interfaces"
+} from "@foudroyer/interfaces"
 import { uniqWith } from "ramda"
 import {
   FetchResponse,
   FilterParams,
-  IPagesRepository,
   IndexationAutoFetchQueueResponse,
   IndexationAutoFetchResponse,
   IndexationAutoSaveResponse,
   IndexationReportFetchQueueResponse,
+  IPagesRepository,
   SendAdvancedFilterPagesToQueueResponse,
   SubmitManuallyPagesResponse,
 } from "../interfaces/IPagesRepository"
@@ -90,6 +90,12 @@ export class InMemoryPagesRepository implements IPagesRepository {
   }
 
   async SendAdvancedFilterPagesToQueue(
+    params: FilterParams & { sources: IndexationSourceType[] }
+  ): Promise<SendAdvancedFilterPagesToQueueResponse> {
+    return { error: false, body: null }
+  }
+
+  async SendAdvancedFilterPagesToCheck(
     params: FilterParams & { sources: IndexationSourceType[] }
   ): Promise<SendAdvancedFilterPagesToQueueResponse> {
     return { error: false, body: null }

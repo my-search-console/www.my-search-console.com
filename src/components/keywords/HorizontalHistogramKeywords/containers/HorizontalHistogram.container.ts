@@ -1,7 +1,6 @@
 import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
-import { RankingOrderByType } from "../../../../entities/RankingWebsiteEntity"
 
 const mapState = (state: RootState) => ({
   stats: state.keywords.keywords,

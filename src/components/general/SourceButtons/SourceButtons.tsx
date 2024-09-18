@@ -1,14 +1,15 @@
 import classNames from "classnames"
 import React from "react"
-import { ButtonSecondary } from "../../UI/Button/Button"
-import GoogleLogo from "../../../assets/socials/google.svg"
-import YandexLogo from "../../../assets/socials/yandex.svg"
 import BingLogo from "../../../assets/socials/bing.svg"
+import GoogleLogo from "../../../assets/socials/google.svg"
 import NaverLogo from "../../../assets/socials/naver.svg"
+import YandexLogo from "../../../assets/socials/yandex.svg"
+import { ButtonSecondary } from "../../UI/Button/Button"
 
 type Props = {
   onClick: () => void
   isActive: boolean
+  small?: boolean
 }
 
 const SourceButton: React.FC<
@@ -16,7 +17,7 @@ const SourceButton: React.FC<
     logo: string
   }
 > = (props) => (
-  <ButtonSecondary size="sm" onClick={props.onClick}>
+  <ButtonSecondary size={props.small ? "xs" : "sm"} onClick={props.onClick}>
     <img
       src={props.logo}
       className={classNames("h-4 w-4", !props.isActive && "opacity-30")}
@@ -25,41 +26,17 @@ const SourceButton: React.FC<
 )
 
 export const SourceGoogleButton: React.FC<Props> = (props) => {
-  return (
-    <SourceButton
-      onClick={props.onClick}
-      logo={GoogleLogo}
-      isActive={props.isActive}
-    />
-  )
+  return <SourceButton logo={GoogleLogo} {...props} />
 }
 
 export const SourceNaverButton: React.FC<Props> = (props) => {
-  return (
-    <SourceButton
-      onClick={props.onClick}
-      logo={NaverLogo}
-      isActive={props.isActive}
-    />
-  )
+  return <SourceButton logo={NaverLogo} {...props} />
 }
 
 export const SourceBingButton: React.FC<Props> = (props) => {
-  return (
-    <SourceButton
-      onClick={props.onClick}
-      logo={BingLogo}
-      isActive={props.isActive}
-    />
-  )
+  return <SourceButton logo={BingLogo} {...props} />
 }
 
 export const SourceYandexButton: React.FC<Props> = (props) => {
-  return (
-    <SourceButton
-      onClick={props.onClick}
-      logo={YandexLogo}
-      isActive={props.isActive}
-    />
-  )
+  return <SourceButton logo={YandexLogo} {...props} />
 }
