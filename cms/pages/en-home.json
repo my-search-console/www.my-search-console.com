@@ -2,8 +2,8 @@
   "type": "page",
   "meta": {
     "indexable": true,
-    "title": "My Search Console, indexing seo tool for google, yandex, bing, naver",
-    "description": "lets you centralize in one place everything you need to reach the top 1 on search engines."
+    "title": "My Search Console, a better Google Search Console",
+    "description": "My Search Console is a service where you can see Google Search Console data easely."
   },
   "id": "630e6102-a075-4c11-84b9-9fca59015e28",
   "published_at": "2023-11-16T13:15:09.769Z",
@@ -14,14 +14,14 @@
     {
       "type": "marketing/hero",
       "label": {
-        "value": "Only one platform to manage all search engines",
+        "value": "My Search Console",
         "component": "p"
       },
       "title": {
-        "value": "Google, Yandex and Bing centralized in one platform.",
+        "value": "A better Google Search Console",
         "component": "h1"
       },
-      "description": "Discover a more efficient way to monitor your website's performance on search engine results pages. Move beyond the limitations of Google, Bing, and Yandex Webmaster tools, which often present data in a less user-friendly manner. With our solution, you can quickly understand changes in your search performance, track the evolution of clicks and impressions, and effortlessly navigate through your data for a more convenient and insightful experience."
+      "description": "My Search Console is a service where you can see Google Search Console data easely. A smooth and easy to use interface."
     },
     {
       "type": "marketing/video",

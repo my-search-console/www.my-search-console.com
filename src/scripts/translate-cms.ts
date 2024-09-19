@@ -366,11 +366,6 @@ async function run() {
       target: language,
       file: "en-analytics.json",
     })
-
-    await blog({
-      target: language,
-      file: "en-keywords.json",
-    })
   }
 }
 

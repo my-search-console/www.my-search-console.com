@@ -1,6 +1,7 @@
 import { navigate } from "gatsby"
 import React from "react"
 
+import { Link } from "@reach/router"
 import { useIntl } from "react-intl"
 import languages from "../../constants/languages.json"
 import { FormattedMessage } from "../general/FormattedMessage/FormattedMessage"
@@ -39,7 +40,12 @@ export function Footer() {
             </div>
             <div className="flex flex-wrap justify-center gap-x-6">
               {languages.map((lang) => (
-                <NavLink href={`/${lang.id}/`}>{lang.label}</NavLink>
+                <Link
+                  className="inline-flex  hover:bg-pink-50 hover:text-pink-400 h-10 items-center rounded-md px-4 font-display text-sm font-semibold transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  to={`/${lang.id}/`}
+                >
+                  {lang.label}
+                </Link>
               ))}
             </div>
           </nav>
