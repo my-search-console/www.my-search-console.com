@@ -1348,31 +1348,9 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
 }
 
 module.exports.sourceNodes = async (gatsbyApi) => {
-  const nbUsers = await axios
-    .get(
-      process.env.NODE_ENV === "production"
-        ? "https://api.foudroyer.com/stats/users/total"
-        : "http://localhost:8080/stats/users/total"
-    )
-    .then((res) => res.data)
-    .catch((err) => {
-      return 6000
-    })
-
-  const pagesIndexed = await axios
-    .get(
-      process.env.NODE_ENV === "production"
-        ? "https://api.foudroyer.com/stats/indexation/indexed/total"
-        : "http://localhost:8080/stats/indexation/indexed/total"
-    )
-    .then((res) => res.data)
-    .catch((err) => {
-      return 3000000
-    })
-
   const yourData = {
-    users: nbUsers,
-    indexed: pagesIndexed,
+    users: 0,
+    indexed: 0,
     websiteUpdatedAt: new Date(),
   }
 

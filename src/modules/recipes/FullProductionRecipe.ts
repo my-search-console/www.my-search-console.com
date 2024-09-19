@@ -13,7 +13,7 @@ import { ApiIndexationService } from "../../services/ApiIndexationService"
 import { ApiService } from "../../services/ApiService"
 import { ApiSitemapsService } from "../../services/ApiSitemapsService"
 import { PaddlePaymentService } from "../../services/PaddlePaymentService"
-import { PlausibleAnalyticsService } from "../../services/PlausibleAnalyticsService"
+import { PosthogAnalyticsService } from "../../services/PosthogAnalyticsService"
 import { WindowLocalStorageService } from "../../services/WindowLocalStorageService"
 import { WindowLocationService } from "../../services/WindowLocationService"
 
@@ -23,7 +23,7 @@ export class FullProductionRecipe implements IModule {
     const apiService = new ApiService(LocalStorageService)
 
     const LocationService = new WindowLocationService()
-    const AnalyticsService = new PlausibleAnalyticsService()
+    const AnalyticsService = new PosthogAnalyticsService()
     const PaymentService = new PaddlePaymentService()
     const PaymentsRepository = new ApiPaymentsRepository(apiService)
     const LogsRepository = new ApiLogsRepository(apiService)

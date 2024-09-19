@@ -134,11 +134,19 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: URL,
+        sitemap: `${URL}/sitemap/sitemap-index.xml`,
+        policy: [{ userAgent: "*", disallow: require("./src/robots") }],
+      },
+    },
+    {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/assets/logo/icon.png",
-        name: `Foudroyer`,
-        short_name: `Foudroyer`,
+        name: `My Search Console`,
+        short_name: `My Search Console`,
         start_url: `/`,
         background_color: `#000`,
         theme_color: `#fbcfe8`,

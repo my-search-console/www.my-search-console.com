@@ -22,30 +22,3 @@ export const onPreRenderHTML = (props) => {
 
   props.replaceHeadComponents(headComponents)
 }
-
-export const onRenderBody = ({ setHeadComponents }) => {
-  const scriptProps = {
-    async: true,
-    defer: true,
-    "data-domain": "foudroyer.com",
-    src: `https://plausible.foudroyer.com/js/script.js`,
-  }
-
-  return setHeadComponents([
-    <link
-      key="gatsby-plugin-plausible-preconnect"
-      rel="preconnect"
-      href={scriptProps.src}
-    />,
-    <script key="gatsby-plugin-plausible-script" {...scriptProps}></script>,
-
-    <script
-      key="gatsby-plugin-plausible-custom-events"
-      dangerouslySetInnerHTML={{
-        __html: `
-          window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
-          `,
-      }}
-    />,
-  ])
-}

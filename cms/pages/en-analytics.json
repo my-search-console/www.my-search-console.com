@@ -26,21 +26,21 @@
     {
       "type": "marketing/video",
       "autoplay": true,
-      "alt": "foudroyer analytics demo",
+      "alt": "analytics demo",
       "src": "../assets/analytics-demo-landing.mp4",
       "illustration": "../assets/analytics-demo-landing.jpeg"
     },
     {
       "type": "marketing/features",
       "label": {
-        "value": "Foudroyer Analytics",
+        "value": "Analytics",
         "component": "p"
       },
       "title": {
         "value": "Compare, Analyse, Take off",
         "component": "h2"
       },
-      "description": "Foudroyer Analytics drastically improves the understanding of your site's traffic, allowing you to take action at the right time and surge in search engine results.",
+      "description": "My Search Console drastically improves the understanding of your site's traffic, allowing you to take action at the right time and surge in search engine results.",
       "features": [
         {
           "title": {

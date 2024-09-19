@@ -2,6 +2,7 @@ import { navigate } from "gatsby"
 import React from "react"
 
 import { useIntl } from "react-intl"
+import languages from "../../constants/languages.json"
 import { FormattedMessage } from "../general/FormattedMessage/FormattedMessage"
 import { NavLink } from "../general/NavLink"
 import { Container } from "../UI/Container"
@@ -35,6 +36,11 @@ export function Footer() {
               <NavLink href="/terms-of-service/">
                 <FormattedMessage id="footer/terms-of-use" />
               </NavLink>
+            </div>
+            <div className="flex flex-wrap justify-center gap-x-6">
+              {languages.map((lang) => (
+                <NavLink href={`/${lang.id}/`}>{lang.label}</NavLink>
+              ))}
             </div>
           </nav>
         </div>

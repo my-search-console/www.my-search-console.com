@@ -364,7 +364,12 @@ async function run() {
 
     await blog({
       target: language,
-      file: "en-legal-notice.json",
+      file: "en-analytics.json",
+    })
+
+    await blog({
+      target: language,
+      file: "en-keywords.json",
     })
   }
 }

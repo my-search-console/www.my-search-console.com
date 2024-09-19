@@ -52,7 +52,7 @@
       },
       {
         "type": "article/rich_text",
-        "content": "All content on the [www.my-search-console.com](http://www.my-search-console.com/) website, including but not limited to graphics, images, texts, videos, animations, sounds, logos, gifs, and icons as well as their formatting are the exclusive property of Savate, with the exception of brands, logos, or content belonging to other partner companies or authors."
+        "content": "All content on the [www.my-search-console.com](/) website, including but not limited to graphics, images, texts, videos, animations, sounds, logos, gifs, and icons as well as their formatting are the exclusive property of Savate, with the exception of brands, logos, or content belonging to other partner companies or authors."
       },
       {
         "type": "article/title",
@@ -62,7 +62,7 @@
       },
       {
         "type": "article/rich_text",
-        "content": "The [www.my-search-console.com](http://www.my-search-console.com/) website may contain links to other websites. Savate cannot be held responsible for the content of these sites or how users might use them."
+        "content": "The [www.my-search-console.com](/) website may contain links to other websites. Savate cannot be held responsible for the content of these sites or how users might use them."
       },
       {
         "type": "article/title",

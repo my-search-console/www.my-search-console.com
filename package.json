@@ -55,6 +55,7 @@
     "gatsby-plugin-netlify-cms": "6.20.0",
     "gatsby-plugin-posthog": "1.0.1",
     "gatsby-plugin-react-helmet": "5.20.0",
+    "gatsby-plugin-robots-txt": "1.8.0",
     "gatsby-plugin-sharp": "4.20.0",
     "gatsby-plugin-sitemap": "5.20.0",
     "gatsby-plugin-umami": "0.1.5",

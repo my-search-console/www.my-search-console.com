@@ -3,7 +3,7 @@
   "meta": {
     "indexable": true,
     "title": "Keywords - Follow all your keywords position on all search engines",
-    "description": "With Foudroyer Keywords, you can track all your keywords from Google, Bing and Yandex in all place."
+    "description": "With My Search Console, you can track all your keywords from Google, Bing and Yandex in all place."
   },
   "id": "29281653-e421-4201-8fe7-5b67710ca4dd",
   "published_at": "2023-11-16T14:51:10.003Z",
@@ -26,28 +26,28 @@
     {
       "type": "marketing/video",
       "autoplay": true,
-      "alt": "Introduction to Foudroyer Keywords tool",
+      "alt": "Introduction to My Search Console tool",
       "src": "../assets/keywords-demo-landing.mp4",
       "illustration": "../assets/keywords-demo-landing.jpg"
     },
     {
       "type": "marketing/features",
       "label": {
-        "value": "Foudroyer Keywords",
+        "value": "My Search Console",
         "component": "p"
       },
       "title": {
         "value": "Follow your favorite keywords.",
         "component": "h2"
       },
-      "description": "It has never been easier to follow your keywords thanks to Foudroyer!",
+      "description": "It has never been easier to follow your keywords thanks to My Search Console!",
       "features": [
         {
           "title": {
             "value": "The exact position of your keywords.",
             "component": "p"
           },
-          "description": "Directly connected to search engines, Foudroyer gives you exact and precise positions.",
+          "description": "Directly connected to search engines, My Search Console gives you exact and precise positions.",
           "video": {
             "autoplay": true,
             "alt": "Video illustrating the \"Follow exact position\" feature",
