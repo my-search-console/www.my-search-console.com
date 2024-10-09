@@ -15,6 +15,7 @@ import { Testimonials } from "../components/marketing/Testimonials/Testimonials"
 import { Text } from "../components/marketing/Text/Text"
 import { Title } from "../components/marketing/Title/Title"
 import { Toc } from "../components/marketing/Toc/Toc"
+import SpreadPage from "../components/spread/SpreadPage/SpreadPage"
 import {
   ArticleEntity,
   ArticleTOC,
@@ -58,6 +59,8 @@ function Page(props) {
               nbUsers={content.nbUsers}
             />
           )
+        if (content.type === "marketing/show-off")
+          return <SpreadPage key={index} />
 
         if (content.type === "marketing/title")
           return <Title key={index} title={content.title.value} />

@@ -5,6 +5,7 @@ import { ILocalStorageService } from "./ILocalStorageService"
 import { ILocationService } from "./ILocationService"
 import { IPaymentService } from "./IPaymentService"
 import { IPaymentsRepository } from "./IPaymentsRepository"
+import { ISpreadRepository } from "./ISpreadRepository"
 import { IWebsitesRepository } from "./IWebsitesRepository"
 
 export type Modules = {
@@ -16,6 +17,7 @@ export type Modules = {
   PaymentService: IPaymentService
   PaymentsRepository: IPaymentsRepository
   KeywordsRepository: IKeywordsRepository
+  SpreadRepository: ISpreadRepository
 }
 
 export interface IModule {

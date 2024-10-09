@@ -565,6 +565,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 show
               }
 
+               ... on MarketingShowOff {
+                __typename
+                type
+              }
+
+
               ... on MarketingTestimonials {
                 __typename
                 type
@@ -1028,6 +1034,13 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
     }),
 
     schema.buildObjectType({
+      name: "MarketingShowOff",
+      fields: {
+        type: "String!",
+      },
+    }),
+
+    schema.buildObjectType({
       name: "MarketingFeatures",
       fields: {
         type: "String!",
@@ -1061,6 +1074,7 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
         "MarketingFeatures",
         "MarketingFaq",
         "MarketingTestimonials",
+        "MarketingShowOff",
         // `MarketingCloud`,
         // "MarketingDiscover",
         // "MarketingFaq",
@@ -1087,6 +1101,7 @@ module.exports.createSchemaCustomization = ({ actions, schema }) => {
           return "MarketingTestimonials"
         if (value.type === "marketing/features") return "MarketingFeatures"
         if (value.type === "marketing/faq") return "MarketingFaq"
+        if (value.type === "marketing/show-off") return "MarketingShowOff"
         // if (value.type === "marketing/cloud") return "MarketingCloud"
         // if (value.type === "marketing/discover") return "MarketingDiscover"
         // if (value.type === "marketing/faq") return "MarketingFaq"
@@ -1365,4 +1380,15 @@ module.exports.sourceNodes = async (gatsbyApi) => {
   }
 
   gatsbyApi.actions.createNode(node)
+}
+
+module.exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        "@/components": path.resolve(__dirname, "src/components"),
+        "@/lib/utils": path.resolve(__dirname, "src/lib/utils"),
+      },
+    },
+  })
 }

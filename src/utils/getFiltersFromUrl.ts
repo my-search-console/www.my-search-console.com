@@ -50,6 +50,14 @@ export const getFiltersFromUrl = (params: { url: string }) => {
       }
     }
 
+    if (period === "year") {
+      return {
+        ...commonFilters,
+        from: dayjs(from).subtract(1, "year").format("YYYY-MM-DD"),
+        to: dayjs(to).format("YYYY-MM-DD"),
+      }
+    }
+
     if (period === "30d") {
       const from =
         filter.searchParams.get("from") || dayjs().subtract(34, "days")

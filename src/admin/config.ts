@@ -448,6 +448,12 @@ const MarketingTestimonials = {
   fields: [BooleanElement({ label: "show", name: "show" })],
 }
 
+const MarketingShowOff = {
+  label: "💅 Show Off",
+  name: "marketing/show-off",
+  fields: [IdElement()],
+}
+
 const MarketingFeatures = {
   label: "💅 Features",
   name: "marketing/features",
@@ -764,6 +770,7 @@ const Pages: Collection = {
         MarketingFeatures,
         MarketingFaq,
         MarketingTestimonials,
+        MarketingShowOff,
 
         ArticleContentTitle,
         ArticleContentRichText,

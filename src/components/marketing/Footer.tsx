@@ -19,14 +19,14 @@ export function Footer() {
           <Logo className="mx-auto h-10 w-auto" />
 
           <nav className="mt-10 text-sm" aria-label="quick links">
-            <div className="flex flex-wrap justify-center gap-x-6">
+            {/* <div className="flex flex-wrap justify-center gap-x-6">
               <NavLink href="/analytics/">
                 <FormattedMessage id="navbar/analytics" />
               </NavLink>
               <NavLink href="/keywords/">
                 <FormattedMessage id="navbar/keywords" />
               </NavLink>
-            </div>
+            </div> */}
             <div className="flex flex-wrap justify-center gap-x-6">
               <NavLink href="/legal-notice/">
                 <FormattedMessage id="footer/legal-notice" />

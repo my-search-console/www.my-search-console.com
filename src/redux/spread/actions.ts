@@ -56,7 +56,6 @@ export const $fetch =
     const { di, spread, auth, ranking } = getState()
 
     if (spread.isFetching) return false
-    if (!auth.user) return false
 
     dispatch(actions.spread.SpreadSetFetching({ value: true }))
 
@@ -132,9 +131,7 @@ export const $fetchOrConnect =
     if (auth.user) {
       dispatch(actions.spread.$fetch())
     } else {
-      await dispatch(
-        actions.auth.$goToAuthentication({ redirection: "/redirect/show-off/" })
-      )
+      await dispatch(actions.auth.$goToAuthentication({ redirection: "/" }))
 
       if (getState().auth.user) return dispatch(actions.spread.$fetch())
     }

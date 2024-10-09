@@ -2,12 +2,7 @@ import { connect, ConnectedProps } from "react-redux"
 import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
 
-const mapState = (state: RootState, props: { readonly?: boolean }) => ({
-  isPremium: Boolean(
-    state.websites.map.get(state.websites.activeWebsite || "")?.is_premium
-  ),
-  readonly: props.readonly || false,
-})
+const mapState = (state: RootState, props: { readonly?: boolean }) => ({})
 
 const mapDispatch = (dispatch: any) => ({
   onFilter(params: {

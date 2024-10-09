@@ -31,14 +31,7 @@ function getFiltersFromUrl(href: string) {
   }[]
 }
 
-export const Wrapper: React.FC<{
-  isPremium: boolean
-  onFilter: (params: {
-    type: "source" | "date" | "query" | "country" | "device" | "page"
-    value: string
-  }) => void
-  readonly: boolean
-}> = (props) => {
+export const Wrapper: React.FC<ContainerProps> = (props) => {
   const { href } = useLocation()
   const { feature } = getWebsiteIdFromUrl(href || "")
   const options = {
@@ -53,7 +46,7 @@ export const Wrapper: React.FC<{
   return (
     <div className="sticky top-1 z-20">
       <div className="flex w-full items-center justify-center rounded-lg border border-slate-100 bg-white bg-opacity-80 py-2 backdrop-blur-sm">
-        <SiteSelector readonly={props.readonly} />
+        <SiteSelector />
 
         {options.showFilters && (
           <div className="no-scroll-bar -mb-1 mr-2 overflow-x-scroll">

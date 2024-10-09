@@ -10,6 +10,11 @@
     // "disableSolutionSearching": true,                 /* Opt a project out of multi-project reference checking when editing. */
     // "disableReferencedProjectLoad": true,             /* pinkuce the number of projects loaded automatically by TypeScript. */
 
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
     /* Language and Environment */
     "target": "esnext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "lib": [

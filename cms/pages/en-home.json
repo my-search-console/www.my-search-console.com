@@ -24,11 +24,8 @@
       "description": "My Search Console is a service where you can see Google Search Console data easely. A smooth and easy to use interface."
     },
     {
-      "type": "marketing/video",
-      "autoplay": true,
-      "alt": "analytics demo",
-      "src": "../assets/analytics-demo-landing.mp4",
-      "illustration": "../assets/analytics-demo-landing.jpeg"
+      "type": "marketing/show-off",
+      "id": "bd66f5b1-b0d9-466c-9545-ea739ae91834"
     },
     {
       "type": "marketing/features",
@@ -92,59 +89,6 @@
             "alt": "multi search engine analytics",
             "src": "../assets/analytics-multi-search-engines.mp4",
             "illustration": "../assets/analytics-multi-search-engines.jpeg"
-          }
-        }
-      ]
-    },
-    {
-      "type": "marketing/features",
-      "label": {
-        "value": "Keywords",
-        "component": "p"
-      },
-      "title": {
-        "value": "Follow your favorite keywords.",
-        "component": "h2"
-      },
-      "description": "It has never been easier to follow your keywords thanks to My Search Console!",
-      "features": [
-        {
-          "title": {
-            "value": "The exact position of your keywords.",
-            "component": "p"
-          },
-          "description": "Directly connected to search engines, gives you exact and precise positions.",
-          "video": {
-            "autoplay": true,
-            "alt": "Video illustrating the \"Follow exact position\" feature",
-            "src": "../assets/follow-exact-position.mp4",
-            "illustration": "../assets/follow-exact-position.png"
-          }
-        },
-        {
-          "title": {
-            "value": "Simplified addition.",
-            "component": "p"
-          },
-          "description": "One or more words to add? Do it in just 4 seconds flat.",
-          "video": {
-            "autoplay": true,
-            "alt": "Video describing how to add keywords with the Keywords tool",
-            "src": "../assets/add-keywords-easily.mp4",
-            "illustration": "../assets/add-keywords-easily.png"
-          }
-        },
-        {
-          "title": {
-            "value": "Detailed view of the positions.",
-            "component": "p"
-          },
-          "description": "Click on a word and discover its detailed results that you won't be able to do without.",
-          "video": {
-            "autoplay": true,
-            "alt": "Video describing how to trigger the keywords detailed view",
-            "src": "../assets/keyword-detailed-view.mp4",
-            "illustration": "../assets/keyword-detailed-view.png"
           }
         }
       ]

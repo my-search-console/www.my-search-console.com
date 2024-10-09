@@ -4,11 +4,15 @@ import {
   ContainerProps,
 } from "./containers/LeaderboardWebsites.container"
 
-import { useIntl } from "react-intl"
-
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 import {
   ChartContainer,
@@ -20,7 +24,6 @@ import { getFavicon } from "../../../utils/getFavicon"
 
 import dayjs from "dayjs"
 import { Loader } from "../../general/Loader/Loader"
-export const description = "An area chart with gradient fill"
 
 const chartConfig = {
   clicks: {
@@ -42,9 +45,8 @@ const Item: React.FC<{
   onClick: () => void
 }> = (props) => {
   const favicon = getFavicon(props.id)
-  const { timeline } = props
 
-  const chartData = timeline.map((item) => ({
+  const chartData = props.timeline.map((item) => ({
     day: item.date,
     clicks: item.clicks,
     impressions: item.impressions,
@@ -166,11 +168,36 @@ const Item: React.FC<{
 
 type Props = ContainerProps
 
-const Wrapper: React.FC<Props> = (props) => {
-  const { locale } = useIntl()
-
+const Skeleton = () => {
   return (
-    <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-4">
+    <Card>
+      <CardHeader>
+        <CardTitle className="animate-pulse bg-gray-200 h-6 w-3/4 rounded"></CardTitle>
+        <CardDescription className="animate-pulse bg-gray-200 h-4 w-1/2 mt-2 rounded"></CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="animate-pulse bg-gray-200 h-32 w-full rounded"></div>
+      </CardContent>
+    </Card>
+  )
+}
+
+const Wrapper: React.FC<Props> = (props) => {
+  return (
+    <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-4">
+      {props.websites.length === 0 && props.fetching && (
+        <>
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </>
+      )}
+
       {props.websites.map((website, index) => (
         <div key={index} className="w-full h-full">
           <Item
@@ -189,72 +216,3 @@ export const Container: React.FC<ContainerProps> = (props) => (
 )
 
 export const LeaderboardWebsites = connector(Container)
-
-{
-  /* <div className="relative w-full h-96 no-scroll-bar overflow-y-auto">
-        {props.websites.map(({ id, clicks, impressions }, index) => (
-          <div
-            key={index}
-            className={clsx(
-              "flex items-center justify-between bg-slate-50/50 px-4 py-3 font-display sm:py-3",
-              index !== 0 && "mt-4"
-            )}
-          >
-            <div className="flex items-center">
-              <div className="font-display">
-                <div className="text-xs font-semibold uppercase text-slate-400">
-                  <FormattedMessage id="leaderboard/domain" />
-                </div>
-                <div className="break-words text-slate-900 sm:text-lg">
-                  {id}
-                </div>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div>
-                <Tooltip
-                  direction="left"
-                  align="left"
-                  label={
-                    <p className="text-base font-medium">
-                      {universalFormatNumber({ num: clicks, locale })}
-                    </p>
-                  }
-                >
-                  <div className="text-right font-display">
-                    <div className="text-xs font-semibold uppercase text-slate-400">
-                      <FormattedMessage id="leaderboard/clicks" />
-                    </div>
-
-                    <div className="text-sm font-semibold text-pink-400 sm:text-base">
-                      {bigNumberFormatter(clicks, 0)}
-                    </div>
-                  </div>
-                </Tooltip>
-              </div>
-              <div>
-                <Tooltip
-                  direction="left"
-                  align="left"
-                  label={
-                    <p className="text-base font-medium">
-                      {universalFormatNumber({ num: impressions, locale })}
-                    </p>
-                  }
-                >
-                  <div className="text-right font-display">
-                    <div className="text-xs font-semibold uppercase text-slate-400">
-                      <FormattedMessage id="leaderboard/impressions" />
-                    </div>
-
-                    <div className="text-sm font-semibold text-indigo-400 sm:text-base">
-                      {bigNumberFormatter(impressions, 0)}
-                    </div>
-                  </div>
-                </Tooltip>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div> */
-}

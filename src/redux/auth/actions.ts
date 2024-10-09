@@ -5,10 +5,8 @@ import {
 } from "@foudroyer/interfaces"
 import delay from "delay"
 import { ThunkAction } from "redux-thunk"
-import {
-  getCallbackUrl,
-  GET_GOOGLE_AUTH_URL,
-} from "../../constants/authentication"
+
+import { getCallbackUrl } from "../../constants/authentication"
 import { localStorageKeys } from "../../constants/localStorageKeys"
 import { GetUserInfoResponse } from "../../interfaces/IAuthRepository"
 import { normalizeUrl } from "../../utils/normalizeUrl"
@@ -126,7 +124,20 @@ export const $goToAuthentication =
 
     await delay(500)
 
-    di.LocationService.navigate(GET_GOOGLE_AUTH_URL())
+    const getGoogleAuthUrl = await di.AuthRepository.getAuthenticationUrl(
+      "google"
+    )
+
+    if (getGoogleAuthUrl.error) {
+      return dispatcher(
+        actions.notifications.create({
+          type: "error",
+          message: getGoogleAuthUrl.code,
+        })
+      )
+    }
+
+    di.LocationService.navigate(getGoogleAuthUrl.body)
   }
 
 // export const $authenticateWithGoogle =

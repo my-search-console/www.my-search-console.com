@@ -27,6 +27,6 @@ export type StatsResponse = IRepositoryResponse<{
 }>
 
 export interface ISpreadRepository {
-  fetch(): Promise<StatsResponse>
+  fetch(params: { from: string; to: string }): Promise<StatsResponse>
   fetchLadder(): Promise<any>
 }

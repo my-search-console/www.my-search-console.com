@@ -426,53 +426,7 @@ export const $resetWebsite =
 
 export const $saveCredentials =
   (website: WebsiteEntity | null): ThunkAction<any, RootState, any, any> =>
-  async (dispatcher, getState) => {
-    const {
-      di,
-      websites: { addCredentials },
-    } = getState()
-
-    if (!website) return false
-
-    if (!addCredentials.value) {
-      dispatcher(
-        actions.notifications.create({
-          message: NotificationMessageEntity.WEBSITES_CREDENTIALS_UPDATE_EMPTY,
-          type: "error",
-        })
-      )
-      return false
-    }
-
-    dispatcher(setCredentialsFetching({ value: true }))
-
-    const response = await di.IndexationService.addGoogleApiKey({
-      websiteId: website.id,
-      key: addCredentials.value,
-    })
-
-    dispatcher(setCredentialsFetching({ value: false }))
-
-    if (response.error === true) {
-      return dispatcher(
-        actions.notifications.create({
-          type: "error",
-          message: response.code,
-        })
-      )
-    }
-
-    dispatcher(
-      actions.notifications.create({
-        type: "success",
-        message: ErrorEntity.WEBSITE_NOT_FOUND,
-      })
-    )
-
-    dispatcher(setIsCredentialsAreGood({ value: true }))
-
-    dispatcher(actions.websites.$WebsiteStoreGoogleApiKeys(website))
-  }
+  async (dispatcher, getState) => {}
 
 export const $WebsiteCreateModal =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
@@ -677,23 +631,6 @@ export const $fetchAll =
 
     dispatcher(store({ websites: response.body.websites }))
     dispatcher(setFetching(false))
-
-    dispatcher(WebsiteFetchStatsSetFetching({ value: true }))
-
-    const stats = await di.WebsitesRepository.fetchStatsForAllWebsites()
-
-    dispatcher(WebsiteFetchStatsSetFetching({ value: false }))
-
-    if (stats.error) {
-      return dispatcher(
-        actions.notifications.create({
-          type: "error",
-          message: stats.code,
-        })
-      )
-    }
-
-    dispatcher(WebsiteFetchStatsStoreStats(stats.body))
   }
 
 export const $fetchAndRedirectToWebsiteActive =
@@ -798,22 +735,11 @@ export const $changeWebsite =
 
 export const $setWebsiteActiveFromUrl =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
-    const { di, websites, lang } = getState()
+    const { di } = getState()
 
     const url = di.LocationService.getPathname()
 
     const { websiteId } = getWebsiteIdFromUrl(url)
-    const website = websites.map.get(websiteId || "")
-
-    if (!website) {
-      return di.LocationService.navigate(
-        normalizeUrl({
-          url: "/",
-          locale: lang.lang,
-          removeLocaleIfExists: true,
-        })
-      )
-    }
 
     dispatcher(setActiveWebsite({ id: websiteId }))
   }
@@ -1046,38 +972,7 @@ export const $openPaymentModal =
 
 export const $WebsiteIndexNowCheckIfKeyIsInstalled =
   (website: WebsiteEntity | null): ThunkAction<void, RootState, any, any> =>
-  async (dispatcher, getState) => {
-    const { di } = getState()
-
-    if (!website) return
-
-    dispatcher(WebsiteIndexNowCheckSetFetching({ value: true }))
-
-    const response = await di.IndexationService.checkIndexNowKey({
-      websiteId: website.id,
-    })
-
-    if (response.error) {
-      return dispatcher(
-        actions.notifications.create({
-          type: "error",
-          message: response.code,
-        })
-      )
-    }
-
-    dispatcher(WebsiteIndexNowCheckSetFetching({ value: false }))
-    dispatcher(WebsiteIndexNowModalSetOpen({ value: false, website: null }))
-    dispatcher(
-      updateWebsite({ website: { ...website, index_now_installed: true } })
-    )
-    dispatcher(
-      actions.notifications.create({
-        type: "success",
-        message: NotificationMessageEntity.SYNC_SUCCESS,
-      })
-    )
-  }
+  async (dispatcher, getState) => {}
 
 export const $WebsiteIndexNowDownloadKeyFile =
   (website: WebsiteEntity | null): ThunkAction<void, RootState, any, any> =>
@@ -1132,34 +1027,7 @@ export const $WebsiteRemoveGoogleApiKey =
     keyId: string
     website: WebsiteEntity | null
   }): ThunkAction<any, RootState, any, any> =>
-  async (dispatcher, getState) => {
-    const { di } = getState()
-
-    if (!params.website || !params.keyId) return false
-
-    const response = await di.IndexationService.deleteGoogleApiKey({
-      websiteId: params.website.id,
-      keyId: params.keyId,
-    })
-
-    if (response.error) {
-      return dispatcher(
-        actions.notifications.create({
-          type: "error",
-          message: response.code,
-        })
-      )
-    }
-
-    dispatcher(
-      actions.notifications.create({
-        type: "success",
-        message: NotificationMessageEntity.WEBSITES_UPDATE_SUCCESS,
-      })
-    )
-
-    dispatcher(actions.websites.WebsiteRemoveGoogleApiKey(params))
-  }
+  async (dispatcher, getState) => {}
 
 export const WebsiteStoreGoogleApiKeys = (
   payload: types.WebsiteStoreGoogleApiKeysAction["payload"]
@@ -1177,31 +1045,7 @@ export const WebsiteStoreUsers = (
 
 export const $WebsiteStoreGoogleApiKeys =
   (website: WebsiteEntity): ThunkAction<any, RootState, any, any> =>
-  async (dispatch, getState) => {
-    const { di } = getState()
-
-    if (!website) return false
-
-    const response = await di.IndexationService.getGoogleApiKeys({
-      websiteId: website.id,
-    })
-
-    if (response.error) {
-      return dispatch(
-        actions.notifications.create({
-          type: "error",
-          message: response.code,
-        })
-      )
-    }
-
-    dispatch(
-      actions.websites.WebsiteStoreGoogleApiKeys({
-        website: website,
-        keys: response.body.google_cloud_api_keys,
-      })
-    )
-  }
+  async (dispatch, getState) => {}
 
 export const $fetchUsersWithRightsOnThisWebsite =
   (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {

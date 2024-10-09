@@ -9,6 +9,7 @@ const mapState = (state: RootState) => ({
 
 const mapDispatch = (dispatch: any) => ({
   goAnalytics: (id: string) => dispatch(actions.spread.$SpreadGoAnalytics(id)),
+  onMount: () => dispatch(actions.spread.$fetch()),
 })
 
 export const connector = connect(mapState, mapDispatch)

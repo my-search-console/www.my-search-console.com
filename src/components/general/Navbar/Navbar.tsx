@@ -2,17 +2,12 @@ import { PaymentPlansEntity, UserEntity } from "@foudroyer/interfaces"
 import { useLocation } from "@reach/router"
 import { navigate } from "gatsby"
 import React from "react"
-import { buildLinkDependingOnAuthStatus } from "../../../utils/buildLinkDependingOnAuthStatus"
 import { getWebsiteIdFromUrl } from "../../../utils/getWebsiteIdFromUrl"
-import { UnsubscribeModal } from "../../payment/UnsubscribeModal/UnsubscribeModal"
-import { ButtonPrimary } from "../../ui/Button/Button"
 import { Container } from "../../ui/Container"
 import { Logo } from "../../ui/Logo"
 import { Drawer } from "../Drawer/Drawer"
-import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
 import { FoudroyerLink } from "../FoudroyerLink/FoudroyerLink"
 import { Help } from "../Help/Help"
-import { NavLink } from "../NavLink"
 import { NewsButton } from "../News/components/NewsButton/NewsButton"
 import { NewsModal } from "../News/components/NewsModal/NewsModal"
 import { SelectLanguageModal } from "../SelectLanguageModal/SelectLanguageModal"
@@ -42,7 +37,7 @@ export const Wrapper: React.FC<{
                 <Logo className="w-8" />
               </FoudroyerLink>
 
-              <div className="hidden items-center lg:flex">
+              {/* <div className="hidden items-center lg:flex">
                 <NavLink
                   isActive={feature === "analytics"}
                   href={buildLinkDependingOnAuthStatus({
@@ -66,35 +61,11 @@ export const Wrapper: React.FC<{
                 >
                   <FormattedMessage id="navbar/keywords" />
                 </NavLink>
-
-                {/* {props.authenticated && (
-                  <NavLink
-                    isActive={feature === "user"}
-                    href={buildLinkDependingOnAuthStatus({
-                      isAuth: props.authenticated,
-                      website: websiteId,
-                      tool: "user",
-                      feature,
-                    })}
-                  >
-                    <FormattedMessage id="navbar/settings" />
-                  </NavLink>
-                )} */}
-              </div>
+              </div> */}
             </div>
 
             <div className="flex items-center">
               <NewsButton />
-
-              {!props.authenticated && (
-                <ButtonPrimary
-                  size="sm"
-                  onClick={props.onLogin}
-                  className="mx-2"
-                >
-                  <FormattedMessage id="landing/try" />
-                </ButtonPrimary>
-              )}
 
               <button
                 type="button"
@@ -129,7 +100,6 @@ export const Wrapper: React.FC<{
       <NewsModal />
       <Drawer />
       <Help />
-      <UnsubscribeModal />
       <SelectLanguageModal />
     </>
   )

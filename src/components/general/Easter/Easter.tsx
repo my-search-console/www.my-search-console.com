@@ -34,8 +34,8 @@ export const Wrapper: React.FC<{
             >
               <XMarkIcon className="h-6 w-6" />
             </div>
-            <div className="mx-auto h-12 w-12 shrink-0 rounded-md bg-pink-50 p-2 md:mx-0">
-              <EasterIcon className="w-full animate-bounce fill-pink-500"></EasterIcon>
+            <div className="mx-auto h-12 w-12 shrink-0 rounded-md bg-white-50 p-2 md:mx-0">
+              <EasterIcon className="w-full fill-pink-500"></EasterIcon>
             </div>
 
             <div className="text-center font-display">
