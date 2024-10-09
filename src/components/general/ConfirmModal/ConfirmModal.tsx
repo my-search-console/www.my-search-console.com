@@ -4,7 +4,7 @@ import { useLocation } from "@reach/router"
 import classNames from "classnames"
 import React, { Fragment } from "react"
 import { ModalKeys } from "../../../entities/ModalEntity"
-import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
+import { ButtonPrimary, ButtonSecondary } from "../../ui/Button/Button"
 import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
 import { connector, ContainerProps } from "./containers/ConfirmModal.containers"
 

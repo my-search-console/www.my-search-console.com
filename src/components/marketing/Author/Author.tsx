@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react"
 import { Image } from "../../general/Image/Image"
-import { Container } from "../../uiii/Container"
+import { Container } from "../../ui/Container"
 
 export const Author: React.FC<{
   name: ReactNode

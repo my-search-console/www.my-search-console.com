@@ -2,8 +2,8 @@ import { useLocation } from "@reach/router"
 import React from "react"
 import languages from "../../../constants/languages.json"
 import { normalizeUrl } from "../../../utils/normalizeUrl"
-import { ButtonSecondary } from "../../uiii/Button/Button"
-import { Modal } from "../../uiii/Modal/Modal"
+import { ButtonSecondary } from "../../ui/Button/Button"
+import { Modal } from "../../ui/Modal/Modal"
 import {
   connector,
   ContainerProps,

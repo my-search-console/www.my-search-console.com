@@ -1,7 +1,7 @@
 import { PlusIcon } from "@heroicons/react/20/solid"
 import React from "react"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { ButtonSecondary } from "../../../../uiii/Button/Button"
+import { ButtonSecondary } from "../../../../ui/Button/Button"
 import {
   connector,
   ContainerProps,

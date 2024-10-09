@@ -5,7 +5,7 @@ import React, { Fragment } from "react"
 import { useIntl } from "react-intl"
 import { countries } from "../../../../../../../constants/countries"
 import { FormattedMessage } from "../../../../../../general/FormattedMessage/FormattedMessage"
-import { getSecondaryStyle } from "../../../../../../uiii/Button/Button"
+import { getSecondaryStyle } from "../../../../../../ui/Button/Button"
 import { Items } from "./components/Items"
 import { connector, ContainerProps } from "./containers/Countries.container"
 

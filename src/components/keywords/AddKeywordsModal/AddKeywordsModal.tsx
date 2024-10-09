@@ -1,6 +1,6 @@
 import { Dialog } from "@headlessui/react"
 import React from "react"
-import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
+import { ButtonPrimary, ButtonSecondary } from "../../ui/Button/Button"
 import {
   connector,
   ContainerProps,
@@ -10,7 +10,7 @@ import { ArrowUturnLeftIcon, PlusCircleIcon } from "@heroicons/react/20/solid"
 import { useIntl } from "react-intl"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../general/Loader/Loader"
-import { Modal } from "../../uiii/Modal/Modal"
+import { Modal } from "../../ui/Modal/Modal"
 import { Keyword } from "./components/Keyword/Keyword"
 
 type Props = {

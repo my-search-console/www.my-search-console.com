@@ -1,6 +1,6 @@
 import { useLocation } from "@reach/router"
 import React, { useEffect } from "react"
-import { Container as C } from "../../uiii/Container"
+import { Container as C } from "../../ui/Container"
 import { Help } from "../Help/Help"
 import { Loader } from "../Loader/Loader"
 import {

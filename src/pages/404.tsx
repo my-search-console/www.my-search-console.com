@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
 import { Loader } from "../components/general/Loader/Loader"
 import { Seo } from "../components/general/Seo/Seo"
-import { ButtonPrimary } from "../components/uiii/Button/Button"
+import { ButtonPrimary } from "../components/ui/Button/Button"
 
 const NotFoundPage = () => {
   const [loading, setLoading] = useState(true)

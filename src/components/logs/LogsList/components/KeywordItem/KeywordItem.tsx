@@ -10,7 +10,7 @@ import {
   setArrowIcon,
   setEvolutionColor,
 } from "../../../../../utils/setEvolution"
-import { Tooltip } from "../../../../uiii/Tooltip"
+import { Tooltip } from "../../../../ui/Tooltip"
 import { connector, ContainerProps } from "./containers/KeywordItem.container"
 
 type Props = {

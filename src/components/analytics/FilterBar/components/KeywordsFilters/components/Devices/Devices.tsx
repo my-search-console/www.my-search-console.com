@@ -2,7 +2,7 @@ import { Menu, Transition } from "@headlessui/react"
 import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid"
 import classNames from "classnames"
 import React, { Fragment } from "react"
-import { getSecondaryStyle } from "../../../../../../uiii/Button/Button"
+import { getSecondaryStyle } from "../../../../../../ui/Button/Button"
 import { connector, ContainerProps } from "./containers/Devices.container"
 
 import {

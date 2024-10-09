@@ -3,8 +3,8 @@ import React, { ReactNode } from "react"
 import ReactMarkdown from "react-markdown"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
-import { ButtonPrimary } from "../../uiii/Button/Button"
-import { Container } from "../../uiii/Container"
+import { ButtonPrimary } from "../../ui/Button/Button"
+import { Container } from "../../ui/Container"
 import { connector, ContainerProps } from "./containers/Hero.containers"
 
 const commenters = [

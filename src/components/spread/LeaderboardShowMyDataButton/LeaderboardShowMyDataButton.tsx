@@ -1,8 +1,8 @@
 import { CakeIcon } from "@heroicons/react/20/solid"
 import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary } from "../../uiii/Button/Button"
-import { Container } from "../../uiii/Container"
+import { ButtonPrimary } from "../../ui/Button/Button"
+import { Container } from "../../ui/Container"
 import {
   connector,
   ContainerProps,

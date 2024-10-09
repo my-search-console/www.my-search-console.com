@@ -5,7 +5,7 @@ import classNames from "classnames"
 import React, { Fragment, useEffect } from "react"
 import { getFavicon } from "../../../../../utils/getFavicon"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { getSecondaryStyle } from "../../../../uiii/Button/Button"
+import { getSecondaryStyle } from "../../../../ui/Button/Button"
 import { connector, ContainerProps } from "./containers/SiteSelector.container"
 import { SiteSelectorItem } from "./SiteSelectorItem"
 

@@ -14,7 +14,7 @@ import {
 import classNames from "classnames"
 
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { Tooltip } from "../../../../uiii/Tooltip"
+import { Tooltip } from "../../../../ui/Tooltip"
 
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"

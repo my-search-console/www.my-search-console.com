@@ -9,8 +9,8 @@ import { IssueTypes } from "../../../../entities/IssueEntity"
 import { RoastWithReportEntity } from "../../../../entities/RoastEntity"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
 import { ItemLoading } from "../../../indexation/IndexedTable/components/ItemLoading"
-import { ButtonPrimary, ButtonSecondary } from "../../../uiii/Button/Button"
-import { Tooltip } from "../../../uiii/Tooltip"
+import { ButtonPrimary, ButtonSecondary } from "../../../ui/Button/Button"
+import { Tooltip } from "../../../ui/Tooltip"
 import { connector, ContainerProps } from "./containers/WebsitesList.containers"
 
 type Props = {

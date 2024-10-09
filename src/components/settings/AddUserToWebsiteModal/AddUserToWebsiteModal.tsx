@@ -5,8 +5,8 @@ import React from "react"
 import { ModalKeys } from "../../../entities/ModalEntity"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
-import { ButtonSecondary } from "../../uiii/Button/Button"
-import { Modal } from "../../uiii/Modal/Modal"
+import { ButtonSecondary } from "../../ui/Button/Button"
+import { Modal } from "../../ui/Modal/Modal"
 import { AddUserToWebsite } from "../AddUserToWebsite/AddUserToWebsite"
 import {
   connector,

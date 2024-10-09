@@ -6,7 +6,7 @@ import {
 } from "./containers/WebsitesGoogle.containers"
 
 import { ItemLoading } from "../../indexation/IndexedTable/components/ItemLoading"
-import { ButtonSecondary } from "../../uiii/Button/Button"
+import { ButtonSecondary } from "../../ui/Button/Button"
 
 type Props = {
   websites: { id: string }[]

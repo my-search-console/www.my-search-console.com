@@ -6,8 +6,8 @@ import CentralizeDataVideo from "../../../assets/videos/centralize-data.mp4"
 import GiveImpactVideo from "../../../assets/videos/give-impact.mp4"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../general/Loader/Loader"
-import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
-import { Modal } from "../../uiii/Modal/Modal"
+import { ButtonPrimary, ButtonSecondary } from "../../ui/Button/Button"
+import { Modal } from "../../ui/Modal/Modal"
 import {
   connector,
   ContainerProps,

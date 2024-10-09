@@ -7,7 +7,7 @@ import XIcon from "@heroicons/react/20/solid/XMarkIcon"
 import classNames from "classnames"
 import React, { Fragment } from "react"
 import { NotificationEntity } from "../../../entities/NotificationEntity"
-import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
+import { ButtonPrimary, ButtonSecondary } from "../../ui/Button/Button"
 import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
 import { connector, ContainerProps } from "./containers/Notifications.container"
 

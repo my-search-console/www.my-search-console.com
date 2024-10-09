@@ -3,7 +3,7 @@ import { BoltIcon } from "@heroicons/react/20/solid"
 import React from "react"
 import { useIntl } from "react-intl"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
+import { ButtonPrimary, ButtonSecondary } from "../../ui/Button/Button"
 import {
   connector,
   ContainerProps,

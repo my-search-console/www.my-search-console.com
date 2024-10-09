@@ -4,7 +4,7 @@ import { IssueTypes } from "../../../../entities/IssueEntity"
 import { Confetti } from "../../../general/Confetti/Confetti"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
 import { FoudroyerLink } from "../../../general/FoudroyerLink/FoudroyerLink"
-import { ButtonSecondary } from "../../../uiii/Button/Button"
+import { ButtonSecondary } from "../../../ui/Button/Button"
 import { connector, ContainerProps } from "./containers/Hero.container"
 
 export const Wrapper: React.FC<{ type: IssueTypes; success: boolean }> = (

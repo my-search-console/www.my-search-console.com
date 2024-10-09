@@ -3,8 +3,8 @@ import { DocumentChartBarIcon } from "@heroicons/react/24/outline"
 import React, { useEffect } from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../general/Loader/Loader"
-import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
-import { Modal } from "../../uiii/Modal/Modal"
+import { ButtonPrimary, ButtonSecondary } from "../../ui/Button/Button"
+import { Modal } from "../../ui/Modal/Modal"
 import {
   connector,
   ContainerProps,

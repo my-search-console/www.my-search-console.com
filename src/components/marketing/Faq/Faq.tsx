@@ -3,7 +3,7 @@ import Helmet from "react-helmet"
 import { ITranslations } from "../../../interfaces/ITranslations"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { getFaq } from "../../general/Seo/Seo"
-import { Container } from "../../uiii/Container"
+import { Container } from "../../ui/Container"
 
 const faqs: Array<{
   question: ITranslations["keys"]

@@ -12,7 +12,7 @@ import {
   universalFormatNumber,
 } from "../../../utils/bigNumberFormatter"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { Tooltip } from "../../uiii/Tooltip"
+import { Tooltip } from "../../ui/Tooltip"
 import { LeaderboardCard } from "../LeaderboardCard/LeaderboardCard"
 
 type Props = ContainerProps

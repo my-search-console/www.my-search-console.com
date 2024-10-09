@@ -1,6 +1,6 @@
 import { XMarkIcon } from "@heroicons/react/20/solid"
 import React from "react"
-import { ButtonSecondary } from "../../../../uiii/Button/Button"
+import { ButtonSecondary } from "../../../../ui/Button/Button"
 
 export const Keyword: React.FC<{
   keyword: string

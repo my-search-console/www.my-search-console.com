@@ -1,6 +1,6 @@
 import React from "react"
 import ReactMarkdown from "react-markdown"
-import { Container } from "../../uiii/Container"
+import { Container } from "../../ui/Container"
 
 export const Text: React.FC<{
   value: any

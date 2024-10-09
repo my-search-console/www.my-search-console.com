@@ -1,7 +1,7 @@
 import { CheckIcon } from "@heroicons/react/20/solid"
 import classNames from "classnames"
 import React, { useState } from "react"
-import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
+import { ButtonPrimary, ButtonSecondary } from "../../ui/Button/Button"
 import {
   connector,
   ContainerProps,

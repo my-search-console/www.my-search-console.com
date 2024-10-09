@@ -12,7 +12,7 @@ import {
 } from "../../../utils/bigNumberFormatter"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../general/Loader/Loader"
-import { Tooltip } from "../../uiii/Tooltip"
+import { Tooltip } from "../../ui/Tooltip"
 import { connector, ContainerProps } from "./containers/GlobalStats.container"
 
 function isDecimal(n: number) {

@@ -7,7 +7,7 @@ import {
   SourceNaverButton,
   SourceYandexButton,
 } from "../../../../general/SourceButtons/SourceButtons"
-import { Tooltip } from "../../../../uiii/Tooltip"
+import { Tooltip } from "../../../../ui/Tooltip"
 import {
   connector,
   ContainerProps,

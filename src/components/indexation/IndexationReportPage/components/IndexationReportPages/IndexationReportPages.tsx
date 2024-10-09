@@ -17,7 +17,7 @@ import classNames from "classnames"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { Tooltip } from "../../../../uiii/Tooltip"
+import { Tooltip } from "../../../../ui/Tooltip"
 
 dayjs.extend(relativeTime)
 

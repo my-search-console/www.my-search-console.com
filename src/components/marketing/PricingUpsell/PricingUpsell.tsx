@@ -6,7 +6,7 @@ import React, { useEffect } from "react"
 import { ITranslations } from "../../../interfaces/ITranslations"
 import { Confirm } from "../../general/ConfirmButton/ConfirmButton"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary } from "../../uiii/Button/Button"
+import { ButtonPrimary } from "../../ui/Button/Button"
 import {
   connector,
   ContainerProps,

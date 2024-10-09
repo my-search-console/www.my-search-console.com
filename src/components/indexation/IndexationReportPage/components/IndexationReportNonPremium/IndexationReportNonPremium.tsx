@@ -1,6 +1,6 @@
 import React from "react"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary } from "../../../../uiii/Button/Button"
+import { ButtonPrimary } from "../../../../ui/Button/Button"
 import {
   connector,
   ContainerProps,

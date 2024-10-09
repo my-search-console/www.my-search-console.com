@@ -2,7 +2,7 @@ import { ArrowPathIcon } from "@heroicons/react/20/solid"
 import classNames from "classnames"
 import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { SmallStyle } from "../../uiii/Button/Button"
+import { SmallStyle } from "../../ui/Button/Button"
 import { SettingSection } from "../SettingSection/SettingSection"
 import {
   connector,

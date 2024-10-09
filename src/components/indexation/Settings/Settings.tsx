@@ -4,7 +4,7 @@ import { PremiumModal } from "../../payment/UpsellConfirmationModal/UpsellConfir
 import { AddManuallyPagesToIndexation } from "../../settings/AddManuallyPagesToIndexation/AddManuallyPagesToIndexation"
 import { GoogleKeyUpdate } from "../../settings/GoogleKeyUpdate/GoogleKeyUpdate"
 import { UpdateSitemap } from "../../settings/UpdateSitemap/UpdateSitemap"
-import { ButtonSecondary } from "../../uiii/Button/Button"
+import { ButtonSecondary } from "../../ui/Button/Button"
 import { GoogleKeysModal } from "../GoogleKeysModal/GoogleKeysModal"
 import { ResetWebsiteModal } from "../ResetWebsiteModal/ResetWebsiteModal"
 import { UpdateSitemapModal } from "../UpdateSitemapModal/UpdateSitemapModal"

@@ -2,7 +2,7 @@ import { PaymentEntity } from "@foudroyer/interfaces"
 import { CreditCardIcon, PlayIcon, XMarkIcon } from "@heroicons/react/20/solid"
 import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonSecondary } from "../../uiii/Button/Button"
+import { ButtonSecondary } from "../../ui/Button/Button"
 import { SettingSection } from "../SettingSection/SettingSection"
 import { SettingsInvoicesModal } from "../SettingsInvoicesModal/SettingsInvoicesModal"
 import {

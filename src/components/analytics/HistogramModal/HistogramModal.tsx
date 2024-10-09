@@ -11,7 +11,7 @@ import { RankingStatEntity } from "../../../entities/RankingWebsiteEntity"
 import { universalFormatNumber } from "../../../utils/bigNumberFormatter"
 import { formatUrl } from "../../../utils/formatUrl"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { Modal } from "../../uiii/Modal/Modal"
+import { Modal } from "../../ui/Modal/Modal"
 import {
   connector,
   ContainerProps,

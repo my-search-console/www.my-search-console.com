@@ -5,7 +5,7 @@ import dayjs from "dayjs"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Pricing } from "../../marketing/Pricing/Pricing"
 import { PricingUpsell } from "../../marketing/PricingUpsell/PricingUpsell"
-import { Modal } from "../../uiii/Modal/Modal"
+import { Modal } from "../../ui/Modal/Modal"
 import {
   connector,
   ContainerProps,

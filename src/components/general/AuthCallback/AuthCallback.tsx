@@ -1,7 +1,7 @@
 import { RouteComponentProps } from "@reach/router"
 import React from "react"
 import { useIntl } from "react-intl"
-import { Container } from "../../uiii/Container"
+import { Container } from "../../ui/Container"
 import { Help } from "../Help/Help"
 import { Loader } from "../Loader/Loader"
 import { Seo } from "../Seo/Seo"

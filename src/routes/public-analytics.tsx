@@ -9,7 +9,7 @@ import { HorizontalHistogram } from "../components/analytics/HorizontalHistogram
 import { Navbar } from "../components/general/Navbar/Navbar"
 import { Seo } from "../components/general/Seo/Seo"
 import { Footer } from "../components/marketing/Footer"
-import { Container } from "../components/uiii/Container"
+import { Container } from "../components/ui/Container"
 
 export const PublicAnalyticsRoute: React.FC<RouteComponentProps> = () => {
   const intl = useIntl()

@@ -4,7 +4,7 @@ import BingLogo from "../../../assets/socials/bing.svg"
 import GoogleLogo from "../../../assets/socials/google.svg"
 import NaverLogo from "../../../assets/socials/naver.svg"
 import YandexLogo from "../../../assets/socials/yandex.svg"
-import { ButtonSecondary } from "../../uiii/Button/Button"
+import { ButtonSecondary } from "../../ui/Button/Button"
 
 type Props = {
   onClick: () => void

@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import { useIntl } from "react-intl"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { ButtonSecondary } from "../../../../uiii/Button/Button"
+import { ButtonSecondary } from "../../../../ui/Button/Button"
 import {
   connector,
   ContainerProps,

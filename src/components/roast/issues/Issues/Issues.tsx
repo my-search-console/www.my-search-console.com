@@ -6,7 +6,7 @@ import {
 import React, { useState } from "react"
 import { IssueEntity } from "../../../../entities/IssueEntity"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
-import { ButtonSecondary } from "../../../uiii/Button/Button"
+import { ButtonSecondary } from "../../../ui/Button/Button"
 import { Modal } from "../Modal/Modal"
 import { connector, ContainerProps } from "./containers/Issues.container"
 
