@@ -6,8 +6,8 @@ import { useIntl } from "react-intl"
 import languages from "../../constants/languages.json"
 import { FormattedMessage } from "../general/FormattedMessage/FormattedMessage"
 import { NavLink } from "../general/NavLink"
-import { Container } from "../UI/Container"
-import { Logo } from "../UI/Logo"
+import { Container } from "../uiii/Container"
+import { Logo } from "../uiii/Logo"
 
 export function Footer() {
   const { locale } = useIntl()

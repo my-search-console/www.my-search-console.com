@@ -12,6 +12,7 @@ import {
 import { IModule } from "../../interfaces/IModule"
 import { InMemoryAuthRepository } from "../../repositories/InMemoryAuthRepository"
 import { InMemoryKeywordsRepository } from "../../repositories/InMemoryKeywordsRepository"
+import { InMemoryLogsRepository } from "../../repositories/InMemoryLogsRepository"
 import { InMemoryOpportunitiesRepository } from "../../repositories/InMemoryOpportunitiesRepository"
 import { InMemoryPagesRepository } from "../../repositories/InMemoryPagesRepository"
 import { InMemoryPaymentsRepository } from "../../repositories/InMemoryPaymentsRepository"
@@ -53,6 +54,7 @@ export class FullLocalRecipe implements IModule {
     const SpreadRepository = new InMemorySpreadRepository()
     const StatsRepository = new InMemoryStatsRepository()
     const RoastRepository = new InMemoryRoastRepository()
+    const LogsRepository = new InMemoryLogsRepository()
 
     const KeywordsRepository = new InMemoryKeywordsRepository()
 
@@ -65,6 +67,13 @@ export class FullLocalRecipe implements IModule {
         language: "fr",
         // 3 days ago
         created_at: new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000),
+        last_connected_at: new Date(
+          new Date().getTime() - 2 * 24 * 60 * 60 * 1000
+        ),
+        username: "hello",
+        welcome_email_sent_at: new Date(
+          new Date().getTime() - 1 * 24 * 60 * 60 * 1000
+        ),
       },
     ])
 
@@ -89,9 +98,6 @@ export class FullLocalRecipe implements IModule {
     OpportunitiesRepository.__storeOpportunities({
       opportunities: OpportunitiesResponse as OpportunityEntity[],
     })
-
-    // Partie suivante décommentée = PREMIUM
-    // Partie suivante commentée   = FREE
 
     PaymentsRepository.__storePaymentsInfo({
       cancel_url: "",
@@ -281,6 +287,7 @@ export class FullLocalRecipe implements IModule {
         inspection_google_page: null,
         is_indexed: true,
         indexation_state: IndexationType["error-unknown"],
+        fake_indexation_state_at: new Date(),
       },
       {
         created_at: new Date(),
@@ -294,8 +301,63 @@ export class FullLocalRecipe implements IModule {
         inspection_google_page: null,
         is_indexed: false,
         indexation_state: IndexationType["error-unknown"],
+        fake_indexation_state_at: new Date(),
       },
     ])
+
+    SpreadRepository.__storeStats(
+      StatsResponse as unknown as RankingStatsForFrontend,
+      [
+        {
+          id: WebsitePremium.id,
+          clicks: 100,
+          impressions: 1000,
+          timeline: StatsResponse.date,
+        },
+        {
+          id: WebsiteForDemo.id,
+          clicks: 100,
+          impressions: 1000,
+          timeline: StatsResponse.date,
+        },
+        {
+          id: WebsitePremium.id,
+          clicks: 100,
+          impressions: 1000,
+          timeline: StatsResponse.date,
+        },
+        {
+          id: WebsiteForDemo.id,
+          clicks: 100,
+          impressions: 1000,
+          timeline: StatsResponse.date,
+        },
+        {
+          id: WebsitePremium.id,
+          clicks: 100,
+          impressions: 1000,
+          timeline: StatsResponse.date,
+        },
+        {
+          id: WebsiteForDemo.id,
+          clicks: 100,
+          impressions: 1000,
+          timeline: StatsResponse.date,
+        },
+        {
+          id: WebsitePremium.id,
+          clicks: 100,
+          impressions: 1000,
+          timeline: StatsResponse.date,
+        },
+        {
+          id: WebsiteForDemo.id,
+          clicks: 100,
+          impressions: 1000,
+          timeline: StatsResponse.date,
+        },
+      ]
+    )
 
     /**
      * Roast
@@ -320,6 +382,7 @@ export class FullLocalRecipe implements IModule {
       KeywordsRepository,
       OpportunitiesRepository,
       SpreadRepository,
+      LogsRepository,
     }
   }
 }

@@ -1,6 +1,6 @@
 import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { Modal } from "../../UI/Modal/Modal"
+import { Modal } from "../../uiii/Modal/Modal"
 import {
   connector,
   ContainerProps,

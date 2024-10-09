@@ -3,7 +3,7 @@ import classNames from "classnames"
 import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../general/Loader/Loader"
-import { SmallStyle } from "../../UI/Button/Button"
+import { SmallStyle } from "../../uiii/Button/Button"
 import {
   connector,
   ContainerProps,

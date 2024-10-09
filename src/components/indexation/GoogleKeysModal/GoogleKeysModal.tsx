@@ -16,15 +16,15 @@ import {
 } from "@heroicons/react/24/outline"
 import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { Modal } from "../../UI/Modal/Modal"
+import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
+import { Modal } from "../../uiii/Modal/Modal"
 import { InputFile } from "./components/InputFile"
 import {
   connector,
   ContainerProps,
 } from "./containers/GoogleKeysModal.container"
 
-import { Tooltip } from "../../UI/Tooltip"
+import { Tooltip } from "../../uiii/Tooltip"
 
 type Props = {
   isOpen: boolean

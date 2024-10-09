@@ -1,6 +1,6 @@
 import { ExclamationTriangleIcon } from "@heroicons/react/20/solid"
 import React from "react"
-import { ButtonSecondary } from "../../UI/Button/Button"
+import { ButtonSecondary } from "../../uiii/Button/Button"
 import { FormattedMessage } from "../FormattedMessage/FormattedMessage"
 import { Navbar } from "../Navbar/Navbar"
 import { Seo } from "../Seo/Seo"

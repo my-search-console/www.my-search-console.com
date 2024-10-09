@@ -5,7 +5,7 @@ import {
 import classNames from "classnames"
 import React, { useState } from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { getSecondaryStyle } from "../../UI/Button/Button"
+import { getSecondaryStyle } from "../../uiii/Button/Button"
 import {
   connector,
   ContainerProps,

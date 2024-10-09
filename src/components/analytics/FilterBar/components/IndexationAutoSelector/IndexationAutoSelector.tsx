@@ -1,5 +1,5 @@
 import React from "react"
-import { ButtonSecondary } from "../../../../UI/Button/Button"
+import { ButtonSecondary } from "../../../../uiii/Button/Button"
 import {
   connector,
   ContainerProps,

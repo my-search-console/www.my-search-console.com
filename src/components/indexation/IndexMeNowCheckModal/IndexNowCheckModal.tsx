@@ -3,8 +3,8 @@ import { Dialog } from "@headlessui/react"
 import { ArrowDownTrayIcon, KeyIcon } from "@heroicons/react/20/solid"
 import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { Modal } from "../../UI/Modal/Modal"
+import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
+import { Modal } from "../../uiii/Modal/Modal"
 import {
   connector,
   ContainerProps,

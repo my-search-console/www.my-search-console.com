@@ -1,4 +1,8 @@
-import { UserWithRoleEntity, WebsiteEntity } from "@foudroyer/interfaces"
+import {
+  IndexationType,
+  UserWithRoleEntity,
+  WebsiteEntity,
+} from "@foudroyer/interfaces"
 import { uniq } from "ramda"
 import { SitemapEntity } from "../../entities/SitemapEntity"
 import { isUrlValidForFoudroyer } from "../../utils/isUrlValidForFoudroyer"
@@ -17,6 +21,14 @@ interface WebsitesState {
     value: string | null
     isFetching: boolean
   }
+
+  stats_is_fetching: boolean
+  stats: Map<
+    WebsiteEntity["id"],
+    {
+      total: number
+    } & { [key in IndexationType]: number }
+  >
 
   addCredentials: {
     website: WebsiteEntity | null
@@ -52,6 +64,9 @@ const initialState: WebsitesState = {
   fetching: false,
 
   filter: "",
+
+  stats_is_fetching: false,
+  stats: new Map(),
 
   addSitemap: {
     sitemaps: [],
@@ -201,6 +216,26 @@ export function websitesReducer(
     return {
       ...state,
       entities,
+    }
+  }
+
+  if (action.type === types.WebsiteFetchStatsStoreStats) {
+    const stats = new Map()
+
+    action.payload.forEach((stat) => {
+      stats.set(stat.website_id, stat.stats)
+    })
+
+    return {
+      ...state,
+      stats: stats,
+    }
+  }
+
+  if (action.type === types.WebsiteFetchStatsSetFetching) {
+    return {
+      ...state,
+      stats_is_fetching: action.payload.value,
     }
   }
 

@@ -6,7 +6,7 @@ import {
 } from "../../../../entities/RankingWebsiteEntity"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../../general/Loader/Loader"
-import { ButtonSecondary } from "../../../UI/Button/Button"
+import { ButtonSecondary } from "../../../uiii/Button/Button"
 import { KeywordItem } from "./KeywordItem/KeywordItem"
 import { KeywordsStickyBar } from "./KeywordsStickyBar/KeywordsStickyBar"
 

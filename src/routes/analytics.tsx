@@ -11,7 +11,7 @@ import { Protected } from "../components/general/Protected/Protected"
 import { Seo } from "../components/general/Seo/Seo"
 import { Footer } from "../components/marketing/Footer"
 import { PremiumModal } from "../components/payment/UpsellConfirmationModal/UpsellConfirmationModal"
-import { Container } from "../components/UI/Container"
+import { Container } from "../components/uiii/Container"
 
 export const AnalyticsRoute: React.FC<RouteComponentProps> = () => {
   const intl = useIntl()

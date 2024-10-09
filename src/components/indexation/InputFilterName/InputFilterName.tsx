@@ -5,7 +5,7 @@ import clsx from "clsx"
 import React from "react"
 import { useIntl } from "react-intl"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { getSecondaryStyle } from "../../UI/Button/Button"
+import { getSecondaryStyle } from "../../uiii/Button/Button"
 import {
   connector,
   ContainerProps,

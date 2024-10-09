@@ -1,8 +1,8 @@
 import { FolderIcon } from "@heroicons/react/20/solid"
 import React from "react"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { ButtonSecondary } from "../../../../UI/Button/Button"
-import { Tooltip } from "../../../../UI/Tooltip"
+import { ButtonSecondary } from "../../../../uiii/Button/Button"
+import { Tooltip } from "../../../../uiii/Tooltip"
 import {
   connector,
   ContainerProps,

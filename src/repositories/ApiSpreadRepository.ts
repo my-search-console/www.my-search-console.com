@@ -7,10 +7,14 @@ import { ApiService } from "../services/ApiService"
 export class ApiSpreadRepository implements ISpreadRepository {
   constructor(private apiService: ApiService) {}
 
-  async fetch(): Promise<StatsResponse> {
+  async fetch(props: { from: string; to: string }): Promise<StatsResponse> {
     try {
-      const response = await this.apiService.get<RankingStatsForFrontend>(
-        `/spread`
+      const response = await this.apiService.post<RankingStatsForFrontend>(
+        `/spread`,
+        {
+          from: props.from,
+          to: props.to,
+        }
       )
 
       if (response.data.statusCode === 400)

@@ -7,7 +7,7 @@ import {
 import { IndexationType, PageEntity } from "@foudroyer/interfaces"
 import classNames from "classnames"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { Tooltip } from "../../UI/Tooltip"
+import { Tooltip } from "../../uiii/Tooltip"
 import { ItemLoading } from "../IndexedTable/components/ItemLoading"
 
 type Props = {

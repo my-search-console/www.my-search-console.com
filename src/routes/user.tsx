@@ -10,7 +10,7 @@ import { PremiumModal } from "../components/payment/UpsellConfirmationModal/Upse
 import { AddMoreSearchConsoles } from "../components/settings/AddMoreSearchConsoles/AddMoreSearchConsoles"
 import { Invoices } from "../components/settings/Invoices/Invoices"
 import { ManageSubscription } from "../components/settings/ManageSubscription/ManageSubscription"
-import { Container } from "../components/UI/Container"
+import { Container } from "../components/uiii/Container"
 
 export const UserRoute: React.FC<RouteComponentProps> = () => {
   const intl = useIntl()

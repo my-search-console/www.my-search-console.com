@@ -5,8 +5,8 @@ import React from "react"
 import tutoVideo from "../../../assets/videos/activate-search-engine.mp4"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
-import { ButtonPrimary } from "../../UI/Button/Button"
-import { Modal } from "../../UI/Modal/Modal"
+import { ButtonPrimary } from "../../uiii/Button/Button"
+import { Modal } from "../../uiii/Modal/Modal"
 import {
   connector,
   ContainerProps,

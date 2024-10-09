@@ -1,7 +1,7 @@
 import { Dialog } from "@headlessui/react"
 import dayjs from "dayjs"
 import React, { ReactNode, useEffect } from "react"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
+import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
 import {
   connector,
   ContainerProps,
@@ -14,7 +14,7 @@ import { useIntl } from "react-intl"
 import { ModalKeys } from "../../../entities/ModalEntity"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../general/Loader/Loader"
-import { Modal } from "../../UI/Modal/Modal"
+import { Modal } from "../../uiii/Modal/Modal"
 
 const InputGroup: React.FC<{
   label: ReactNode

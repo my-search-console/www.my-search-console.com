@@ -103,7 +103,7 @@ export const RankingHistogramModalSetType = (
 export const $fetch =
   (props?: { force?: boolean }): ThunkAction<any, RootState, any, any> =>
   async (dispatch, getState) => {
-    const { di, ranking, payments, auth } = getState()
+    const { di, ranking } = getState()
 
     const pathname = di.LocationService.getPathname()
     const fullUrl = di.LocationService.getFullUrl()
@@ -281,9 +281,9 @@ export const $RankingSetDate =
   async (dispatch, getState) => {
     const { di, websites, payments } = getState()
 
-    if (!websites.activeWebsite) return
-
     const { feature } = getWebsiteIdFromUrl(di.LocationService.getFullUrl())
+
+    if (feature === "analytics" && !websites.activeWebsite) return
 
     const url = new URL(di.LocationService.getFullUrl())
 
@@ -306,7 +306,8 @@ export const $RankingSetDate =
       disableScroll: true,
     })
 
-    dispatch(actions.ranking.$fetch())
+    if (feature === "analytics") return dispatch(actions.ranking.$fetch())
+    if (feature === "show-off") return dispatch(actions.spread.$fetch())
   }
 
 export const $AnalyticsSubmitCalendar =
@@ -439,9 +440,9 @@ export const $onPreviousPeriod =
   (): ThunkAction<any, RootState, any, any> => (dispatch, getState) => {
     const { di, websites, payments } = getState()
 
-    if (!websites.activeWebsite) return
-
     const { feature } = getWebsiteIdFromUrl(di.LocationService.getFullUrl())
+
+    if (feature === "analytics" && !websites.activeWebsite) return
 
     const period =
       new URL(di.LocationService.getFullUrl()).searchParams.get("period") || ""
@@ -461,15 +462,17 @@ export const $onPreviousPeriod =
       disableScroll: true,
     })
 
-    dispatch(actions.ranking.$fetch())
+    if (feature === "analytics") return dispatch(actions.ranking.$fetch())
+    if (feature === "show-off") return dispatch(actions.spread.$fetch())
   }
 
 export const $onNextPeriod =
   (): ThunkAction<any, RootState, any, any> => (dispatch, getState) => {
     const { di, websites, payments } = getState()
 
-    if (!websites.activeWebsite) return
     const { feature } = getWebsiteIdFromUrl(di.LocationService.getFullUrl())
+
+    if (feature === "analytics" && !websites.activeWebsite) return
 
     const period =
       new URL(di.LocationService.getFullUrl()).searchParams.get("period") || ""
@@ -489,7 +492,8 @@ export const $onNextPeriod =
       disableScroll: true,
     })
 
-    dispatch(actions.ranking.$fetch())
+    if (feature === "analytics") return dispatch(actions.ranking.$fetch())
+    if (feature === "show-off") return dispatch(actions.spread.$fetch())
   }
 
 /**

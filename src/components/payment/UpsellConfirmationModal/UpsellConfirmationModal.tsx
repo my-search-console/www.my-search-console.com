@@ -4,8 +4,8 @@ import { useLocation } from "@reach/router"
 import getSymbolFromCurrency from "currency-symbol-map"
 import { ModalKeys } from "../../../entities/ModalEntity"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { Modal } from "../../UI/Modal/Modal"
+import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
+import { Modal } from "../../uiii/Modal/Modal"
 import {
   connector,
   ContainerProps,

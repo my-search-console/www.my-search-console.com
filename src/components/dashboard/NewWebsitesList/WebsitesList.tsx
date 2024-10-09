@@ -13,7 +13,7 @@ import {
   SourceYandexButton,
 } from "../../general/SourceButtons/SourceButtons"
 import { ItemLoading } from "../../indexation/IndexedTable/components/ItemLoading"
-import { ButtonSecondary, getSecondaryStyle } from "../../UI/Button/Button"
+import { ButtonSecondary, getSecondaryStyle } from "../../uiii/Button/Button"
 import { connector, ContainerProps } from "./containers/WebsitesList.containers"
 
 type Props = {

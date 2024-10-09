@@ -6,7 +6,7 @@ import React, { Fragment } from "react"
 import { ModalKeys } from "../../../entities/ModalEntity"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../general/Loader/Loader"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
+import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
 import {
   connector,
   ContainerProps,

@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react"
-import { Container } from "../../UI/Container"
+import { Container } from "../../uiii/Container"
 
 export const Title: React.FC<{
   title: ReactNode

@@ -10,8 +10,8 @@ import {
 import React from "react"
 import { SitemapEntity } from "../../../entities/SitemapEntity"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary, ButtonSecondary } from "../../UI/Button/Button"
-import { Modal } from "../../UI/Modal/Modal"
+import { ButtonPrimary, ButtonSecondary } from "../../uiii/Button/Button"
+import { Modal } from "../../uiii/Modal/Modal"
 import {
   connector,
   ContainerProps,

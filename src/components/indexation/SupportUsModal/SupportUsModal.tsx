@@ -6,8 +6,8 @@ import {
 import { useLocation } from "@reach/router"
 import React from "react"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary } from "../../UI/Button/Button"
-import { Modal } from "../../UI/Modal/Modal"
+import { ButtonPrimary } from "../../uiii/Button/Button"
+import { Modal } from "../../uiii/Modal/Modal"
 import {
   connector,
   ContainerProps,

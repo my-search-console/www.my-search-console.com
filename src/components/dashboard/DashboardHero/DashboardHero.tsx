@@ -4,7 +4,7 @@ import React from "react"
 import { IndexationSearchEngines } from "../../../entities/SearchEngineEntity"
 import { bigNumberFormatter } from "../../../utils/bigNumberFormatter"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { ButtonPrimary } from "../../UI/Button/Button"
+import { ButtonPrimary } from "../../uiii/Button/Button"
 import {
   connector,
   ContainerProps,

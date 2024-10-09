@@ -3,7 +3,7 @@ import classNames from "classnames"
 import React, { useEffect } from "react"
 import { useIntl } from "react-intl"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { SmallStyle } from "../../UI/Button/Button"
+import { SmallStyle } from "../../uiii/Button/Button"
 import {
   connector,
   ContainerProps,

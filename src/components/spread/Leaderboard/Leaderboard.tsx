@@ -9,7 +9,7 @@ import {
 } from "../../../utils/bigNumberFormatter"
 import { Avatar } from "../../general/Avatar/Avatar"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
-import { Tooltip } from "../../UI/Tooltip"
+import { Tooltip } from "../../uiii/Tooltip"
 import { LeaderboardCard } from "../LeaderboardCard/LeaderboardCard"
 
 type Props = ContainerProps

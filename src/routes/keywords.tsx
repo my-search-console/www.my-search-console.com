@@ -13,7 +13,7 @@ import { AddKeywordsModal } from "../components/keywords/AddKeywordsModal/AddKey
 import { KeywordsPaywall } from "../components/keywords/KeywordsPaywall/KeywordsPaywall"
 import { Footer } from "../components/marketing/Footer"
 import { PremiumModal } from "../components/payment/UpsellConfirmationModal/UpsellConfirmationModal"
-import { Container } from "../components/UI/Container"
+import { Container } from "../components/uiii/Container"
 
 export const KeywordsRoute: React.FC<RouteComponentProps> = () => {
   const intl = useIntl()

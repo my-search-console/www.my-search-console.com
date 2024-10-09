@@ -7,8 +7,8 @@ import {
 import { FunnelIcon } from "@heroicons/react/20/solid"
 import classNames from "classnames"
 import { FormattedMessage } from "../../../../general/FormattedMessage/FormattedMessage"
-import { getSecondaryStyle } from "../../../../UI/Button/Button"
-import { Tooltip } from "../../../../UI/Tooltip"
+import { getSecondaryStyle } from "../../../../uiii/Button/Button"
+import { Tooltip } from "../../../../uiii/Tooltip"
 
 type Props = {
   active: boolean

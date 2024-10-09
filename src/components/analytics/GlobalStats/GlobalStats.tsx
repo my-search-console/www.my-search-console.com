@@ -17,7 +17,7 @@ import {
 import { setArrowIcon, setEvolutionColor } from "../../../utils/setEvolution"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../general/Loader/Loader"
-import { Tooltip } from "../../UI/Tooltip"
+import { Tooltip } from "../../uiii/Tooltip"
 import { connector, ContainerProps } from "./containers/GlobalStats.container"
 
 function isDecimal(n: number) {

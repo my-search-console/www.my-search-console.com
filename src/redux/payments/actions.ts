@@ -177,7 +177,7 @@ export const $pay =
     ) {
       return di.LocationService.navigate(
         normalizeUrl({
-          url: "/",
+          url: "/dashboard/",
           locale: lang.lang,
         })
       )

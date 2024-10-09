@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logs tests suite le reducer initial doit être conforme au snapshot 1`] = `
+{
+  "createOrUpdateForm": {
+    "form": null,
+    "isFetching": false,
+  },
+  "isFetching": false,
+  "logs": [],
+  "tags": [],
+}
+`;

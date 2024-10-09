@@ -1,5 +1,6 @@
 import {
   IndexationGoogleCloudApiKeyEntity,
+  IndexationType,
   UserWithRoleEntity,
   WebsiteEntity,
 } from "@foudroyer/interfaces"
@@ -28,6 +29,23 @@ export const updateWebsite = "websites/updateWebsite"
 export interface updateWebsiteAction {
   type: typeof updateWebsite
   payload: { website: WebsiteEntity }
+}
+
+export const WebsiteFetchStatsSetFetching = "WebsiteFetchStatsSetFetching"
+export interface WebsiteFetchStatsSetFetchingAction {
+  type: typeof WebsiteFetchStatsSetFetching
+  payload: { value: boolean }
+}
+
+export const WebsiteFetchStatsStoreStats = "WebsiteFetchStatsStoreStats"
+export interface WebsiteFetchStatsStoreStatsAction {
+  type: typeof WebsiteFetchStatsStoreStats
+  payload: {
+    website_id: string
+    stats: {
+      total: number
+    } & { [key in IndexationType]: number }
+  }[]
 }
 
 export const setOpenSitemapModal = "websites/setOpenSitemapModal"
@@ -336,3 +354,11 @@ export type WebsitesActionTypes =
    *
    */
   | WebsitesFilterAction
+
+  /**
+   *
+   * STATS
+   *
+   */
+  | WebsiteFetchStatsSetFetchingAction
+  | WebsiteFetchStatsStoreStatsAction

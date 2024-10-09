@@ -21,7 +21,7 @@ import { getFiltersFromUrl } from "../../../../utils/getFiltersFromUrl"
 import { setArrowIcon, setEvolutionColor } from "../../../../utils/setEvolution"
 import { FormattedMessage } from "../../../general/FormattedMessage/FormattedMessage"
 import { Loader } from "../../../general/Loader/Loader"
-import { Tooltip } from "../../../UI/Tooltip"
+import { Tooltip } from "../../../uiii/Tooltip"
 import { MenuFilterItem } from "./MenuFilterItem"
 
 function addRelativePercentage(

@@ -10,6 +10,7 @@ import { ModalKeys } from "../../entities/ModalEntity"
 import { NotificationMessageEntity } from "../../entities/NotificationEntity"
 import { SitemapEntity } from "../../entities/SitemapEntity"
 import { getWebsiteIdFromUrl } from "../../utils/getWebsiteIdFromUrl"
+import { howManyWebsitesUserCanHave } from "../../utils/howManyWebsitesUserCanHave"
 import { normalizeUrl } from "../../utils/normalizeUrl"
 import { actions } from "../actions"
 import { RootState } from "../store"
@@ -220,8 +221,16 @@ export const $syncWebsiteAndCheckEverything =
       await dispatcher(actions.ranking.$fetch())
     }
 
+    if (feature === "logs") {
+      await dispatcher(actions.logs.$fetch())
+    }
+
     if (feature === "keywords") {
       await dispatcher(actions.keywords.$fetchKeywords())
+    }
+
+    if (feature === "opportunities") {
+      await dispatcher(actions.opportunities.$fetchOpportunities())
     }
 
     if (feature === "settings")
@@ -348,7 +357,7 @@ export const $deleteWebsite =
 
     di.LocationService.navigate(
       normalizeUrl({
-        url: "/administration/",
+        url: "/dashboard/",
         locale: lang.lang,
       }),
       {
@@ -469,18 +478,39 @@ export const $WebsiteCreateModal =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
     const { payments, websites } = getState()
 
+    if (
+      howManyWebsitesUserCanHave(payments.actualIndexationPlan) <=
+      websites.entities.length
+    ) {
+      return dispatcher(
+        actions.payments.$PaymentsOpenModal({
+          type: "indexation",
+          source: "indexation/add-website",
+          value: true,
+          isUpsell: !!payments.actualIndexationPlan,
+          isClosable: true,
+        })
+      )
+    }
+
     dispatcher($CreateWebsiteFetchGoogleDomains())
     dispatcher(WebsiteAddSourceModalSetIsOpen({ isOpen: true, type: "google" }))
   }
 
 export const $activate =
   (): ThunkAction<any, RootState, any, any> => async (dispatcher, getState) => {
-    const { di, websites, lang } = getState()
+    const { di, websites, payments } = getState()
 
     if (websites.fetching) return false
     if (!websites.createWebsiteModal.selected) return false
 
     if (websites.createWebsiteModal.type === "google") {
+      if (
+        howManyWebsitesUserCanHave(payments.actualIndexationPlan) >=
+        websites.entities.length
+      ) {
+      }
+
       dispatcher(setFetching(true))
 
       const response = await di.WebsitesRepository.activate(
@@ -500,10 +530,13 @@ export const $activate =
 
       dispatcher(WebsiteAddSourceModalSetIsOpen({ isOpen: false }))
 
-      await dispatcher($fetchAll({ force: true }))
+      dispatcher($fetchAll({ force: true }))
 
       dispatcher(
-        actions.websites.$changeWebsite({ websiteId: response.body.id })
+        actions.notifications.create({
+          type: "success",
+          message: NotificationMessageEntity.WEBSITES_CREATE_SUCCESS,
+        })
       )
 
       return
@@ -597,6 +630,20 @@ export const $CreateWebsite =
     return
   }
 
+export const WebsiteFetchStatsSetFetching = (
+  payload: types.WebsiteFetchStatsSetFetchingAction["payload"]
+): types.WebsitesActionTypes => ({
+  type: types.WebsiteFetchStatsSetFetching,
+  payload,
+})
+
+export const WebsiteFetchStatsStoreStats = (
+  payload: types.WebsiteFetchStatsStoreStatsAction["payload"]
+): types.WebsitesActionTypes => ({
+  type: types.WebsiteFetchStatsStoreStats,
+  payload,
+})
+
 export const $fetchAll =
   (props?: {
     force?: boolean
@@ -630,6 +677,23 @@ export const $fetchAll =
 
     dispatcher(store({ websites: response.body.websites }))
     dispatcher(setFetching(false))
+
+    dispatcher(WebsiteFetchStatsSetFetching({ value: true }))
+
+    const stats = await di.WebsitesRepository.fetchStatsForAllWebsites()
+
+    dispatcher(WebsiteFetchStatsSetFetching({ value: false }))
+
+    if (stats.error) {
+      return dispatcher(
+        actions.notifications.create({
+          type: "error",
+          message: stats.code,
+        })
+      )
+    }
+
+    dispatcher(WebsiteFetchStatsStoreStats(stats.body))
   }
 
 export const $fetchAndRedirectToWebsiteActive =
@@ -643,7 +707,13 @@ export const $fetchAndRedirectToWebsiteActive =
     const activeWebsiteId = websites.entities[0]
 
     if (!activeWebsiteId) {
-      return dispatcher(actions.websites.$WebsiteCreateModal())
+      dispatcher(actions.websites.$WebsiteCreateModal())
+      return di.LocationService.navigate(
+        normalizeUrl({
+          url: "/dashboard",
+          locale: lang.lang,
+        })
+      )
     }
 
     const activeTool = new URL(
@@ -655,7 +725,7 @@ export const $fetchAndRedirectToWebsiteActive =
     di.LocationService.navigate(
       normalizeUrl({
         url: `/${
-          activeTool && isAllowedTool ? activeTool : "analytics"
+          activeTool && isAllowedTool ? activeTool : "indexation"
         }/${activeWebsiteId}`,
         locale: lang.lang,
       })
@@ -699,6 +769,10 @@ export const $changeWebsite =
       )
     }
 
+    if (feature === "logs") {
+      dispatcher(actions.logs.$fetch())
+    }
+
     if (feature === "keywords") {
       dispatcher(actions.keywords.KeywordsReset())
       dispatcher(actions.keywords.$fetchKeywords())
@@ -706,6 +780,10 @@ export const $changeWebsite =
 
     if (feature === "analytics") {
       dispatcher(actions.ranking.$fetch())
+    }
+
+    if (feature === "opportunities") {
+      dispatcher(actions.opportunities.$fetchOpportunities())
     }
 
     if (feature === "settings") {
@@ -886,7 +964,7 @@ export const $openPaymentModal =
 
       return di.LocationService.navigate(
         normalizeUrl({
-          url: "/",
+          url: "/dashboard/",
           locale: lang.lang,
         })
       )

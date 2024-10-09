@@ -3,8 +3,12 @@ import {
   PaymentPlansEntity,
   UserToGoogleSearchConsoleWithEmailsEntity,
 } from "@foudroyer/interfaces"
+import delay from "delay"
 import { ThunkAction } from "redux-thunk"
-import { getCallbackUrl } from "../../constants/authentication"
+import {
+  getCallbackUrl,
+  GET_GOOGLE_AUTH_URL,
+} from "../../constants/authentication"
 import { localStorageKeys } from "../../constants/localStorageKeys"
 import { GetUserInfoResponse } from "../../interfaces/IAuthRepository"
 import { normalizeUrl } from "../../utils/normalizeUrl"
@@ -120,18 +124,9 @@ export const $goToAuthentication =
       },
     })
 
-    const url = await di.AuthRepository.getAuthenticationUrl("google")
+    await delay(500)
 
-    if (url.error) {
-      return dispatcher(
-        actions.notifications.create({
-          type: "error",
-          message: url.code,
-        })
-      )
-    }
-
-    di.LocationService.navigate(url.body)
+    di.LocationService.navigate(GET_GOOGLE_AUTH_URL())
   }
 
 // export const $authenticateWithGoogle =
@@ -360,7 +355,7 @@ export const $authenticateWithGoogleCode =
 
       di.LocalStorageService.remove(localStorageKeys.REDIRECT_URL_AFTER_LOGIN)
     } else {
-      di.LocationService.refresh("/redirect/administration")
+      di.LocationService.refresh("/redirect/dashboard/")
     }
   }
 
