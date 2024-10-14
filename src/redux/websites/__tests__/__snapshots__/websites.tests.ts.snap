@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`websites tests suite $fetchAll test suite je veux pouvoir récupérer mes sites web 1`] = `
+Map {
+  "already_activated:true" => {
+    "already_activated": false,
+    "bing_domain": null,
+    "id": "already_activated:true",
+    "image": "null",
+    "index_now_installed": false,
+    "index_now_key": "1234",
+    "is_analytics_activated": true,
+    "is_analytics_sync_done": false,
+    "is_premium": false,
+    "search_console_domain": "sc-domain:already_activated:true",
+    "sitemap": "https://already_activated:true",
+    "yandex_domain": null,
+  },
+}
+`;
+
+exports[`websites tests suite creation d'un site web en tant qu'utilisateur, si je sélectionne un site et que je valide, alors un nouveau website est crée et la modale se ferme 1`] = `
+{
+  "already_activated": true,
+  "bing_domain": null,
+  "id": "www.sudoku.academy",
+  "image": "",
+  "index_now_installed": false,
+  "index_now_key": null,
+  "is_analytics_activated": false,
+  "is_analytics_sync_done": false,
+  "is_premium": false,
+  "search_console_domain": "www.sudoku.academy",
+  "sitemap": null,
+  "yandex_domain": null,
+}
+`;

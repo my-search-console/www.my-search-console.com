@@ -1,0 +1,97 @@
+{
+  "type": "page",
+  "meta": {
+    "indexable": true,
+    "title": "My Search Console, a better Google Search Console",
+    "description": "My Search Console is a service where you can see Google Search Console data easely."
+  },
+  "id": "630e6102-a075-4c11-84b9-9fca59015e28",
+  "published_at": "2023-11-16T13:15:09.769Z",
+  "updated_at": "2023-11-16T13:15:09.788Z",
+  "url": "home",
+  "lang": "en",
+  "content": [
+    {
+      "type": "marketing/hero",
+      "label": {
+        "value": "My Search Console",
+        "component": "p"
+      },
+      "title": {
+        "value": "A better Google Search Console",
+        "component": "h1"
+      },
+      "description": "My Search Console is a service where you can see Google Search Console data easely. A smooth and easy to use interface."
+    },
+    {
+      "type": "marketing/show-off",
+      "id": "bd66f5b1-b0d9-466c-9545-ea739ae91834"
+    },
+    {
+      "type": "marketing/features",
+      "label": {
+        "value": "Analytics",
+        "component": "p"
+      },
+      "title": {
+        "value": "Compare, Analyse, Take off",
+        "component": "h2"
+      },
+      "description": "Analytics drastically improves the understanding of your site's traffic, allowing you to take action at the right time and surge in search engine results.",
+      "features": [
+        {
+          "title": {
+            "value": "Simplified navigation",
+            "component": "h3"
+          },
+          "description": "Wave goodbye to complicated dates filters. Navigate easily through time.",
+          "video": {
+            "autoplay": true,
+            "alt": "simple navigation",
+            "src": "../assets/simple-navigation.mp4",
+            "illustration": "../assets/simple-navigation.jpeg"
+          }
+        },
+        {
+          "title": {
+            "value": "Advanced filters",
+            "component": "h3"
+          },
+          "description": "Finally understand the traffic on your sites and easily identify sudden changes that are hard to spot.",
+          "video": {
+            "autoplay": true,
+            "alt": "advanced filters analytics",
+            "src": "../assets/advanced-filter-analytics.mp4",
+            "illustration": "../assets/advanced-filter-analytics.jpeg"
+          }
+        },
+        {
+          "title": {
+            "value": "Compare results",
+            "component": "h3"
+          },
+          "description": "Comparison is key to learn what your users look for. It's natively integrated in our interface.",
+          "video": {
+            "autoplay": true,
+            "alt": "performance comparison",
+            "src": "../assets/performance-comparison.mp4",
+            "illustration": "../assets/performance-comparison.jpeg"
+          }
+        },
+        {
+          "title": {
+            "value": "Google, Bing, Yandex, increase your traffic",
+            "component": "h3"
+          },
+          "description": "Being indexed on multiple search engines can radically increase your traffic. We make that easy for you.",
+          "video": {
+            "autoplay": true,
+            "alt": "multi search engine analytics",
+            "src": "../assets/analytics-multi-search-engines.mp4",
+            "illustration": "../assets/analytics-multi-search-engines.jpeg"
+          }
+        }
+      ]
+    }
+  ]
+}

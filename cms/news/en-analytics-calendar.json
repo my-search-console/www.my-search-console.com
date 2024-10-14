@@ -1,0 +1,36 @@
+{
+  "published_at": "2024-07-26T11:07",
+  "lang": "en",
+  "campaign": "analytics-calendar",
+  "updated_at": "2024-07-26T11:07",
+  "title": "Search with calendar and see pages stats on Analytics.",
+  "content": [
+    {
+      "type": "article/title",
+      "value": "Search with calendar and see pages stats on Analytics.",
+      "component": "h1"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "Hi there,\n\nWe’re excited to introduce our new Calendar-Based Page Stats feature! This update makes it easier than ever to see how your website is performing on specific dates."
+    },
+    {
+      "type": "article/image",
+      "alt": "default alt",
+      "legend": "",
+      "src": "../assets/analytics-calendar-1.jpg"
+    },
+    {
+      "type": "article/title",
+      "value": "What’s New ?",
+      "component": "h2"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "**Easy Date Filtering**: Use the calendar to select specific dates or date ranges.\n\n\n\n**Detailed Metrics**: See views, visitors, bounce rates, and more for individual pages.\n\n\n\n**Better Visuals**: Enjoy clear charts and graphs that make data easy to understand."
+    }
+  ],
+  "type": "news",
+  "id": "1189ad23-a7ff-44a2-9db9-0469433eec4a",
+  "description": "We've added a new tool to make your analytics even better! Now you can view page stats and search by calendar dates. Check it out and see how it can help you!"
+}

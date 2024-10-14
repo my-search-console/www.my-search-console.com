@@ -1,0 +1,107 @@
+{
+  "ar": {
+    "easy": "سهل",
+    "medium": "طبيعي",
+    "hard": "الصعب",
+    "expert": "خبير",
+    "evil": "شيطاني"
+  },
+  "de": {
+    "easy": "einfach",
+    "medium": "normal",
+    "hard": "schwer",
+    "expert": "experte",
+    "evil": "teuflisch"
+  },
+  "en": {
+    "easy": "easy",
+    "medium": "normal",
+    "hard": "hard",
+    "expert": "expert",
+    "evil": "evil"
+  },
+  "es": {
+    "easy": "facil",
+    "medium": "normal",
+    "hard": "dificil",
+    "expert": "experto",
+    "evil": "diabolico"
+  },
+  "fr": {
+    "easy": "facile",
+    "medium": "moyen",
+    "hard": "difficile",
+    "expert": "expert",
+    "evil": "diabolique"
+  },
+  "it": {
+    "easy": "facile",
+    "medium": "media",
+    "hard": "difficile",
+    "expert": "esperta",
+    "evil": "diabolico"
+  },
+  "ja": {
+    "easy": "簡単",
+    "medium": "中級",
+    "hard": "難しい",
+    "expert": "エキスパート",
+    "evil": "悪魔"
+  },
+  "ko": {
+    "easy": "쉬움",
+    "medium": "보통",
+    "hard": "어려움",
+    "expert": "전문가",
+    "evil": "해악"
+  },
+  "pl": {
+    "easy": "łatwa",
+    "medium": "śpinknia",
+    "hard": "trudna",
+    "expert": "ekspert",
+    "evil": "diaboliczny"
+  },
+  "pt": {
+    "easy": "facil",
+    "medium": "media",
+    "hard": "dificil",
+    "expert": "especialista",
+    "evil": "diabolico"
+  },
+  "ru": {
+    "easy": "лёгкий",
+    "medium": "средний",
+    "hard": "cложный",
+    "expert": "экспертный",
+    "evil": "дьявольский"
+  },
+  "th": {
+    "easy": "ง่าย",
+    "medium": "ปานกลาง",
+    "hard": "ยาก",
+    "expert": "ผู้เชี่ยวชาญ",
+    "evil": "โหดร้าย"
+  },
+  "tr": {
+    "easy": "kolay",
+    "medium": "orta",
+    "hard": "zor",
+    "expert": "uzman",
+    "evil": "şeytani"
+  },
+  "vi": {
+    "easy": "dễ",
+    "medium": "trung-bình",
+    "hard": "khó",
+    "expert": "chuyên-gia",
+    "evil": "quỷ-quyệt"
+  },
+  "zh": {
+    "easy": "简单",
+    "medium": "中等",
+    "hard": "困难",
+    "expert": "专家",
+    "evil": "悪魔"
+  }
+}

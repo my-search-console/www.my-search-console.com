@@ -1,0 +1,125 @@
+{
+  "type": "page",
+  "meta": {
+    "indexable": true,
+    "title": "Terms of Service",
+    "description": "Terms of Service"
+  },
+  "id": "630e6102-a075-4c11-84b9-9fca59015e28",
+  "published_at": "2023-11-16T13:15:09.769Z",
+  "updated_at": "2023-11-16T13:15:09.788Z",
+  "url": "terms-of-service",
+  "lang": "en",
+  "content": [
+    {
+      "type": "article/title",
+      "value": "Terms of Service",
+      "component": "h2",
+      "faq": false,
+      "id": "azdzdad"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "These Terms of Service apply to your access to and use of the websites, mobile applications and other online products and services provided by us. By clicking your consent (e.g. “Sign-in,”) or by using our Services, you agree to these Terms, including the mandatory arbitration provision and class action waiver in the Resolving Disputes; Binding Arbitration Section."
+    },
+    {
+      "type": "article/rich_text",
+      "content": "Our Privacy Policy explains how we collect and use your information, while our Rules outline your responsibilities when using our Services. By using our Services, you’re agreeing to be bound by these Terms and our Rules. Please see our Privacy Policy for information about how we collect, use, share and otherwise process information about you."
+    },
+    {
+      "type": "article/toc",
+      "title": {
+        "value": "Table of content",
+        "component": "p"
+      }
+    },
+    {
+      "type": "article/title",
+      "value": "Your Account and Responsibilities",
+      "component": "h2",
+      "faq": false,
+      "id": "azdzdad"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "You’re responsible for your use of the Services and any content you provide, including compliance with applicable laws. Content on the Services may be protected by others’ intellectual property rights. Please don’t copy, upload, download, or share content unless you have the right to do so.\n\nYour use of the Services must comply with our Rules.\n\nYou may need to register for an account to access some or all of our Services. Help us keep your account protected. Safeguard your password to the account, and keep your account information current. We recommend that you do not share your password with others.\n\nIf you’re accepting these Terms and using the Services on behalf of someone else (such as another person or entity), you represent that you’re authorized to do so, and in that case the words “you” or “your” in these Terms include that other person or entity.\n\nTo use our Services, you must be at least 13 years old.\n\nIf you use the Services to access, collect, or use personal information about other users (“Personal Information”), you agree to do so in compliance with applicable laws. You further agree not to sell any Personal Information, where the term “sell” has the meaning given to it under applicable laws."
+    },
+    {
+      "type": "article/title",
+      "value": "User Content on the Services",
+      "component": "h2",
+      "faq": false,
+      "id": "zadzdad"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "We may review your conduct and content for compliance with these Terms and our Rules, and reserves the right to remove any violating content.\n\nWe reserve the right to delete or disable content alleged to be infringing the intellectual property rights of others, and to terminate accounts of repeat infringers. Furthermore, we respond to notices of alleged copyright infringement if they comply with the law; please report such notices using our Copyright Policy."
+    },
+    {
+      "type": "article/title",
+      "value": "Termination",
+      "component": "h2",
+      "faq": false,
+      "id": "zadazad"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "You’re free to stop using our Services at any time. We reserve the right to suspend or terminate your access to the Services with or without notice."
+    },
+    {
+      "type": "article/title",
+      "value": "Transfer and Processing Data",
+      "component": "h2",
+      "faq": false,
+      "id": "azdzadzadzad"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "In order for us to provide our Services, you agree that we may process, transfer and store information about you in the US and other countries, where you may not have the same rights and protections as you do under local law."
+    },
+    {
+      "type": "article/title",
+      "value": "Disclaimers — Service is “As Is”",
+      "component": "h2",
+      "faq": false,
+      "id": "zadzad"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "We aim to give you great Services, but there are some things we can’t guarantee. Your use of our Services is at your sole risk. You understand that our Services and any content posted or shared by users on the Services are provided “as is” and “as available” without warranties of any kind, either express or implied, including implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement. In addition, we doesn’t represent or warrant that our Services are accurate, complete, reliable, current or error-free. No advice or information obtained from us or through the Services will create any warranty or representation not expressly made in this paragraph. We may provide information about third-party products, services, activities or events, or we may allow third parties to make their content and information available on or through our Services (collectively, “*Third-Party Content*”). We do not control or endorse, and we make no representations or warranties regarding, any Third-Party Content. You access and use Third-Party Content at your own risk. Some locations don’t allow the disclaimers in this paragraph and so they might not apply to you."
+    },
+    {
+      "type": "article/title",
+      "value": "Limitation of Liability",
+      "component": "h2",
+      "faq": false,
+      "id": "dazdazdazd"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "We don’t exclude or limit our liability to you where it would be illegal to do so; this includes any liability for the gross negligence, fraud or intentional misconduct of us or the other Parties in providing the Services. In countries where the following types of exclusions aren’t allowed, we’re responsible to you only for losses and damages that are a reasonably foreseeable result of our failure to use reasonable care and skill or our breach of our contract with you. This paragraph doesn’t affect consumer rights that can’t be waived or limited by any contract or agreement.\n\nIn countries where exclusions or limitations of liability are allowed, we won’t be liable for:\n\n(a) Any indirect, consequential, exemplary, incidental, punitive, or special damages, or any loss of use, data or profits, under any legal theory, even if we or the other Parties have been advised of the possibility of such damages.\n\n(b) Other than for the types of liability we can’t limit by law (as described in this section), we limit the total liability of us and the other Parties for any claim arising out of or relating to these Terms or our Services, regardless of the form of the action, to the greater of $50.00 USD or the amount paid by you to use our Services."
+    },
+    {
+      "type": "article/title",
+      "value": "Amendments",
+      "component": "h2",
+      "faq": false,
+      "id": "azdzd"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "We may make changes to these Terms from time to time. If we make changes, we’ll provide you with notice of them by sending an email to the email address associated with your account, offering an in-product notification, or updating the date at the top of these Terms. Unless we say otherwise in our notice, the amended Terms will be effective immediately, and your continued use of our Services after we provide such notice will confirm your acceptance of the changes. If you don’t agree to the amended Terms, you must stop using our Services."
+    },
+    {
+      "type": "article/title",
+      "value": "Severability",
+      "component": "h2",
+      "faq": false,
+      "id": "azdzadazd"
+    },
+    {
+      "type": "article/rich_text",
+      "content": "If any provision or part of a provision of these Terms is unlawful, void or unenforceable, that provision or part of the provision is deemed severable from these Terms and does not affect the validity and enforceability of any remaining provisions."
+    }
+  ]
+}

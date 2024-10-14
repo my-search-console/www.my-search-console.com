@@ -1,0 +1,62 @@
+{
+  "ar": {
+    "signin": "تسجيل-الدخول",
+    "validation": "تصديق"
+  },
+  "de": {
+    "signin": "einloggen",
+    "validation": "validierung"
+  },
+  "en": {
+    "signin": "signin",
+    "validation": "validation"
+  },
+  "es": {
+    "signin": "registrarse",
+    "validation": "validación"
+  },
+  "fr": {
+    "signin": "se-connecter",
+    "validation": "validation"
+  },
+  "it": {
+    "signin": "registrazione",
+    "validation": "convalida"
+  },
+  "ja": {
+    "signin": "ログイン",
+    "validation": "検証"
+  },
+  "ko": {
+    "signin": "로그인",
+    "validation": "확인"
+  },
+  "pl": {
+    "signin": "zaloguj-się",
+    "validation": "walidacja"
+  },
+  "pt": {
+    "signin": "conecte-se",
+    "validation": "validação"
+  },
+  "ru": {
+    "signin": "войти",
+    "validation": "проверка"
+  },
+  "th": {
+    "signin": "เข้าสู่ระบบ",
+    "validation": "การตรวจสอบ"
+  },
+  "tr": {
+    "signin": "kayıt-olmak",
+    "validation": "doğrulama"
+  },
+  "vi": {
+    "signin": "đăng-nhập",
+    "validation": "thẩm-định"
+  },
+  "zh": {
+    "signin": "登入",
+    "validation": "验证"
+  }
+}

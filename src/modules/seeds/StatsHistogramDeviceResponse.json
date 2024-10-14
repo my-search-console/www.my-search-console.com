@@ -1,0 +1,35 @@
+[
+  {
+    "device": "mobile",
+    "clicks": 4488,
+    "impressions": 217210,
+    "position": 7.498698011496947,
+    "click_through_rate": 0,
+    "previous_clicks": 4472,
+    "previous_impressions": 203706,
+    "previous_click_through_rate": 0,
+    "previous_position": 7.555225402466612
+  },
+  {
+    "device": "desktop",
+    "clicks": 1541,
+    "impressions": 90219,
+    "position": 9.152276465284968,
+    "click_through_rate": 0,
+    "previous_clicks": 1642,
+    "previous_impressions": 89708,
+    "previous_click_through_rate": 0,
+    "previous_position": 9.065836221138118
+  },
+  {
+    "device": "tablet",
+    "clicks": 391,
+    "impressions": 20173,
+    "position": 7.720729542719868,
+    "click_through_rate": 0,
+    "previous_clicks": 416,
+    "previous_impressions": 20571,
+    "previous_click_through_rate": 0,
+    "previous_position": 7.979194171762325
+  }
+]
