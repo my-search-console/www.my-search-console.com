@@ -63,7 +63,35 @@ export interface RankingStatsForFrontend {
       | "previous_position"
     >
   >
+  sources_trending_down: Array<
+    Pick<
+      RankingStatEntity,
+      | "click_through_rate"
+      | "clicks"
+      | "source"
+      | "impressions"
+      | "position"
+      | "previous_clicks"
+      | "previous_click_through_rate"
+      | "previous_impressions"
+      | "previous_position"
+    >
+  >
   devices: Array<
+    Pick<
+      RankingStatEntity,
+      | "click_through_rate"
+      | "clicks"
+      | "device"
+      | "impressions"
+      | "position"
+      | "previous_clicks"
+      | "previous_click_through_rate"
+      | "previous_impressions"
+      | "previous_position"
+    >
+  >
+  devices_trending_down: Array<
     Pick<
       RankingStatEntity,
       | "click_through_rate"
@@ -91,6 +119,20 @@ export interface RankingStatsForFrontend {
       | "previous_position"
     >
   >
+  pages_trending_down: Array<
+    Pick<
+      RankingStatEntity,
+      | "click_through_rate"
+      | "clicks"
+      | "page"
+      | "impressions"
+      | "position"
+      | "previous_clicks"
+      | "previous_click_through_rate"
+      | "previous_impressions"
+      | "previous_position"
+    >
+  >
   query: Array<
     Pick<
       RankingStatEntity,
@@ -105,7 +147,35 @@ export interface RankingStatsForFrontend {
       | "previous_position"
     >
   >
+  query_trending_down: Array<
+    Pick<
+      RankingStatEntity,
+      | "click_through_rate"
+      | "clicks"
+      | "query"
+      | "impressions"
+      | "position"
+      | "previous_clicks"
+      | "previous_click_through_rate"
+      | "previous_impressions"
+      | "previous_position"
+    >
+  >
   countries: Array<
+    Pick<
+      RankingStatEntity,
+      | "click_through_rate"
+      | "clicks"
+      | "country"
+      | "impressions"
+      | "position"
+      | "previous_clicks"
+      | "previous_click_through_rate"
+      | "previous_impressions"
+      | "previous_position"
+    >
+  >
+  countries_trending_down: Array<
     Pick<
       RankingStatEntity,
       | "click_through_rate"

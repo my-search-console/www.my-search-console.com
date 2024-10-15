@@ -2,11 +2,13 @@ import { Menu, Transition } from "@headlessui/react"
 import {
   ArrowsPointingOutIcon,
   ArrowTopRightOnSquareIcon,
+  ArrowTrendingDownIcon,
   EllipsisHorizontalIcon,
 } from "@heroicons/react/20/solid"
 import { useLocation } from "@reach/router"
 import classNames from "classnames"
-import React, { Fragment } from "react"
+import clsx from "clsx"
+import React, { Fragment, useState } from "react"
 import { useIntl } from "react-intl"
 import {
   RankingOrderByType,
@@ -26,18 +28,36 @@ import { MenuFilterItem } from "./MenuFilterItem"
 
 function addRelativePercentage(
   data: RankingStatEntity[],
-  type: RankingOrderByType
+  type: RankingOrderByType,
+  trendingDown?: boolean
 ): Array<RankingStatEntity & { percentage: number }> {
   const { href } = useLocation()
   const filters = getFiltersFromUrl({ url: href })
+  const calculateDifference = (item: RankingStatEntity) => {
+    return item[`previous_${type}`] - item[type]
+  }
 
   const total = data.reduce((accumularor, value) => {
+    if (trendingDown) {
+      return calculateDifference(value)
+    }
+
     return accumularor + value[type]
   }, 0)
 
+  const orderBy = filters.orderBy ?? "clicks"
+
+  const calculatePercentage = (item: RankingStatEntity) => {
+    if (trendingDown) {
+      return (calculateDifference(item) / total) * 100
+    }
+
+    return (item[orderBy] / total) * 100
+  }
+
   const relative = [...data].map((item) => ({
     ...item,
-    percentage: (item[filters.orderBy ?? "clicks"] / total) * 100,
+    percentage: calculatePercentage(item),
   }))
 
   // set biggest relative percentage to 100% and the others relatively
@@ -58,6 +78,7 @@ function addRelativePercentage(
 export const Histogram: React.FC<{
   type: "device" | "query" | "country" | "source" | "page"
   data: Array<RankingStatEntity>
+  highlights: RankingStatEntity[]
   hideActions?: boolean
   label: string
   color: "orange" | "blue" | "pink" | "green" | "slate"
@@ -68,11 +89,8 @@ export const Histogram: React.FC<{
   onChangeView: (view: RankingOrderByType) => void
   onClick: (value: string) => void
 }> = (props) => {
-  const dataWithRelativePercentage = addRelativePercentage(
-    props.data,
-    props.view
-  )
   const { locale } = useIntl()
+  const [showTrendingDown, setShowTrendingDown] = useState(false)
 
   return (
     <div
@@ -82,11 +100,24 @@ export const Histogram: React.FC<{
       )}
     >
       {props.isFetching && <Loader></Loader>}
+
       <div className="flex items-center justify-between">
         <div className="font-display font-medium">
           <FormattedMessage id={`analytics/histogram/${props.type}`} />
         </div>
+
         <div className="flex items-center">
+          {!props.hideActions && (
+            <button
+              onClick={() => setShowTrendingDown(!showTrendingDown)}
+              className={clsx(
+                "-mt-1 mr-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition duration-300 ease-in-out hover:bg-pink-100 hover:text-pink-500",
+                showTrendingDown && "bg-pink-100 text-pink-500"
+              )}
+            >
+              <ArrowTrendingDownIcon className="h-4 w-4" />
+            </button>
+          )}
           {!props.hideActions && (
             <button
               onClick={props.onShowMore}
@@ -133,6 +164,7 @@ export const Histogram: React.FC<{
           </Menu>
         </div>
       </div>
+
       <div className="my-2 flex justify-between text-sm font-medium text-slate-500">
         <p>
           <FormattedMessage id={`analytics/histogram/legend/${props.type}`} />
@@ -141,8 +173,13 @@ export const Histogram: React.FC<{
           <FormattedMessage id={`analytics/histogram/filter/${props.view}`} />
         </p>
       </div>
+
       <ul>
-        {dataWithRelativePercentage.map((item, index) => (
+        {addRelativePercentage(
+          showTrendingDown ? props.highlights : props.data,
+          props.view,
+          showTrendingDown
+        ).map((item, index) => (
           <li key={index} className="flex items-center justify-between">
             <div className="relative my-0.5 flex flex-grow items-center p-2">
               <div
@@ -213,7 +250,10 @@ export const Histogram: React.FC<{
                       })}
                     </span>
                     <span>
-                      {universalFormatNumber({ num: item[props.view], locale })}
+                      {universalFormatNumber({
+                        num: item[props.view],
+                        locale,
+                      })}
                     </span>
                   </p>
                 }

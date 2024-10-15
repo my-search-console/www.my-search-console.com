@@ -15,6 +15,14 @@ export const onPreRenderHTML = (props) => {
     return component
   })
 
+  /**
+   * This sorting ensures that the Gatsby image styles are loaded before other styles.
+   * By placing the Gatsby image styles first, we prevent layout shifts and improve
+   * the initial render of images on the page, enhancing the user experience.
+   *
+   * If you not sort the gatsby-image-style component, it will cause a layout shift and sometimes
+   * break the layout of the page.
+   */
   headComponents.sort((x, y) => {
     if (x.key === "gatsby-image-style") return -1
     return 0

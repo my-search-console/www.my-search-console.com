@@ -185,7 +185,8 @@ export const $openAndfetchByHistogram =
 
     const pathname = di.LocationService.getPathname()
     const fullUrl = di.LocationService.getFullUrl()
-    const [websiteId, rootPath] = pathname.split("/").reverse()
+
+    const [websiteId, rootPath] = pathname.split("/").filter(Boolean).reverse()
 
     dispatch(RankingHistogramModalSetType({ value: props.type }))
     dispatch(RankingHistogramModalSetFetching({ value: true }))

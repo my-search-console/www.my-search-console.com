@@ -37,6 +37,7 @@ const Wrapper: React.FC<{
         onShowMore={() => props.onShowMore({ type: "query" })}
         onChangeView={props.onChangeView}
         hideActions={props.hideActions}
+        highlights={props.stats.query_trending_down as RankingStatEntity[]}
       />
 
       <Histogram
@@ -50,6 +51,7 @@ const Wrapper: React.FC<{
         onShowMore={() => props.onShowMore({ type: "country" })}
         onChangeView={props.onChangeView}
         hideActions={props.hideActions}
+        highlights={props.stats.countries_trending_down as RankingStatEntity[]}
       />
       <Histogram
         type="source"
@@ -62,6 +64,7 @@ const Wrapper: React.FC<{
         onShowMore={() => props.onShowMore({ type: "source" })}
         onChangeView={props.onChangeView}
         hideActions={props.hideActions}
+        highlights={props.stats.sources_trending_down as RankingStatEntity[]}
       />
       <Histogram
         type="device"
@@ -74,6 +77,7 @@ const Wrapper: React.FC<{
         onChangeView={props.onChangeView}
         data={props.stats.devices as RankingStatEntity[]}
         hideActions={props.hideActions}
+        highlights={props.stats.devices_trending_down as RankingStatEntity[]}
       />
       <Histogram
         type="page"
@@ -86,6 +90,7 @@ const Wrapper: React.FC<{
         onChangeView={props.onChangeView}
         data={props.stats.pages as RankingStatEntity[]}
         hideActions={props.hideActions}
+        highlights={props.stats.pages_trending_down as RankingStatEntity[]}
         fluid
       />
     </div>

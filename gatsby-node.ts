@@ -20,61 +20,6 @@ faq
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  languages.forEach(({ id }) => {
-    createPage({
-      path: id === "en" ? "/pricing/upsell/" : `/${id}/pricing/upsell/`,
-      component: PricingUpsell,
-      context: {
-        langKey: id,
-        languages,
-        canonicals: languages.map((lang) => {
-          if (lang.id === "en")
-            return {
-              lang: lang.id,
-              label: lang.label,
-              url: "/pricing/upsell/",
-              isDefault: true,
-            }
-
-          return {
-            lang: lang.id,
-            url: `/${id}/pricing/upsell/`,
-            label: lang.label,
-            isDefault: false,
-          }
-        }),
-      },
-    })
-  })
-
-  languages.forEach(({ id }) => {
-    createPage({
-      path: id === "en" ? "/administration/" : `/${id}/administration/`,
-      component: Administration,
-      context: {
-        langKey: id,
-        languages,
-        indexable: false,
-        canonicals: languages.map((lang) => {
-          if (lang.id === "en")
-            return {
-              lang: lang.id,
-              label: lang.label,
-              url: `/administration/`,
-              isDefault: true,
-            }
-
-          return {
-            lang: lang.id,
-            url: `/${lang.id}/administration/`,
-            label: lang.label,
-            isDefault: false,
-          }
-        }),
-      },
-    })
-  })
-
   const result = await graphql(
     `
       {
