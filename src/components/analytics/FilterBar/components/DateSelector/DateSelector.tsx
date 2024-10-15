@@ -26,6 +26,10 @@ function displayFilter(props: {
     return `${dayjs(props.from).format("DD MMM YYYY")}`
   }
 
+  if (period === "year") {
+    return <FormattedMessage id={`analytics/filters/last-year`} />
+  }
+
   if (props.from && props.from === props.to) {
     return `${dayjs(props.from).format("DD MMM YYYY")}`
   }
@@ -103,6 +107,13 @@ export const Wrapper: React.FC<ContainerProps> = (props) => {
                 .subtract(1, "month")
                 .format("YYYY-MM-DD")}
               formattedMessage="analytics/filters/last-month"
+            />
+
+            <DateSelectorItem
+              onSetDate={props.onSetDate}
+              period="year"
+              date={null}
+              formattedMessage="analytics/filters/last-year"
             />
 
             <DateSelectorItem

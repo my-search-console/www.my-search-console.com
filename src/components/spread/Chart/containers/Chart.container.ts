@@ -12,9 +12,7 @@ const mapState = (state: RootState) => ({
 })
 
 const mapDispatch = (dispatch: any) => ({
-  onMount: () => {
-    dispatch(actions.spread.$fetchIfConnected())
-  },
+  onMount: () => {},
   onShow: () => {
     dispatch(actions.spread.$fetchOrConnect())
   },

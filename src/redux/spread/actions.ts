@@ -44,13 +44,6 @@ export const SpreadStoreLadder = (
   payload,
 })
 
-export const $fetchIfConnected =
-  (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
-    const { di, spread, payments, auth } = getState()
-    if (!auth.authenticated) await dispatch(actions.auth.$isAuthenticated())
-    dispatch(actions.spread.$fetch())
-  }
-
 export const $fetch =
   (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
     const { di, spread, auth, ranking } = getState()
@@ -58,6 +51,8 @@ export const $fetch =
     if (spread.isFetching) return false
 
     dispatch(actions.spread.SpreadSetFetching({ value: true }))
+
+    await dispatch(actions.auth.$isAuthenticated())
 
     const fullUrl = di.LocationService.getFullUrl()
 
