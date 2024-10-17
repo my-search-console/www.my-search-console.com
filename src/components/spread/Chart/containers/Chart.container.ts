@@ -19,7 +19,9 @@ const mapDispatch = (dispatch: any) => ({
   onDownload: () => {
     dispatch(actions.spread.$download())
   },
-  onFilter() {},
+  onFilter(params: { from: string; to: string }) {
+    dispatch(actions.spread.$SubmitCalendar(params))
+  },
 })
 
 export const connector = connect(mapState, mapDispatch)

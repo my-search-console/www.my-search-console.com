@@ -2,7 +2,14 @@ import { GlobeEuropeAfricaIcon } from "@heroicons/react/20/solid"
 import dayjs from "dayjs"
 import React, { useEffect, useState } from "react"
 import { useIntl } from "react-intl"
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ReferenceArea,
+  XAxis,
+  YAxis,
+} from "recharts"
 import { Loader } from "../../general/Loader/Loader"
 import {
   Card,
@@ -36,6 +43,8 @@ const Skeleton = () => {
 const Wrapper: React.FC<ContainerProps> = (props) => {
   const intl = useIntl()
   const [isMounted, setIsMounted] = useState(false)
+  const [from, setFrom] = useState<string | null>(null)
+  const [to, setTo] = useState<string | null>(null)
 
   useEffect(() => {
     setIsMounted(true)
@@ -90,6 +99,24 @@ const Wrapper: React.FC<ContainerProps> = (props) => {
               right: 0,
               top: 0,
               bottom: 0,
+            }}
+            onMouseDown={(e) => {
+              setFrom(e.activeLabel as string)
+              setTo(dayjs(e.activeLabel).add(1, "day").format("YYYY-MM-DD"))
+            }}
+            onMouseMove={(e) => from && setTo(e.activeLabel as string)}
+            onMouseUp={() => {
+              if (from && to && from !== to) {
+                const inverse = dayjs(from).isAfter(to)
+
+                props.onFilter({
+                  from: inverse ? to : from,
+                  to: inverse ? from : to,
+                })
+              }
+
+              setFrom(null)
+              setTo(null)
             }}
           >
             <CartesianGrid vertical={false} stroke="hsl(var(--border))" />
@@ -166,6 +193,18 @@ const Wrapper: React.FC<ContainerProps> = (props) => {
               stroke="hsl(var(--chart-impressions))"
               isAnimationActive={false}
             />
+
+            {from && to && (
+              <ReferenceArea
+                yAxisId="left"
+                x1={from}
+                x2={to}
+                strokeOpacity={0.3}
+                stroke="hsl(var(--chart-clicks))"
+                fill="hsl(var(--chart-clicks))"
+                fillOpacity={0.1}
+              />
+            )}
           </AreaChart>
         </ChartContainer>
       </CardContent>

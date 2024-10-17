@@ -44,6 +44,27 @@ export const SpreadStoreLadder = (
   payload,
 })
 
+export const $SubmitCalendar =
+  (props: {
+    from: string
+    to: string
+  }): ThunkAction<any, RootState, any, any> =>
+  async (dispatch, getState) => {
+    const { di } = getState()
+
+    const url = new URL(di.LocationService.getFullUrl())
+
+    url.searchParams.set("from", props.from)
+    url.searchParams.set("to", props.to)
+    url.searchParams.delete("period")
+
+    di.LocationService.navigate(url.toString(), {
+      disableScroll: true,
+    })
+
+    dispatch(actions.spread.$fetch())
+  }
+
 export const $fetch =
   (): ThunkAction<any, RootState, any, any> => async (dispatch, getState) => {
     const { di, spread, auth, ranking } = getState()
