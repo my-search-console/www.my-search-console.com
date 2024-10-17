@@ -66,8 +66,8 @@ export const RenderChart: React.FC<{
     var gradient = ctx.createLinearGradient(0, 0, 0, 300)
 
     if (props.type === "clicks") {
-      gradient.addColorStop(0, "rgba(236, 72, 153, 0.4)")
-      gradient.addColorStop(1, "rgba(236, 72, 153, 0.05)")
+      gradient.addColorStop(0, "rgba(96, 165, 250, 0.4)")
+      gradient.addColorStop(1, "rgba(96, 165, 250, 0.05)")
     }
 
     if (props.type === "impressions") {
@@ -129,30 +129,30 @@ export const RenderChart: React.FC<{
             label: "Clicks",
             data: props.date.map((d) => d.clicks),
             fill: true,
-            borderColor: "rgba(236, 72, 153, 1)",
+            borderColor: "rgba(96, 165, 250, 1)",
             borderWidth: 2,
             pointHoverRadius: 4,
             backgroundColor: gradient,
             tension: 0,
             pointBorderColor: "rgba(0, 0, 0, 0)",
-            pointBackgroundColor: "rgba(236, 72, 153, 1)",
-            pointHoverBackgroundColor: "rgba(255, 99, 132, 1)",
-            pointHoverBorderColor: "rgba(255, 99, 132, 1)",
+            pointBackgroundColor: "rgba(96, 165, 250, 1)",
+            pointHoverBackgroundColor: "rgba(96, 165, 250, 1)",
+            pointHoverBorderColor: "rgba(96, 165, 250, 1)",
           },
           {
             label: "Previous Clicks",
             data: props.date.map((d) => d.previous_clicks),
             fill: true,
-            borderColor: "rgba(236, 72, 153, 0.3)",
+            borderColor: "rgba(96, 165, 250, 0.3)",
             borderWidth: 2,
             pointHoverRadius: 4,
-            backgroundColor: "rgba(236, 72, 153, 0.05)",
+            backgroundColor: "rgba(96, 165, 250, 0.05)",
             tension: 0,
             borderDash: [5, 4],
             pointBorderColor: "rgba(0, 0, 0, 0)",
             pointBackgroundColor: "rgba(0, 0, 0, 0)",
-            pointHoverBackgroundColor: "rgba(236, 72, 153, 0.3)",
-            pointHoverBorderColor: "rgba(236, 72, 153, 0.3)",
+            pointHoverBackgroundColor: "rgba(96, 165, 250, 0.3)",
+            pointHoverBorderColor: "rgba(96, 165, 250, 0.3)",
           },
           {
             label: "Impressions",
@@ -335,7 +335,7 @@ export const RenderChart: React.FC<{
             reverse: props.type === "position",
             min: props.type === "position" ? 1 : 0,
             grid: {
-              color: "rgba(255, 20, 147, 0.2)",
+              color: "rgba(0,0,0,0.1)",
               drawTicks: false,
             },
             border: {
