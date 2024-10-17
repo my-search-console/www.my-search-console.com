@@ -18,12 +18,12 @@ export const getFiltersFromUrl = (params: { url: string }) => {
     const from =
       filter.searchParams.get("from") ||
       dayjs()
-        .subtract(4 + 30, "days")
+        .subtract(2 + 30, "days")
         .format("YYYY-MM-DD")
 
     const to =
       filter.searchParams.get("to") ||
-      dayjs().subtract(4, "days").format("YYYY-MM-DD")
+      dayjs().subtract(2, "days").format("YYYY-MM-DD")
 
     const commonFilters = {
       source,
