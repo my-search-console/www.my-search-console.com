@@ -62,7 +62,7 @@ export const getFiltersFromUrl = (params: { url: string }) => {
 
     if (period === "30d") {
       const from =
-        filter.searchParams.get("from") || dayjs().subtract(34, "days")
+        filter.searchParams.get("from") || dayjs().subtract(32, "days")
 
       return {
         ...commonFilters,
@@ -73,7 +73,7 @@ export const getFiltersFromUrl = (params: { url: string }) => {
 
     if (period === "month") {
       const from =
-        filter.searchParams.get("from") || dayjs().subtract(4, "days")
+        filter.searchParams.get("from") || dayjs().subtract(2, "days")
 
       return {
         ...commonFilters,
@@ -92,7 +92,7 @@ export const getFiltersFromUrl = (params: { url: string }) => {
       page: null,
       source: null,
       from: dayjs().subtract(11, "days").format("YYYY-MM-DD"),
-      to: dayjs().subtract(4, "days").format("YYYY-MM-DD"),
+      to: dayjs().subtract(2, "days").format("YYYY-MM-DD"),
     }
   }
 }
