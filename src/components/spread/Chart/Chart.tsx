@@ -210,18 +210,18 @@ const Wrapper: React.FC<ContainerProps> = (props) => {
       </CardContent>
 
       <CardFooter className="p-4">
-        <div className="flex text-xs justify-between gap-2">
+        <div className="flex text-xs font-display justify-between gap-4">
           <div className="flex  items-center gap-1">
             <div className="w-3 h-3 rounded bg-[hsl(var(--chart-clicks))]"></div>
             <span className="text-slate-500">Clicks</span>
-            <span className="font-mono font-medium">
+            <span className="ml-1 font-medium">
               {props.stats.global.clicks.toLocaleString()}
             </span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 rounded bg-[hsl(var(--chart-impressions))]"></div>
             <span className="text-slate-500">Impressions</span>
-            <span className="font-mono font-medium">
+            <span className="ml-1 font-medium">
               {props.stats.global.impressions.toLocaleString()}
             </span>
           </div>

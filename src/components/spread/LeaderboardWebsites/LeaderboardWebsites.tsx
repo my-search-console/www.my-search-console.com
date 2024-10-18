@@ -10,6 +10,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -160,15 +161,24 @@ const Item: React.FC<{
           </AreaChart>
         </ChartContainer>
       </CardContent>
-      {/* <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-            <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
+      <CardFooter className="p-4">
+        <div className="flex font-display flex-wrap text-xs justify-between gap-4">
+          <div className="flex  items-center gap-1">
+            <div className="w-3 h-3 rounded bg-[hsl(var(--chart-clicks))]"></div>
+            <span className="text-slate-500">Clicks</span>
+            <span className="ml-1 font-medium">
+              {props.clicks.toLocaleString()}
+            </span>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="w-3 h-3 rounded bg-[hsl(var(--chart-impressions))]"></div>
+            <span className="text-slate-500">Impressions</span>
+            <span className="ml-1 font-medium">
+              {props.impressions.toLocaleString()}
+            </span>
           </div>
         </div>
-      </CardFooter> */}
+      </CardFooter>
     </Card>
   )
 }
