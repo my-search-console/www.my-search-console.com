@@ -1,0 +1,597 @@
+{
+  "global": {
+    "clicks": 588,
+    "click_through_rate": 2.863125091298632,
+    "impressions": 20537,
+    "position": 15.449174820752141,
+    "previous_clicks": 560,
+    "previous_impressions": 17526,
+    "previous_position": 16.350478762473081,
+    "previous_click_through_rate": 2.795252767317129
+  },
+  "date": [
+    {
+      "date": "2023-07-07T00:00:00.000Z",
+      "clicks": 15,
+      "impressions": 608,
+      "position": 16.828947368421055,
+      "click_through_rate": 0,
+      "previous_clicks": 16,
+      "previous_impressions": 590,
+      "previous_position": 16.196610169491525,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-08T00:00:00.000Z",
+      "clicks": 12,
+      "impressions": 579,
+      "position": 15.525043177892918,
+      "click_through_rate": 0,
+      "previous_clicks": 21,
+      "previous_impressions": 605,
+      "previous_position": 14.872727272727273,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-09T00:00:00.000Z",
+      "clicks": 19,
+      "impressions": 621,
+      "position": 17.06924315619968,
+      "click_through_rate": 0,
+      "previous_clicks": 28,
+      "previous_impressions": 572,
+      "previous_position": 18.45104895104895,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-10T00:00:00.000Z",
+      "clicks": 21,
+      "impressions": 586,
+      "position": 16.131399317406142,
+      "click_through_rate": 0,
+      "previous_clicks": 17,
+      "previous_impressions": 547,
+      "previous_position": 14.577696526508227,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-11T00:00:00.000Z",
+      "clicks": 14,
+      "impressions": 634,
+      "position": 14.449526813880126,
+      "click_through_rate": 0,
+      "previous_clicks": 20,
+      "previous_impressions": 606,
+      "previous_position": 14.943894389438944,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-12T00:00:00.000Z",
+      "clicks": 8,
+      "impressions": 538,
+      "position": 14.972118959107807,
+      "click_through_rate": 0,
+      "previous_clicks": 16,
+      "previous_impressions": 593,
+      "previous_position": 15.231028667790893,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-13T00:00:00.000Z",
+      "clicks": 17,
+      "impressions": 581,
+      "position": 15.855421686746988,
+      "click_through_rate": 0,
+      "previous_clicks": 13,
+      "previous_impressions": 532,
+      "previous_position": 15.913533834586467,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-14T00:00:00.000Z",
+      "clicks": 15,
+      "impressions": 604,
+      "position": 14.178807947019868,
+      "click_through_rate": 0,
+      "previous_clicks": 21,
+      "previous_impressions": 599,
+      "previous_position": 15.73956594323873,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-15T00:00:00.000Z",
+      "clicks": 20,
+      "impressions": 733,
+      "position": 18.211459754433832,
+      "click_through_rate": 0,
+      "previous_clicks": 18,
+      "previous_impressions": 559,
+      "previous_position": 14.347048300536672,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-16T00:00:00.000Z",
+      "clicks": 23,
+      "impressions": 720,
+      "position": 15.134722222222223,
+      "click_through_rate": 0,
+      "previous_clicks": 18,
+      "previous_impressions": 486,
+      "previous_position": 16.454732510288068,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-17T00:00:00.000Z",
+      "clicks": 20,
+      "impressions": 634,
+      "position": 14.608832807570979,
+      "click_through_rate": 0,
+      "previous_clicks": 13,
+      "previous_impressions": 539,
+      "previous_position": 13.100185528756958,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-18T00:00:00.000Z",
+      "clicks": 16,
+      "impressions": 613,
+      "position": 16.278955954323003,
+      "click_through_rate": 0,
+      "previous_clicks": 28,
+      "previous_impressions": 624,
+      "previous_position": 16.65224358974359,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-19T00:00:00.000Z",
+      "clicks": 18,
+      "impressions": 606,
+      "position": 13.433993399339935,
+      "click_through_rate": 0,
+      "previous_clicks": 19,
+      "previous_impressions": 552,
+      "previous_position": 16.990942028985508,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-20T00:00:00.000Z",
+      "clicks": 18,
+      "impressions": 653,
+      "position": 15.987748851454825,
+      "click_through_rate": 0,
+      "previous_clicks": 18,
+      "previous_impressions": 598,
+      "previous_position": 15.934782608695652,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-21T00:00:00.000Z",
+      "clicks": 28,
+      "impressions": 762,
+      "position": 17.137795275590552,
+      "click_through_rate": 0,
+      "previous_clicks": 27,
+      "previous_impressions": 602,
+      "previous_position": 16.421926910299003,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-22T00:00:00.000Z",
+      "clicks": 24,
+      "impressions": 700,
+      "position": 14.918571428571429,
+      "click_through_rate": 0,
+      "previous_clicks": 16,
+      "previous_impressions": 628,
+      "previous_position": 13.665605095541402,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-23T00:00:00.000Z",
+      "clicks": 27,
+      "impressions": 818,
+      "position": 13.839853300733497,
+      "click_through_rate": 0,
+      "previous_clicks": 20,
+      "previous_impressions": 580,
+      "previous_position": 15.98103448275862,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-24T00:00:00.000Z",
+      "clicks": 20,
+      "impressions": 786,
+      "position": 14.492366412213741,
+      "click_through_rate": 0,
+      "previous_clicks": 20,
+      "previous_impressions": 517,
+      "previous_position": 14.195357833655706,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-25T00:00:00.000Z",
+      "clicks": 17,
+      "impressions": 677,
+      "position": 14.129985228951256,
+      "click_through_rate": 0,
+      "previous_clicks": 16,
+      "previous_impressions": 522,
+      "previous_position": 13.402298850574713,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-26T00:00:00.000Z",
+      "clicks": 26,
+      "impressions": 732,
+      "position": 14.866120218579235,
+      "click_through_rate": 0,
+      "previous_clicks": 14,
+      "previous_impressions": 507,
+      "previous_position": 13.95069033530572,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-27T00:00:00.000Z",
+      "clicks": 23,
+      "impressions": 712,
+      "position": 15.480337078651685,
+      "click_through_rate": 0,
+      "previous_clicks": 19,
+      "previous_impressions": 492,
+      "previous_position": 14.471544715447154,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-28T00:00:00.000Z",
+      "clicks": 11,
+      "impressions": 615,
+      "position": 15.552845528455284,
+      "click_through_rate": 0,
+      "previous_clicks": 13,
+      "previous_impressions": 551,
+      "previous_position": 13.80399274047187,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-29T00:00:00.000Z",
+      "clicks": 15,
+      "impressions": 622,
+      "position": 15.011254019292604,
+      "click_through_rate": 0,
+      "previous_clicks": 9,
+      "previous_impressions": 543,
+      "previous_position": 15.007366482504604,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-30T00:00:00.000Z",
+      "clicks": 20,
+      "impressions": 656,
+      "position": 13.044207317073171,
+      "click_through_rate": 0,
+      "previous_clicks": 14,
+      "previous_impressions": 572,
+      "previous_position": 14.458041958041958,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-07-31T00:00:00.000Z",
+      "clicks": 20,
+      "impressions": 690,
+      "position": 14.630434782608695,
+      "click_through_rate": 0,
+      "previous_clicks": 18,
+      "previous_impressions": 605,
+      "previous_position": 14.056198347107438,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-08-01T00:00:00.000Z",
+      "clicks": 20,
+      "impressions": 620,
+      "position": 15.76774193548387,
+      "click_through_rate": 0,
+      "previous_clicks": 12,
+      "previous_impressions": 588,
+      "previous_position": 13.850340136054422,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-08-02T00:00:00.000Z",
+      "clicks": 16,
+      "impressions": 743,
+      "position": 16.652759084791384,
+      "click_through_rate": 0,
+      "previous_clicks": 26,
+      "previous_impressions": 598,
+      "previous_position": 15.765886287625419,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-08-03T00:00:00.000Z",
+      "clicks": 22,
+      "impressions": 713,
+      "position": 17.246844319775597,
+      "click_through_rate": 0,
+      "previous_clicks": 14,
+      "previous_impressions": 537,
+      "previous_position": 15.707635009310987,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-08-04T00:00:00.000Z",
+      "clicks": 30,
+      "impressions": 649,
+      "position": 17.203389830508474,
+      "click_through_rate": 0,
+      "previous_clicks": 23,
+      "previous_impressions": 553,
+      "previous_position": 17.540687160940326,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-08-05T00:00:00.000Z",
+      "clicks": 45,
+      "impressions": 690,
+      "position": 16.10144927536232,
+      "click_through_rate": 0,
+      "previous_clicks": 18,
+      "previous_impressions": 521,
+      "previous_position": 17.351247600767753,
+      "previous_click_through_rate": 0
+    },
+    {
+      "date": "2023-08-06T00:00:00.000Z",
+      "clicks": 50,
+      "impressions": 642,
+      "position": 14.182242990654206,
+      "click_through_rate": 0,
+      "previous_clicks": 15,
+      "previous_impressions": 608,
+      "previous_position": 16.828947368421055,
+      "previous_click_through_rate": 0
+    }
+  ],
+  "countries": [
+    {
+      "country": "fra",
+      "clicks": 454,
+      "impressions": 12926,
+      "position": 8.17671457727718,
+      "previous_clicks": 441,
+      "previous_impressions": 11397,
+      "previous_position": 7.0652379417894355
+    },
+    {
+      "country": "can",
+      "clicks": 25,
+      "impressions": 622,
+      "position": 11.060902071976095,
+      "previous_clicks": 25,
+      "previous_impressions": 534,
+      "previous_position": 11.985309945805051
+    },
+    {
+      "country": "bel",
+      "clicks": 23,
+      "impressions": 658,
+      "position": 6.7862614420386045,
+      "previous_clicks": 27,
+      "previous_impressions": 559,
+      "previous_position": 5.980964806875525
+    },
+    {
+      "country": "jpn",
+      "clicks": 19,
+      "impressions": 437,
+      "position": 11.304698313105382,
+      "previous_clicks": 11,
+      "previous_impressions": 235,
+      "previous_position": 17.050951359940925
+    },
+    {
+      "country": "che",
+      "clicks": 15,
+      "impressions": 447,
+      "position": 6.506017034664793,
+      "previous_clicks": 22,
+      "previous_impressions": 382,
+      "previous_position": 6.22955626411384
+    },
+    {
+      "country": "mar",
+      "clicks": 6,
+      "impressions": 108,
+      "position": 12.035289115646256,
+      "previous_clicks": 3,
+      "previous_impressions": 102,
+      "previous_position": 10.717857142857143
+    },
+    {
+      "country": "ita",
+      "clicks": 5,
+      "impressions": 87,
+      "position": 19.661522633744855,
+      "previous_clicks": 0,
+      "previous_impressions": 44,
+      "previous_position": 36.05873015873016
+    },
+    {
+      "country": "esp",
+      "clicks": 4,
+      "impressions": 170,
+      "position": 13.21507326007326,
+      "previous_clicks": 1,
+      "previous_impressions": 80,
+      "previous_position": 19.568452380952383
+    },
+    {
+      "country": "reu",
+      "clicks": 3,
+      "impressions": 77,
+      "position": 9.966137566137567,
+      "previous_clicks": 1,
+      "previous_impressions": 94,
+      "previous_position": 6.845149911816579
+    },
+    {
+      "country": "civ",
+      "clicks": 2,
+      "impressions": 54,
+      "position": 7.438666666666666,
+      "previous_clicks": 0,
+      "previous_impressions": 42,
+      "previous_position": 6.795098039215687
+    }
+  ],
+  "query": [
+    {
+      "query": "peintre japonais",
+      "clicks": 87,
+      "impressions": 851,
+      "position": 1.3126768044768926,
+      "previous_clicks": 81,
+      "previous_impressions": 816,
+      "previous_position": 1.4734526024872359
+    },
+    {
+      "query": "artiste japonais",
+      "clicks": 39,
+      "impressions": 391,
+      "position": 1.3229201603627347,
+      "previous_clicks": 68,
+      "previous_impressions": 620,
+      "previous_position": 1.7848445241303805
+    },
+    {
+      "query": "peintres japonais célèbres",
+      "clicks": 21,
+      "impressions": 113,
+      "position": 1.011494252873563,
+      "previous_clicks": 19,
+      "previous_impressions": 101,
+      "previous_position": 1.011904761904762
+    },
+    {
+      "query": "artistes japonais",
+      "clicks": 12,
+      "impressions": 81,
+      "position": 1.1977777777777778,
+      "previous_clicks": 6,
+      "previous_impressions": 79,
+      "previous_position": 1.1883333333333332
+    },
+    {
+      "query": "artiste japonaise",
+      "clicks": 11,
+      "impressions": 347,
+      "position": 2.970654493092823,
+      "previous_clicks": 8,
+      "previous_impressions": 383,
+      "previous_position": 3.044040115482241
+    },
+    {
+      "query": "artiste peintre japonais",
+      "clicks": 9,
+      "impressions": 117,
+      "position": 1.0129032258064516,
+      "previous_clicks": 10,
+      "previous_impressions": 104,
+      "previous_position": 1.022167487684729
+    },
+    {
+      "query": "peintre japonais connu",
+      "clicks": 9,
+      "impressions": 62,
+      "position": 1.0434782608695652,
+      "previous_clicks": 9,
+      "previous_impressions": 58,
+      "previous_position": 1.0166666666666666
+    },
+    {
+      "query": "peintres japonais",
+      "clicks": 7,
+      "impressions": 55,
+      "position": 1.012820512820513,
+      "previous_clicks": 11,
+      "previous_impressions": 57,
+      "previous_position": 1.0694444444444444
+    },
+    {
+      "query": "peintre japonais contemporain",
+      "clicks": 6,
+      "impressions": 107,
+      "position": 1.0083333333333333,
+      "previous_clicks": 12,
+      "previous_impressions": 119,
+      "previous_position": 1.0193548387096774
+    },
+    {
+      "query": "tableau japonais connu",
+      "clicks": 6,
+      "impressions": 58,
+      "position": 2.4346666666666668,
+      "previous_clicks": 3,
+      "previous_impressions": 43,
+      "previous_position": 2.43968253968254
+    }
+  ],
+  "sources": [
+    {
+      "source": "google",
+      "clicks": 588,
+      "impressions": 20537,
+      "position": 9.449174820752143,
+      "previous_clicks": 560,
+      "previous_impressions": 17526,
+      "previous_position": 10.250478762473081
+    },
+    {
+      "source": "bing",
+      "clicks": 125,
+      "impressions": 90219,
+      "position": 6.152276465284968,
+      "previous_clicks": 115,
+      "previous_impressions": 89708,
+      "previous_position": 7.065836221138118
+    },
+    {
+      "source": "yandex",
+      "clicks": 82,
+      "impressions": 90219,
+      "position": 9.052276465284968,
+      "previous_clicks": 80,
+      "previous_impressions": 89708,
+      "previous_position": 9.165836221138118
+    }
+  ],
+  "devices": [
+    {
+      "device": "mobile",
+      "clicks": 383,
+      "impressions": 12663,
+      "position": 10.339608967872737,
+      "previous_clicks": 337,
+      "previous_impressions": 10471,
+      "previous_position": 10.636115237940508
+    },
+    {
+      "device": "desktop",
+      "clicks": 181,
+      "impressions": 7283,
+      "position": 24.87785367768713,
+      "previous_clicks": 199,
+      "previous_impressions": 6475,
+      "previous_position": 23.766059348612533
+    },
+    {
+      "device": "tablet",
+      "clicks": 24,
+      "impressions": 591,
+      "position": 7.8419024253070635,
+      "previous_clicks": 24,
+      "previous_impressions": 580,
+      "previous_position": 6.925495990286837
+    }
+  ]
+}
