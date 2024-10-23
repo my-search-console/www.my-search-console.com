@@ -4,13 +4,12 @@ import { AnalyticsCalendarModal } from "../../analytics/AnalyticsCalendarModal/A
 import { Container } from "../../ui/Container"
 import { Chart } from "../Chart/Chart"
 import { FilterBar } from "../FilterBar/FilterBar"
-import { LeaderboardShowMyDataButton } from "../LeaderboardShowMyDataButton/LeaderboardShowMyDataButton"
 import { LeaderboardWebsites } from "../LeaderboardWebsites/LeaderboardWebsites"
 import { SpreadFetchOnMount } from "../SpreadFetchOnMount/SpreadFetchOnMount"
 
 const SpreadPage: React.FC = () => {
   return (
-    <Container>
+    <Container id="demo">
       <div className={clsx("py-2 relative")}>
         <FilterBar />
 
@@ -18,7 +17,6 @@ const SpreadPage: React.FC = () => {
         <Chart />
         <div className="mt-2" />
         <LeaderboardWebsites />
-        <LeaderboardShowMyDataButton />
       </div>
 
       <SpreadFetchOnMount />

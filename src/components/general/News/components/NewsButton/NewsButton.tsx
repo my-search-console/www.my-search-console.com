@@ -22,7 +22,7 @@ export const Wrapper: React.FC<{
   return (
     <div className="relative">
       <button
-        className="inline-flex cursor-pointer items-center justify-center rounded p-3 text-slate-900 transition duration-300 ease-in-out   hover:bg-pink-50  hover:text-pink-500 focus:outline-none"
+        className="inline-flex cursor-pointer items-center justify-center rounded p-2 text-slate-900 transition duration-300 ease-in-out   hover:bg-pink-50  hover:text-pink-500 focus:outline-none"
         onClick={props.onClick}
       >
         {shouldShowAlert && (

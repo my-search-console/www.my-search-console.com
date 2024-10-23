@@ -1,7 +1,24 @@
 import React, { ReactNode } from "react"
 import ReactMarkdown from "react-markdown"
+import { GithubIcon } from "../../../assets/socials/github"
+import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
+import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
+import { ButtonPrimary, ButtonSecondary } from "../../ui/Button/Button"
 import { Container } from "../../ui/Container"
 import { connector, ContainerProps } from "./containers/Hero.containers"
+
+import { StaticImage } from "gatsby-plugin-image"
+
+const Scribble = () => (
+  <div className="-rotate-45">
+    <StaticImage
+      src="../../../assets/other/scribble.png"
+      alt="scribble"
+      width={30}
+      height={30}
+    />
+  </div>
+)
 
 export const Wrapper: React.FC<{
   label?: ReactNode
@@ -14,15 +31,7 @@ export const Wrapper: React.FC<{
 }> = (props) => {
   return (
     <div className="relative">
-      <div
-        style={{
-          animationDelay: "300ms",
-        }}
-        className="absolute right-20 top-20 hidden h-20 w-20 animate-bounce  rounded-full bg-pink-50 lg:block"
-      ></div>
-      <div className="absolute left-20 top-28 hidden h-20 w-20 animate-bounce  rounded-xl bg-blue-50 delay-300 lg:block"></div>
-
-      <Container className="flex flex-col items-center justify-center py-6 md:py-10 text-center">
+      <Container className="flex flex-col items-center justify-center py-6 md:py-10 text-center relative">
         {props.label && (
           <p className="text-center font-display md:text-lg font-medium text-slate-500">
             {props.label}
@@ -41,6 +50,31 @@ export const Wrapper: React.FC<{
             {props.description}
           </ReactMarkdown>
         )}
+
+        {!props.authenticated ? (
+          <div className="flex gap-x-4 mt-4">
+            <ButtonPrimary size="sm">
+              <FormattedMessage id="landing/try" />
+            </ButtonPrimary>
+            <FoudroyerLink to="/#demo">
+              <ButtonSecondary size="sm">See demo</ButtonSecondary>
+            </FoudroyerLink>
+          </div>
+        ) : null}
+
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/your-repo-link"
+          className="absolute hidden lg:flex animate-pulse cursor-pointer rotate-12 bottom-12 right-0 flex-col items-center"
+        >
+          <GithubIcon className="w-6 h-6" />
+
+          <p className="text-[10px] font-display mt-1 text-slate-600">
+            It's open-source and free
+          </p>
+          <Scribble />
+        </a>
       </Container>
     </div>
   )
