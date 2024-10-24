@@ -64,8 +64,8 @@ export const Wrapper: React.FC<{
 
         <a
           target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/your-repo-link"
+          rel="noopener noreferrer nofollow"
+          href="https://github.com/my-search-console"
           className="absolute hidden lg:flex animate-pulse cursor-pointer rotate-12 bottom-12 right-0 flex-col items-center"
         >
           <GithubIcon className="w-6 h-6" />
