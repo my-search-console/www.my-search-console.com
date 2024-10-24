@@ -5,7 +5,7 @@ import {
 } from "../../entities/RankingWebsiteEntity"
 import * as types from "./types"
 
-export interface RankingState {
+export interface AnalyticsState {
   isFetching: boolean
   filter: string | null
   stats: RankingStatsForFrontend
@@ -27,13 +27,25 @@ export interface RankingState {
     isOpen: boolean
   }
   previousFilterUrl: string | null
+  dimensions: {
+    clicks: boolean
+    impressions: boolean
+    position: boolean
+    click_through_rate: boolean
+  }
 }
 
-const initialState: RankingState = {
+const initialState: AnalyticsState = {
   isFetching: false,
   filter: null,
   isFinished: true,
   orderBy: "clicks",
+  dimensions: {
+    clicks: true,
+    impressions: true,
+    position: false,
+    click_through_rate: false,
+  },
   histogramModal: {
     type: "device",
     isOpen: false,
@@ -78,10 +90,10 @@ const initialState: RankingState = {
   previousFilterUrl: null,
 }
 
-export function rankingReducer(
+export function analyticsReducer(
   state = initialState,
   action: types.RankingActionTypes
-): RankingState {
+): AnalyticsState {
   if (action.type === types.RankingSetAnalyticsToastDataLateAccepted) {
     return {
       ...state,
@@ -100,6 +112,19 @@ export function rankingReducer(
     return {
       ...state,
       isFetching: action.payload.value,
+    }
+  }
+
+  if (action.type === types.AnalyticsToggleDimension) {
+    const isValueDefined = action.payload.value !== undefined
+    return {
+      ...state,
+      dimensions: {
+        ...state.dimensions,
+        [action.payload.type]: isValueDefined
+          ? action.payload.value
+          : !state.dimensions[action.payload.type],
+      },
     }
   }
 

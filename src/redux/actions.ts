@@ -1,4 +1,4 @@
-import * as ranking from "./analytics/actions"
+import * as analytics from "./analytics/actions"
 import * as auth from "./auth/actions"
 import * as di from "./di/actions"
 import * as lang from "./lang/actions"
@@ -11,7 +11,7 @@ import * as websites from "./websites/actions"
 export const actions = {
   spread,
   notifications,
-  ranking,
+  analytics,
   auth,
   websites,
   lang,

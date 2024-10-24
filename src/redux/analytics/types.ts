@@ -13,6 +13,15 @@ export interface RankingSetAnalyticsToastDataLateAcceptedAction {
   }
 }
 
+export const AnalyticsToggleDimension = "AnalyticsToggleDimension"
+export interface AnalyticsToggleDimensionAction {
+  type: typeof AnalyticsToggleDimension
+  payload: {
+    type: "clicks" | "impressions" | "position" | "click_through_rate"
+    value?: string
+  }
+}
+
 export const RankingSetFetching = "RankingSetFetching"
 export interface RankingSetFetchingAction {
   type: typeof RankingSetFetching
@@ -156,3 +165,4 @@ export type RankingActionTypes =
   | AnalyticsStoreIsFinishedStatusAction
   | AnalyticsStorePreviousUrlAction
   | AnalyticsSetAnalyticsComingSoonModalIsOpenAction
+  | AnalyticsToggleDimensionAction

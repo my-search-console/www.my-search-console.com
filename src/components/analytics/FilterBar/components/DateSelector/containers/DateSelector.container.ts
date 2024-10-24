@@ -9,14 +9,14 @@ const mapState = (state: RootState) => {
 const mapDispatch = (dispatch: any) => ({
   onSetDate(params: { period: string | null; date: string | null }) {
     dispatch(
-      actions.ranking.$RankingSetDate({
+      actions.analytics.$RankingSetDate({
         period: params.period,
         date: params.date,
       })
     )
   },
   onOpenCalendar() {
-    dispatch(actions.ranking.$AnalyticsOpenCalendar())
+    dispatch(actions.analytics.$AnalyticsOpenCalendar())
   },
 })
 

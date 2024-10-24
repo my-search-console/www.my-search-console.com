@@ -1,24 +1,10 @@
 import React, { ReactNode } from "react"
 import ReactMarkdown from "react-markdown"
-import { GithubIcon } from "../../../assets/socials/github"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
 import { ButtonPrimary, ButtonSecondary } from "../../ui/Button/Button"
 import { Container } from "../../ui/Container"
 import { connector, ContainerProps } from "./containers/Hero.containers"
-
-import { StaticImage } from "gatsby-plugin-image"
-
-const Scribble = () => (
-  <div className="-rotate-45">
-    <StaticImage
-      src="../../../assets/other/scribble.png"
-      alt="scribble"
-      width={30}
-      height={30}
-    />
-  </div>
-)
 
 export const Wrapper: React.FC<{
   label?: ReactNode
@@ -61,20 +47,6 @@ export const Wrapper: React.FC<{
             </FoudroyerLink>
           </div>
         ) : null}
-
-        <a
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-          href="https://github.com/my-search-console"
-          className="absolute hidden lg:flex animate-pulse cursor-pointer rotate-12 bottom-12 right-0 flex-col items-center"
-        >
-          <GithubIcon className="w-6 h-6" />
-
-          <p className="text-[10px] font-display mt-1 text-slate-600">
-            It's open-source and free
-          </p>
-          <Scribble />
-        </a>
       </Container>
     </div>
   )

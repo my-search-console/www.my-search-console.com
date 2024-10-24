@@ -3,16 +3,18 @@ import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
 
 const mapState = (state: RootState) => ({
-  stats: state.spread.stats.global,
-  selected: state.analytics.orderBy,
-  isFetching: state.analytics.isFetching,
+  clicks: state.analytics.dimensions.clicks,
+  impressions: state.analytics.dimensions.impressions,
+  position: state.analytics.dimensions.position,
+  click_through_rate: state.analytics.dimensions.click_through_rate,
 })
 
 const mapDispatch = (dispatch: any) => ({
-  onClick: (
+  onToggleDimension(params: {
     type: "clicks" | "impressions" | "position" | "click_through_rate"
-  ) => {
-    dispatch(actions.spread.$RankingStoreOrderBy(type))
+    value?: string
+  }) {
+    dispatch(actions.analytics.AnalyticsToggleDimension(params))
   },
 })
 

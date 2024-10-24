@@ -188,7 +188,7 @@ export const $syncWebsiteAndCheckEverything =
     await dispatcher(actions.websites.$setWebsiteActiveFromUrl())
 
     if (feature === "analytics") {
-      await dispatcher(actions.ranking.$fetch())
+      await dispatcher(actions.analytics.$fetch())
     }
   }
 
@@ -241,7 +241,7 @@ export const $changeWebsite =
     )
 
     if (feature === "analytics") {
-      dispatcher(actions.ranking.$fetch())
+      dispatcher(actions.analytics.$fetch())
     }
   }
 

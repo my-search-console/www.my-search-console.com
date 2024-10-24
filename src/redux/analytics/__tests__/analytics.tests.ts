@@ -14,23 +14,25 @@ describe("analytics tests suite", () => {
 
     di.LocationService.navigate("/analytics/" + website.id)
 
-    const promise = store.dispatch<any>(actions.ranking.$fetch())
+    const promise = store.dispatch<any>(actions.analytics.$fetch())
 
-    expect(store.getState().ranking.isFetching).toEqual(true)
+    expect(store.getState().analytics.isFetching).toEqual(true)
 
     await promise
 
-    expect(store.getState().ranking.isFetching).toEqual(false)
+    expect(store.getState().analytics.isFetching).toEqual(false)
 
-    expect(store.getState().ranking.stats.countries).toEqual([])
-    expect(store.getState().ranking.stats.date).toEqual([])
-    expect(store.getState().ranking.stats.devices).toEqual([])
-    expect(store.getState().ranking.stats.query).toEqual([])
-    expect(store.getState().ranking.stats.sources).toEqual([])
-    expect(store.getState().ranking.stats.global.click_through_rate).toEqual(0)
-    expect(store.getState().ranking.stats.global.position).toEqual(0)
-    expect(store.getState().ranking.stats.global.impressions).toEqual(0)
-    expect(store.getState().ranking.stats.global.clicks).toEqual(0)
+    expect(store.getState().analytics.stats.countries).toEqual([])
+    expect(store.getState().analytics.stats.date).toEqual([])
+    expect(store.getState().analytics.stats.devices).toEqual([])
+    expect(store.getState().analytics.stats.query).toEqual([])
+    expect(store.getState().analytics.stats.sources).toEqual([])
+    expect(store.getState().analytics.stats.global.click_through_rate).toEqual(
+      0
+    )
+    expect(store.getState().analytics.stats.global.position).toEqual(0)
+    expect(store.getState().analytics.stats.global.impressions).toEqual(0)
+    expect(store.getState().analytics.stats.global.clicks).toEqual(0)
   })
 
   it("as a user, i would like to add a filter", async () => {
@@ -45,7 +47,7 @@ describe("analytics tests suite", () => {
     await store.dispatch<any>(actions.websites.$syncWebsiteAndCheckEverything())
 
     await store.dispatch<any>(
-      actions.ranking.$RankingStoreFilter({
+      actions.analytics.$RankingStoreFilter({
         type: "source",
         value: "google",
       })
@@ -56,7 +58,7 @@ describe("analytics tests suite", () => {
     )
 
     await store.dispatch<any>(
-      actions.ranking.$RankingStoreFilter({
+      actions.analytics.$RankingStoreFilter({
         type: "source",
         value: "google",
       })
@@ -67,14 +69,14 @@ describe("analytics tests suite", () => {
     )
 
     await store.dispatch<any>(
-      actions.ranking.$RankingStoreFilter({
+      actions.analytics.$RankingStoreFilter({
         type: "source",
         value: "google",
       })
     )
 
     await store.dispatch<any>(
-      actions.ranking.$RankingStoreFilter({
+      actions.analytics.$RankingStoreFilter({
         type: "query",
         value: "sudoku",
       })
@@ -85,7 +87,7 @@ describe("analytics tests suite", () => {
     )
 
     await store.dispatch<any>(
-      actions.ranking.$RankingStoreFilter({
+      actions.analytics.$RankingStoreFilter({
         type: "source",
         value: "google",
       })

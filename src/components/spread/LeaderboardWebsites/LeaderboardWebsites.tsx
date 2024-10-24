@@ -10,7 +10,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -27,14 +26,23 @@ import dayjs from "dayjs"
 import { useIntl } from "react-intl"
 import { FoudroyerLink } from "../../general/FoudroyerLink/FoudroyerLink"
 import { Loader } from "../../general/Loader/Loader"
+import { ChartFooter } from "../chart-footer/chart-footer"
 
 const Item: React.FC<{
   id: string
   clicks: number
   impressions: number
+  position: number
+  click_through_rate: number
   timeline: RankingStatsForFrontend["date"]
   isLoading: boolean
   onClick: () => void
+  dimensions: {
+    clicks: boolean
+    impressions: boolean
+    position: boolean
+    click_through_rate: boolean
+  }
 }> = (props) => {
   const favicon = getFavicon(props.id)
   const intl = useIntl()
@@ -44,13 +52,21 @@ const Item: React.FC<{
       label: intl.formatMessage({
         id: "analytics/histogram/filter/clicks",
       }),
-      color: "hsl(var(--color-clicks))",
     },
     impressions: {
       label: intl.formatMessage({
         id: "analytics/histogram/filter/impressions",
       }),
-      color: "hsl(var(--color-impressions))",
+    },
+    position: {
+      label: intl.formatMessage({
+        id: "analytics/histogram/filter/position",
+      }),
+    },
+    click_through_rate: {
+      label: intl.formatMessage({
+        id: "analytics/histogram/filter/click_through_rate",
+      }),
     },
   }
 
@@ -58,6 +74,8 @@ const Item: React.FC<{
     day: item.date,
     clicks: item.clicks,
     impressions: item.impressions,
+    position: item.position,
+    click_through_rate: item.click_through_rate,
   }))
 
   return (
@@ -73,7 +91,7 @@ const Item: React.FC<{
       </CardHeader>
       <CardContent className="p-2 relative">
         {props.isLoading && <Loader />}
-        <ChartContainer config={chartConfig}>
+        <ChartContainer className="aspect-[16/5]" config={chartConfig}>
           <AreaChart
             accessibilityLayer
             data={chartData}
@@ -92,7 +110,7 @@ const Item: React.FC<{
               hide={true}
             />
             <YAxis
-              yAxisId="left"
+              yAxisId="clicks"
               orientation="left"
               stroke="var(--color-clicks)"
               tickLine={false}
@@ -100,9 +118,25 @@ const Item: React.FC<{
               hide={true}
             />
             <YAxis
-              yAxisId="right"
+              yAxisId="impressions"
               orientation="right"
               stroke="var(--color-impressions)"
+              tickLine={false}
+              axisLine={false}
+              hide={true}
+            />
+            <YAxis
+              yAxisId="position"
+              orientation="right"
+              stroke="var(--color-position)"
+              tickLine={false}
+              axisLine={false}
+              hide={true}
+            />
+            <YAxis
+              yAxisId="click_through_rate"
+              orientation="right"
+              stroke="var(--color-click_through_rate)"
               tickLine={false}
               axisLine={false}
               hide={true}
@@ -114,71 +148,53 @@ const Item: React.FC<{
                 return dayjs(label).format("DD MMMM YYYY")
               }}
             />
-            <defs>
-              <linearGradient id="fill-impressions" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="hsl(var(--chart-impressions))"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="80%"
-                  stopColor="hsl(var(--chart-impressions))"
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
-              <linearGradient id="fill-clicks" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="hsl(var(--chart-clicks))"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="80%"
-                  stopColor="hsl(var(--chart-clicks))"
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
-            </defs>
+
             <Area
-              yAxisId="left"
+              yAxisId="clicks"
               dataKey="clicks"
-              type="monotone"
-              fill="url(#fill-clicks)"
-              fillOpacity={0.4}
+              fillOpacity={0}
+              strokeWidth={2}
               stroke="hsl(var(--chart-clicks))"
               isAnimationActive={false}
+              hide={!props.dimensions.clicks}
             />
             <Area
-              yAxisId="right"
+              yAxisId="impressions"
               dataKey="impressions"
-              type="monotone"
-              fill="url(#fill-impressions)"
-              fillOpacity={0.4}
+              fillOpacity={0}
+              strokeWidth={2}
               stroke="hsl(var(--chart-impressions))"
               isAnimationActive={false}
+              hide={!props.dimensions.impressions}
+            />
+            <Area
+              yAxisId="position"
+              dataKey="position"
+              fillOpacity={0}
+              strokeWidth={2}
+              stroke="hsl(var(--chart-position))"
+              isAnimationActive={false}
+              hide={!props.dimensions.position}
+            />
+            <Area
+              yAxisId="click_through_rate"
+              dataKey="click_through_rate"
+              fillOpacity={0}
+              strokeWidth={2}
+              stroke="hsl(var(--chart-click_through_rate))"
+              isAnimationActive={false}
+              hide={!props.dimensions.click_through_rate}
             />
           </AreaChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="p-4">
-        <div className="flex font-display flex-wrap text-xs justify-between gap-4">
-          <div className="flex  items-center gap-1">
-            <div className="w-3 h-3 rounded bg-[hsl(var(--chart-clicks))]"></div>
-            <span className="text-slate-500">Clicks</span>
-            <span className="ml-1 font-medium">
-              {props.clicks.toLocaleString()}
-            </span>
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded bg-[hsl(var(--chart-impressions))]"></div>
-            <span className="text-slate-500">Impressions</span>
-            <span className="ml-1 font-medium">
-              {props.impressions.toLocaleString()}
-            </span>
-          </div>
-        </div>
-      </CardFooter>
+
+      <ChartFooter
+        clicks={props.clicks}
+        impressions={props.impressions}
+        position={props.position}
+        click_through_rate={props.click_through_rate}
+      />
     </Card>
   )
 }
@@ -207,7 +223,7 @@ const Wrapper: React.FC<Props> = (props) => {
   }, [])
 
   return (
-    <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-4">
+    <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-2">
       {!isMounted ||
         (props.websites.length === 0 && props.fetching && (
           <>
@@ -228,6 +244,7 @@ const Wrapper: React.FC<Props> = (props) => {
             {...website}
             onClick={() => props.goAnalytics(website.id)}
             isLoading={props.fetching}
+            dimensions={props.dimensions}
           />
         </div>
       ))}

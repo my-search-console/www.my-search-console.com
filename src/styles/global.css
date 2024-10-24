@@ -230,6 +230,13 @@ Infinite Loop
     --chart-5: 27 87% 67%;
     --chart-clicks: 217.2 91.2% 59.8%;
     --chart-impressions: 270.7 91% 65.1%;
+    --chart-click_through_rate: 198.4 93.2% 59.6%;
+    --chart-position: 47.9 95.8% 53.1%;
+
+    --color-clicks: 217.2 91.2% 59.8%;
+    --color-impressions: 270.7 91% 65.1%;
+    --color-click_through_rate: 198.4 93.2% 59.6%;
+    --color-position: 47.9 95.8% 53.1%;
   }
 
   .dark {

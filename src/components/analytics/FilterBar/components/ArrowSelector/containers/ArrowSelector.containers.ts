@@ -6,10 +6,10 @@ const mapState = (state: RootState) => ({})
 
 const mapDispatch = (dispatch: any) => ({
   onNextPeriod: () => {
-    dispatch(actions.ranking.$onNextPeriod())
+    dispatch(actions.analytics.$onNextPeriod())
   },
   onPreviousPeriod: () => {
-    dispatch(actions.ranking.$onPreviousPeriod())
+    dispatch(actions.analytics.$onPreviousPeriod())
   },
 })
 

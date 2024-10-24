@@ -8,7 +8,7 @@ const mapDispatch = (dispatch: any) => ({
     type: "source" | "date" | "query" | "country" | "device" | "page"
     value: string
   }) {
-    // dispatch(actions.ranking.$RankingStoreFilter(params))
+    // dispatch(actions.analytics.$RankingStoreFilter(params))
   },
 })
 

@@ -4,9 +4,9 @@ import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
 
 const mapState = (state: RootState, props: { hideActions?: boolean }) => ({
-  stats: state.ranking.stats,
-  isFetching: state.ranking.isFetching,
-  view: state.ranking.histogramView,
+  stats: state.analytics.stats,
+  isFetching: state.analytics.isFetching,
+  view: state.analytics.histogramView,
   hideActions: props.hideActions,
 })
 
@@ -15,15 +15,15 @@ const mapDispatch = (dispatch: any) => ({
     type: "query" | "country" | "device" | "source" | "date" | "page"
     value: string
   }) {
-    dispatch(actions.ranking.$RankingStoreFilter(params))
+    dispatch(actions.analytics.$RankingStoreFilter(params))
   },
   onShowMore(props: {
     type: "device" | "query" | "country" | "source" | "page"
   }) {
-    dispatch(actions.ranking.$openAndfetchByHistogram(props))
+    dispatch(actions.analytics.$openAndfetchByHistogram(props))
   },
   onChangeView(view: RankingOrderByType) {
-    dispatch(actions.ranking.RankingSetHistogramView({ value: view }))
+    dispatch(actions.analytics.RankingSetHistogramView({ value: view }))
   },
 })
 

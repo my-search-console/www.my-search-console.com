@@ -15,6 +15,13 @@ export const RankingSetToastAccepted = (
   payload,
 })
 
+export const AnalyticsToggleDimension = (
+  payload: types.AnalyticsToggleDimensionAction["payload"]
+): types.RankingActionTypes => ({
+  type: types.AnalyticsToggleDimension,
+  payload,
+})
+
 export const AnalyticsStorePreviousUrl = (
   payload: types.AnalyticsStorePreviousUrlAction["payload"]
 ): types.RankingActionTypes => ({
@@ -102,7 +109,7 @@ export const RankingHistogramModalSetType = (
 export const $fetch =
   (props?: { force?: boolean }): ThunkAction<any, RootState, any, any> =>
   async (dispatch, getState) => {
-    const { di, ranking } = getState()
+    const { di, analytics } = getState()
 
     const pathname = di.LocationService.getPathname()
     const fullUrl = di.LocationService.getFullUrl()
@@ -118,7 +125,7 @@ export const $fetch =
         url: fullUrl,
       })
 
-    if (orderBy !== ranking.orderBy) {
+    if (orderBy !== analytics.orderBy) {
       dispatch(RankingStoreOrderBy({ value: orderBy || "clicks" }))
     }
 
@@ -134,7 +141,7 @@ export const $fetch =
       websiteId,
     ].toString()
 
-    if (filterQuery === ranking.filter && !props?.force) {
+    if (filterQuery === analytics.filter && !props?.force) {
       dispatch(RankingSetFetching({ value: false }))
       return false
     }
@@ -270,7 +277,7 @@ export const $RankingStoreFilter =
       disableScroll: feature === "analytics",
     })
 
-    dispatch(actions.ranking.$fetch())
+    dispatch(actions.analytics.$fetch())
   }
 
 export const $RankingSetDate =
@@ -306,7 +313,7 @@ export const $RankingSetDate =
       disableScroll: true,
     })
 
-    if (feature === "analytics") return dispatch(actions.ranking.$fetch())
+    if (feature === "analytics") return dispatch(actions.analytics.$fetch())
     if (feature === "show-off") return dispatch(actions.spread.$fetch())
     if (!feature) return dispatch(actions.spread.$fetch())
   }
@@ -331,9 +338,9 @@ export const $AnalyticsSubmitCalendar =
       disableScroll: true,
     })
 
-    dispatch(actions.ranking.$fetch())
+    dispatch(actions.analytics.$fetch())
 
-    dispatch(actions.ranking.$AnalyticsCloseCalendar())
+    dispatch(actions.analytics.$AnalyticsCloseCalendar())
   }
 
 export const $AnalyticsOpenCalendar =
@@ -364,7 +371,7 @@ export const $AnalyticsCloseCalendar =
 export const $RankingSetOneDayDate =
   (props: { date: string }): ThunkAction<any, RootState, any, any> =>
   async (dispatch, getState) => {
-    const { di, websites, ranking } = getState()
+    const { di, websites, analytics } = getState()
 
     if (!websites.activeWebsite) return
 
@@ -374,17 +381,17 @@ export const $RankingSetOneDayDate =
     const period = url.searchParams.get("period")
 
     if (props.date === from && props.date === to) {
-      di.LocationService.navigate(ranking.previousFilterUrl || url.pathname, {
+      di.LocationService.navigate(analytics.previousFilterUrl || url.pathname, {
         disableScroll: true,
       })
 
-      dispatch(actions.ranking.AnalyticsStorePreviousUrl({ value: null }))
+      dispatch(actions.analytics.AnalyticsStorePreviousUrl({ value: null }))
 
-      return dispatch(actions.ranking.$fetch())
+      return dispatch(actions.analytics.$fetch())
     }
 
     dispatch(
-      actions.ranking.AnalyticsStorePreviousUrl({ value: url.toString() })
+      actions.analytics.AnalyticsStorePreviousUrl({ value: url.toString() })
     )
 
     if (period) url.searchParams.delete("period")
@@ -398,7 +405,7 @@ export const $RankingSetOneDayDate =
       disableScroll: true,
     })
 
-    dispatch(actions.ranking.$fetch())
+    dispatch(actions.analytics.$fetch())
   }
 
 export const $RankingStoreOrderBy =
@@ -418,7 +425,7 @@ export const $RankingStoreOrderBy =
       disableScroll: true,
     })
 
-    dispatch(actions.ranking.$fetch())
+    dispatch(actions.analytics.$fetch())
   }
 
 export const $RankingStoreAnalyticsToastDataLateAccepted =
@@ -463,7 +470,7 @@ export const $onPreviousPeriod =
       disableScroll: true,
     })
 
-    if (feature === "analytics") return dispatch(actions.ranking.$fetch())
+    if (feature === "analytics") return dispatch(actions.analytics.$fetch())
     if (feature === "show-off") return dispatch(actions.spread.$fetch())
     if (!feature) return dispatch(actions.spread.$fetch())
   }
@@ -494,7 +501,7 @@ export const $onNextPeriod =
       disableScroll: true,
     })
 
-    if (feature === "analytics") return dispatch(actions.ranking.$fetch())
+    if (feature === "analytics") return dispatch(actions.analytics.$fetch())
     if (feature === "show-off") return dispatch(actions.spread.$fetch())
     if (!feature) return dispatch(actions.spread.$fetch())
   }

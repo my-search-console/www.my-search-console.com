@@ -4,11 +4,12 @@ import { RootState } from "../../../../redux/store"
 
 const mapState = (state: RootState) => ({
   stats: state.spread.stats,
-  orderBy: state.ranking.orderBy,
+  orderBy: state.analytics.orderBy,
   isFetching: state.spread.isFetching,
   isRealUserData: state.spread.isRealUserData,
   type: state.spread.type,
   websites: state.spread.websites,
+  dimensions: state.analytics.dimensions,
 })
 
 const mapDispatch = (dispatch: any) => ({

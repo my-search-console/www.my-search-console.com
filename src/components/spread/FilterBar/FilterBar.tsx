@@ -1,7 +1,7 @@
 import { XMarkIcon } from "@heroicons/react/20/solid"
 import { useLocation } from "@reach/router"
 import React from "react"
-import { getWebsiteIdFromUrl } from "../../../utils/getWebsiteIdFromUrl"
+import { DimensionFilter } from "../../analytics/dimension-filter/dimension-filter"
 import { FormattedMessage } from "../../general/FormattedMessage/FormattedMessage"
 import { DateSelector } from "./components/DateSelector/DateSelector"
 import { connector, ContainerProps } from "./containers/FilterBar.container"
@@ -28,19 +28,13 @@ function getFiltersFromUrl(href: string) {
 
 export const Wrapper: React.FC<ContainerProps> = (props) => {
   const { href } = useLocation()
-  const { feature } = getWebsiteIdFromUrl(href || "")
-  const options = {
-    showFilters: feature === "analytics" || feature === "shared",
-    showSourceSelector: feature === "indexation",
-    showDateSelector: feature === "analytics" || feature === "shared",
-    showKeywordsFilters: feature === "keywords",
-  }
 
   const filters = getFiltersFromUrl(href || "https://www.local.dev")
 
   return (
     <div className="sticky top-1 z-20">
       <div className="flex w-full items-center justify-center rounded-lg border border-slate-100 bg-white bg-opacity-80 py-2 backdrop-blur-sm">
+        <DimensionFilter />
         {/* <SiteSelector readonly={props.readonly} /> */}
 
         {/* {options.showFilters && (

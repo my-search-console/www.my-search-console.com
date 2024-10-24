@@ -32,6 +32,8 @@ export interface SpreadState {
     id: string
     clicks: number
     impressions: number
+    position: number
+    click_through_rate: number
     timeline: RankingStatsForFrontend["date"]
   }>
 }

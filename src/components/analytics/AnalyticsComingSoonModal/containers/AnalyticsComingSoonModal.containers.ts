@@ -3,13 +3,13 @@ import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
 
 const mapState = (state: RootState) => ({
-  isOpen: state.ranking.analyticsComingSoonModal.isOpen,
+  isOpen: state.analytics.analyticsComingSoonModal.isOpen,
 })
 
 const mapDispatch = (dispatch: any) => ({
   onClose: () => {
     dispatch(
-      actions.ranking.AnalyticsSetAnalyticsComingSoonModalIsOpen({
+      actions.analytics.AnalyticsSetAnalyticsComingSoonModalIsOpen({
         value: false,
       })
     )

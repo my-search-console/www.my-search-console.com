@@ -6,7 +6,7 @@ const mapState = (state: RootState) => ({})
 
 const mapDispatch = (dispatch: any) => ({
   onMount: () => {
-    dispatch(actions.ranking.$fetch())
+    dispatch(actions.analytics.$fetch())
   },
 })
 

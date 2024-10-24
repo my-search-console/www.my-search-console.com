@@ -8,7 +8,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "../../ui/card"
@@ -17,6 +16,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../../ui/chart"
+import { ChartFooter } from "../chart-footer/chart-footer"
 import { connector, ContainerProps } from "./containers/Chart.container"
 
 const Skeleton = () => {
@@ -56,6 +56,18 @@ const Wrapper: React.FC<ContainerProps> = (props) => {
       }),
       color: "hsl(var(--color-impressions))",
     },
+    position: {
+      label: intl.formatMessage({
+        id: "analytics/histogram/filter/position",
+      }),
+      color: "hsl(var(--color-position))",
+    },
+    click_through_rate: {
+      label: intl.formatMessage({
+        id: "analytics/histogram/filter/click_through_rate",
+      }),
+      color: "hsl(var(--color-click_through_rate))",
+    },
   }
 
   const chartData = props.stats.date.map((item) => ({
@@ -63,6 +75,8 @@ const Wrapper: React.FC<ContainerProps> = (props) => {
     clicks: item.clicks,
     impressions: item.impressions,
     previous_impressions: item.previous_impressions,
+    position: item.position,
+    click_through_rate: item.click_through_rate,
   }))
 
   if (!isMounted || (props.websites.length === 0 && props.isFetching)) {
@@ -120,17 +134,32 @@ const Wrapper: React.FC<ContainerProps> = (props) => {
               hide={true}
             />
             <YAxis
-              yAxisId="left"
-              orientation="left"
+              yAxisId="clicks"
               stroke="var(--color-clicks)"
               tickLine={false}
               axisLine={false}
               hide={true}
             />
             <YAxis
-              yAxisId="right"
+              yAxisId="impressions"
               orientation="right"
               stroke="var(--color-impressions)"
+              tickLine={false}
+              axisLine={false}
+              hide={true}
+            />
+            <YAxis
+              yAxisId="position"
+              orientation="right"
+              stroke="var(--color-position)"
+              tickLine={false}
+              axisLine={false}
+              hide={true}
+            />
+            <YAxis
+              yAxisId="click_through_rate"
+              orientation="right"
+              stroke="var(--color-click_through_rate)"
               tickLine={false}
               axisLine={false}
               hide={true}
@@ -142,49 +171,41 @@ const Wrapper: React.FC<ContainerProps> = (props) => {
                 return dayjs(label).format("DD MMMM YYYY")
               }}
             />
-            <defs>
-              <linearGradient id="fill-impressions" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="hsl(var(--chart-impressions))"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="80%"
-                  stopColor="hsl(var(--chart-impressions))"
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
-              <linearGradient id="fill-clicks" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="hsl(var(--chart-clicks))"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="80%"
-                  stopColor="hsl(var(--chart-clicks))"
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
-            </defs>
+
             <Area
-              yAxisId="left"
+              yAxisId="clicks"
               dataKey="clicks"
-              type="monotone"
-              fill="url(#fill-clicks)"
-              fillOpacity={0.4}
+              fillOpacity={0}
+              strokeWidth={2}
               stroke="hsl(var(--chart-clicks))"
               isAnimationActive={false}
+              hide={!props.dimensions.clicks}
             />
             <Area
-              yAxisId="right"
+              yAxisId="impressions"
               dataKey="impressions"
-              type="monotone"
-              fill="url(#fill-impressions)"
-              fillOpacity={0.4}
+              fillOpacity={0}
+              strokeWidth={2}
               stroke="hsl(var(--chart-impressions))"
               isAnimationActive={false}
+              hide={!props.dimensions.impressions}
+            />
+            <Area
+              yAxisId="position"
+              dataKey="position"
+              fillOpacity={0}
+              strokeWidth={2}
+              stroke="hsl(var(--chart-position))"
+              isAnimationActive={false}
+              hide={!props.dimensions.position}
+            />
+            <YAxis
+              yAxisId="click_through_rate"
+              orientation="right"
+              stroke="var(--color-click_through_rate)"
+              tickLine={false}
+              axisLine={false}
+              hide={!props.dimensions.click_through_rate}
             />
 
             {/* {from && to && (
@@ -202,24 +223,12 @@ const Wrapper: React.FC<ContainerProps> = (props) => {
         </ChartContainer>
       </CardContent>
 
-      <CardFooter className="p-4">
-        <div className="flex text-xs font-display justify-between gap-4">
-          <div className="flex  items-center gap-1">
-            <div className="w-3 h-3 rounded bg-[hsl(var(--chart-clicks))]"></div>
-            <span className="text-slate-500">Clicks</span>
-            <span className="ml-1 font-medium">
-              {props.stats.global.clicks.toLocaleString()}
-            </span>
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded bg-[hsl(var(--chart-impressions))]"></div>
-            <span className="text-slate-500">Impressions</span>
-            <span className="ml-1 font-medium">
-              {props.stats.global.impressions.toLocaleString()}
-            </span>
-          </div>
-        </div>
-      </CardFooter>
+      <ChartFooter
+        clicks={props.stats.global.clicks}
+        impressions={props.stats.global.impressions}
+        position={props.stats.global.position}
+        click_through_rate={props.stats.global.click_through_rate}
+      />
     </Card>
   )
 }

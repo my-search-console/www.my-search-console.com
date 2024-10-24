@@ -3,15 +3,15 @@ import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
 
 const mapState = (state: RootState) => ({
-  stats: state.ranking.stats,
-  orderBy: state.ranking.orderBy,
-  isFetching: state.ranking.isFetching,
+  stats: state.analytics.stats,
+  orderBy: state.analytics.orderBy,
+  isFetching: state.analytics.isFetching,
 })
 
 const mapDispatch = (dispatch: any) => ({
   onMount: () => {},
   onFilter: (date: string) => {
-    dispatch(actions.ranking.$RankingSetOneDayDate({ date }))
+    dispatch(actions.analytics.$RankingSetOneDayDate({ date }))
   },
 })
 

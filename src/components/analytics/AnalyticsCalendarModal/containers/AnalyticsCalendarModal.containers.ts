@@ -6,10 +6,10 @@ const mapState = (state: RootState) => ({})
 
 const mapDispatch = (dispatch: any) => ({
   onClose: () => {
-    dispatch(actions.ranking.$AnalyticsCloseCalendar())
+    dispatch(actions.analytics.$AnalyticsCloseCalendar())
   },
   onSubmit: (props: { from: string; to: string }) => {
-    dispatch(actions.ranking.$AnalyticsSubmitCalendar(props))
+    dispatch(actions.analytics.$AnalyticsSubmitCalendar(props))
   },
 })
 

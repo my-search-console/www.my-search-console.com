@@ -1,8 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import thunk from "redux-thunk"
 import { actions } from "./actions"
-
-import { rankingReducer } from "./analytics/reducers"
+import { analyticsReducer } from "./analytics/reducers"
 import { authReducer } from "./auth/reducers"
 import { diReducer } from "./di/reducers"
 import { DiInjectable } from "./di/types"
@@ -21,7 +20,7 @@ export const reducers = combineReducers({
   spread: spreadReducer,
   lang: langReducer,
   auth: authReducer,
-  ranking: rankingReducer,
+  analytics: analyticsReducer,
   websites: websitesReducer,
   modal: modalReducer,
   loader: loaderReducer,

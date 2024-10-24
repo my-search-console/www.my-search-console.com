@@ -5,6 +5,7 @@ import { RootState } from "../../../../redux/store"
 const mapState = (state: RootState) => ({
   websites: state.spread.websites,
   fetching: state.spread.isFetching,
+  dimensions: state.analytics.dimensions,
 })
 
 const mapDispatch = (dispatch: any) => ({

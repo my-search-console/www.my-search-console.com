@@ -13,7 +13,7 @@ export class ApiSpreadRepository implements ISpreadRepository {
   async fetch(props: { from: string; to: string }): Promise<StatsResponse> {
     try {
       const response = await this.apiService.post<StatsResponseBody>(
-        `/spread`,
+        `/analytics`,
         {
           from: props.from,
           to: props.to,

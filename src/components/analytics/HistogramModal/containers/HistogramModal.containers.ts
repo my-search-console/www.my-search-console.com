@@ -3,15 +3,15 @@ import { actions } from "../../../../redux/actions"
 import { RootState } from "../../../../redux/store"
 
 const mapState = (state: RootState) => ({
-  isOpen: state.ranking.histogramModal.isOpen,
-  isFetching: state.ranking.histogramModal.isFetching,
-  stats: state.ranking.histogramModal.stats,
-  type: state.ranking.histogramModal.type,
+  isOpen: state.analytics.histogramModal.isOpen,
+  isFetching: state.analytics.histogramModal.isFetching,
+  stats: state.analytics.histogramModal.stats,
+  type: state.analytics.histogramModal.type,
 })
 
 const mapDispatch = (dispatch: any) => ({
   onClose: () => {
-    dispatch(actions.ranking.RankingHistogramModalSetToggle({ value: false }))
+    dispatch(actions.analytics.RankingHistogramModalSetToggle({ value: false }))
   },
 })
 

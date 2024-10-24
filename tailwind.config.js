@@ -21,6 +21,10 @@ module.exports = {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        clicks: "hsl(var(--color-clicks))",
+        impressions: "hsl(var(--color-impressions))",
+        position: "hsl(var(--color-position))",
+        click_through_rate: "hsl(var(--color-click_through_rate))",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
